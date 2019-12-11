@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai</title>
+
+<!-- 数式を使う宣言-->
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" }},
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { matchFontHeight: false },
+    displayAlign: "left",
+    displayIndent: "2em"
+  });
+</script>
+
+</head>
+
+<body>
+<main>
+
+
+<h2>分類</h2>
+      <h3>解析的</h2>
+      <h3>探索的</h3>
+    
+      <h3>分類の種類</h3>
+      <dl>
+        <dt>正解率, 精度, accuracy</dt>
+        <dd>(TP + TN) / (TP + TN + FP + FN)</dd>
+        <dt>適合率, precision</dt>
+        <dd>
+          <div>trueのと予測した中で実際にtrueである割合</div>
+          <div>(TP) / (TP + FP)
+       </dd>
+        <dt>再現率, 検出率, recall</dt>
+        <dd>
+          <div>実際にtrueの値のうち正であると予測されたもの</div>
+          <div> (TP) / (TP + FN)</div>
+        </dd>
+        <dd>
+        <dt>F値, F-measure</dt>
+        <dd>
+          <div>正解率と再現率のバランス</div>
+          <div>(2 * precision * recall) / (precision + recall)</div>
+        </dd>
+      </dl>
+  
+  <h2>回帰</h2>
+    <ul>
+    <li>解析的解法と探索的解法</li>
+    <li>最小二乗法(LSM)</li>
+    <li>線形回帰</li>
+    <li>回帰直線</li>
+    <li>重回帰</li>
+    <li>多項回帰</li>
+    <li>正規方程式</li>
+    </ul>
+    
+  <h2>次元圧縮</h2>
+    <h3>主成分分析</h3>
+
+  <h2>視覚化</h2>
+    <h3>クラスタリング</h3>
+    <ul>
+      <li>k Nearest Neighbor</li>
+    </ul>
+
+  <h2>数学</h2>
+
+  <h2>まとめの外</h2>
+  <dl>
+    <dt>潜在的ディリクレ配分法</dt>
+    <dt>パーセプトロン手法</dt>
+    <dt>ナイーブベイズ</dt>
+    <dt>スパースモデリング</dt>
+  </dl>
+</main>
+
+</body>
+</html>
