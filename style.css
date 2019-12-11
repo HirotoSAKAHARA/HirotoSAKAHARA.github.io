@@ -1,0 +1,150 @@
+
+body {
+  font-family: -apple-system; 
+               Meiryo,           /* 游ゴシックが入っていないWindows */
+               blinkMacSystemFont, /* Macの欧文はSan Francisco (OS X 10.11以降) */
+               'Helvetica Neue', /* Macの欧文 (OS X 10.10以前) */
+               'Segoe UI',       /* Windowsの欧文 */
+               YuGothicM,        /* Windows8.1以上は游ゴシック */
+               YuGothic,         /* Macの游ゴシック */
+               sans-serif;
+  font-size: 16px;
+  background:#CCEEDD;
+  width:90%;
+  margin:auto;
+
+  counter-reset:ha;
+}
+
+h1::before {
+  counter-increment: ha;
+  content: counter(ha) " : ";
+}
+
+h1{
+  margin-top: 64px;
+  margin-bottom: 0px;
+  border-top: 5px solid #775555;
+  font-size:32px;
+  text-decoration-line:underline;
+  counter-reset:hb;
+}
+
+h1:first-child{
+  margin-top: 4px;
+}
+
+h2::before {
+  counter-increment: hb;
+  content: counter(ha) "-" counter(hb) " : ";
+}
+
+h2{
+  margin-top: 56px;
+  margin-bottom: 0px;
+  border-top: 3px solid #775555;
+  font-size: 28px;
+  text-decoration-line:underline;
+  counter-reset:hc;
+}
+
+h1+h2{
+  border-top: none;
+  margin-top: 0px;
+}
+
+h3::before {
+  counter-increment: hc;
+  content: counter(ha) "-" counter(hb) "-" counter(hc)" : ";
+}
+
+h3{
+  margin-top: 48px;
+  margin-bottom: 0px;
+  border-top: 1px solid #775555;
+  font-size: 24px;
+  text-decoration-line:underline;
+  counter-reset:hd;
+}
+
+h2+h3{
+  border-top: none;
+  margin-top: 0px;
+}
+
+h4::before {
+  counter-increment: hd;
+  content: counter(ha) "-" counter(hb) "-" counter(hc) "-" counter(hd)" : ";
+}
+
+h4{
+  margin-top: 40px;
+  margin-bottom: 0px;
+  border-top: 1px dotted #775555;
+  font-size: 20px;
+  text-decoration-line:underline;
+  counter-reset:he;
+}
+
+h3+h4{
+  border-top: none;
+  margin-top: 0px;
+}
+
+h5::before {
+  counter-increment: he;
+  content: counter(ha) "-" counter(hb) "-" counter(hc) "-" counter(hd) "-" counter(he)" : ";
+}
+
+
+h5{
+  margin-top: 36px;
+  margin-bottom: 0px;
+  border-top: 1px dotted #775555;
+  font-size: 18px;
+  text-decoration-line:underline;
+  font-weight:bold;
+  counter-reset:hf;
+}
+
+h4+h5{
+  border-top: none;
+  margin-top: 0px;
+}
+
+h6::before {
+  counter-increment: hf;
+  content: counter(ha) "-" counter(hb) "-" counter(hc) "-" counter(hd) "-" counter(he) "-" counter(hf) " : ";
+}
+
+h6{
+  margin-top: 32px;
+  margin-bottom: 0px;
+  border-top: 1px dotted #AACCAA;
+  font-size: 16px;
+  text-decoration-line:underline;
+}
+
+h5+h6{
+  border-top: none;
+  margin-top: 0px;
+}
+
+dl{
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  border-color:#773300;
+}
+
+dt{
+  border-top: 1px solid #000000;
+  font-weight:bold;
+  border-color:#773300;
+}
+
+dd{
+  border-top: 1px dotted #000000;
+  border-color:#773300;
+}
+
