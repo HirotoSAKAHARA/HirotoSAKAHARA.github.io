@@ -27,15 +27,23 @@
 <body>
 <main>
 
+<!--***************************ヘッダー領域****************************-->
+<div class="navigation">
 <div class="title_space">
   <div class="title">
-    hsmemo
-  </div>
-  <div class="title_comment">
-    技術的なメモを羅列しています。
+    <a href="../index.html">hsmemo</a>
+    <span class="subtitle">
+    - 数学
+    </span>
   </div>
 </div>
-<div class="navigation">
+
+<div class="last_modified">
+<script type="text/javascript"><!--
+   document.write('最終更新日:' + document.lastModified);
+// --></script>
+： 最適化問題の追加
+</div>
 
 <ul>
   <li><a href="../index.html">home</a></li>
@@ -45,6 +53,29 @@
   <li><a href="../other/index.html">その他</a></li>
 </ul>
 </div>
+<!--*********************************本文*********************************-->
+<h1>最適化問題</h1>
+関数の最小値、最大値を求める問題。
+  <h2>勾配降下法</h2>
+    多変量の最適化問題を解くためのアルゴリズム
+    <dl>
+      <dt>確率的勾配降下法</dt>
+      <dd>トレーニングセット全体に対するパラメータについてコスト関数を計算</dd>
+      <dt>確率的勾配降下法(SGD)</dt>
+      <dd>それぞれの訓練列とラベルに対してパラメータの更新を行う</dd>
+      <dt>ミニバッチ勾配降下法</dt>
+      <dd>n個の訓令例のミニバッチ毎に更新</dd>
+  </dl>
+
+    <h3>確率的勾配降下法(SGD)</h3>
+    データ拡張、mixup
+
+    <h3>次元の呪い</h3>
+
+<h1>参考文献、サイト</h1>
+<ul>
+<li><cite><a href="https://postd.cc/optimizing-gradient-descent/">Sebastian Ruder."勾配降下法の最適化アルゴリズムを概観する".2016,POSTD</a> </cite></li>
+</ul>
 
 </main>
 </body>

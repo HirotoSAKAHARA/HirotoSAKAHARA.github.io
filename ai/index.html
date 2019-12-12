@@ -27,13 +27,21 @@
 <body>
 <main>
 
+<!--***************************ヘッダー領域****************************-->
 <div class="title_space">
   <div class="title">
-    hsmemo
+    <a href="../index.html">hsmemo</a>
+    <span class="subtitle">
+      - AI
+    </span>
   </div>
-  <div class="title_comment">
-    技術的なメモを羅列しています。
-  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript"><!--
+   document.write('最終更新日:' + document.lastModified);
+// --></script>
+： 大幅加筆
 </div>
 
  <div class="navigation">
@@ -45,65 +53,140 @@
   <li><a href="../other/index.html">その他</a></li>
 </ul>
 </div>
-<h1>分類</h1>
-      <h2>解析的</h1>
-      <h2>探索的</h2>
-    
-      <h2>分類の種類</h2>
-      <dl>
-        <dt>正解率, 精度, accuracy</dt>
-        <dd>(TP + TN) / (TP + TN + FP + FN)</dd>
-        <dt>適合率, precision</dt>
-        <dd>
-          <div>trueのと予測した中で実際にtrueである割合</div>
-          <div>(TP) / (TP + FP)
-       </dd>
-        <dt>再現率, 検出率, recall</dt>
-        <dd>
-          <div>実際にtrueの値のうち正であると予測されたもの</div>
-          <div> (TP) / (TP + FN)</div>
-        </dd>
-        <dd>
-        <dt>F値, F-measure</dt>
-        <dd>
-          <div>正解率と再現率のバランス</div>
-          <div>(2 * precision * recall) / (precision + recall)</div>
-        </dd>
-      </dl>
-  
-  <h1>回帰</h1>
-    <ul>
-    <li>解析的解法と探索的解法</li>
-    <li>最小二乗法(LSM)</li>
-    <li>線形回帰</li>
-    <li>回帰直線</li>
-    <li>重回帰</li>
-    <li>多項回帰</li>
-    <li>正規方程式</li>
-    </ul>
-    
-  <h1>次元圧縮</h1>
-    <h2>主成分分析</h2>
 
-  <h1>視覚化</h1>
-    <h2>クラスタリング</h2>
+<!--*********************************本文*********************************-->
+
+<h1>目的</h1>
+  <h2>分類</h2>
+    <h3>解析的</h3>
+    <h3>探索的</h3>
+    <dl>
+      <dt>ナイーブベイズ</dt>
+      <dd>内容</dd>
+    </dl>
+    <h3>ロジスティック回帰</h3>
+    実際には分類に用いられる
+
+  
+  <h2>回帰</h2>
+    <h3>線形回帰</h3>
+    <dl>
+      <dt>線形回帰</dt>
+      <dd>Y = a0 + a1x1 + ... + anxn + e となる関係を示したもの</dd>
+      <dt>単回帰</dt>
+      <dd>変数が１つの１次式</dd>
+      <dt>多項回帰</dt>
+      <dd>変数が１つだが、ｎ次式</dd>
+      <dt>重回帰</dt>
+      <dd>変数が複数</dd>
+    </dl>
+  
+    <ul>
+      <li>解析的解法と探索的解法</li>
+      <li>線形回帰</li>
+      <li>回帰直線</li>
+      <li>正規方程式</li>
+    </ul>
+
+  <h2>自然言語処理</h2>
+    <h3>トピックモデル</h3>
+    <dl>
+      <dt>潜在的ディリクレ配分法</dt>
+      <dd>トピックモデルにおいて、トピック分布にディリクレ分布を仮定し、ベイズ推定する手法のこと</dd>
+    </dl>
+
+<h1>技術</h1>
+  <h2>教師あり学習</h2>
+    <h3>サポートベクターマシン SVN</h3>
+    <h3>最近傍法,k近傍法</h3>
+    <h3>ナイーブベイズ</h3>
+    <h3>adaBoost</h3>
+
+  <h2>教師なし学習</h2>
+    <h3>PCA 主成分分析</h3>
+    <h3>自己組織化</h3>
+      <h4>マルスバーグの自己組織化</h4>
+      <h4>コホネンの自己組織化</h4>
+      <h4>リンスカーの受容野形成の自己組織化</h4>
+      <h4>オジャのSOMの自己組織化</h4>
+    <h3>k means クラスタリング</h3>
+    <h3>ICA 独立成分分析</h3>
+    <h3>LDA 潜在ディレクリ配置</h3>
+    <h3>t-SNE</h3>
+
+
+  <h2>ディープラーニング</h2>
+  <dl>
+
+    <dt>パーセプトロン手法(単純パーセプトロン)</dt>
+    <dd>バイアス +Σ（入力 × 重み）= a を計算し、aが0以上の場合は1、以下の場合は0を出力</dd>
+    <dt>誤差伝搬</dt>
+    <dd>内容</dd>
+    <dt>自己符号化</dt>
+    <dd>内容</dd>
+
+    <dt>ドロップアウト</dt>
+    <dd>途中の学習を取る</dd>
+
+  </dl>
+
+  <h2>次元圧縮</h2>
+    <h3>主成分分析</h3>
+
+    <h3>スパースモデリング</h3>
+    
+  <h2>次元の呪い</h3>
+  AIC, BIC
+
+  <h2>視覚化</h2>
+    <h3>クラスタリング</h3>
     <ul>
       <li>k Nearest Neighbor</li>
     </ul>
-  <h1>数学</h1>
 
-  <h1>まとめの外</h1>
+<h1>評価</h1>
+  <h2>分類の種類</h2>
   <dl>
-    <dt>潜在的ディリクレ配分法</dt>
-    <dd>内容</dd>
-    <dt>パーセプトロン手法</dt>
-    <dd>内容</dd>
-    <dt>ナイーブベイズ</dt>
-    <dd>内容</dd>
-    <dt>スパースモデリング</dt>
-    <dd>内容</dd>
+    <dt>正解率, 精度, accuracy</dt>
+    <dd>(TP + TN) / (TP + TN + FP + FN)</dd>
+    <dt>適合率, precision</dt>
+    <dd>
+      <div>trueのと予測した中で実際にtrueである割合</div>
+      <div>(TP) / (TP + FP)
+    </dd>
+    <dt>再現率, 検出率, recall</dt>
+    <dd>
+      <div>実際にtrueの値のうち正であると予測されたもの</div>
+      <div> (TP) / (TP + FN)</div>
+    </dd>
+    <dd>
+    <dt>F値, F-measure</dt>
+    <dd>
+      <div>正解率と再現率のバランス</div>
+      <div>(2 * precision * recall) / (precision + recall)</div>
+    </dd>
+  </dl>
+  <h2>バイアスバリアンス分解</h2>
+   <dl>
+    <dt>バイアス</dt>
+    <dd>予測値と真値の誤差、アンダーフィッティング時に大きくなりがち</dd>
+    <dt>バリアンス</dt>
+    <dd>予測値と真値の分散、オーバーフィッティング時に大きくなりがち</dd>
+  </dl>
+ 
+
+
+<h1>その外</h1>
+  <dl>
+    <dt>勾配降下法</dt>
+    <dd><a href="../math/index.html">数学-最適化問題</a>へ移動</dd>
   </dl>
 </main>
+
+<h1>参考</h1>
+  <ul>
+  <li><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147655">岩田 具治."トピックモデル、機械学習プロフェッショナルシリーズ".2018,講談社</a> </cite></li>
+  </ul>
 
 </body>
 </html>
