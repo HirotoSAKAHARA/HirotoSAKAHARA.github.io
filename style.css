@@ -12,8 +12,6 @@ body {
   background:#CCEEDD;
   width:90%;
   margin:auto;
-
-  counter-reset:ha;
 }
 
 .title_space{
@@ -96,15 +94,15 @@ body {
   background: #A03000;
 }
 
-h1::before {
-  counter-increment: ha;
-  content: counter(ha) " : ";
-}
 
 h1{
-  margin-top: 52px;
+  margin-top: 48px;
   margin-bottom: 0px;
-  border-top: 5px solid #775555;
+  padding-top:4px;
+  padding-bottom:4px;
+  border-top: 3px solid #775555;
+  border-bottom: 3px solid #775555;
+  background:#CCCCCC;
   font-size:26px;
   counter-reset:hb;
 }
@@ -120,7 +118,7 @@ h1:first-child{
 
 h2::before {
   counter-increment: hb;
-  content: counter(ha) "-" counter(hb) " : ";
+  content: counter(hb) " : ";
 }
 
 h2{
@@ -131,14 +129,10 @@ h2{
   counter-reset:hc;
 }
 
-h1+h2{
-  border-top: none;
-  margin-top: 0px;
-}
 
 h3::before {
   counter-increment: hc;
-  content: counter(ha) "-" counter(hb) "-" counter(hc)" : ";
+  content: counter(hb) "-" counter(hc)" : ";
 }
 
 h3{
@@ -156,7 +150,7 @@ h2+h3{
 
 h4::before {
   counter-increment: hd;
-  content: counter(ha) "-" counter(hb) "-" counter(hc) "-" counter(hd)" : ";
+  content: counter(hb) "-" counter(hc) "-" counter(hd)" : ";
 }
 
 h4{
@@ -174,7 +168,7 @@ h3+h4{
 
 h5::before {
   counter-increment: he;
-  content: counter(ha) "-" counter(hb) "-" counter(hc) "-" counter(hd) "-" counter(he)" : ";
+  content: counter(hb) "-" counter(hc) "-" counter(hd) "-" counter(he)" : ";
 }
 
 
@@ -194,7 +188,7 @@ h4+h5{
 
 h6::before {
   counter-increment: hf;
-  content: counter(ha) "-" counter(hb) "-" counter(hc) "-" counter(hd) "-" counter(he) "-" counter(hf) " : ";
+  content: counter(hb) "-" counter(hc) "-" counter(hd) "-" counter(he) "-" counter(hf) " : ";
 }
 
 h6{
@@ -235,5 +229,9 @@ a{
 a:hover{
   background:#A03000;
   color:white;
+}
+
+pre{
+  background: white;
 }
 
