@@ -58,8 +58,9 @@
 </ul>
 </div>
 
-  <h1>グラフベースドスラム</h1>
-    <h2>手順</h2>
+<h1>自己位置同定</h1>
+  <h2>グラフベースドスラム</h2>
+    <h3>手順</h3>
     <ol>
       <li>周囲データ取得</li>
       <li>参照スキャン生成</li>
@@ -68,21 +69,21 @@
       <li>センサ融合</li>
       <li>地図生成</li>
     </ol>
-    <h2>周囲データ取得</h2>
+    <h3>周囲データ取得</h3>
     <ol>
       <li>データ間引き</li>
       <li>クラスタリング</li>
       <li>フィルタ処理</li>
     </ol>
 
-    <h2>参照スキャン生成</h2>
+    <h3>参照スキャン生成</h3>
     <ol>
       <li>前回の地図で参照スキャン</li>
       <li>前回までの地図で参照スキャン</li>
       <li>範囲を決めた参照スキャン</li>
     </ol>
 
-    <h2>データ対応付</h2>
+    <h3>データ対応付</h3>
     <ol>
       <li>全探索</li>
       <li>座標テーブル</li>
@@ -91,7 +92,7 @@
       <li>X-Tree</li>
     </ol>
 
-    <h2>ロボット位置最適化</h2>
+    <h3>ロボット位置最適化</h3>
     <ol>
       <li>滑降シンプレックス法(ネルダーミード法)</li>
       <li>最急降下法</li>
@@ -106,33 +107,33 @@
       </li>
     </ol>
 
-    <h2>センサ融合</h2>
+    <h3>センサ融合</h3>
     <ol>
       <li>kalman filter : カルマンフィルタ</li>
       <li>particle filter : パーティクルフィルタ</li>
     </ol>
 
-    <h2>地図生成</h2>
+    <h3>地図生成</h3>
     <ol>
       <li>ロボット位置グラフ生成して位置のズレを最小化</li>
     </ol>
 
-    <h1>SLAMの種類</h1>
-      <h2>レーザセンサSLAM</h2>
-      <h2>Visual SLAM</h2>
-        <h3>Orb SLAM</h3>
-        <h3>Direct Sparse Odometry</h3>
-        <h3>LSD-SLAM</h3>
-      <h2>磁気SLAM</h2>
-      <h2>センサオドメトリ</h2>
-      <h2>Wheel オドメトリ</h2>
+    <h2>SLAMの種類</h2>
+      <h3>レーザセンサSLAM</h3>
+      <h3>Visual SLAM</h3>
+        <h4>Orb SLAM</h4>
+        <h4>Direct Sparse Odometry</h4>
+        <h4>LSD-SLAM</h4>
+      <h3>磁気SLAM</h3>
+      <h3>センサオドメトリ</h3>
+      <h3>Wheel オドメトリ</h3>
 
-    <h1>調べるリスト</h1>
+    <h2>調べるリスト</h2>
     <ul>
       <li>SfM</li>
     </ul>
 
-  <h1>参考文献、サイト</h1>
+  <h2>参考文献、サイト</h2>
   <ul>
   <li><cite><a href="https://www.ohmsha.co.jp/book/9784274221668/">友納正裕."SLAM入門 ロボットの自己位置推定と地図構築の技術".2018,Ohmsha</a> </cite></li>
   <li><cite><a href="根の探索アルゴリズム">@nariaki3551,"根の探索あるゴリズム",2019,Qiita</a></cite></li>

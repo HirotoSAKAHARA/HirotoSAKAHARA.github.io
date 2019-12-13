@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai</title>
+
+<link rel="stylesheet" href="../style.css">
+<!-- 数式を使う宣言-->
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" }},
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { matchFontHeight: false },
+    displayAlign: "left",
+    displayIndent: "2em"
+  });
+</script>
+
+</head>
+
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+<div class="title_space">
+  <div class="title">
+    <a href="../index.html">hsmemo</a>
+    <span class="subtitle">
+      - 
+    <a href="index.html">AI</a>
+      - CNN 
+    </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript"><!--
+   document.write('最終更新日:' + document.lastModified);
+// --></script>
+： 初版 
+</div>
+
+ <div class="navigation">
+<ul>
+  <li><a href="../index.html">home</a></li>
+  <li><a href="../mobileRobot/index.html">移動ロボット</a></li>
+  <li><a href="../ai/index.html">AI</a></li>
+  <li><a href="../math/index.html">数学</a></li>
+  <li><a href="../other/index.html">その他</a></li>
+</ul>
+</div>
+
+<!--*********************************本文*********************************-->
+<h1>Convolutional Neural Network(CNN, 畳み込みニューラルネットワーク)</h1>
+
+<h2>概要</h2>
+  「畳み込み層」という層を使って特徴抽出を行うニューラルネットワーク
+
+<h2>用語</h2>
+  <dl>
+    <dt>全結合層</dt>
+    <dd></dd>
+    <dt>畳み込み層</dt>
+    <dd>入力データの１部分に注目し、その部分画像の特徴を調べる層, 特徴はデータや損失関数により自動的に定まるが、入力層に近いところでは点や線といった低次元概念、出力層に近いところでは目や鼻といった高次元概念の注目をする。各特徴に１つのフィルターを使う</dd>
+    <dt>プーリング層</dt>
+    <dd>畳み込み層の出力を縮約し、データ量を削減する層、MaxプーリングやAverageプーリングなどでデータの圧縮を実現する</dd>
+    <dt>Maxプーリング</dt>
+    <dd></dd>
+    <dt>Averageプーリング</dt>
+    <dd></dd>
+    <dt>filters(keras)</dt>
+    <dd>生成する特徴マップの数、filterはランダムに選ばれる</dd>
+    <dt>カーネル</dt>
+    <dd>畳み込みに使用する重み行列</dd>
+  </dl>
+
+<h2>実装</h2>
+  <h3>python + keras</h3>
+
+
+<!--==============================コード==============================-->
+<pre>
+<code>
+# モデルの定義
+model = Sequential()
+
+// 畳み込み層の挿入
+model.add(Conv2D(filters=32, kernel_size=(3, 3), input_shape=(28,28,1))) 
+
+// 活性化関数の挿入
+model.add(Activation('relu')) 
+
+// プーリング層の挿入
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+// 入力にドロップアウトを適用(ランダムに入力ユニットを0とする)
+model.add(Dropout(0.25))
+// 入力を平坦化
+model.add(Flatten())
+// 全結合レイヤーの挿入
+model.add(Dense(128))
+
+// アクティベーション層の導入(softmax)
+model.add(Activation('softmax'))
+
+// 学習のためのモデルを設定
+model.compile(loss='categorical_crossentropy',
+              optimizer='adadelta',
+              metrics=['accuracy'])
+
+// 固定回数の施行で学習
+model.fit(X_train, y_train,
+          batch_size=128,
+          epochs=1,
+          verbose=1,
+          validation_data=(X_test, y_test))
+</code>
+</pre>
+<!--==================================================================-->
+  </main>
+</body>
+</html>
