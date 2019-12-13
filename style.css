@@ -144,8 +144,7 @@ h3{
 }
 
 h2+h3{
-  border-top: none;
-  margin-top: 0px;
+  margin-top: 4px;
 }
 
 h4::before {
@@ -162,8 +161,7 @@ h4{
 }
 
 h3+h4{
-  border-top: none;
-  margin-top: 0px;
+  margin-top: 4px;
 }
 
 h5::before {
@@ -232,6 +230,9 @@ a:hover{
 }
 
 pre{
-  background: white;
+  padding:5px;
+  background:#EEEEEE;
+  color:black;
+  font-size: 14px;
 }
 
