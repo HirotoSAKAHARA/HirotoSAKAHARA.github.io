@@ -122,7 +122,7 @@ h2::before {
 }
 
 h2{
-  margin-top: 48px;
+  margin-top: 24px;
   margin-bottom: 0px;
   border-top: 3px solid #775555;
   font-size: 24px;
@@ -136,12 +136,13 @@ h3::before {
 }
 
 h3{
-  margin-top: 44px;
+  margin-top: 22px;
   margin-bottom: 0px;
   border-top: 1px solid #775555;
   font-size: 22px;
   counter-reset:hd;
 }
+
 
 h2+h3{
   margin-top: 4px;
@@ -153,11 +154,15 @@ h4::before {
 }
 
 h4{
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 0px;
   border-top: 1px dotted #775555;
   font-size: 20px;
   counter-reset:he;
+}
+
+.hidden_show>h4:first-child{
+  margin-top: 4px;
 }
 
 h3+h4{
@@ -171,7 +176,7 @@ h5::before {
 
 
 h5{
-  margin-top: 36px;
+  margin-top: 18px;
   margin-bottom: 0px;
   border-top: 1px dotted #775555;
   font-size: 18px;
@@ -190,7 +195,7 @@ h6::before {
 }
 
 h6{
-  margin-top: 32px;
+  margin-top: 16px;
   margin-bottom: 0px;
   border-top: 1px dotted #AACCAA;
   font-size: 16px;
@@ -200,8 +205,20 @@ h5+h6{
   border-top: none;
   margin-top: 0px;
 }
++
+ul{
+  margin:0px;
+  padding:0px;
+}
+
+ol{
+  margin:0px;
+  padding:0px;
+}
 
 dl{
+  margin:0px;
+  padding:0px;
   border-left: 1px solid #000000;
   border-right: 1px solid #000000;
   border-bottom: 1px solid #000000;
@@ -230,9 +247,56 @@ a:hover{
 }
 
 pre{
-  padding:5px;
-  background:#EEEEEE;
-  color:black;
+  margin:10px;
+  padding:10px;
+  color:white;
+  background:#446655;
   font-size: 14px;
+}
+
+
+/*全体*/
+.hidden_box {
+    margin: 0px;/*前後の余白*/
+    padding: 0px;
+}
+
+/*ボタン装飾*/
+.hidden_box label {
+    font-weight: bold;
+    cursor :pointer;
+    position:relative;
+    top :-28px;
+    left:-28px;
+    margin: 0px;
+    padding: 0px;
+}
+
+/*ボタンホバー時*/
+.hidden_box label:hover {
+    background: #efefef;
+}
+
+/*チェックは見えなくする*/
+.hidden_box input {
+    display: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+/*中身を非表示にしておく*/
+.hidden_box .hidden_show {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.3s;
+    margin-top:-20px;
+}
+
+/*クリックで中身表示*/
+.hidden_box input:checked ~ .hidden_show {
+    height: auto;
+    opacity: 1;
+    background:#DDFFEE;
 }
 

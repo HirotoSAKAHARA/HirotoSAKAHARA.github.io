@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - newral network</title>
+
+<link rel="stylesheet" href="../style.css">
+<!-- 数式を使う宣言-->
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" }},
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { matchFontHeight: false },
+    displayAlign: "left",
+    displayIndent: "2em"
+  });
+</script>
+
+</head>
+
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+<div class="title_space">
+  <div class="title">
+    <a href="../index.html">hsmemo</a>
+    <span class="subtitle">
+      - 
+    <a href="index.html">AI</a>
+      - neural network 
+    </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript"><!--
+   document.write('最終更新日:' + document.lastModified);
+// --></script>
+： 初版 
+</div>
+
+ <div class="navigation">
+<ul>
+  <li><a href="../index.html">home</a></li>
+  <li><a href="../mobileRobot/index.html">移動ロボット</a></li>
+  <li><a href="../ai/index.html">AI</a></li>
+  <li><a href="../math/index.html">数学</a></li>
+  <li><a href="../other/index.html">その他</a></li>
+</ul>
+</div>
+
+<!--*********************************本文*********************************-->
+
+<h1>Neural Network</h1>
+
+<h2>Neural Network</h2>
+  <h3>概要</h3>
+    <div class="hidden_box">
+    <label for="label-neural-network">[+]</label>
+    <input type="checkbox" id="label-neural-network"/>
+    <div class="hidden_show">
+
+    形式ニューロンがシナプス結合荷重ベクトルと出力を決定するための伝達係数で表現される。
+    </div></div>
+
+  <h3>Neural Networkの種類</h3>
+    <div class="hidden_box">
+    <label for="label-kind-of-neural-network">[+]</label>
+    <input type="checkbox" id="label-kind-of-neural-network"/>
+    <div class="hidden_show">
+    <dl>
+      <dt>Artificial Neural Network(ANN, 人口ニューラルネットワーク)</dt>
+      <dd>コンピュータの中のニューラルネットワーク, BNNの対比</dd>
+      <dt>Biologinal Neural Network(BNN, 生物学的ニューラルネットワーク)</dt>
+      <dd>
+      人間や動物が生物学的に持っているニューラルネットワーク </dd>
+      <dt>Convolusional Neural Network(CNN, 畳み込みニューラルネットワーク)</dt>
+      <dd> 「畳み込み層」という層を使って特徴抽出を行うニューラルネットワーク
+      </dd>
+      <dt>Deep Neural Network(DNN, 深層学習)</dt>
+      <dd></dd>
+      <dt>Recurrent Neural Network (RNN)</dt>
+      <dd></dd>
+      <dt>Reinforcement Learning強化学習</dt>
+      <dd>内容</dd>
+      <dt>GAN, VAE</dt>
+      <dd>内容</dd>
+      <dt>変分オートエンコーダ</dt>
+      <dd>内容</dd>
+    </dl>
+    </div></div>
+  <h3>基本技術</h3>
+    <div class="hidden_box">
+    <label for="label-basics-of-neural-network">[+]</label>
+    <input type="checkbox" id="label-basics-of-neural-network"/>
+    <div class="hidden_show">
+
+    <h4>パーセプトロン(単純パーセプトロン)</h4>
+    バイアス +Σ（入力 × 重み）= a を計算し、aが0以上の場合は1、以下の場合は0を出力
+    <h4>活性化関数</h4>
+      <h5>ロジスティックシグモイド関数</h5>
+      <h5>ハイパータンジェント</h5>
+      <h5>ReLU (性流線型ユニット)</h5>
+    <h4>誤差伝搬</h4>
+    <h4>誤差逆伝搬</h4>
+  
+    </div></div>
+
+ <h3>応用技術</h3>
+    <div class="hidden_box">
+    <label for="label-advanced-of-neural-network">[+]</label>
+    <input type="checkbox" id="label-advanced-of-neural-network"/>
+    <div class="hidden_show">
+
+    <h4>ドロップアウト</h4>
+    途中のニューロンの重みを０にする
+
+    <h4>auto encoder(自己符号化器)</h4>
+    3層のネットワークを考え、中間層のユニット数が入力層と出力層よりも小さく、かつ出力層で入力を再現できるような重み付けを行うこと。この時、中間層は入力層の次元を圧縮できたことになる。
+    
+    <h4>スパースモデリング</h4>
+    デシメーションと重み付けで不要な重みを0にする。
+    劣決定系のモデルの中でスパース（０が多い）解を算出する。
+   
+    </div></div>
+
+<h2>Deep Learning(深層学習)</h2>
+
+  <h3>概要</h3>
+    <div class="hidden_box">
+    <label for="label-dnn">[+]</label>
+    <input type="checkbox" id="label-dnn"/>
+    <div class="hidden_show">
+
+    入力層＋中間層＋出力層からなるニューラルネットのなかで、中間層が２層以上のもの。
+    multi layer perceptronとも呼ぶ。
+    </div></div>
+
+  <h3>ニューラルネットワークの課題</h3>
+    <div class="hidden_box">
+    <label for="label-problem-of-nn">[+]</label>
+    <input type="checkbox" id="label-problem-of-nn"/>
+    <div class="hidden_show">
+
+    <h4>the gradient vanishing problem(勾配消失問題)</h4>
+      活性化関数の変化の際にチェインルールが適用されるが、
+      この計算の際に微分が使われる。
+      シグモイド関数を使うと、一回の計算で勾配が1/4以下になるので、層を増やすと勾配がなくなってしまう。
+      ハイパータンジェントやReLuでは勾配消失問題が起きにくい。
+    <h4> the gradient exploring problem(勾配爆発問題)</h4>
+    <h4>credit assignment problems(信用割当問題)</h4>
+      全結合をすると、責任の所在が曖昧になる
+    <h4>次元の呪い</h4>
+      AIC, BIC
+
+      </div></div>
+
+  <h3>具体的なアルゴリズム</h3>
+    <div class="hidden_box">
+    <label for="label-algorithm-of-nn">[+]</label>
+    <input type="checkbox" id="label-algorithm-of-nn"/>
+    <div class="hidden_show">
+
+    <h4>LuNet</h4>
+      手書き文字の認識で使用される。
+    <h4>AlexNet</h4>
+      224x224のRGB３原色の画像を認識, 2枚のGPUボードで実装(中は同じ)
+
+    </div></div>
+
+  <h3>DNNフレームワーク</h3>
+    <div class="hidden_box">
+    <label for="label-framework">[+]</label>
+    <input type="checkbox" id="label-framework"/>
+    <div class="hidden_show">
+
+    <dl>
+    <dt>Theano</dt>
+    <dd></dd>
+    <dt>Caffe</dt>
+    <dd></dd>
+    UCバークレー
+    <dt>Torch</dt>
+    <dt>pyTorch</dt>
+    <dd>人気が上がりかたが早い</dd>
+    <dt>Chainer</dt>
+    <dd>Preffered Network社が作成している</dd>
+    <dt>TensorFlow</dt>
+    <dd>googleが開発、圧倒的に人気がある</dd>
+    <dt> Keras </dt>
+    <dd>tensor flow, theanoのフロントエンド。人気がある</dd>
+    <dt>Caffe2</dt>
+    <dd>caffeの改良版</dd>
+    <dt>TensorFlow.js</dt>
+    <dd>TensorFlowのjava script版</dd>
+    </dl>
+    </div> </div>
+  
+<h2>Convolutional Neural Network(CNN, 畳み込みニューラルネットワーク)</h2>
+  <h3>概要</h3>
+    <div class="hidden_box">
+    <label for="label-cnn">[+]</label>
+    <input type="checkbox" id="label-cnn"/>
+    <div class="hidden_show">
+
+  「畳み込み層」という層を使って特徴抽出を行うニューラルネットワーク。全結合でなく畳み込みを使うことでパラメータが少なくなる。
+    <h4>例</h4>
+      全結合：224*224*3*96*55*55
+      畳み込みニューラルネットワーク：11*11*3*96*55*55
+
+    </div></div>
+  <h3>用語</h3>
+    <div class="hidden_box">
+    <label for="label-cnn-words">[+]</label>
+    <input type="checkbox" id="label-cnn-words"/>
+    <div class="hidden_show">
+
+  <dl>
+    <dt>全結合層</dt>
+    <dd>全ての上位層から全ての下位層にネットワークが伝播する。責任の所在がわからなくなる</dd>
+    <dt>畳み込み層</dt>
+    <dd>入力データの１部分に注目し、その部分画像の特徴を調べる層, 特徴はデータや損失関数により自動的に定まるが、入力層に近いところでは点や線といった低次元概念、出力層に近いところでは目や鼻といった高次元概念の注目をする。各特徴に１つのフィルターを使う</dd>
+    <dt>プーリング層</dt>
+    <dd>畳み込み層の出力を縮約し、データ量を削減する層、MaxプーリングやAverageプーリングなどでデータの圧縮を実現する</dd>
+    <dt>カーネル</dt>
+    <dd>畳み込みに使用する重み行列</dd>
+    <dt>Maxプーリング</dt>
+    <dd></dd>
+    <dt>サブサンプリング</dt>
+    <dd></dd>
+    <dt>Averageプーリング</dt>
+    <dd></dd>
+    <dt>filters(keras)</dt>
+    <dd>生成する特徴マップの数、filterはランダムに選ばれる</dd>
+    <dt>kernel_size(keras)</dt>
+    <dd>カーネル行列の大きさ</dd>
+    <dt>strides(keras)</dt>
+    <dd>カーネルを動かす距離</dd>
+    <dt>padding(keras)</dt>
+    <dd>入力画像の縮小を抑えるため、入力画像の周辺を0で埋めること</dd>
+    <dt>pool_size(keras)</dt>
+    <dd>一度にpoolingを適用する領域のサイズ</dd>
+  </dl>
+  </div></div>
+
+  <h3>実装</h3>
+    <div class="hidden_box">
+    <label for="label-cnn-implementation">[+]</label>
+    <input type="checkbox" id="label-cnn-implementation"/>
+    <div class="hidden_show">
+
+    <h4>python + keras</h4>
+<!--==============================コード==============================-->
+<pre> <code> # モデルの定義
+model = Sequential()
+
+// 畳み込み層の挿入
+model.add(Conv2D(filters=32, kernel_size=(3, 3), input_shape=(28,28,1))) 
+
+// 活性化関数の挿入
+model.add(Activation('relu')) 
+
+// プーリング層の挿入
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+// 入力にドロップアウトを適用(ランダムに入力ユニットを0とする)
+model.add(Dropout(0.25))
+// 入力を平坦化
+model.add(Flatten())
+// 全結合レイヤーの挿入
+model.add(Dense(128))
+
+// アクティベーション層の導入(softmax)
+model.add(Activation('softmax'))
+
+// 学習のためのモデルを設定
+model.compile(loss='categorical_crossentropy',
+              optimizer='adadelta',
+              metrics=['accuracy'])
+
+// 固定回数の施行で学習
+model.fit(X_train, y_train,
+          batch_size=128,
+          epochs=1,
+          verbose=1,
+          validation_data=(X_test, y_test)) </code> </pre>
+<!--==================================================================-->
+    </div></div>
+
+  <h2>参考文献、サイト</h2>
+  <ul>
+  <li><cite>Akiba, Takuya, Shuji Suzuki, and Keisuke Fukuda "Extremely Large Minibatch Sgd: Training Resnet-50 on Imagenet in 15 Miniutes", 2017, arXiv Preprint.</cite></li>
+  </ul>
+
+
+  </main>
+</body>
+</html>

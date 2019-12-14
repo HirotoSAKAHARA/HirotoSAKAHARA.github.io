@@ -59,8 +59,43 @@
 <h1>AI</h1>
 
 <h2>教師あり学習</h2>
+  <h3>概要</h3>
+    <div class="hidden_box">
+    <label for="label1-1">[+]</label>
+    <input type="checkbox" id="label1-1"/>
+    <div class="hidden_show">
+      事前に与えられたデータをいわば例題とみなして、それをガイドに学習を行う    
+    </div></div>
+ <h3>分類手法</h3>
+    <div class="hidden_box">
+    <label for="label1-2">[+]</label>
+    <input type="checkbox" id="label1-2"/>
+    <div class="hidden_show">
 
-  <h3>回帰</h3>
+    <h4>最近傍法,k近傍法</h4>
+        空間上の点を抽出したとき、隣接の学習済みの点のラベル情報から抽出点のラベル情報を決定する
+        関数が想定されていないノンパラメトリックで
+        教師データをそのまま丸暗記する怠惰学習(lazy learner)である。
+        kの選択や特徴尺度の選択などのパラメータ選択が必要である。
+        また、最近傍探索アルゴリズムが計算速度において重要となる
+
+    <h4>ナイーブベイズ</h4>
+        
+    <h4>boosting, ブースティング</h4>
+   　　機械学習のメタアルゴリズムで、ほかの学習アルゴリズムと組み合わせて利用する。adaBoostが有名
+       前の分類器の間違いに応じてデータの重みを調整する。
+   　　真の分類と若干の相関がある弱い分類器を組み合わせることにより、強い学習機を生成できるかを示す。
+
+    <h4><a href="NeuralNetwork.html">Neural Network(NN, ニューラルネットワーク)</a></h4>
+
+    </div> </div>
+
+  <h3>回帰手法</h3>
+    <div class="hidden_box">
+    <label for="label1-3">[+]</label>
+    <input type="checkbox" id="label1-3"/>
+    <div class="hidden_show">
+
     <h4>線形回帰</h4>
     <dl>
       <dt>線形回帰</dt>
@@ -79,32 +114,29 @@
       <li>回帰直線</li>
       <li>正規方程式</li>
     </ul>
-
     <h4>ロジスティック回帰</h4>
     確率やダミー変数について分析、予測するのに使われる。
 
     <h4>サポートベクターマシン SVC, SVM</h4>
 
-  <h3>分類</h3>
-    <h4>最近傍法,k近傍法</h4>
-        空間上の点を抽出したとき、隣接の学習済みの点のラベル情報から抽出点のラベル情報を決定する
-        関数が想定されていないノンパラメトリックで
-        教師データをそのまま丸暗記する怠惰学習(lazy learner)である。
-        kの選択や特徴尺度の選択などのパラメータ選択が必要である。
-        また、最近傍探索アルゴリズムが計算速度において重要となる
+    <h4><a href="NeuralNetwork.html">Neural Network(NN, ニューラルネットワーク)</a></h4>
 
-    <h4>ナイーブベイズ</h4>
-        
-    <h4>boosting, ブースティング</h4>
-   　　機械学習のメタアルゴリズムで、ほかの学習アルゴリズムと組み合わせて利用する。adaBoostが有名
-       前の分類器の間違いに応じてデータの重みを調整する。
-   　　真の分類と若干の相関がある弱い分類器を組み合わせることにより、強い学習機を生成できるかを示す。
-
-
+    </div> </div>
+ 
 <h2>教師なし学習</h2>
   <h3>概要</h3>
+    <div class="hidden_box">
+    <label for="label2-1">[+]</label>
+    <input type="checkbox" id="label2-1"/>
+    <div class="hidden_show">
     学習データを教えることによって、それぞれの点の特徴の分類を行う。
-  <h3>分類(クラスタリング)</h3>
+    </div></div>
+  <h3>分類手法(クラスタリング)</h3>
+    <div class="hidden_box">
+    <label for="label2-2">[+]</label>
+    <input type="checkbox" id="label2-2"/>
+    <div class="hidden_show">
+
     <h4>Self Organizing Map (SOM, 自己組織化)</h4>
       <dl>
       <dt>マルスバーグの自己組織化</dt>
@@ -127,88 +159,156 @@
       </dd>
       </dl>
     <h4>k means クラスタリング</h4>
-  
-  <h3>次元圧縮</h3>
+
+    <h4><a href="NeuralNetwork.html">Neural Network(NN, ニューラルネットワーク)</a></h4>
+
+ 
+    </div></div>
+
+  <h3>次元圧縮手法</h3>
+    <div class="hidden_box">
+    <label for="label2-3">[+]</label>
+    <input type="checkbox" id="label2-3"/>
+    <div class="hidden_show">
+
     <h4>PCA 主成分分析</h4>
     <h4>Independent component analysis (ICA 独立成分分析)</h4>
     　多変量の信号を複数の加法的な成分に分離するための計算手法。
     <h4>LDA 潜在ディレクリ配置</h4>
     <h4>t-SNE</h4>
 
-<h2>自然言語処理</h2>
-  <h3>トピックモデル</h3>
+    </div></div>
+
+<h2>強化学習</h2>
+
+
+<h2>AIの応用例</h2>
+  <h3>自然言語処理</h3>
+    <div class="hidden_box">
+    <label for="label7-3">[+]</label>
+    <input type="checkbox" id="label7-3"/>
+    <div class="hidden_show">
+
+    <h4>トピックモデル</h4>
     <dl>
       <dt>潜在的ディリクレ配分法</dt>
       <dd>トピックモデルにおいて、トピック分布にディリクレ分布を仮定し、ベイズ推定する手法のこと</dd>
     </dl>
+    </div></div>
 
-<h2><a href="CNN.html">Convolutional Neural Network(CNN, 畳み込みニューラルネットワーク)</a></h2>
+  <h3>画像認識による位置姿勢決定</h3>
+    <div class="hidden_box">
+    <label for="label-position">[+]</label>
+    <input type="checkbox" id="label-position"/>
+    <div class="hidden_show">
+    位置姿勢決定
+    </div></div>
 
-<h2>ディープラーニング</h2>
-  <dl>
-    <dt>パーセプトロン手法(単純パーセプトロン)</dt>
-    <dd>バイアス +Σ（入力 × 重み）= a を計算し、aが0以上の場合は1、以下の場合は0を出力</dd>
-    <dt>誤差伝搬</dt>
-    <dd>内容</dd>
-    <dt>自己符号化</dt>
-    <dd>内容</dd>
 
-    <dt>ドロップアウト</dt>
-    <dd>途中の学習を取る</dd>
+  <h3>ブロックチェーン</h3>
+    <div class="hidden_box">
+    <label for="label-blockchain">[+]</label>
+    <input type="checkbox" id="label-blockchain"/>
+    <div class="hidden_show">
+      ブロックチェーン
+    </div></div>
 
-  </dl>
-
-  <h3>次元の呪い</h4>
-  AIC, BIC
-
-  <h3>視覚化</h3>
-    <h4>クラスタリング</h4>
-    <ul>
-      <li>k Nearest Neighbor</li>
-    </ul>
-
-<h2>スパースモデリング</h2>
+  <h3>異常検知</h3>
+    <div class="hidden_box">
+    <label for="label-failure-detection">[+]</label>
+    <input type="checkbox" id="label-failure-detection"/>
+    <div class="hidden_show">
+      異常検知
+    </div></div>
 
 <h2>評価</h2>
   <h3>標準問題</h3>
-  <dl>
-    <dt>MNIST(エムニスト)</dt>
-    <dd>手書き数字のデータセット、28x28で１チャンネルのデータとなっている</dd>
-    <dt>CIFAR-10</dt>
-    <dd>10種類のオブジェクトが映った画像の10x10のデータセットの分類</dd>
-  </dl>
+    <div class="hidden_box">
+    <label for="label7-1">[+]</label>
+    <input type="checkbox" id="label7-1"/>
+    <div class="hidden_show">
 
-  <h3>分類の種類</h3>
-  <dl>
-    <dt>正解率, 精度, accuracy</dt>
-    <dd>(TP + TN) / (TP + TN + FP + FN)</dd>
-    <dt>適合率, precision</dt>
-    <dd>
-      <div>trueのと予測した中で実際にtrueである割合</div>
-      <div>(TP) / (TP + FP)
-    </dd>
-    <dt>再現率, 検出率, recall</dt>
-    <dd>
-      <div>実際にtrueの値のうち正であると予測されたもの</div>
-      <div> (TP) / (TP + FN)</div>
-    </dd>
-    <dd>
-    <dt>F値, F-measure</dt>
-    <dd>
-      <div>正解率と再現率のバランス</div>
-      <div>(2 * precision * recall) / (precision + recall)</div>
-    </dd>
-  </dl>
-  <h3>バイアスバリアンス分解</h3>
-   <dl>
-    <dt>バイアス</dt>
-    <dd>予測値と真値の誤差、アンダーフィッティング時に大きくなりがち</dd>
-    <dt>バリアンス</dt>
-    <dd>予測値と真値の分散、オーバーフィッティング時に大きくなりがち</dd>
-  </dl>
+    <dl>
+      <dt>MNIST(エムニスト)</dt>
+      <dd>手書き数字のデータセット、28x28で１チャンネルのデータとなっている</dd>
+      <dt>CIFAR-10</dt>
+      <dd>10種類のオブジェクトが映った画像の10x10のデータセットの分類</dd>
+      <dt>ImageNet(<a href="http://www.image-net.org">http://www.image-net.org/</a>)</dt>
+      <dd>データが公開されているので登録すればダウンロード可能</dd>
+      <dt>MS-COCO(<a href="http://cocodataset.org/#home">http://cocodataset.org/#home</a>)</dt>
+      <dd>画像に対して５つのキャプションが与えられる。表現の多様性をチェックする</dd>    </dl>
+    </div></div>
+  <h3>分類の評価</h3>
+    <div class="hidden_box">
+    <label for="label7-2">[+]</label>
+    <input type="checkbox" id="label7-2"/>
+    <div class="hidden_show">
+    <dl>
+      <dt>正解率, 精度, accuracy</dt>
+      <dd>(TP + TN) / (TP + TN + FP + FN)</dd>
+      <dt>適合率, precision</dt>
+      <dd>
+        <div>trueのと予測した中で実際にtrueである割合</div>
+        <div>(TP) / (TP + FP)
+      </dd>
+      <dt>再現率, 検出率, recall</dt>
+      <dd>
+        <div>実際にtrueの値のうち正であると予測されたもの</div>
+        <div> (TP) / (TP + FN)</div>
+      </dd>
+      <dd>
+      <dt>F値, F-measure</dt>
+      <dd>
+        <div>正解率と再現率のバランス</div>
+        <div>(2 * precision * recall) / (precision + recall)</div>
+      </dd>
+    </dl>
+    <dL>
+
+    <dt>項目応答理論</dt>
+    <dd>例えば、被験者の能力に対して、各テスト項目の正答確率がモデル化できるとすると、そのモデルと実際結果を比較し、それぞれの項目が妥当かどうかを確認できる</dd>
+    </dl>
+
+
+    </div></div>
+
+  <h3>回帰の評価</h3>
+    <div class="hidden_box">
+    <label for="label-evaluation-of-regression">[+]</label>
+    <input type="checkbox" id="label-evaluation-of-regression"/>
+    <div class="hidden_show">
+    <h4>バイアスバリアンス分解</h4>
+    <dl>
+      <dt>バイアス</dt>
+      <dd>予測値と真値の誤差、アンダーフィッティング時に大きくなりがち</dd>
+      <dt>バリアンス</dt>
+      <dd>予測値と真値の分散、オーバーフィッティング時に大きくなりがち</dd>
+    </dl>
+    </div></div>
+  <h3>NNの評価</h3>
+    <div class="hidden_box">
+    <label for="label7-4">[+]</label>
+    <input type="checkbox" id="label7-4"/>
+    <div class="hidden_show">
+    <dl>
+      <dt>BLEU</dt>
+      <dd></dd>
+      <dt>ROUGE</dt>
+      <dd> </dd>
+      <dt>METEOR</dt>
+      <dd> </dd>
+      <dt>CIDEr</dt>
+      <dd> </dd>
+    </dl>
+    </div></div>
  
-<h2>データクレンジング</h2>
+<h2>データ収集・データ前処理</h2>
   <h3>水増し</h3>
+    <div class="hidden_box">
+    <label for="label-data-extension">[+]</label>
+    <input type="checkbox" id="label-data-extension"/>
+    <div class="hidden_show">
+
     学習の際に必要なデータを水増しする。
     <dl>
       <dt>ImageDataGenerator(keras)</dt>
@@ -216,18 +316,27 @@
         ランダムにデータの反転、圧縮、移動、回転などを行うことができる。
       </dd>
     </dl>
-  <h3>正規化</h3>
-    <h4>標準化</h4>
-    特徴を平均0、分散1にすることで、特徴ごとのデータ分布を近づける。
-    ImageDataGeneratorを使う場合は以下のようになる。
+    </div></div>
+
+  <h3>データクレンジング</h3>
+    <div class="hidden_box">
+    <label for="label8-1">[+]</label>
+    <input type="checkbox" id="label8-1"/>
+    <div class="hidden_show">
+
+    <h4>正規化</h4>
+
+      <h5>標準化</h5>
+      特徴を平均0、分散1にすることで、特徴ごとのデータ分布を近づける。
+      ImageDataGeneratorを使う場合は以下のようになる。
 <pre> <code># ジェネレーターの生成
 data_generator = ImageDataGenerator(samplewise_center=True, samplewise_std_normalization=True)
 
 # 標準化
 g = data_generator.flow(X_train, y_train, shuffle=False)
 X_batch, y_batch = g.next() </code> </pre>
-    <h4>白色化</h4>
-    特徴間の相関をなくすこと。
+      <h5>白色化</h5>
+      特徴間の相関をなくすこと。
 <pre> <code># ジェネレーターの生成
 datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
 
@@ -269,15 +378,17 @@ X_batch, y_batch = g.next() </code> </pre>
       </dd>
     </dl>
 
-
+    </div></div>
 
 <h2>その外</h2>
+    <div class="hidden_box">
+    <label for="label-sonohoka">[+]</label>
+    <input type="checkbox" id="label-sonohoka"/>
+    <div class="hidden_show">
+
   <dl>
     <dt>勾配降下法</dt>
     <dd><a href="../math/index.html">数学-最適化問題</a>へ移動</dd>
-
-    <dt>項目応答理論</dt>
-    <dd>例えば、被験者の能力に対して、各テスト項目の正答確率がモデル化できるとすると、そのモデルと実際結果を比較し、それぞれの項目が妥当かどうかを確認できる</dd>
 
     <dt>Empirical Risk Minimization(ERM, 経験損失最小化)</dt>
     <dd>損失関数とデータについて求めた経験損失を最小化するようにモデルを選ぶ学習の基準</dd>
@@ -289,7 +400,12 @@ X_batch, y_batch = g.next() </code> </pre>
     <dd>
       学習済みのモデルを使って新たなモデルの学習を行うこと。VGG16などがある。
     </dd>
+    <dt>NIC</dt>
+    <dd>
+    写真から何をしているのかを言語化する。
+    </dd>
   </dl>
+  </div></div>
 
 <h2>参考</h2>
   <ul>
