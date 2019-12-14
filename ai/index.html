@@ -204,6 +204,15 @@
     位置姿勢決定
     </div></div>
 
+  <h3>画像キャプション付け</h3>
+    <div class="hidden_box">
+    <label for="label-caption">[+]</label>
+    <input type="checkbox" id="label-caption"/>
+    <div class="hidden_show">
+      画像処理と自然言語処理を組み合わせた問題。
+
+    <h4>LSTM</h4>
+    </div></div>
 
   <h3>ブロックチェーン</h3>
     <div class="hidden_box">
@@ -403,6 +412,26 @@ X_batch, y_batch = g.next() </code> </pre>
     <dt>NIC</dt>
     <dd>
     写真から何をしているのかを言語化する。
+    </dd>
+    <dt>識別モデル</dt>
+    <dd>
+    データがクラスに属する条件付き確率をモデル化する。
+
+    </dd>
+
+    <dt>生成モデル</dt>
+    <dd>
+    クラスに対する条件付き分布をもとめることで、クラスに属するデータがどういうものであるかを知ることができる。
+    ここから逆算して、入力に人工的なデータを作り出すことができる。
+    ベイズモデルは生成モデルであり、代表的なものとしてはナイーブベイズモデルがある。
+    <dt>TPU</dt>
+    <dd>
+
+    </dd>
+
+    <dt>sota</dt>
+    <dd>
+      その時の最高性能が出せるアルゴリズム
     </dd>
   </dl>
   </div></div>
