@@ -43,7 +43,7 @@
 <script type="text/javascript"><!--
    document.write('最終更新日:' + document.lastModified);
 // --></script>
-： 初版 
+：RNNについての内容を追加
 </div>
 
  <div class="navigation">
@@ -372,6 +372,17 @@ model.fit(X_train, y_train,
 
 
 <h2>Recurrent Neural Network(RNN, 再帰ニューラルネットワーク)</h2>
+  <h3>概要</h3>
+    <h4>特徴</h4>
+    フィードバック結合をもつ。漸化式のような構造を持つ。1時刻前の情報を使用することで、それまでの状態変化をすべて反映する。
+    <h4>応用分野</h4>
+    手書き文字認識、音声認識、手書き文字生成、系列学習、機械翻訳、画像脚注付け、構文解析、プログラムコード生成
+    <h4>ジョーダンネット</h4>
+      (入力層＋context)＋中間層＋出力層。となっており、contextは1時刻前の出力層をコピーする。
+    <h4>エルマンネット</h4>
+      (入力層+context)＋中間層＋出力層となっており、contextは1時刻前の中間層（内部状態）をコピーする。
+
+
 
   <h2>参考文献、サイト</h2>
   <ul>
