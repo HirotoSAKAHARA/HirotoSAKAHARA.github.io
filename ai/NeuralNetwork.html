@@ -43,7 +43,7 @@
 <script type="text/javascript"><!--
    document.write('最終更新日:' + document.lastModified);
 // --></script>
-：RNNについての内容を追加
+：生成モデルについての内容を追加
 </div>
 
  <div class="navigation">
@@ -444,10 +444,44 @@ model.fit(X_train, y_train,
         内部状態によりリセットゲートが、内部状態により更新ゲートが決まる。
         
 
+<h2>生成モデル</h2>
+  <h3>Evidence of Lower Bound (ELBO, 変分下限)</h3>
 
-     
+  <h3>Baysian NN (ベイズ流ニューラルネットワーク)</h3>
 
-      
+  <h3>Deep Generative Models</h3>
+
+  <h3>Variational Autoencoders (VAE 変分オートエンコーダ)</h3>
+    生成モデルの枠組みで自己符号化器 (Autoencoders) を解釈したもので、 生成モデルで言う潜在変数を観測データの符号と見做す. すなわち、観測データから潜在変数を推定する手続きが符号化であり、その逆が復号化である.
+    グラフを使って似た画像を並べて、潜在変数を解釈することができる。
+    <h4> ベイズ推論 </h4>
+      条件付き確率の出力から、条件を算出する。
+
+    <h4>変分ベイズ法 (変分推論、変分近似法)</h4>
+      データ(x)と未知パラメータ(z)と潜在変数(θ)の確率分布がある場合、
+      KL距離(KL Divergence)の最小化を解析的手法で求めることで最適値が求まる。
+
+    <h4>リパラメトライゼーショントリック</h4>
+      x -> z -> xを求める過程でzは確率変数でなく
+      真値(平均)とノイズの組み合わせだとみなして解く。
+      RNNにも応用できて、中間の文章が生成できる。
+
+  <h3>generative adversarial networks (GAN =敵対ネットワーク)</h3>
+    <h4>基本</h4>
+      DiscrereminatorとGeneratorの2つのネットワークが競い合う。
+      Generatorはノイズから画像を生成する。
+      Generatorが作ったデータをDiscreminatorの入力とし、Discriminatorはデータを判断する。
+
+    <h4>応用</h4>
+      <ul>
+        <li>眼鏡つき男性画像１　ー　眼鏡なし男性画像２　＋　眼鏡なし女性画像 = 眼鏡つき女性画像</li>
+        <li>模型図から実画像を生成</li>
+        <li>馬をシマウマに</li>
+        <li>ゴッホ風、モネ風の画像生成</li>
+        <li>自動着色</li>
+        <li>光源を変更</li>
+     </ul>
+
   <h3>評価</h3>
     <h4>動的評価</h4>
       通常は訓練データとテストデータは完全に分けて評価をするが、
@@ -456,11 +490,16 @@ model.fit(X_train, y_train,
 
 
 
-  <h2>参考文献、サイト</h2>
-  <ul>
-  <li><cite>Akiba, Takuya, Shuji Suzuki, and Keisuke Fukuda "Extremely Large Minibatch Sgd: Training Resnet-50 on Imagenet in 15 Miniutes", 2017, arXiv Preprint.</cite></li>
-  </ul>
+<h2>参考文献、サイト</h2>
+  <dd>
+  <dt><cite>Akiba, Takuya, Shuji Suzuki, and Keisuke Fukuda "Extremely Large Minibatch Sgd: Training Resnet-50 on Imagenet in 15 Miniutes", 2017, arXiv Preprint.</cite></li>
+  </dt>
+  <dd></dd>
+  Yee Wyne Teh NIPS 2017
 
+  <dt> [[1606.05908] Tutorial on Variational Autoencoders](https://arxiv.org/abs/1606.05908) 再解釈論文 (2016)</dt>
+  <dd> 変分オートエンコーダを再解釈した論文</dd>
+<div class = "end_of_page"></div>
 
   </main>
 </body>
