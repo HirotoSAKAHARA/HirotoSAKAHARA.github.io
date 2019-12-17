@@ -94,6 +94,9 @@
       <dd>内容</dd>
       <dt>変分オートエンコーダ</dt>
       <dd>内容</dd>
+      <dt>変分オートエンコーダ</dt>
+      <dd>内容</dd>
+
     </dl>
     </div></div>
 
@@ -136,8 +139,9 @@
     <h4> the gradient exploring problem(勾配爆発問題)</h4>
     <h4>credit assignment problems(信用割当問題)</h4>
       全結合をすると、責任の所在が曖昧になる
+
     <h4>次元の呪い</h4>
-      AIC, BIC
+      推定すべきパラメータが多くなると、次元が多くなって、パラメータ空間の探索が難しくなり、オーバーフィッティングなどが起きやすくなること。逆に、弁別可能性が高まることや、ミクロとマクロを結びつけることでシンプルに欠けることを次元の祝福と呼ぶ。
 
   <h4>auto encoder(自己符号化器)</h4>
     3層のネットワークを考え、中間層のユニット数が入力層と出力層よりも小さく、かつ出力層で入力を再現できるような重み付けを行うこと。この時、中間層は入力層の次元を圧縮できたことになる。自己符号化器を多層に重ねることで勾配消失問題を解決し、ディープニューラルネットワークが可能となった。ただし現在では活性化関数の工夫により勾配消失問題を解決していることからあまり使われていない。
@@ -213,10 +217,32 @@
     デシメーションと重み付けで不要な重みを0にする。
     劣決定系のモデルの中でスパース（０が多い）解を算出する。
    
+
+  <h3>勾配降下</h3>
+  <dl>
+    <dt>バッチ学習法</dt>
+    <dd></dd>
+    <dt>オンライン学習法</dt>
+    <dd></dd>
+    <dt>確率的勾配降下法</dt>
+    <dd>勾配のαを変えて更新幅を決める、ミニバッチを用いる</dd>
+    <dt>モーメント法</dt>
+    <dd>1時刻前の更新幅を利用して現在の更新幅を決める</dd>
+    <dt>ニュートン法</dt>
+    <dd>ニュートン法と同じくヘシアン（２次微分）を用いる最適化手法。ただし、ヘシアン作るのは難しい</dd>
+    <dt>Adgrad法</dt>
+    <dd>ヘシアンの近似として、ヘシアンの対角行列のみをつかう。</dd>
+    <dt>Adadelta法</dt>
+    <dd>ヘシアンの近似として、逐次自乗平均を使う。</dd>
+    <dt>RMSprop法</dt>
+    <dd>逐次平均ではなくて、過去の値に重みを増やす</dd>
+    <dt>Adam 法</dt>
+    <dd>モーメントも使う</dd>
+  </dl>
+
+
+
     </div></div>
-
-
-
   <h3>具体的なアルゴリズム</h3>
     <div class="hidden_box">
     <label for="label-algorithm-of-nn">[+]</label>
@@ -225,9 +251,9 @@
      ユニット数・層数・層間の結合、カーネルの幅などにより、様々なネットワークがある。
 
      <h4>ネオコグニトロン</h4>
-       ニューラルネットワークがメジャーになる前に考えられた構成
+       ニューラルネットワークがメジャーになる前に考えられた構成。add-if silentと呼ばれる学習方法を用いる。
      <h4>LeNet</h4>
-       畳み込みニューラルネットワークの起源
+       畳み込みニューラルネットワークの起源。誤差逆伝播法を用いる。
      <h4>AlexNet(2012)</h4>
        224x224のRGB３原色の画像を認識, 2枚のGPUボードで実装(中は同じ)
      <h4>LuNet</h4>
@@ -258,20 +284,20 @@
     <dt>Torch</dt>
     <dt>pyTorch</dt>
     <dd>人気が上がりかたが早い</dd>
-    <dt>Chainer</dt>
-    <dd>Preffered Network社が作成している</dd>
-    <dt>TensorFlow</dt>
+    <dt>chainer</dt>
+    <dd>preffered network社が作成している</dd>
+    <dt>tensorflow</dt>
     <dd>googleが開発、圧倒的に人気がある</dd>
-    <dt> Keras </dt>
+    <dt> keras </dt>
     <dd>tensor flow, theanoのフロントエンド。人気がある</dd>
-    <dt>Caffe2</dt>
+    <dt>caffe2</dt>
     <dd>caffeの改良版</dd>
-    <dt>TensorFlow.js</dt>
-    <dd>TensorFlowのjava script版</dd>
+    <dt>tensorflow.js</dt>
+    <dd>tensorflowのjava script版</dd>
     </dl>
     </div> </div>
   
-<h2>Convolutional Neural Network(CNN, 畳み込みニューラルネットワーク)</h2>
+<h2>convolutional neural network(cnn, 畳み込みニューラルネットワーク)</h2>
   <h3>概要</h3>
     <div class="hidden_box">
     <label for="label-cnn">[+]</label>
@@ -296,14 +322,14 @@
     <dt>畳み込み層</dt>
     <dd>入力データの１部分に注目し、その部分画像の特徴を調べる層,カーネルと一部分の内積を求める。特徴はデータや損失関数により自動的に定まるが、入力層に近いところでは点や線といった低次元概念、出力層に近いところでは目や鼻といった高次元概念の注目をする。各特徴に１つのフィルターを使う</dd>
     <dt>プーリング層</dt>
-    <dd>畳み込み層の出力を縮約し、データ量を削減する層、MaxプーリングやAverageプーリングなどでデータの圧縮を実現する</dd>
+    <dd>畳み込み層の出力を縮約し、データ量を削減する層、maxプーリングやaverageプーリングなどでデータの圧縮を実現する</dd>
     <dt>カーネル</dt>
     <dd>畳み込みに使用する重み行列(フィルタ)</dd>
-    <dt>Maxプーリング</dt>
+    <dt>maxプーリング</dt>
     <dd>元行列の最大値を出力するプーリング</dd>
     <dt>サブサンプリング</dt>
     <dd></dd>
-    <dt>Averageプーリング</dt>
+    <dt>averageプーリング</dt>
     <dd>元行列の平均値を出力するプーリング</dd>
     <dt>filters(keras)</dt>
     <dd>生成する特徴マップの数、filterはランダムに選ばれる</dd>
@@ -315,13 +341,15 @@
     <dd>入力画像の縮小を抑えるため、入力画像の周辺を0で埋めること</dd>
     <dt>pool_size(keras)</dt>
     <dd>一度にpoolingを適用する領域のサイズ</dd>
+    <dt>global average pooling</dt>
+    <dd>1つの特徴マップに 1 つのクラスを対応させることで分類を行う</dd>
   </dl>
   </div></div>
 
   <h3>3層パーセプトロンの関数近似としての完全性</h3>
     ３層あればどんな関数も作成できることが証明できる。
     <h4>万能近似定理</h4>
-    どんな関数を学習するかにかかわらず、大きなMLPであれば、その関数を表現できるが、訓練可能であることを保証しない。
+    どんな関数を学習するかにかかわらず、大きなmlpであれば、その関数を表現できるが、訓練可能であることを保証しない。
     <h4>ノーフリーランチ定理</h4>
     <h4>層の数と表現力</h4>
       浅いネットワークであれば、一層あたりのニューロンが増えてしまう。
@@ -335,26 +363,26 @@
     <h4>python + keras</h4>
 <!--==============================コード==============================-->
 <pre> <code> # モデルの定義
-model = Sequential()
+model = sequential()
 
 // 畳み込み層の挿入
-model.add(Conv2D(filters=32, kernel_size=(3, 3), input_shape=(28,28,1))) 
+model.add(conv2d(filters=32, kernel_size=(3, 3), input_shape=(28,28,1))) 
 
 // 活性化関数の挿入
-model.add(Activation('relu')) 
+model.add(activation('relu')) 
 
 // プーリング層の挿入
-model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(maxpooling2d(pool_size=(2, 2)))
 
 // 入力にドロップアウトを適用(ランダムに入力ユニットを0とする)
-model.add(Dropout(0.25))
+model.add(dropout(0.25))
 // 入力を平坦化
-model.add(Flatten())
+model.add(flatten())
 // 全結合レイヤーの挿入
-model.add(Dense(128))
+model.add(dense(128))
 
 // アクティベーション層の導入(softmax)
-model.add(Activation('softmax'))
+model.add(activation('softmax'))
 
 // 学習のためのモデルを設定
 model.compile(loss='categorical_crossentropy',
@@ -362,27 +390,27 @@ model.compile(loss='categorical_crossentropy',
               metrics=['accuracy'])
 
 // 固定回数の施行で学習
-model.fit(X_train, y_train,
+model.fit(x_train, y_train,
           batch_size=128,
           epochs=1,
           verbose=1,
-          validation_data=(X_test, y_test)) </code> </pre>
+          validation_data=(x_test, y_test)) </code> </pre>
 <!--==================================================================-->
     </div></div>
 
 
-<h2>Recurrent Neural Network(RNN, 再帰ニューラルネットワーク)</h2>
+<h2>recurrent neural network(rnn, 再帰ニューラルネットワーク)</h2>
   <h3>概要</h3>
     <h4>特徴</h4>
       フィードバック結合をもつ。漸化式のような構造を持つ。
       1時刻前の情報を使用することで、それまでの状態変化をすべて反映する。
     <h4>応用分野</h4>
       手書き文字認識、音声認識、手書き文字生成、系列学習、機械翻訳、画像脚注付け、構文解析、プログラムコード生成
-    <h4>RNNの種類と応用例</h4>
+    <h4>rnnの種類と応用例</h4>
       one-to-one  : 画像分類
       one-to-many : 中間層が時間発展で変わっていく : 画像脚注付き
       many-to-one : 入力が沢山で出力が１つ：感性分析(レビュー文を見せて星の数を予想する)
-      many-to-many : 入力と出力がたくさん（通常のRNN)：機械翻訳
+      many-to-many : 入力と出力がたくさん（通常のrnn)：機械翻訳
       many-to-many(逐次) : ビデオ分類
 
     <h4>ジョーダンネット</h4>
@@ -391,17 +419,17 @@ model.fit(X_train, y_train,
       (入力層+context)＋中間層＋出力層となっており、contextは1時刻前の中間層（内部状態）をコピーする。
 
   <h3>課題</h3>
-     <h4>Long Term Dependency(長距離依存)</h4>
+     <h4>long term dependency(長距離依存)</h4>
       いくつか前の情報に依存する時の対策は難しく、再帰結合係数行列の時間発展に関して指数的に作用（勾配爆発）
 
   <h3>応用技術</h3>
-    <h4> Back Propagation Through Time(BPTT)</h4>
+    <h4> back propagation through time(bptt)</h4>
     　時間伝播において、過去のネットワークを含めて誤差逆伝播を考える。　
-      時刻０からの過去の入力を考えたものは完全BPTTと呼び、時刻幅を考えたものをTrancated(切断) BPTTと呼ぶ
+      時刻０からの過去の入力を考えたものは完全bpttと呼び、時刻幅を考えたものをtrancated(切断) bpttと呼ぶ
 
-    <h4>Teacher Forcing(教師強制)</h4>
+    <h4>teacher forcing(教師強制)</h4>
       ジョーダンネットにおいて、学習初期には、出力の精度が悪いので、教師情報を入れる。
-      Back Propagation Through Time の代替として開発された。
+      back propagation through time の代替として開発された。
 
 
     <h4>言語モデル</h4>
@@ -412,17 +440,17 @@ model.fit(X_train, y_train,
               <li>2-gram(ヌ二グラム) 2つ前と2つまえの単語を考慮する。</li>
       </ul>
 
-      統計的言語モデルからニューラルネットワーク言語モデル（リカレント．．．NNLM、RNNLM)
+      統計的言語モデルからニューラルネットワーク言語モデル（リカレント．．．nnlm、rnnlm)
 
       <h4>双方向リカレントニューラルネットワーク</h4>
-        BiRNN、事後にデータが取得できた場合、次の時刻のデータから予測するということがあり得る
-        例えば、英語の単語(The apple)のTheはappleを確認してからTheの発音を決定できる。
+        birnn、事後にデータが取得できた場合、次の時刻のデータから予測するということがあり得る
+        例えば、英語の単語(the apple)のtheはappleを確認してからtheの発音を決定できる。
         
-      <h4>Sequence-to-Sequence</h4>
-        入力用と出力用の2つのRNN(LSTM)を使用する。
+      <h4>sequence-to-sequence</h4>
+        入力用と出力用の2つのrnn(lstm)を使用する。
         中間層の一工夫として、入力系列(文章)は逆順に入れると精度が上がることが報告されている。
 
-      <h4>encoder-decoder</h4>
+      <h4>encoder-decoder(エンコーダデコーダ)</h4>
         ソースとターゲットで２つのリカレントネットワークを使用する。
         ソース言語の方で双方向リカレントニューラルネットワークを使用して、束ねてからターゲットにデータを入れる。
         ソースからの複数の出力のうちのどれを使うのかをattentionとして出力側が決定する。
@@ -431,28 +459,47 @@ model.fit(X_train, y_train,
       <h4>勾配クリップ</h4>
         勾配の幅に制限を付けることで勾配爆発を抑えることで、学習が可能となる。
 
-      <h4>Long Short-Term Memory (LSTM)</h4>
-        ゲートによって長距離依存LTDを解消。
-        Short Term Memory(アクティベーション(活性値))、Long Term Memory(結合係数)のShort Term Memoryの影響をどうやって長引かせるのか？
+      <h4>long short-term memory (lstm)</h4>
+        ゲートによって長距離依存ltdを解消。
+        short term memory(アクティベーション(活性値))、long term memory(結合係数)のshort term memoryの影響をどうやって長引かせるのか？
         全体のネットワークの中の１つのニューロンを入力ゲート、出力ゲート、忘却ゲートを用いて再構築する。
         各ゲートの入出力も必要なので、結合係数は５倍になる。
         <h5>ゲートのコントロールはだれ</h5>
           一つ前の中間層、一つ前の出力、現時刻の入力で結合係数の差により、入力、出力、忘却のそれぞれのゲートの制御の差が出る。
-      <h4>GRU</h4>
+      <h4>gru</h4>
         入力はそれ自体か内部状態と合わさったものが内部入力となり、リセットゲートにより決定される。
         過去の内部状態かそれに加え内部入力が合わさって作られたものかが新規内部状態になり、更新ゲートで決定される。
         内部状態によりリセットゲートが、内部状態により更新ゲートが決まる。
         
+      <h4>メモリ拡張</h4>
+        rnnに外部メモリを追加すると更に知的なことができる
+        <dl>
+          <dt>q and a</dt>
+          <dd></dd>
+          <dt>プログラムの自動作成</dt>
+          <dd></dd>
+          <dt>アルゴリズムの学習</dt>
+          <dd></dd>
+          <dt>ビデオq&a</dt>
+          <dd></dd>
+          <dt>メモリネット</dt>
+          <dd></dd>
+          <dt>ポインターネット</dt>
+          <dd></dd>
+        </dl>
+    <h4>ニューラルチューリングマシン</h4>
+      チューリングマシンでできることをニューラルネットでできるようになった。
+
 
 <h2>生成モデル</h2>
-  <h3>Evidence of Lower Bound (ELBO, 変分下限)</h3>
+  <h3>evidence of lower bound (elbo, 変分下限)</h3>
 
-  <h3>Baysian NN (ベイズ流ニューラルネットワーク)</h3>
+  <h3>baysian nn (ベイズ流ニューラルネットワーク)</h3>
 
-  <h3>Deep Generative Models</h3>
+  <h3>deep generative models</h3>
 
-  <h3>Variational Autoencoders (VAE 変分オートエンコーダ)</h3>
-    生成モデルの枠組みで自己符号化器 (Autoencoders) を解釈したもので、 生成モデルで言う潜在変数を観測データの符号と見做す. すなわち、観測データから潜在変数を推定する手続きが符号化であり、その逆が復号化である.
+  <h3>variational autoencoders (vae 変分オートエンコーダ)</h3>
+    生成モデルの枠組みで自己符号化器 (autoencoders) を解釈したもので、 生成モデルで言う潜在変数を観測データの符号と見做す. すなわち、観測データから潜在変数を推定する手続きが符号化であり、その逆が復号化である.
     グラフを使って似た画像を並べて、潜在変数を解釈することができる。
     <h4> ベイズ推論 </h4>
       条件付き確率の出力から、条件を算出する。
@@ -488,17 +535,31 @@ model.fit(X_train, y_train,
       文脈においては、特定の単語（人名など）と偏ったデータになりがちなので、
       テストデータでも１回だけ学習をすること。
 
+<h2> NNによる強化学習</h2>
+  <h3>基本</h3>
+    Q-LearningをDNNに採用。入力はテレビ画面。出力はジョイスティック(18通り)。
+    教師信号はなし。
+    画期的な技術というよりもコンピュータの能力、データ規模の拡大、
+    アルゴリズムの改良、エコシステムの拡大
+  <h3>DQN</h3>
+    損失関数をQLearningに入れる。
 
+  <h3>改良版アルゴリズム</h3>
+     <dl>
+       Rainbow, Hessel et al 2017
+     </dl>
+     <dd> ポリシーベース、状態価値関数、モデルベースの強化学習 </dd>
 
 <h2>参考文献、サイト</h2>
   <dd>
-  <dt><cite>Akiba, Takuya, Shuji Suzuki, and Keisuke Fukuda "Extremely Large Minibatch Sgd: Training Resnet-50 on Imagenet in 15 Miniutes", 2017, arXiv Preprint.</cite></li>
+  <dt><cite>Akiba, Takuya, Shuji Suzuki, and Keisuke Fukuda "Extremely Large Minibatch Sgd: Training Resnet-50 on Imagenet in 15 Miniutes", 2017, arXiv Preprint.</cite>
   </dt>
   <dd></dd>
   Yee Wyne Teh NIPS 2017
 
   <dt> [[1606.05908] Tutorial on Variational Autoencoders](https://arxiv.org/abs/1606.05908) 再解釈論文 (2016)</dt>
   <dd> 変分オートエンコーダを再解釈した論文</dd>
+
 <div class = "end_of_page"></div>
 
   </main>

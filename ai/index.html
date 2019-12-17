@@ -23,7 +23,6 @@
 </script>
 
 </head>
-
 <body>
 <main>
 
@@ -43,7 +42,7 @@
    document.write('最終更新日:' + document.lastModified);
 // --></script>
 <!--...........................更新内容............................-->
-：回帰と分類などの整理 
+：強化学習、応用例などを追加
 </div>
 
  <div class="navigation">
@@ -174,13 +173,120 @@
 
     <h4>PCA 主成分分析</h4>
     <h4>Independent component analysis (ICA 独立成分分析)</h4>
-    　多変量の信号を複数の加法的な成分に分離するための計算手法。
-    <h4>LDA 潜在ディレクリ配置</h4>
-    <h4>t-SNE</h4>
+      <h5>内容</h5>
+      ブラインドソース分離(多変量の信号を複数の加法的な成分に分離する)
+      ための計算手法。PCAでは合わさったデータの主成分が出力され、分離できない
+      ネゲントロピー(負のエントロピー)を考える
+      <h5>応用例</h5>
+      MEG、画像の雑音除去、保険データ
+    <h4>非負行列因子化(NMF)</h4>
+      行列Xを行列Wと行列Hで近似する方法。値は正の値だけ取る。
+      画像のパーツパーツを抽出できる。
+    <h4>Natrix Factorization(行列因子化)</h4>
+      協調フィルタリングとして働き、Netflix映画のおすすめができるようになった。
+      目標関数はRSMEで、正則化により過学習を抑制。NMFとあまり変わらない。
+      
+    <h4>VQ(Vector Quantaization、ベクトル量子化)</h4>
+      典型的な画像を組み合わせた画像を作ることができる。
+
+    <h4>t-Stocastic Neighbor Embedding(t-SNE)</h4>
+      t分布を用いた確率的な視覚化手法で、多様体(manifold)の次元圧縮。
+      多様体とは、近傍ではユークリッド距離系となっているが、
+      全体としてはユークリッド距離系となっていない。
+      抽象的に言えば、スイスロール上のデータを広げて２次元にして表示できる。
+
 
     </div></div>
 
 <h2>強化学習</h2>
+
+  <h3>基本</h3>
+    <div class="hidden_box">
+    <label for="label-RL_base">[+]</label>
+    <input type="checkbox" id="label-RL_base"/>
+    <div class="hidden_show">
+      <h4>概要</h4>
+        動的で複雑な環境に対応する学習。環境や外部刺激がある中で、正しく意思決定する方法。
+        エージェントが行動し、行動によって応対が変化し、環境から報酬を与えられ、累積報酬の最大化を目指す。
+        外部状況の表現をNNで行うことで高精度化
+      <h4></h4>
+
+      <h4>用語</h4>
+        <dl>
+          <dd>報酬</dd> 
+          <dt>
+          その行動が良かったか悪かったかを示す。スカラ値。行動への具体的なヒントにならない、すぐに与えられない場合もある。
+          </dt>
+          <dd>収益</dd>
+          <dt>即時報酬＋Σ(割引率*未来の報酬)</dt>
+          <dd>価値</dd>
+          <dt>
+          その行動が良かったか悪かったかを示す。行動への具体的なヒントにならない、すぐに与えられない場合もある。
+          </dt>
+          <dd>行為</dd>
+          <dt></dt>
+          <dd>状態</dd> 
+          <dt></dt>
+          <dd>TD学習</dd> 
+          <dt></dt>
+          <dd>ポリシー</dd>
+          <dt> 最適なポリシーを確率的に定義する。</dt>
+          <dd>価値観数</dd>
+          <dt> あるポリシーを行ったときの、報酬の期待値。 行動価値観数vと行動価値観数qがある。
+          状態価値関数vはある状態の価値を再帰的に書いたもの。行動価値関数qは"ある行動を取ったとき"の価値を示す。
+          </dt>
+          <dd>最適価値観数</dd>
+          <dt> 価値関数の中で最大値となるもの。一般にはベルマン方程式となり、計算するのは非常に難しい</dt>
+
+          <dd>探索と利用のジレンマ</dd>
+          <dt>ある行動が最適かどうかは別の行動をしないとわからないが、最良の行動と決定している別の行動ばかりしていると良い行動を選べない</dt>
+        </dl>
+
+        <h4>モデル</h4>
+          <dd>価値ベース</dd> 
+          <dt>
+            方策なし、価値観数あり
+          </dt>
+          <dd>方策ベース</dd>
+          <dt>
+            方策あり、価値観数あり
+          </dt>
+          <dd>アクタークリティック</dd>
+          <dt>
+            方策を取った行動で批判しながら行動する。
+          </dt>
+          </div></div>
+
+  <h3>マルコフ決定過程</h3>
+    <div class="hidden_box">
+    <label for="label-marcov">[+]</label>
+    <input type="checkbox" id="label-marcov"/>
+    <div class="hidden_show">
+
+    <h4>マルコフ性、マルコフ性</h4>
+      一つ前の状態の条件付き確率（一つ前の状態の条件付き確率）。それまでの状態は考慮されない。
+    <h4>POMDP</h4>
+      部分観測可能なマルコフ決定過程：POMDP
+    <h4>マルコフ過程（マルコフ連鎖)</h4>
+      状態Sと行為Aと遷移確率Pと報酬Rと(割引率γ)の組 <lt> S, A, P, R, γ <gt>
+
+    </div></div>
+      
+  <h3>Q学習</h3>
+    <div class="hidden_box">
+    <label for="label-q-learning">[+]</label>
+    <input type="checkbox" id="label-marcov"/>
+    <div class="hidden_show">
+    <h4>基本</h4>
+      動的で複雑な環境に対応する学習
+    <h4>価値反復と方策反復</h4>
+      <h5>更新反復</h5>
+      <h5>価値反復</h5>
+
+    <h4>アルゴリズム</h4>
+    行動価値観数(Q, A)に基づき、時刻の行動は行動方策に従って選択されるQ(S, A)を更新
+
+    </div></div>
 
 
 <h2>AIの応用例</h2>
@@ -190,29 +296,78 @@
     <input type="checkbox" id="label7-3"/>
     <div class="hidden_show">
 
+    <h4>単語埋め込みモデル word2vec</h4>
+    "king" - "man" + "woman" = "Queen" <br>
+    単語のベクトルを用いて、単語の足し算、引き算が可能となる。同じように文法も解ける。
+    それぞれの単語が0,1の入力層が数万個で表示されていたのが、まとめてベクトルとすると、
+    ベクトルが学習によって意味を表すようになってきた。
+    自分以外の周りの単語を予測するスキップグラムとその逆のCBOWで学習させると中間層に意味の表層ができる。
+
     <h4>トピックモデル</h4>
     <dl>
       <dt>潜在的ディリクレ配分法</dt>
-      <dd>トピックモデルにおいて、トピック分布にディリクレ分布を仮定し、ベイズ推定する手法のこと</dd>
+      <dd>トピックモデルにおいて、トピック分布にディリクレ分布を仮定し、ベイズ推定する手法。
+          ある現象が起きたときに次の現象が起きる確率であるガンマ分布を全ての単語で計算し、
+          確率密度関数を作成する。 適応的にパラメータが変わるノンパラメトリックモデルである。
+
+      </dd>
     </dl>
     </div></div>
+ 
 
-  <h3>画像認識による位置姿勢決定</h3>
+  <h3>画像認識</h3>
     <div class="hidden_box">
-    <label for="label-position">[+]</label>
-    <input type="checkbox" id="label-position"/>
+    <label for="label-image">[+]</label>
+    <input type="checkbox" id="label-image"/>
     <div class="hidden_show">
-    位置姿勢決定
+    <h4>Regions with CNN features (R-CNN)</h4>
+      画像に対してオーバーラップを許して何が写っているのかを示す。
+      バウンディングボックスと呼ばれる画像領域を切り出して、正規化して、CNNに入れる。
+      関心領域の切り出し方法は従来の方法
+    <h4>fast-RCNN</h4>
+      画像の切り出しを１つのネットワークで行い実時間画像処理が可能に。
+    <h4>FCN</h4>
+      セマンティックセグメンテーション。細かい切り出しができる
+    <h4>YOLO (you lok only onece)</h4>
+      バウンディングボックスの切り分けと認識が一回でできる。
+    <h4>SSD (Single Shot Multibox Detector)</h4>
+      バウンディングボックスの切り分けと認識が一回でできる。
+    <h4> SegNet</h4>
+      実時間での画像領域の細かい切り出しができるようになった。
+
+    <h4>画像キャプション付け</h4>
+        画像処理と自然言語処理を組み合わせた問題。
+        <h5>NIC</h5>
+
     </div></div>
 
-  <h3>画像キャプション付け</h3>
+  <h3>音声認識</h3>
     <div class="hidden_box">
-    <label for="label-caption">[+]</label>
-    <input type="checkbox" id="label-caption"/>
+    <label for="label-sound">[+]</label>
+    <input type="checkbox" id="label-sound"/>
     <div class="hidden_show">
-      画像処理と自然言語処理を組み合わせた問題。
 
-    <h4>LSTM</h4>
+    <h4>WaveNet</h4>
+      音声認識、音声生成、テキスト読み上げ。
+      delayted(スキップを伴う)学習を伴う。
+      従来モデルであるparametoricモデルとconcatenativeのモデルと比べると1.5倍ぐらいの点数。
+
+     </div></div>
+
+  <h3>ロボティクス</h3>
+    <div class="hidden_box">
+    <label for="label-robotics">[+]</label>
+    <input type="checkbox" id="label-robotics"/>
+    <div class="hidden_show">
+
+
+    <h4>Competitive Self Play (Open AI)</h4>
+      報酬系だけを変えることによって、相撲だけでなく、サッカーのPKなどができるようになる。
+      そのスキルを別のスキルに転移することもできる。
+
+    <h4>Alpha Go zero</h4>
+      囲碁の定石を学習させないことでより囲碁が強くなった。
+
     </div></div>
 
   <h3>ブロックチェーン</h3>
@@ -312,7 +467,7 @@
     </dl>
     </div></div>
  
-<h2>データ収集・データ前処理</h2>
+<h2>データ拡張・データ前処理</h2>
   <h3>水増し</h3>
     <div class="hidden_box">
     <label for="label-data-extension">[+]</label>
@@ -320,11 +475,17 @@
     <div class="hidden_show">
 
     学習の際に必要なデータを水増しする。
+    回転、平行移動、拡大・縮小、反転、アフィン変換、センダン変換、ホモグラフィ変換、色、光量変換、ノイズ追加など。
+    
     <dl>
       <dt>ImageDataGenerator(keras)</dt>
       <dd>
         ランダムにデータの反転、圧縮、移動、回転などを行うことができる。
+        ミニバッチでデータを作成しながら、学習することで、メモリも少なくてすむ。
       </dd>
+      <dt>mixup</dt>
+      <dd>データ間を線形に補間したものを使用する。この時同時にラベルも学習する。
+          分類問題のときは、0でも1でもないデータができる。</dd>
     </dl>
     </div></div>
 
@@ -334,9 +495,16 @@
     <input type="checkbox" id="label8-1"/>
     <div class="hidden_show">
 
-    <h4>正規化</h4>
+    <h4>雑音除去</h4>
+    ICAや平準化でなどで行うことが可能。
 
-      <h5>標準化</h5>
+    <h4>平準化</h4>
+    ローパスフィルタを通してスパイクを除去する。
+
+    <h4>センタリング</h4>
+    平均を0にする
+
+    <h4>正規化：標準化</h4>
       特徴を平均0、分散1にすることで、特徴ごとのデータ分布を近づける。
       ImageDataGeneratorを使う場合は以下のようになる。
 <pre> <code># ジェネレーターの生成
@@ -345,8 +513,8 @@ data_generator = ImageDataGenerator(samplewise_center=True, samplewise_std_norma
 # 標準化
 g = data_generator.flow(X_train, y_train, shuffle=False)
 X_batch, y_batch = g.next() </code> </pre>
-      <h5>白色化</h5>
-      特徴間の相関をなくすこと。
+    <h4>正規化：白色化</h4>
+    特徴間の相関をなくし、分散を一定にする。
 <pre> <code># ジェネレーターの生成
 datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
 
@@ -360,8 +528,17 @@ X_batch, y_batch = g.next() </code> </pre>
       ミニバッチ学習の際にバッチごとに標準化を行うこと。
       Kerasの実装は以下の通り。
 <pre> <code> model.add(BatchNormalization()) </code> </pre>
-
       </dd>
+
+      <dt>重み正規化</dt>
+      <dd>
+        入力xではなく、重み係数wを正則化(平均０分散１）
+      </dd>
+      <dt>層正規化</dt>
+      <dd>
+        層内の全ニューロンを正則化(平均０分散１）する。入力データが１でも正則化可能。
+      </dd>
+
       <dt>主成分分析</dt>
       <dd>
         Todo:内容
@@ -389,6 +566,40 @@ X_batch, y_batch = g.next() </code> </pre>
     </dl>
 
     </div></div>
+
+  <h2>AIの注意点</h2>
+    <h3>偏見への問題</h3>
+      <div class="hidden_box">
+      <label for="label-caution1">[+]</label>
+      <input type="checkbox" id="label-caution1"/>
+      <div class="hidden_show">
+      黒人の女性をゴリラとして認識された例がある。学習データが白人に偏ってしまっている。
+      取り込められるデータが偏ると、出力が偏ってしまう。
+      </div></div>
+    <h3>ブラックボックス</h3>
+      <div class="hidden_box">
+      <label for="label-caution1">[+]</label>
+      <input type="checkbox" id="label-caution2"/>
+      <div class="hidden_show">
+      パラメータが改ざんされてもわからない、危険な使い方をしていてもわからない可能性がある。
+      個人の勉強と専門家を用意するべき。
+      </div></div>
+    <h3>fooling CNN</h3>
+      <div class="hidden_box">
+      <label for="label-caution1">[+]</label>
+      <input type="checkbox" id="label-caution2"/>
+      <div class="hidden_show">
+    　画像を少しだけ変えると、認識が変わる例がある。
+    　我々の認識とDNNの認識方法は異なっている。
+      </div></div>
+    <h3>One Pixcel Attack</h3>
+      <div class="hidden_box">
+      <label for="label-caution1">[+]</label>
+      <input type="checkbox" id="label-caution2"/>
+      <div class="hidden_show">
+      元画像に１画素だけ異なる所を付け加えると認識が変わる。
+      </div></div>
+
 
 <h2>その外</h2>
     <div class="hidden_box">
@@ -433,16 +644,27 @@ X_batch, y_batch = g.next() </code> </pre>
     <dd>
       その時の最高性能が出せるアルゴリズム
     </dd>
+    <dt>minimax法</dt>
+    <dd>ゲーム木において、相手は自分にとって最悪手、自分は最善手を選ぶとして最善手を算出する方法</dd>
+    <dt>αβ法</dt>
+    <dd>minimax法でβカット(自分の手を計算する時に、現在の候補より評価値が低い手のノードを探索しないこと)とαカット(相手の手を計算するときに、現在の候補より評価値の高いノードを探索しないこと)を行う手法</dd>
+    <dt>AIC、赤池情報量基準</dt>
+    <dd>情報量基準(パラメータで記述されたモデルのクラスからモデルを選択する基準)の１つ。 T*log(s^2)+2K、ここでTは標本の大きさ、s^2はモデル誤差校の分散推定量、Kはモデルに含まれる係数の数</dd>
+    <dt>BIC、ベイジアン情報量基準</dt>
+    <dd>情報量基準(パラメータで記述されたモデルのクラスからモデルを選択する基準)の１つ。 T*log(s^2)+K*log(T)、 ここでTは標本の大きさ、s^2はモデル誤差校の分散推定量、Kはモデルに含まれる係数の数</dd>
+
+
   </dl>
   </div></div>
 
 <h2>参考文献、サイト</h2>
 <div>
   <dl>
-    <dt><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147655">岩田 具治."トピックモデル、機械学習プロフェッショナルシリーズ".2018,講談社</a> </cite></dt>
-    <dd>  </dd>
     <dt> <cite><a href="https://daihen.aidemy.jp/">"Aidemy"</dt>
     <dd> AIの通信教育。ビデオ講座や実際にコードを書くプログラム講座など</dd>
+    <dt><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147655">岩田 具治."トピックモデル、機械学習プロフェッショナルシリーズ".2018,講談社</a> </cite></dt>
+    <dd>  </dd>
+
   </dl>
 </div>
 
