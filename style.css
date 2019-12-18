@@ -8,8 +8,8 @@ body {
                YuGothic,         /* Macの游ゴシック */
                sans-serif;
   font-size: 16px;
-  color:#002200;
-  background:#CCEEDD;
+  color:#556655;
+  background:#D0FFE0;
   width:90%;
   margin:auto;
 }
@@ -50,7 +50,6 @@ body {
   font-size: 12px;
   margin-bottom:10px;
 }
-
 
 .navigation>ul {
   padding: 0;
@@ -101,11 +100,12 @@ h1{
   margin-bottom: 0px;
   padding-top:4px;
   padding-bottom:4px;
-  border-top: 3px solid #775555;
-  border-bottom: 3px solid #775555;
-  background:#CCCCCC;
+  border-top: 3px solid #774444;
+  border-bottom: 3px solid #774444;
+  background:#DDDDCC;
   font-size:26px;
   counter-reset:hb;
+  color:black;
 }
 
 .subtitle{
@@ -125,9 +125,10 @@ h2::before {
 h2{
   margin-top: 24px;
   margin-bottom: 0px;
-  border-top: 3px solid #775555;
+  border-top: 3px solid #882222;
   font-size: 24px;
   counter-reset:hc;
+  color:#330000;
 }
 
 
@@ -142,6 +143,7 @@ h3{
   border-top: 1px solid #775555;
   font-size: 22px;
   counter-reset:hd;
+  color:#113311;
 }
 
 
@@ -160,6 +162,7 @@ h4{
   border-top: 1px dotted #775555;
   font-size: 20px;
   counter-reset:he;
+  color:#113311;
 }
 
 .hidden_show>h4:first-child{
@@ -298,7 +301,7 @@ pre{
 .hidden_box input:checked ~ .hidden_show {
     height: auto;
     opacity: 1;
-    background:#DDFFEE;
+    background:#EAFFF5;
 }
 
 .end_of_page {

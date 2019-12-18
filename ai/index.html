@@ -11,10 +11,21 @@
 </script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
-    TeX: { equationNumbers: { autoNumber: "AMS" }},
+    TeX: { 
+      equationNumbers: { autoNumber: "AMS" },
+      Macros: {
+        x: "{\\times}",
+        bm: ["{\\boldsymbol{#1}}",1],
+        dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+      }
+    },
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
+    },
+    CommonHTML: {
+      scale: 90,
+      mtextFontInherit: true
     },
     "HTML-CSS": { matchFontHeight: false },
     displayAlign: "left",
@@ -42,7 +53,7 @@
    document.write('最終更新日:' + document.lastModified);
 // --></script>
 <!--...........................更新内容............................-->
-：強化学習、応用例などを追加
+： 最小二乗法の詳細やNNの指標の内容などについて追記
 </div>
 
  <div class="navigation">
@@ -96,24 +107,31 @@
     <input type="checkbox" id="label1-3"/>
     <div class="hidden_show">
 
+    <h4>解析的解法と探索的解法</h4>
+
     <h4>線形回帰</h4>
+      解析的手法の代表的なもので、
+      $z = w_0 + w_1u_1 + \cdots + w_uu_n + e$ となる関係を示したもの。以下に分類される。
     <dl>
-      <dt>線形回帰</dt>
-      <dd>Y = a0 + a1x1 + ... + anxn + e となる関係を示したもの</dd>
       <dt>単回帰</dt>
-      <dd>変数が１つの１次式</dd>
+      <dd>変数が１つの１次式($ z = wu + w_0 $)の回帰。導出される1次式を回帰直線と呼ぶ。</dd>
       <dt>多項回帰</dt>
-      <dd>変数が１つだが、ｎ次式</dd>
+      <dd>変数が１つのn次式($ y = w_1u + w_2u^2 + \cdot + w_nu^n + w_0 $)の回帰</dd>
       <dt>重回帰</dt>
-      <dd>変数が複数</dd>
+      <dd>変数が複数ある式($ y = w_1u_1 + w_2u_2 + \cdot + w_nu_n + w_0 $)の回帰</dd>
     </dl>
+
+    <h5>最小二乗法</h5>
+      <div>線形回帰を求める手法。</div>
+      <div>入力の組$\bm{U}$、出力の組$\bm{z}$が与えられた時、
+      $\bm{z} \simeq \bm{Uw}$となる係数の組$\bm{w}$を、
+      残差平方和 $ \|\bm{Uw} - \bm{z}\| $ を最小にするという条件で求める。</div>
+      <div>正規方程式 $ \bm{U^{\mathrm{T}}Uw} = \bm{U^\mathrm{T}z} $により、
+      より直接的には以下の式により$\bm{w}$を算出する。</div>
+      $$
+        \bm{w} = (\bm{U}^{\mathrm{T}}\bm{U})^{-1}\bm{U}^{\mathrm{T}} \bm{z}
+      $$
   
-    <ul>
-      <li>解析的解法と探索的解法</li>
-      <li>線形回帰</li>
-      <li>回帰直線</li>
-      <li>正規方程式</li>
-    </ul>
     <h4>ロジスティック回帰</h4>
     確率やダミー変数について分析、予測するのに使われる。
 
@@ -161,7 +179,6 @@
     <h4>k means クラスタリング</h4>
 
     <h4><a href="NeuralNetwork.html">Neural Network(NN, ニューラルネットワーク)</a></h4>
-
  
     </div></div>
 
@@ -209,52 +226,53 @@
         動的で複雑な環境に対応する学習。環境や外部刺激がある中で、正しく意思決定する方法。
         エージェントが行動し、行動によって応対が変化し、環境から報酬を与えられ、累積報酬の最大化を目指す。
         外部状況の表現をNNで行うことで高精度化
-      <h4></h4>
 
       <h4>用語</h4>
         <dl>
-          <dd>報酬</dd> 
-          <dt>
+          <dt>報酬</dt>
+          <dd>
           その行動が良かったか悪かったかを示す。スカラ値。行動への具体的なヒントにならない、すぐに与えられない場合もある。
-          </dt>
-          <dd>収益</dd>
-          <dt>即時報酬＋Σ(割引率*未来の報酬)</dt>
-          <dd>価値</dd>
-          <dt>
+          </dd>
+          <dt>収益</dt>
+          <dd>即時報酬＋Σ(割引率*未来の報酬)</dd>
+          <dt>価値</dt>
+          <dd>
           その行動が良かったか悪かったかを示す。行動への具体的なヒントにならない、すぐに与えられない場合もある。
-          </dt>
-          <dd>行為</dd>
-          <dt></dt>
-          <dd>状態</dd> 
-          <dt></dt>
-          <dd>TD学習</dd> 
-          <dt></dt>
-          <dd>ポリシー</dd>
-          <dt> 最適なポリシーを確率的に定義する。</dt>
-          <dd>価値観数</dd>
-          <dt> あるポリシーを行ったときの、報酬の期待値。 行動価値観数vと行動価値観数qがある。
+          </dd>
+          <dt>行為</dt>
+          <dd></dd>
+          <dt>状態</dt> 
+          <dd></dd>
+          <dt>TD学習</dt> 
+          <dd></dd>
+          <dt>ポリシー</dt>
+          <dd> 最適なポリシーを確率的に定義する。</dd>
+          <dt>価値観数</dt>
+          <dd> あるポリシーを行ったときの、報酬の期待値。 行動価値観数vと行動価値観数qがある。
           状態価値関数vはある状態の価値を再帰的に書いたもの。行動価値関数qは"ある行動を取ったとき"の価値を示す。
-          </dt>
-          <dd>最適価値観数</dd>
-          <dt> 価値関数の中で最大値となるもの。一般にはベルマン方程式となり、計算するのは非常に難しい</dt>
+          </dd>
+          <dt>最適価値観数</dt>
+          <dd> 価値関数の中で最大値となるもの。一般にはベルマン方程式となり、計算するのは非常に難しい</dd>
 
-          <dd>探索と利用のジレンマ</dd>
-          <dt>ある行動が最適かどうかは別の行動をしないとわからないが、最良の行動と決定している別の行動ばかりしていると良い行動を選べない</dt>
+          <dt>探索と利用のジレンマ</dt>
+          <dd>ある行動が最適かどうかは別の行動をしないとわからないが、最良の行動と決定している別の行動ばかりしていると良い行動を選べない</dd>
         </dl>
 
         <h4>モデル</h4>
-          <dd>価値ベース</dd> 
-          <dt>
+          <dl>
+            <dt>価値ベース</dt> 
+            <dd>
             方策なし、価値観数あり
-          </dt>
-          <dd>方策ベース</dd>
-          <dt>
+            </dd>
+            <dt>方策ベース</dt>
+            <dd>
             方策あり、価値観数あり
-          </dt>
-          <dd>アクタークリティック</dd>
-          <dt>
+            </dd>
+            <dt>アクタークリティック</dt>
+            <dd>
             方策を取った行動で批判しながら行動する。
-          </dt>
+            </dd>
+          </dl>
           </div></div>
 
   <h3>マルコフ決定過程</h3>
@@ -288,7 +306,189 @@
 
     </div></div>
 
+<h2>データ前処理</h2>
+  <h3>データ拡張・水増し</h3>
+    <div class="hidden_box">
+    <label for="label-data-extension">[+]</label>
+    <input type="checkbox" id="label-data-extension"/>
+    <div class="hidden_show">
 
+    学習の際に必要なデータを水増しする。
+    回転、平行移動、拡大・縮小、反転、アフィン変換、剪断変換、ホモグラフィ変換、色、光量変換、ノイズ追加など。
+    
+    <dl>
+      <dt>ImageDataGenerator(keras)</dt>
+      <dd>
+        ランダムにデータの反転、圧縮、移動、回転などを行うことができる。
+        ミニバッチでデータを作成しながら、学習することで、メモリも少なくてすむ。
+      </dd>
+      <dt>mixup</dt>
+      <dd>データ間を線形に補間したものを使用する。この時同時にラベルも学習する。
+          分類問題のときは、0でも1でもないデータができる。</dd>
+    </dl>
+    </div></div>
+
+  <h3>データクレンジング</h3>
+    <div class="hidden_box">
+    <label for="label8-1">[+]</label>
+    <input type="checkbox" id="label8-1"/>
+    <div class="hidden_show">
+
+    <h4>雑音除去</h4>
+    ICAや平準化などで行うことが可能。
+
+    <h4>平準化</h4>
+    ローパスフィルタを通してスパイクを除去する。
+
+    <h4>センタリング</h4>
+    平均を0にする
+
+    <h4>正規化：標準化</h4>
+      特徴を平均0、分散1にすることで、特徴ごとのデータ分布を近づける。
+      ImageDataGeneratorを使う場合は以下のようになる。
+<pre> <code># ジェネレーターの生成
+data_generator = ImageDataGenerator(samplewise_center=True, samplewise_std_normalization=True)
+
+# 標準化
+g = data_generator.flow(X_train, y_train, shuffle=False)
+X_batch, y_batch = g.next() </code> </pre>
+    <h4>正規化：白色化</h4>
+    特徴間の相関をなくし、分散を一定にする。
+<pre> <code># ジェネレーターの生成
+datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
+
+# 標準化
+g = datagen.flow(X_train, y_train, shuffle=False)
+X_batch, y_batch = g.next() </code> </pre>
+
+    <dl>
+      <dt>バッチ正規化</dt>
+      <dd>
+      ミニバッチ学習の際にバッチごとに標準化を行うこと。
+      Kerasの実装は以下の通り。
+<pre> <code> model.add(BatchNormalization()) </code> </pre>
+      </dd>
+
+      <dt>重み正規化</dt>
+      <dd>
+        入力xではなく、重み係数wを正則化(平均０分散１）
+      </dd>
+      <dt>層正規化</dt>
+      <dd>
+        層内の全ニューロンを正則化(平均０分散１）する。入力データが１でも正則化可能。
+      </dd>
+
+      <dt>主成分分析</dt>
+      <dd>
+        Todo:内容
+      </dd>
+      <dt>特異値分解</dt>
+      <dd>
+        Todo:内容
+      </dd>
+      <dt>ゼロ位相成分分析</dt>
+      <dd>
+        Todo:内容
+      </dd>
+      <dt>局所的応答正規化</dt>
+      <dd>
+        Todo:内容
+      </dd>
+      <dt>帯域コントラスト正規化</dt>
+      <dd>
+        Todo:内容
+      </dd>
+      <dt>局所的コントラスト正規化</dt>
+      <dd>
+        Todo:内容
+      </dd>
+    </dl>
+
+    </div></div>
+
+
+
+<h2>評価</h2>
+  <h3>標準問題</h3>
+    <div class="hidden_box">
+    <label for="label7-1">[+]</label>
+    <input type="checkbox" id="label7-1"/>
+    <div class="hidden_show">
+
+    <dl>
+      <dt>MNIST(エムニスト)</dt>
+      <dd>手書き数字のデータセット、28x28で１チャンネルのデータとなっている</dd>
+      <dt>CIFAR-10</dt>
+      <dd>10種類のオブジェクトが映った画像の10x10のデータセットの分類</dd>
+      <dt>ImageNet(<a href="http://www.image-net.org">http://www.image-net.org/</a>)</dt>
+      <dd>データが公開されているので登録すればダウンロード可能</dd>
+      <dt>MS-COCO(<a href="http://cocodataset.org/#home">http://cocodataset.org/#home</a>)</dt>
+      <dd>画像に対して５つのキャプションが与えられる。表現の多様性をチェックする</dd>    </dl>
+    </div></div>
+  <h3>分類の評価</h3>
+    <div class="hidden_box">
+    <label for="label7-2">[+]</label>
+    <input type="checkbox" id="label7-2"/>
+    <div class="hidden_show">
+    <dl>
+      <dt>正解率, 精度, accuracy</dt>
+      <dd>(TP + TN) / (TP + TN + FP + FN)</dd>
+      <dt>適合率, precision</dt>
+      <dd>
+        <div>trueのと予測した中で実際にtrueである割合</div>
+        <div>(TP) / (TP + FP)
+      </dd>
+      <dt>再現率, 検出率, recall</dt>
+      <dd>
+        <div>実際にtrueの値のうち正であると予測されたもの</div>
+        <div> (TP) / (TP + FN)</div>
+      </dd>
+      <dd>
+      <dt>F値, F-measure</dt>
+      <dd>
+        <div>正解率と再現率のバランス</div>
+        <div>(2 * precision * recall) / (precision + recall)</div>
+      </dd>
+    </dl>
+    <dL>
+
+    <dt>項目応答理論</dt>
+    <dd>例えば、被験者の能力に対して、各テスト項目の正答確率がモデル化できるとすると、そのモデルと実際結果を比較し、それぞれの項目が妥当かどうかを確認できる</dd>
+    </dl>
+
+
+    </div></div>
+
+  <h3>回帰の評価</h3>
+    <div class="hidden_box">
+    <label for="label-evaluation-of-regression">[+]</label>
+    <input type="checkbox" id="label-evaluation-of-regression"/>
+    <div class="hidden_show">
+    <h4>バイアスバリアンス分解</h4>
+    <dl>
+      <dt>バイアス</dt>
+      <dd>予測値と真値の誤差、アンダーフィッティング時に大きくなりがち</dd>
+      <dt>バリアンス</dt>
+      <dd>予測値と真値の分散、オーバーフィッティング時に大きくなりがち</dd>
+    </dl>
+    </div></div>
+  <h3>NNの評価</h3>
+    <div class="hidden_box">
+    <label for="label7-4">[+]</label>
+    <input type="checkbox" id="label7-4"/>
+    <div class="hidden_show">
+    <dl>
+      <dt>BLEU (<a href="https://www.aclweb.org/anthology/P02-1040.pdf">BLEU: a Method for Automatic Evaluation of Machine Translation </a>)</dt>
+      <dd>機械翻訳の指標。過去の単語から次の単語の出現確率を算出するn-gramを改良して使用する。</dd>
+      <dt>ROUGE(<a href="https://www.aclweb.org/anthology/W04-1013.pdf">ROUGE: A Package for Automatic Evaluation of Summaries </a>)</dt>
+      <dd> 自動要約システムのための指標。正しい要約と自動要約システムの中のオーバーラップされた言葉の数の割合を調べる。</dd>
+      <dt>METEOR(<a href="https://www.cs.cmu.edu/~alavie/papers/BanerjeeLavie2005-final.pdf">METEOR: An Automatic Metric for MT Evaluation with Improved Correlation with Human Judgments</a>)</dt>
+      <dd> 機械翻訳の指標。ユニグラムの正確性と再現性の調和平均を元に計算される。正確性より再現性により重きを置く。</dd>
+        <dt>CIDEr (<a href="https://arxiv.org/pdf/1411.5726.pdf">CIDEr: Consensus-based Image Description Evaluation</a>)</dt>
+      <dd> 画像の自動キャプション付の指標。</dd>
+    </dl>
+    </div></div>
+ 
 <h2>AIの応用例</h2>
   <h3>自然言語処理</h3>
     <div class="hidden_box">
@@ -386,219 +586,36 @@
       異常検知
     </div></div>
 
-<h2>評価</h2>
-  <h3>標準問題</h3>
-    <div class="hidden_box">
-    <label for="label7-1">[+]</label>
-    <input type="checkbox" id="label7-1"/>
-    <div class="hidden_show">
 
-    <dl>
-      <dt>MNIST(エムニスト)</dt>
-      <dd>手書き数字のデータセット、28x28で１チャンネルのデータとなっている</dd>
-      <dt>CIFAR-10</dt>
-      <dd>10種類のオブジェクトが映った画像の10x10のデータセットの分類</dd>
-      <dt>ImageNet(<a href="http://www.image-net.org">http://www.image-net.org/</a>)</dt>
-      <dd>データが公開されているので登録すればダウンロード可能</dd>
-      <dt>MS-COCO(<a href="http://cocodataset.org/#home">http://cocodataset.org/#home</a>)</dt>
-      <dd>画像に対して５つのキャプションが与えられる。表現の多様性をチェックする</dd>    </dl>
+
+<h2>AIの注意点</h2>
+  <h3>偏見への問題</h3>
+    <div class="hidden_box">
+    <label for="label-caution1">[+]</label>
+    <input type="checkbox" id="label-caution1"/>
+    <div class="hidden_show">
+    黒人の女性をゴリラとして認識された例がある。学習データが白人に偏ってしまっている。
+    取り込められるデータが偏ると、出力が偏ってしまう。
     </div></div>
-  <h3>分類の評価</h3>
+  <h3>ブラックボックス</h3>
     <div class="hidden_box">
-    <label for="label7-2">[+]</label>
-    <input type="checkbox" id="label7-2"/>
+    <label for="label-caution2">[+]</label>
+    <input type="checkbox" id="label-caution2"/>
     <div class="hidden_show">
-    <dl>
-      <dt>正解率, 精度, accuracy</dt>
-      <dd>(TP + TN) / (TP + TN + FP + FN)</dd>
-      <dt>適合率, precision</dt>
-      <dd>
-        <div>trueのと予測した中で実際にtrueである割合</div>
-        <div>(TP) / (TP + FP)
-      </dd>
-      <dt>再現率, 検出率, recall</dt>
-      <dd>
-        <div>実際にtrueの値のうち正であると予測されたもの</div>
-        <div> (TP) / (TP + FN)</div>
-      </dd>
-      <dd>
-      <dt>F値, F-measure</dt>
-      <dd>
-        <div>正解率と再現率のバランス</div>
-        <div>(2 * precision * recall) / (precision + recall)</div>
-      </dd>
-    </dl>
-    <dL>
-
-    <dt>項目応答理論</dt>
-    <dd>例えば、被験者の能力に対して、各テスト項目の正答確率がモデル化できるとすると、そのモデルと実際結果を比較し、それぞれの項目が妥当かどうかを確認できる</dd>
-    </dl>
-
-
+    パラメータが改ざんされてもわからない、危険な使い方をしていてもわからない可能性がある。
+    個人の勉強と専門家を用意するべき。
+    </div></div>
+  <h3>fooling CNN</h3>
+    <div class="hidden_box">
+    <label for="label-caution3">[+]</label>
+    <input type="checkbox" id="label-caution3"/>
+    <div class="hidden_show">
+  　画像を少しだけ変えると、認識が変わる例がある。
+  　我々の認識とDNNの認識方法は異なっている。
+  <h4>One Pixcel Attack</h4>
+    元画像に１画素だけ異なる所を付け加えると認識が変わる。
     </div></div>
 
-  <h3>回帰の評価</h3>
-    <div class="hidden_box">
-    <label for="label-evaluation-of-regression">[+]</label>
-    <input type="checkbox" id="label-evaluation-of-regression"/>
-    <div class="hidden_show">
-    <h4>バイアスバリアンス分解</h4>
-    <dl>
-      <dt>バイアス</dt>
-      <dd>予測値と真値の誤差、アンダーフィッティング時に大きくなりがち</dd>
-      <dt>バリアンス</dt>
-      <dd>予測値と真値の分散、オーバーフィッティング時に大きくなりがち</dd>
-    </dl>
-    </div></div>
-  <h3>NNの評価</h3>
-    <div class="hidden_box">
-    <label for="label7-4">[+]</label>
-    <input type="checkbox" id="label7-4"/>
-    <div class="hidden_show">
-    <dl>
-      <dt>BLEU</dt>
-      <dd></dd>
-      <dt>ROUGE</dt>
-      <dd> </dd>
-      <dt>METEOR</dt>
-      <dd> </dd>
-      <dt>CIDEr</dt>
-      <dd> </dd>
-    </dl>
-    </div></div>
- 
-<h2>データ拡張・データ前処理</h2>
-  <h3>水増し</h3>
-    <div class="hidden_box">
-    <label for="label-data-extension">[+]</label>
-    <input type="checkbox" id="label-data-extension"/>
-    <div class="hidden_show">
-
-    学習の際に必要なデータを水増しする。
-    回転、平行移動、拡大・縮小、反転、アフィン変換、センダン変換、ホモグラフィ変換、色、光量変換、ノイズ追加など。
-    
-    <dl>
-      <dt>ImageDataGenerator(keras)</dt>
-      <dd>
-        ランダムにデータの反転、圧縮、移動、回転などを行うことができる。
-        ミニバッチでデータを作成しながら、学習することで、メモリも少なくてすむ。
-      </dd>
-      <dt>mixup</dt>
-      <dd>データ間を線形に補間したものを使用する。この時同時にラベルも学習する。
-          分類問題のときは、0でも1でもないデータができる。</dd>
-    </dl>
-    </div></div>
-
-  <h3>データクレンジング</h3>
-    <div class="hidden_box">
-    <label for="label8-1">[+]</label>
-    <input type="checkbox" id="label8-1"/>
-    <div class="hidden_show">
-
-    <h4>雑音除去</h4>
-    ICAや平準化でなどで行うことが可能。
-
-    <h4>平準化</h4>
-    ローパスフィルタを通してスパイクを除去する。
-
-    <h4>センタリング</h4>
-    平均を0にする
-
-    <h4>正規化：標準化</h4>
-      特徴を平均0、分散1にすることで、特徴ごとのデータ分布を近づける。
-      ImageDataGeneratorを使う場合は以下のようになる。
-<pre> <code># ジェネレーターの生成
-data_generator = ImageDataGenerator(samplewise_center=True, samplewise_std_normalization=True)
-
-# 標準化
-g = data_generator.flow(X_train, y_train, shuffle=False)
-X_batch, y_batch = g.next() </code> </pre>
-    <h4>正規化：白色化</h4>
-    特徴間の相関をなくし、分散を一定にする。
-<pre> <code># ジェネレーターの生成
-datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
-
-# 標準化
-g = datagen.flow(X_train, y_train, shuffle=False)
-X_batch, y_batch = g.next() </code> </pre>
-
-    <dl>
-      <dt>バッチ正規化</dt>
-      <dd>
-      ミニバッチ学習の際にバッチごとに標準化を行うこと。
-      Kerasの実装は以下の通り。
-<pre> <code> model.add(BatchNormalization()) </code> </pre>
-      </dd>
-
-      <dt>重み正規化</dt>
-      <dd>
-        入力xではなく、重み係数wを正則化(平均０分散１）
-      </dd>
-      <dt>層正規化</dt>
-      <dd>
-        層内の全ニューロンを正則化(平均０分散１）する。入力データが１でも正則化可能。
-      </dd>
-
-      <dt>主成分分析</dt>
-      <dd>
-        Todo:内容
-      </dd>
-      <dt>特異値分解</dt>
-      <dd>
-        Todo:内容
-      </dd>
-      <dt>ゼロ位相成分分析</dt>
-      <dd>
-        Todo:内容
-      </dd>
-      <dt>局所的応答正規化</dt>
-      <dd>
-        Todo:内容
-      </dd>
-      <dt>帯域コントラスト正規化</dt>
-      <dd>
-        Todo:内容
-      </dd>
-      <dt>局所的コントラスト正規化</dt>
-      <dd>
-        Todo:内容
-      </dd>
-    </dl>
-
-    </div></div>
-
-  <h2>AIの注意点</h2>
-    <h3>偏見への問題</h3>
-      <div class="hidden_box">
-      <label for="label-caution1">[+]</label>
-      <input type="checkbox" id="label-caution1"/>
-      <div class="hidden_show">
-      黒人の女性をゴリラとして認識された例がある。学習データが白人に偏ってしまっている。
-      取り込められるデータが偏ると、出力が偏ってしまう。
-      </div></div>
-    <h3>ブラックボックス</h3>
-      <div class="hidden_box">
-      <label for="label-caution1">[+]</label>
-      <input type="checkbox" id="label-caution2"/>
-      <div class="hidden_show">
-      パラメータが改ざんされてもわからない、危険な使い方をしていてもわからない可能性がある。
-      個人の勉強と専門家を用意するべき。
-      </div></div>
-    <h3>fooling CNN</h3>
-      <div class="hidden_box">
-      <label for="label-caution1">[+]</label>
-      <input type="checkbox" id="label-caution2"/>
-      <div class="hidden_show">
-    　画像を少しだけ変えると、認識が変わる例がある。
-    　我々の認識とDNNの認識方法は異なっている。
-      </div></div>
-    <h3>One Pixcel Attack</h3>
-      <div class="hidden_box">
-      <label for="label-caution1">[+]</label>
-      <input type="checkbox" id="label-caution2"/>
-      <div class="hidden_show">
-      元画像に１画素だけ異なる所を付け加えると認識が変わる。
-      </div></div>
 
 
 <h2>その外</h2>

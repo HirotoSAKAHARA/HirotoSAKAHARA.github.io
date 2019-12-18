@@ -85,25 +85,22 @@
       <dd> 「畳み込み層」という層を使って特徴抽出を行うニューラルネットワーク
       </dd>
       <dt>Deep Neural Network(DNN, 深層学習)</dt>
-      <dd></dd>
+      <dd> 3層以上のニューラルネットワーク</dd>
       <dt>Recurrent Neural Network (RNN)</dt>
-      <dd></dd>
+      <dd> 前の時間の結果を入力の一部としたニューラルネットワーク</dd>
       <dt>Reinforcement Learning強化学習</dt>
-      <dd>内容</dd>
+      <dd> </dd>
       <dt>GAN, VAE</dt>
       <dd>内容</dd>
       <dt>変分オートエンコーダ</dt>
       <dd>内容</dd>
-      <dt>変分オートエンコーダ</dt>
-      <dd>内容</dd>
-
     </dl>
     </div></div>
 
   <h3>パーセプトロン(単純パーセプトロン)</h3>
     <div class="hidden_box">
-    <label for="label-kind-of-neural-network">[+]</label>
-    <input type="checkbox" id="label-kind-of-neural-network"/>
+    <label for="label-perceptron">[+]</label>
+    <input type="checkbox" id="label-perceptron"/>
     <div class="hidden_show">
 
     バイアス +Σ（入力 × 重み）= a を計算し、aが0以上の場合は1、以下の場合は0を出力
@@ -162,9 +159,9 @@
       <h5>ハイパータンジェント</h5>
       <h5>ReLU (整流線型ユニット)</h5>
       簡単でかつ収束も早い。
-      <h5>leaky ReLU<h5>
-      <h5>parametric ReLU<h5>
-      <h5>maxout<h5>
+      <h5>leaky ReLU</h5>
+      <h5>parametric ReLU</h5>
+      <h5>maxout</h5>
       <h5>ソフトプラス</h5>
       ReLUの連続近似、ソフトプラスを微分するとシグモイド関数になる
       <h5>ハードtanh</h5>
@@ -277,15 +274,17 @@
 
     <dl>
     <dt>Theano</dt>
-    <dd></dd>
+    <dd>pythonのDNNライブラリ。歴史的意義があるが、2017/11/15に1.0.0がでてから更新されていない。</dd>
     <dt>Caffe</dt>
-    <dd></dd>
-    UCバークレー
+    <dd> UCバークレーで開発された Deep Learning Framework。
+         Caffe Framework modelsが開発され、他のフレームワークでも使用できる
+    </dd>
     <dt>Torch</dt>
+    <dd>Lua言語をベースとしたスクリプト言語の機械学習ライブラリ。2018年からは開発は行われていない</dd>
     <dt>pyTorch</dt>
-    <dd>人気が上がりかたが早い</dd>
+    <dd>Pythonで使用できるTorch。2019年に開発された</dd>
     <dt>chainer</dt>
-    <dd>preffered network社が作成している</dd>
+    <dd>preffered network社が開発している和製フレームワークしている</dd>
     <dt>tensorflow</dt>
     <dd>googleが開発、圧倒的に人気がある</dd>
     <dt> keras </dt>
@@ -347,12 +346,18 @@
   </div></div>
 
   <h3>3層パーセプトロンの関数近似としての完全性</h3>
+    <div class="hidden_box">
+    <label for="label-3perceptron">[+]</label>
+    <input type="checkbox" id="label-3perceptron"/>
+    <div class="hidden_show">
+
     ３層あればどんな関数も作成できることが証明できる。
     <h4>万能近似定理</h4>
     どんな関数を学習するかにかかわらず、大きなmlpであれば、その関数を表現できるが、訓練可能であることを保証しない。
     <h4>ノーフリーランチ定理</h4>
     <h4>層の数と表現力</h4>
       浅いネットワークであれば、一層あたりのニューロンが増えてしまう。
+      </div></div>
 
   <h3>実装</h3>
     <div class="hidden_box">
@@ -401,6 +406,11 @@ model.fit(x_train, y_train,
 
 <h2>recurrent neural network(rnn, 再帰ニューラルネットワーク)</h2>
   <h3>概要</h3>
+    <div class="hidden_box">
+    <label for="label-rnn-outline">[+]</label>
+    <input type="checkbox" id="label-rnn-outline"/>
+    <div class="hidden_show">
+
     <h4>特徴</h4>
       フィードバック結合をもつ。漸化式のような構造を持つ。
       1時刻前の情報を使用することで、それまでの状態変化をすべて反映する。
@@ -418,11 +428,24 @@ model.fit(x_train, y_train,
     <h4>エルマンネット</h4>
       (入力層+context)＋中間層＋出力層となっており、contextは1時刻前の中間層（内部状態）をコピーする。
 
+      </div></div>
   <h3>課題</h3>
+    <div class="hidden_box">
+    <label for="label-rnn-problem">[+]</label>
+    <input type="checkbox" id="label-rnn-problem"/>
+    <div class="hidden_show">
+
      <h4>long term dependency(長距離依存)</h4>
       いくつか前の情報に依存する時の対策は難しく、再帰結合係数行列の時間発展に関して指数的に作用（勾配爆発）
 
+    </div></div>
+
   <h3>応用技術</h3>
+    <div class="hidden_box">
+    <label for="label-rnn-problem">[+]</label>
+    <input type="checkbox" id="label-rnn-problem"/>
+    <div class="hidden_show">
+
     <h4> back propagation through time(bptt)</h4>
     　時間伝播において、過去のネットワークを含めて誤差逆伝播を考える。　
       時刻０からの過去の入力を考えたものは完全bpttと呼び、時刻幅を考えたものをtrancated(切断) bpttと呼ぶ
@@ -489,7 +512,7 @@ model.fit(x_train, y_train,
         </dl>
     <h4>ニューラルチューリングマシン</h4>
       チューリングマシンでできることをニューラルネットでできるようになった。
-
+    </div></div>
 
 <h2>生成モデル</h2>
   <h3>evidence of lower bound (elbo, 変分下限)</h3>
@@ -499,6 +522,11 @@ model.fit(x_train, y_train,
   <h3>deep generative models</h3>
 
   <h3>variational autoencoders (vae 変分オートエンコーダ)</h3>
+    <div class="hidden_box">
+    <label for="label-vae">[+]</label>
+    <input type="checkbox" id="label-vae"/>
+    <div class="hidden_show">
+
     生成モデルの枠組みで自己符号化器 (autoencoders) を解釈したもので、 生成モデルで言う潜在変数を観測データの符号と見做す. すなわち、観測データから潜在変数を推定する手続きが符号化であり、その逆が復号化である.
     グラフを使って似た画像を並べて、潜在変数を解釈することができる。
     <h4> ベイズ推論 </h4>
@@ -529,26 +557,56 @@ model.fit(x_train, y_train,
         <li>光源を変更</li>
      </ul>
 
+     </div></div>
+
   <h3>評価</h3>
+    <div class="hidden_box">
+    <label for="label-evaluate-vae">[+]</label>
+    <input type="checkbox" id="label-evaluate-vae"/>
+    <div class="hidden_show">
+
     <h4>動的評価</h4>
       通常は訓練データとテストデータは完全に分けて評価をするが、
       文脈においては、特定の単語（人名など）と偏ったデータになりがちなので、
       テストデータでも１回だけ学習をすること。
 
+    </div></div>
+
 <h2> NNによる強化学習</h2>
   <h3>基本</h3>
+    <div class="hidden_box">
+    <label for="label-reinforcement-nn">[+]</label>
+    <input type="checkbox" id="label-reinforcement-nn"/>
+    <div class="hidden_show">
+
     Q-LearningをDNNに採用。入力はテレビ画面。出力はジョイスティック(18通り)。
     教師信号はなし。
     画期的な技術というよりもコンピュータの能力、データ規模の拡大、
     アルゴリズムの改良、エコシステムの拡大
+
+    </div></div>
+
   <h3>DQN</h3>
+    <div class="hidden_box">
+    <label for="label-dqn">[+]</label>
+    <input type="checkbox" id="label-dqn"/>
+    <div class="hidden_show">
+
     損失関数をQLearningに入れる。
 
+    </div></div>
+
   <h3>改良版アルゴリズム</h3>
+    <div class="hidden_box">
+    <label for="label-rainbow">[+]</label>
+    <input type="checkbox" id="label-rainbow"/>
+    <div class="hidden_show">
      <dl>
        Rainbow, Hessel et al 2017
      </dl>
      <dd> ポリシーベース、状態価値関数、モデルベースの強化学習 </dd>
+
+    </div></div>
 
 <h2>参考文献、サイト</h2>
   <dd>
