@@ -1,0 +1,16 @@
+@startuml perceptron
+split
+  :x1;
+split again
+  :x2;
+split again
+  :x3;
+split again
+  :x4;
+end split
+:u = Σwixi + β; (wは各入力の重み、βはバイアス);
+:z = f(u) (fは活性化関数);
+:z;
+
+skinparam backgroundColor transparent
+@enduml
