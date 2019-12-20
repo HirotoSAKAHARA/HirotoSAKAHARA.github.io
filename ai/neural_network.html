@@ -90,7 +90,7 @@
 
 <!--*********************************本文*********************************-->
 
-<h1>Neural Network</h1>
+<h1>Deep Learning (深層学習)</h1>
 
 <h2>Neural Network</h2>
   <h3>概要</h3>
@@ -98,99 +98,93 @@
     <label for="label-neural-network">[+]</label>
     <input type="checkbox" id="label-neural-network"/>
     <div class="hidden_show">
+    脳の中の神経細胞を模擬したアルゴリズムで、
+    シナプスの結合によりネットワークを形成した人口ニューロンが持つ結合加重ベクトルを学習によりを変化させ、
+    様々な問題を解決できるようなモデルを作る。
+    
 
-    形式ニューロンがシナプス結合荷重ベクトルと出力を決定するための伝達係数で表現される。
+    <h4>過去のニューラルネットワークの課題</h4>  
+      <h5>the gradient vanishing problem(勾配消失問題)</h5>
+        活性化関数の変化の際にチェインルールが適用されるが、
+        この計算の際に微分が使われる。
+        シグモイド関数を使うと、一回の計算で勾配が1/4以下になるので、層を増やすと勾配がなくなってしまう。
+        ハイパータンジェントやReLuでは勾配消失問題が起きにくい。
+      <h5> the gradient exploring problem(勾配爆発問題)</h5>
+      <h5>credit assignment problems(信用割当問題)</h5>
+        全結合をすると、責任の所在が曖昧になる
+  
+      <54>次元の呪い</54>
+        推定すべきパラメータが多くなると、次元が多くなって、パラメータ空間の探索が難しくなり、オーバーフィッティングなどが起きやすくなること。逆に、弁別可能性が高まることや、ミクロとマクロを結びつけることでシンプルに欠けることを次元の祝福と呼ぶ。
+  
+    <h4>ブレイクスルー</h4>
+        <h5>auto encoder(自己符号化器)</h5>
+        3層のネットワークを考え、中間層のユニット数が入力層と出力層よりも小さく、かつ出力層で入力を再現できるような重み付けを行うこと。
+        この時、中間層は入力層の次元を圧縮できたことになる。自己符号化器を多層に重ねることで勾配消失問題を解決し、ディープニューラルネットワークが可能となった。
+        ただし現在では活性化関数の工夫により勾配消失問題を解決していることからあまり使われていない。
+
+      <h4>Neural Networkの種類</h4>
+      <dl>
+        <dt>Artificial Neural Network(ANN, 人口ニューラルネットワーク)</dt>
+        <dd>コンピュータの中のニューラルネットワーク, BNNの対比</dd>
+        <dt>Biologinal Neural Network(BNN, 生物学的ニューラルネットワーク)</dt>
+        <dd>
+        人間や動物が生物学的に持っているニューラルネットワーク </dd>
+        <dt>Convolusional Neural Network(CNN, 畳み込みニューラルネットワーク)</dt>
+        <dd> 「畳み込み層」という層を使って特徴抽出を行うニューラルネットワーク
+        </dd>
+        <dt>Deep Neural Network(DNN, 深層学習)</dt>
+        <dd>入力層＋中間層＋出力層からなるニューラルネットのなかで、中間層が２層以上のもの。
+        <dt>Feedforward Neural Network(順伝播型ニューラルネットワーク)</dt>
+        <dd>層状に並べたユニットが隣接層間でのみ結合した構造をもち、情報が入力側から出力側へ一方向に伝播する。
+            multi layer perceptron（多層パーセプトロン）とも呼ぶ。
+        </dd>
+        <dt>Recurrent Neural Network (RNN)</dt>
+        <dd> 前の時間の結果を入力の一部としたニューラルネットワーク</dd>
+        <dt>Reinforcement Learning強化学習</dt>
+        <dd> </dd>
+        <dt>GAN, VAE</dt>
+        <dd>内容</dd>
+        <dt>変分オートエンコーダ</dt>
+        <dd>内容</dd>
+      </dl>
     </div></div>
-
-  <h3>Neural Networkの種類</h3>
-    <div class="hidden_box">
-    <label for="label-kind-of-neural-network">[+]</label>
-    <input type="checkbox" id="label-kind-of-neural-network"/>
-    <div class="hidden_show">
-    <dl>
-      <dt>Artificial Neural Network(ANN, 人口ニューラルネットワーク)</dt>
-      <dd>コンピュータの中のニューラルネットワーク, BNNの対比</dd>
-      <dt>Biologinal Neural Network(BNN, 生物学的ニューラルネットワーク)</dt>
-      <dd>
-      人間や動物が生物学的に持っているニューラルネットワーク </dd>
-      <dt>Convolusional Neural Network(CNN, 畳み込みニューラルネットワーク)</dt>
-      <dd> 「畳み込み層」という層を使って特徴抽出を行うニューラルネットワーク
-      </dd>
-      <dt>Deep Neural Network(DNN, 深層学習)</dt>
-      <dd> 3層以上のニューラルネットワーク</dd>
-      <dt>Recurrent Neural Network (RNN)</dt>
-      <dd> 前の時間の結果を入力の一部としたニューラルネットワーク</dd>
-      <dt>Reinforcement Learning強化学習</dt>
-      <dd> </dd>
-      <dt>GAN, VAE</dt>
-      <dd>内容</dd>
-      <dt>変分オートエンコーダ</dt>
-      <dd>内容</dd>
-    </dl>
-    </div></div>
-
-  <h3>パーセプトロン(単純パーセプトロン)</h3>
-    <div class="hidden_box">
-    <label for="label-perceptron">[+]</label>
-    <input type="checkbox" id="label-perceptron"/>
-    <div class="hidden_show">
-
-    バイアス +Σ（入力 × 重み）= a を計算し、aが0以上の場合は1、以下の場合は0を出力
-    この単純化のため排他的論理和の問題は解けない。(１本の判別直線で分離できない問題は解けない)
-    微分可能な活性化関数と２層以上の中間層、あるいは、スキップな構造が必要となる。
-
-    </div></div>
-
-
-<h2>Deep Learning(深層学習)</h2>
-
-  <h3>概要</h3>
-    <div class="hidden_box">
-    <label for="label-dnn">[+]</label>
-    <input type="checkbox" id="label-dnn"/>
-    <div class="hidden_show">
-
-    入力層＋中間層＋出力層からなるニューラルネットのなかで、中間層が２層以上のもの。
-    multi layer perceptronとも呼ぶ。
-    </div></div>
-
-  <h3>ニューラルネットワークの課題</h3>
-    <div class="hidden_box">
-    <label for="label-problem-of-nn">[+]</label>
-    <input type="checkbox" id="label-problem-of-nn"/>
-    <div class="hidden_show">
-
-    <h4>the gradient vanishing problem(勾配消失問題)</h4>
-      活性化関数の変化の際にチェインルールが適用されるが、
-      この計算の際に微分が使われる。
-      シグモイド関数を使うと、一回の計算で勾配が1/4以下になるので、層を増やすと勾配がなくなってしまう。
-      ハイパータンジェントやReLuでは勾配消失問題が起きにくい。
-    <h4> the gradient exploring problem(勾配爆発問題)</h4>
-    <h4>credit assignment problems(信用割当問題)</h4>
-      全結合をすると、責任の所在が曖昧になる
-
-    <h4>次元の呪い</h4>
-      推定すべきパラメータが多くなると、次元が多くなって、パラメータ空間の探索が難しくなり、オーバーフィッティングなどが起きやすくなること。逆に、弁別可能性が高まることや、ミクロとマクロを結びつけることでシンプルに欠けることを次元の祝福と呼ぶ。
-
-  <h4>auto encoder(自己符号化器)</h4>
-    3層のネットワークを考え、中間層のユニット数が入力層と出力層よりも小さく、かつ出力層で入力を再現できるような重み付けを行うこと。この時、中間層は入力層の次元を圧縮できたことになる。自己符号化器を多層に重ねることで勾配消失問題を解決し、ディープニューラルネットワークが可能となった。ただし現在では活性化関数の工夫により勾配消失問題を解決していることからあまり使われていない。
-
-      </div></div>
-
-
-
+  
   <h3>基本技術</h3>
     <div class="hidden_box">
     <label for="label-basics-of-neural-network">[+]</label>
     <input type="checkbox" id="label-basics-of-neural-network"/>
     <div class="hidden_show">
 
-
-    <h4>隠れ層、活性化関数</h4>
+    <h4>パーセプトロン(単純パーセプトロン)</h4>
+      バイアス +Σ（入力 × 重み）= a を計算し、aが0以上の場合は1、以下の場合は0を出力
+      この単純化のため排他的論理和の問題は解けない。(１本の判別直線で分離できない問題は解けない)
+      微分可能な活性化関数と２層以上の中間層、あるいは、スキップな構造が必要となる。
+    
+    <h4>活性化関数</h4>
       <h5>ロジスティックシグモイド関数</h5>
+      入力は\((-\inf,\inf)\)出力は\((0,1)\)である関数。
+      入力値が飽和する。出力が滑らかであることなどが特徴。
+      微分値は\((0,0.25)\)しかとらず問題となった。
+      $$ f(u) = \frac{1}{1 + e^{-u}} $$
+      
       <h5>ハイパータンジェント</h5>
+      入力は\((-\inf,\inf)\)出力は\((-1, 1)\)である関数。
+      入力値が飽和する。出力が滑らかであることなどが特徴。
+      微分値は\((0,1.0)\)なので、シグモイドよりも良い。
+      $$ f(u) = \tanh(u) $$
+
       <h5>ReLU (整流線型ユニット)</h5>
-      簡単でかつ収束も早い。
+      簡単でかつ収束も早い。u = 0の時に少しだけ問題となる。
+      $$
+        f(u) = 
+        \left\{
+          \begin{array} {11}
+              0 & (u \leq 0) \\
+              u & (u > 0)
+          \end{array} 
+        \right.
+      $$
+
       <h5>leaky ReLU</h5>
       <h5>parametric ReLU</h5>
       <h5>maxout</h5>
@@ -201,8 +195,6 @@
 
     <h4>誤差逆伝搬</h4>
       
-
-
     <h4>cost function(コスト関数、loss function、損失関数、error function、誤差関数、objective function、目的関数)</h4>
       <h5>二乗誤差</h5>
       出力と正解の各成分の差の二乗和による誤差
@@ -218,7 +210,7 @@
         ある点が複数のガウス分布のうちどこに属しているのかを確率的に表現する。
     　<h5>Radial Basis Function (RBF, 動径基底関数)</h5>
         ある点cからの距離のみに基づいて値が決まる関数である動径関数をcを変えて集め、それらの線形和をとる。
-  
+      
     </div></div>
 
  <h3>応用技術</h3>
@@ -573,7 +565,13 @@ model.fit(x_train, y_train,
       真値(平均)とノイズの組み合わせだとみなして解く。
       RNNにも応用できて、中間の文章が生成できる。
 
+    </div></div>
+
   <h3>generative adversarial networks (GAN =敵対ネットワーク)</h3>
+  <div class="hidden_box">
+    <label for="label-gan">[+]</label>
+    <input type="checkbox" id="label-gan"/>
+    <div class="hidden_show">
     <h4>基本</h4>
       DiscrereminatorとGeneratorの2つのネットワークが競い合う。
       Generatorはノイズから画像を生成する。
