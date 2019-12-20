@@ -121,59 +121,50 @@
         この時、中間層は入力層の次元を圧縮できたことになる。自己符号化器を多層に重ねることで勾配消失問題を解決し、ディープニューラルネットワークが可能となった。
         ただし現在では活性化関数の工夫により勾配消失問題を解決していることからあまり使われていない。
 
-      <h4>Neural Networkの種類</h4>
-      <dl>
-        <dt>Artificial Neural Network(ANN, 人口ニューラルネットワーク)</dt>
-        <dd>コンピュータの中のニューラルネットワーク, BNNの対比</dd>
-        <dt>Biologinal Neural Network(BNN, 生物学的ニューラルネットワーク)</dt>
-        <dd>
-        人間や動物が生物学的に持っているニューラルネットワーク </dd>
-        <dt>Convolusional Neural Network(CNN, 畳み込みニューラルネットワーク)</dt>
-        <dd> 「畳み込み層」という層を使って特徴抽出を行うニューラルネットワーク
-        </dd>
-        <dt>Deep Neural Network(DNN, 深層学習)</dt>
-        <dd>入力層＋中間層＋出力層からなるニューラルネットのなかで、中間層が２層以上のもの。
-        <dt>Feedforward Neural Network(順伝播型ニューラルネットワーク)</dt>
-        <dd>層状に並べたユニットが隣接層間でのみ結合した構造をもち、情報が入力側から出力側へ一方向に伝播する。
-            multi layer perceptron（多層パーセプトロン）とも呼ぶ。
-        </dd>
-        <dt>Recurrent Neural Network (RNN)</dt>
-        <dd> 前の時間の結果を入力の一部としたニューラルネットワーク</dd>
-        <dt>Reinforcement Learning強化学習</dt>
-        <dd> </dd>
-        <dt>GAN, VAE</dt>
-        <dd>内容</dd>
-        <dt>変分オートエンコーダ</dt>
-        <dd>内容</dd>
-      </dl>
-    </div></div>
-  
+    <h4>Neural Networkの種類</h4>
+      <h5>単純パーセプトロン</h5>
+      　複数の入力に対し、それぞれに重みを加えたものを足し合わせ、
+        その和が0以上の場合は1、以下の場合は0を出力するアルゴリズム。
+        １本の判別直線で分離できない問題は解けない。
+
+        <div>
+          <img src="out\ai\perceptron.png" alt="パーセプトロン"/>
+        </div>
+
+      <h5>ニューロン</h5>
+        単純パーセプトロンに非線形活性化関数を加えたもの。多層パーセプトロンに使用する。
+
+        <div>
+          <img src="out\ai\neuron.png" alt="ニューロン"/>
+        </div>
+
+      <h5>多層パーセプトロン</h5>
+        ニューロンを組み合わせることで、複雑な問題を解けるよう改良したもの。
+         <div>
+          <img src="out\ai\multi_layer_perceptron.png" alt="ニューロン"/>
+        </div>
+  </div></div>
+      
   <h3>基本技術</h3>
     <div class="hidden_box">
     <label for="label-basics-of-neural-network">[+]</label>
     <input type="checkbox" id="label-basics-of-neural-network"/>
     <div class="hidden_show">
-
-    <h4>パーセプトロン(単純パーセプトロン)</h4>
-      バイアス +Σ（入力 × 重み）= a を計算し、aが0以上の場合は1、以下の場合は0を出力
-      この単純化のため排他的論理和の問題は解けない。(１本の判別直線で分離できない問題は解けない)
-      微分可能な活性化関数と２層以上の中間層、あるいは、スキップな構造が必要となる。
-      <div>
-      <img src="out\ai\perceptron\perceptron.png" alt="パーセプトロン"/>
-      </div>
-
+    
     <h4>活性化関数</h4>
-    中間層や出力層で、入力を足し合わせたのちに通す関数。非線形であることが重要。
+    中間層や出力層で、入力を足し合わせたのちに通す関数。微分可能かつ非線形であることが重要。
+
       <h5>ロジスティックシグモイド関数</h5>
       入力は\((-\inf,\inf)\)出力は\((0,1)\)である関数。
       入力値が飽和する。出力が滑らかであることなどが特徴。
-      微分値は\((0,0.25)\)しかとらず問題となった。
+      微分値が\((0,0.25)\)しかとらず勾配消失の原因となった
       $$ f(u) = \frac{1}{1 + e^{-u}} $$
       
       <h5>ハイパータンジェント</h5>
       入力は\((-\inf,\inf)\)出力は\((-1, 1)\)である関数。
       入力値が飽和する。出力が滑らかであることなどが特徴。
-      微分値は\((0,1.0)\)なので、シグモイドよりも良い。
+      微分値は\((0,1.0)\)なの、シグモイドよりも勾配消失しにくいが、
+      高々１なので積み重ねると勾配消失が発生する。
       $$ f(u) = \tanh(u) $$
 
       <h5>ReLU (Rectified Linear Unit 整流線型ユニット)</h5>
@@ -200,7 +191,7 @@
       $$
 
       <h5>leaky ReLU</h5>
-      \(\alpha = 0.01)\)のparametric ReLU
+      \(\alpha = 0.01\)のparametric ReLU
       <h5>maxout</h5>
       K個の異なるユニットが異なる重みとバイアスを持ち、それらの最大値を出力とする。
       性能は良いがパラメータ数が多いため、それほどよく使われるわけではない。
@@ -209,9 +200,26 @@
       f(u_j) = \max_{k=1,...,K}u_{jk}
       $$
       <h5>ソフトプラス</h5>
-      ReLUの連続近似、ソフトプラスを微分するとシグモイド関数になる
-      <h5>ハードtanh</h5>
+      ReLUの連続近似、ソフトプラスを微分するとシグモイド関数になる。
+      $$
+      f(u) = \log{(1 + e^u)}
+      $$
+      
       <h5>ELU</h5>
+      ReLUに比べてあまり広く使われていないがReLUよりも高速だと言われる。
+
+      $$
+        f(u) = 
+        \left\{
+          \begin{array} {11}
+              \alpha (e^u - 1) & (u \leq 0) \\
+              u & (u > 0)
+          \end{array} 
+        \right.
+      $$
+
+      <h5>SELU</h5>
+      ELUを\(\rambda\)倍する。
 
     <h4>誤差逆伝搬</h4>
       
@@ -231,65 +239,60 @@
     　<h5>Radial Basis Function (RBF, 動径基底関数)</h5>
         ある点cからの距離のみに基づいて値が決まる関数である動径関数をcを変えて集め、それらの線形和をとる。
       
-    </div></div>
+    <h4>勾配降下</h4>
+      <dl>
+        <dt>バッチ学習法</dt>
+        <dd></dd>
+        <dt>オンライン学習法</dt>
+        <dd></dd>
+        <dt>確率的勾配降下法</dt>
+        <dd>勾配のαを変えて更新幅を決める、ミニバッチを用いる</dd>
+        <dt>モーメント法</dt>
+        <dd>1時刻前の更新幅を利用して現在の更新幅を決める</dd>
+        <dt>ニュートン法</dt>
+        <dd>ニュートン法と同じくヘシアン（２次微分）を用いる最適化手法。ただし、ヘシアン作るのは難しい</dd>
+        <dt>Adgrad法</dt>
+        <dd>ヘシアンの近似として、ヘシアンの対角行列のみをつかう。</dd>
+        <dt>Adadelta法</dt>
+        <dd>ヘシアンの近似として、逐次自乗平均を使う。</dd>
+        <dt>RMSprop法</dt>
+        <dd>逐次平均ではなくて、過去の値に重みを増やす</dd>
+        <dt>Adam 法</dt>
+        <dd>モーメントも使う</dd>
+      </dl>
 
- <h3>応用技術</h3>
+  </div></div>
+
+  <h3>応用技術</h3>
     <div class="hidden_box">
     <label for="label-advanced-of-neural-network">[+]</label>
     <input type="checkbox" id="label-advanced-of-neural-network"/>
     <div class="hidden_show">
 
     <h4>ドロップアウト</h4>
-    途中のノードを確率的に無効化（ニューロンの重みを０に）することで、オーバーフィッティングを避ける。
-    中間層だけでなく、入力層でもドロップアウトすることで性能が良くできる場合がある。
-    RNNの場合、フィードフォワードの分はドロップアウトした方がよいが、時系列のドロップアウトはしない方がよい。
+      途中のノードを確率的に無効化（ニューロンの重みを０に）することで、オーバーフィッティングを避ける。
+      中間層だけでなく、入力層でもドロップアウトすることで性能が良くできる場合がある。
+      RNNの場合、フィードフォワードの分はドロップアウトした方がよいが、時系列のドロップアウトはしない方がよい。
 
     <h4>バッチ正則化(2014)</h4>
-      この技術を使うことで画像認識の誤り率が5%を切った。
-      ミニバッチ毎に正則化を行う。
-      初期化((例)ザビエルの初期化)が不要となった。また、学習係数を大きくすることができるようになった。場合によってはドロップアウト不要
-      バッチ毎に以下の計算を行う。
-      <pre>
-      正規化データ = (あるデータ　－　平均) / (標準偏差)
-      </pre>
+        この技術を使うことで画像認識の誤り率が5%を切った。
+        ミニバッチ毎に正則化を行う。
+        初期化((例)ザビエルの初期化)が不要となった。また、学習係数を大きくすることができるようになった。場合によってはドロップアウト不要
+        バッチ毎に以下の計算を行う。
+        <pre> 正規化データ = (あるデータ　－　平均) / (標準偏差) </pre>
 
-    
     <h4>スパースモデリング</h4>
-    デシメーションと重み付けで不要な重みを0にする。
-    劣決定系のモデルの中でスパース（０が多い）解を算出する。
-   
+      デシメーションと重み付けで不要な重みを0にする。
+      劣決定系のモデルの中でスパース（０が多い）解を算出する。
+     
+  </div></div>
 
-  <h3>勾配降下</h3>
-  <dl>
-    <dt>バッチ学習法</dt>
-    <dd></dd>
-    <dt>オンライン学習法</dt>
-    <dd></dd>
-    <dt>確率的勾配降下法</dt>
-    <dd>勾配のαを変えて更新幅を決める、ミニバッチを用いる</dd>
-    <dt>モーメント法</dt>
-    <dd>1時刻前の更新幅を利用して現在の更新幅を決める</dd>
-    <dt>ニュートン法</dt>
-    <dd>ニュートン法と同じくヘシアン（２次微分）を用いる最適化手法。ただし、ヘシアン作るのは難しい</dd>
-    <dt>Adgrad法</dt>
-    <dd>ヘシアンの近似として、ヘシアンの対角行列のみをつかう。</dd>
-    <dt>Adadelta法</dt>
-    <dd>ヘシアンの近似として、逐次自乗平均を使う。</dd>
-    <dt>RMSprop法</dt>
-    <dd>逐次平均ではなくて、過去の値に重みを増やす</dd>
-    <dt>Adam 法</dt>
-    <dd>モーメントも使う</dd>
-  </dl>
-
-
-
-    </div></div>
   <h3>具体的なアルゴリズム</h3>
     <div class="hidden_box">
     <label for="label-algorithm-of-nn">[+]</label>
     <input type="checkbox" id="label-algorithm-of-nn"/>
     <div class="hidden_show">
-     ユニット数・層数・層間の結合、カーネルの幅などにより、様々なネットワークがある。
+    ユニット数・層数・層間の結合、カーネルの幅などにより、様々なネットワークがある。
 
      <h4>ネオコグニトロン</h4>
        ニューラルネットワークがメジャーになる前に考えられた構成。add-if silentと呼ばれる学習方法を用いる。
@@ -317,29 +320,55 @@
     <div class="hidden_show">
 
     <dl>
-    <dt>Theano</dt>
-    <dd>pythonのDNNライブラリ。歴史的意義があるが、2017/11/15に1.0.0がでてから更新されていない。</dd>
-    <dt>Caffe</dt>
-    <dd> UCバークレーで開発された Deep Learning Framework。
-         Caffe Framework modelsが開発され、他のフレームワークでも使用できる
-    </dd>
-    <dt>Torch</dt>
-    <dd>Lua言語をベースとしたスクリプト言語の機械学習ライブラリ。2018年からは開発は行われていない</dd>
-    <dt>pyTorch</dt>
-    <dd>Pythonで使用できるTorch。2019年に開発された</dd>
-    <dt>chainer</dt>
-    <dd>preffered network社が開発している和製フレームワークしている</dd>
-    <dt>tensorflow</dt>
-    <dd>googleが開発、圧倒的に人気がある</dd>
-    <dt> keras </dt>
-    <dd>tensor flow, theanoのフロントエンド。人気がある</dd>
-    <dt>caffe2</dt>
-    <dd>caffeの改良版</dd>
-    <dt>tensorflow.js</dt>
-    <dd>tensorflowのjava script版</dd>
+      <dt>Theano</dt>
+      <dd>pythonのDNNライブラリ。歴史的意義があるが、2017/11/15に1.0.0がでてから更新されていない。</dd>
+      <dt>Caffe</dt>
+      <dd> UCバークレーで開発された Deep Learning Framework。
+           Caffe Framework modelsが開発され、他のフレームワークでも使用できる
+      </dd>
+      <dt>Torch</dt>
+      <dd>Lua言語をベースとしたスクリプト言語の機械学習ライブラリ。2018年からは開発は行われていない</dd>
+      <dt>pyTorch</dt>
+      <dd>Pythonで使用できるTorch。2019年に開発された</dd>
+      <dt>chainer</dt>
+      <dd>preffered network社が開発している和製フレームワークしている</dd>
+      <dt>tensorflow</dt>
+      <dd>googleが開発、圧倒的に人気がある</dd>
+      <dt> keras </dt>
+      <dd>tensor flow, theanoのフロントエンド。人気がある</dd>
+      <dt>caffe2</dt>
+      <dd>caffeの改良版</dd>
+      <dt>tensorflow.js</dt>
+      <dd>tensorflowのjava script版</dd>
     </dl>
-    </div> </div>
-  
+  </div> </div>
+
+<h3>用語</h3>
+  <div class="hidden_box">
+  <label for="label-words">[+]</label>
+  <input type="checkbox" id="label-words"/>
+  <div class="hidden_show">
+   
+  <dl>
+    <dt>Artificial Neural Network(ANN, 人口ニューラルネットワーク)</dt>
+    <dd>コンピュータの中のニューラルネットワーク, BNNの対比</dd>
+    <dt>Biologinal Neural Network(BNN, 生物学的ニューラルネットワーク)</dt>
+    <dd>
+    人間や動物が生物学的に持っているニューラルネットワーク </dd>
+    <dt>Convolusional Neural Network(CNN, 畳み込みニューラルネットワーク)</dt>
+    <dd> 「畳み込み層」という層を使って特徴抽出を行うニューラルネットワーク
+    </dd>
+    <dt>Deep Neural Network(DNN, 深層学習)</dt>
+    <dd>入力層＋中間層＋出力層からなるニューラルネットのなかで、中間層が２層以上のもの。
+    <dt>Feedforward Neural Network(順伝播型ニューラルネットワーク)</dt>
+    <dd>層状に並べたユニットが隣接層間でのみ結合した構造をもち、情報が入力側から出力側へ一方向に伝播する。
+        multi layer perceptron（多層パーセプトロン）とも呼ぶ。
+    </dd>
+    <dt>変分オートエンコーダ</dt>
+    <dd>内容</dd>
+  </dl>
+  </div></div>
+
 <h2>convolutional neural network(cnn, 畳み込みニューラルネットワーク)</h2>
   <h3>概要</h3>
     <div class="hidden_box">
