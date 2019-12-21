@@ -8,8 +8,8 @@ skinparam backgroundColor transparet
 "x2" --> "u = Σ(各入力の重み*値)+バイアス"
 "x3" --> "u = Σ(各入力の重み*値)+バイアス"
 "x4" --> "u = Σ(各入力の重み*値)+バイアス"
-"u = Σ(各入力の重み*値)+バイアス" --> "z = 1　(if z ＞ 0) 
-z = 0　(if z ≦ 0)"
+"u = Σ(各入力の重み*値)+バイアス" --> "z = 1　(if u ＞ 0) 
+z = 0　(if u ≦ 0)"
 --> z
 skinparam backgroundColor transparent
 @enduml
@@ -26,6 +26,10 @@ skinparam backgroundColor transparent
 "u = Σ(各入力の重み*値)+バイアス" --> "z = f(u) fは活性化関数"
 --> z
 skinparam backgroundColor transparent
+@enduml
+
+@startuml
+testdot
 @enduml
 
 @startuml multi_layer_perceptron

@@ -75,7 +75,7 @@
 <script type="text/javascript">
    document.write('最終更新日:' + document.lastModified);
 </script>
-：活性化関数について追記
+：誤差逆伝播法について追加。ニューラルネットワークの基本技術の項を整理
 </div>
 
  <div class="navigation">
@@ -219,27 +219,29 @@
       $$
 
       <h5>SELU</h5>
-      ELUを\(\rambda\)倍する。
+      ELUを\(\lambda\)倍する。
 
-    <h4>誤差逆伝搬</h4>
-      
+    <h4>出力ユニット</h4>
+    最終層のニューロンの出力を意味のあるものに変換する関数。
+      　<h5>ロジスティックシグモイド関数</h5>
+          0から1までの確率で出力される
+      　<h5>ソフトマックス関数</h5>
+          多クラス分類に使用する。複数の候補を取得する。それぞれのyは0～1になり、すべて足すと1になる(確率の要件を満たす)
+      　<h5>Gaussian Mixture Model (GMM、ガウス混合分布)</h5>
+          ある点が複数のガウス分布のうちどこに属しているのかを確率的に表現する。
+      　<h5>Radial Basis Function (RBF, 動径基底関数)</h5>
+          ある点cからの距離のみに基づいて値が決まる関数である動径関数をcを変えて集め、それらの線形和をとる。
+
     <h4>cost function(コスト関数、loss function、損失関数、error function、誤差関数、objective function、目的関数)</h4>
+    教師データと出力との差を定量的に示すための関数。
       <h5>二乗誤差</h5>
       出力と正解の各成分の差の二乗和による誤差
 
       <h5>クロスエントロピー誤差</h5>
       二乗誤差よりも収束がはるかに速い
-    <h4>出力ユニット</h4>
-    　<h5>ロジスティックシグモイド関数</h5>
-        0から1までの確率で出力される
-    　<h5>ソフトマックス関数</h5>
-        多クラス分類に使用する。複数の候補を取得する。それぞれのyは0～1になり、すべて足すと1になる(確率の要件を満たす)
-    　<h5>Gaussian Mixture Model (GMM、ガウス混合分布)</h5>
-        ある点が複数のガウス分布のうちどこに属しているのかを確率的に表現する。
-    　<h5>Radial Basis Function (RBF, 動径基底関数)</h5>
-        ある点cからの距離のみに基づいて値が決まる関数である動径関数をcを変えて集め、それらの線形和をとる。
-      
+
     <h4>勾配降下</h4>
+    　得られた誤差の値からニューロンの重みを最適化するための手法。各手法で利用される誤差勾配は誤差逆伝播法により求める
       <dl>
         <dt>バッチ学習法</dt>
         <dd></dd>
@@ -261,6 +263,30 @@
         <dd>モーメントも使う</dd>
       </dl>
 
+    <h4>誤差逆伝播法</h4>
+    　<div>教師データと出力により得られた誤差の値から、各ニューロンの誤差勾配を求める手法。</div>
+      <div>
+        \(l-1\)層目の\(i\)番目のニューロンからの入力を受ける\(l\)層の\(j\)番目のニューロン\(w_{ji}^{(l)}\)の重みのコスト関数\(E_n\)に対する誤差勾配は、
+        そのニューロンの出力に対する式ととらえると以下のように変形できる。
+        $$
+        \frac{\partial E_n}{\partial w_{ji}^{(l)}} = \frac{\partial E_n}{\partial u_j^{(l)}}\frac{\partial u_j^{(l)}}{\partial w_{ji}^{(l)}}
+        $$
+        また、その出力が\(l + 1\)番目の各ニューロンに与える影響を考えると、右辺第１項は以下のように式変形できる。
+        $$
+        \frac{\partial E_n}{\partial u_j^{(l)}} = \sum_k{\frac{\partial E_n}{\partial u_k^{(l+1)}}\frac{\partial u_k^{(l+1)}}{\partial u_j^{(l)}}}
+        $$
+        ここで、\( \delta_j^{(l)} \equiv \frac{\partial E_n}{\partial u_j^{(l)}} \) と置き、
+        \(u_k^{(l+1)} = \sum_j{w_{kj}^{(l+1)}z_j^{(l)}} = \sum_j{w_{kj}^{(l+1)}f(u_j^{(l)})}\)の関係を使うと、上式は以下のように変形できる。 
+        $$
+        \delta_j^{(l)}　=　\sum_k{\delta_j^{(l+1)}(w_{kj}^{(l+1)}f'(u_j^{(l)}))}
+        $$
+        これは、次の層の全ニューロンの微分値が求まると、ニューロンの微分値が求まることを意味している。
+        また、初めの式の右辺第２項目は\(u_j^{(l)} = \sum_i{w_{ji}^{(l)}z_i^{(l-1)}}\)の関係から簡単に以下の式で表される。
+        $$
+        \frac{\partial u_j^{(l)}}{\partial w_{ji}^{(l)}} = z_i^{(l-1)}
+        $$
+        よって、これらの式を出力層から順に利用していくことで、すべての重みに対する誤差勾配を求めることができる。
+      </div>
   </div></div>
 
   <h3>応用技術</h3>
@@ -694,6 +720,8 @@ model.fit(x_train, y_train,
 
 <h2>参考文献、サイト</h2>
   <dd>
+  <dt><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147653">岡谷貴之,"深層学習(機械学習プロフェッショナルシリーズ)", 2015, 講談社</a></cite></dt>
+  <dd>深層学習の基礎を網羅している本。</dd>
   <dt><cite>Akiba, Takuya, Shuji Suzuki, and Keisuke Fukuda "Extremely Large Minibatch Sgd: Training Resnet-50 on Imagenet in 15 Miniutes", 2017, arXiv Preprint.</cite>
   </dt>
   <dd></dd>
