@@ -74,3 +74,17 @@ testdot
 
 skinparam backgroundColor transparent
 @enduml
+
+@startuml procedure
+start
+repeat
+:入力層にデータを与える。;
+:各ニューロンにおいて、入力と重みと活性化関数から、次の層の入力を算出する。;
+:最後の中間層から得た入力と重みと活性化関数から、出力を算出する。;
+:出力と教師データ、コスト関数から、誤差を算出する。;
+:誤差と各層の重みから、重みの増減による誤差の増減を見積もる。;
+:誤差の増減の見積りから、重みを変更する。;
+repeat while(終了の判断をする)
+stop
+skinparam backgroundColor transparent
+@enduml
