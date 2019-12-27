@@ -132,16 +132,30 @@
     <label for="label_classify_by_task">[+]</label>
     <input type="checkbox" id="label_classify_by_task"/>
     <div class="hidden_show">
-      代表的なものは分類と回帰だが、データ群の特徴を学習すると言う意味で、
-      クラスタリングや次元圧縮なども学習タスクとみなせる。
       
     <h4>classification : 分類</h4>
-      教師あり学習の一種で
-      <q>入力\(\boldsymbol{x}\)を内容に応じて２種類に区別する問題</q>[2]を二値分類といい、
-      <q>入力\(\boldsymbol{x}\)を内容に応じて有限個のクラスに分類する問題</q>[2]を多クラス分類と呼ぶ。
+      教師あり学習の一種で、二値分類と多クラス分類がある。
+      <h5>二値分類</h5>
+      <q>入力\(\boldsymbol{x}\)を内容に応じて２種類に区別する問題</q>[2]
+      <h5>多クラス分類</h5>
+      <q>入力\(\boldsymbol{x}\)を内容に応じて有限個のクラスに分類する問題</q>[2]
 
     <h4>regression : 回帰</h4>
-      教師あり学習の一種で、<q>主に連続値をとる関数を対象に、訓練データをよく再現するような関数を定めること。</q>[2]
+      教師あり学習の一種で、>主に連続値をとる関数を対象に、訓練データをよく再現するような関数を定める</q>[2]問題。
+      <h5>線形回帰</h5>
+      解析的手法の代表的なもので、
+      \(z = w_0 + w_1u_1 + \cdots + w_uu_n + e\) のように変数の線型結合で示される。多項回帰のように、パラメータ自体は非線形の関数で表されても構わない。
+      以下に分類される。
+      <dl>
+        <dt>単回帰</dt>
+        <dd>変数が１つの１次式(\( z = wu + w_0 \) )の回帰。導出される1次式を回帰直線と呼ぶ。</dd>
+        <dt>多項回帰</dt>
+        <dd>変数が１つのn次式(\( y = w_1u + w_2u^2 + \cdot + w_nu^n + w_0 \))の回帰</dd>
+        <dt>重回帰</dt>
+        <dd>変数が複数ある式(\( y = w_1u_1 + w_2u_2 + \cdot + w_nu_n + w_0 \))の回帰</dd>
+      </dl>
+      <h5>非線形回帰</h5>
+        観測から得られたデータがモデルパラメータの非線形結合であり、1つ以上の独立した変数に依存する関数によってモデル化される。
 
     <h4>clustering : クラスタリング</h4>
       教師なし学習の一種で、ラベルのないデータ群を複数に分る問題。
@@ -159,157 +173,7 @@
     <h4>reinforcement learning : 強化学習</h4>  
       各時刻に置ける最適な意思決定のルールを目的とする。
       報酬の期待値を最大するような逐次的意思決定ルール(ポリシー)を学習する。
-   
-    </div></div>
-
-<h2>具体的な学習手法</h2>
-  <h3>分類</h3>
-    <div class="hidden_box">
-    <label for="label_classification">[+]</label>
-    <input type="checkbox" id="label_classification"/>
-    <div class="hidden_show">
-
-    <h4>最近傍法,k近傍法</h4>
-        空間上の点を抽出したとき、隣接の学習済みの点のラベル情報から抽出点のラベル情報を決定する
-        関数が想定されていないノンパラメトリックで
-        教師データをそのまま丸暗記する怠惰学習(lazy learner)である。
-        kの選択や特徴尺度の選択などのパラメータ選択が必要である。
-        また、最近傍探索アルゴリズムが計算速度において重要となる
-
-    <h4>ロジスティック回帰</h4>
-    確率やダミー変数について分析、予測するのに使われる。
-
-    <h4>ナイーブベイズ</h4>
-        
-    <h4>boosting, ブースティング</h4>
-   　　機械学習のメタアルゴリズムで、ほかの学習アルゴリズムと組み合わせて利用する。adaBoostが有名
-       前の分類器の間違いに応じてデータの重みを調整する。
-   　　真の分類と若干の相関がある弱い分類器を組み合わせることにより、強い学習機を生成できるかを示す。
-
-    <h4><a href="ai/neural_network.html">Neural Network(NN, ニューラルネットワーク)</a></h4>
-
-    </div> </div>
-
-  <h3>回帰</h3>
-    <div class="hidden_box">
-    <label for="label_regression">[+]</label>
-    <input type="checkbox" id="label_regression"/>
-    <div class="hidden_show">
-
-    <h4>線形回帰</h4>
-      解析的手法の代表的なもので、
-      \(z = w_0 + w_1u_1 + \cdots + w_uu_n + e\) となる関係を示したもの。以下に分類される。
-    <dl>
-      <dt>単回帰</dt>
-      <dd>変数が１つの１次式(\( z = wu + w_0 \) )の回帰。導出される1次式を回帰直線と呼ぶ。</dd>
-      <dt>多項回帰</dt>
-      <dd>変数が１つのn次式(\( y = w_1u + w_2u^2 + \cdot + w_nu^n + w_0 \))の回帰</dd>
-      <dt>重回帰</dt>
-      <dd>変数が複数ある式(\( y = w_1u_1 + w_2u_2 + \cdot + w_nu_n + w_0 \))の回帰</dd>
-    </dl>
-
-    <h5>最小二乗法</h5>
-      <div>線形回帰を求める手法。</div>
-      <div>入力の組\(\bm{U}\)、出力の組\(\bm{z}\)が与えられた時、
-      \(\bm{z} \simeq \bm{Uw}\)となる係数の組\(\bm{w}\)を、
-      残差平方和 \( \|\bm{Uw} - \bm{z}\| \) を最小にするという条件で求める。</div>
-      <div>正規方程式 \( \bm{U^{\mathrm{T}}Uw} = \bm{U^\mathrm{T}z} \)により、
-      より直接的には以下の式により$\bm{w}$を算出する。</div>
-      $$
-        \bm{w} = (\bm{U}^{\mathrm{T}}\bm{U})^{-1}\bm{U}^{\mathrm{T}} \bm{z}
-      $$
-  
-
-    <h4>サポートベクターマシン SVC, SVM</h4>
-
-    <h4><a href="ai/neural_network.html">Neural Network(NN, ニューラルネットワーク)</a></h4>
-
-    </div> </div>
- 
-  <h3>クラスタリング</h3>
-
-    <div class="hidden_box">
-    <label for="label-clustering">[+]</label>
-    <input type="checkbox" id="label-clustering"/>
-    <div class="hidden_show">
-
-    <h4>k means クラスタリング</h4>
-
-    <h4>Self Organizing Map (SOM, 自己組織化)</h4>
-      <dl>
-      <dt>マルスバーグの自己組織化</dt>
-      <dd>
-        Todo:内容
-      </dd>
-      <dt>コホネンの自己組織化</dt>
-      <dd>
-        ランダムなベクトルからなる行列を用意する。入力ノード群を用意し、
-        そのノードに一番近い点とそのノードの隣接点に暴露することを繰り返すことで分類ができる。
-        (結果的に入力ノードが消える場合もある）
-      </dd>
-      <dt>リンスカーの受容野形成の自己組織化</dt>
-      <dd>
-        Todo:内容
-      </dd>
-      <dt>オジャのSOMの自己組織化</dt>
-      <dd>
-        Todo:内容
-      </dd>
-      </dl>
-    </div></div>
-
-  <h3>次元削減</h3>
-    <div class="hidden_box">
-    <label for="label2-3">[+]</label>
-    <input type="checkbox" id="label2-3"/>
-    <div class="hidden_show">
-
-    <h4>PCA 主成分分析</h4>
-    <h4>Independent component analysis (ICA 独立成分分析)</h4>
-      <h5>内容</h5>
-      ブラインドソース分離(多変量の信号を複数の加法的な成分に分離する)
-      ための計算手法。PCAでは合わさったデータの主成分が出力され、分離できない
-      ネゲントロピー(負のエントロピー)を考える
-      <h5>応用例</h5>
-      MEG、画像の雑音除去、保険データ
-
-    <h4>非負行列因子化(NMF)</h4>
-      行列Xを行列Wと行列Hで近似する方法。値は正の値だけ取る。
-      画像のパーツパーツを抽出できる。
-
-    <h4>Natrix Factorization(行列因子化)</h4>
-      協調フィルタリングとして働き、Netflix映画のおすすめができるようになった。
-      目標関数はRSMEで、正則化により過学習を抑制。NMFとあまり変わらない。
-      
-    <h4>VQ(Vector Quantaization、ベクトル量子化)</h4>
-      典型的な画像を組み合わせた画像を作ることができる。
-
-    <h4>t-Stocastic Neighbor Embedding(t-SNE)</h4>
-      t分布を用いた確率的な視覚化手法で、多様体(manifold)の次元圧縮。
-      多様体とは、近傍ではユークリッド距離系となっているが、
-      全体としてはユークリッド距離系となっていない。
-      抽象的に言えば、スイスロール上のデータを広げて２次元にして表示できる。
-
-
-    </div></div>
-
-  <h3>強化学習</h3>
-    <div class="hidden_box">
-    <label for="label-Reinforcement-learning">[+]</label>
-    <input type="checkbox" id="label-Reinforcement-learning"/>
-    <div class="hidden_show">
-    <h4>Q学習</h4>
-      動的で複雑な環境に対する学習で、価値反復と方策反復により学習を行う。
-      行動価値観数(Q, A)に基づき、時刻の行動は行動方策に従って選択されるQ(S, A)を更新する。
-      <h5>マルコフ決定過程</h5>
-        <h6>マルコフ性、マルコフ性</h6>
-          一つ前の状態の条件付き確率（一つ前の状態の条件付き確率）。それまでの状態は考慮されない。
-        <h6>POMDP</h6>
-          部分観測可能なマルコフ決定過程：POMDP
-        <h6>マルコフ過程（マルコフ連鎖)</h6>
-          状態Sと行為Aと遷移確率Pと報酬Rと(割引率γ)の組 <lt> S, A, P, R, γ <gt>
-
-       <h5>用語</h5>
+      <h5>用語</h5>
         <dl>
           <dt>報酬</dt>
           <dd>
@@ -356,6 +220,204 @@
           </dd>
         </dl>
  
+    </div></div>
+
+<h2>具体的な学習手法</h2>
+  <h3><a href="ai/neural_network.html">Neural Network(NN, ニューラルネットワーク)</a></h3>
+
+  <h3>最近傍法,k近傍法</h3>
+    <div class="hidden_box">
+    <label for="label_knn">[+]</label>
+    <input type="checkbox" id="label_knn"/>
+    <div class="hidden_show">
+      <div>分類に使われる手法。</div>
+      <div>
+        空間上の点を抽出したとき、隣接の学習済みの点のラベル情報から抽出点のラベル情報を決定する
+        関数が想定されていないノンパラメトリックで
+        教師データをそのまま丸暗記する怠惰学習(lazy learner)である。
+        kの選択や特徴尺度の選択などのパラメータ選択が必要である。
+        また、最近傍探索アルゴリズムが計算速度において重要となる
+      </div>
+    </div></div>
+
+  <h3>ロジスティック回帰</h3>
+    <div class="hidden_box">
+
+    <label for="label_logistic_regression">[+]</label>
+    <input type="checkbox" id="label_logistic_regression"/>
+    <div class="hidden_show">
+
+    確率やダミー変数について分析、予測するのに使われる。
+
+    </div> </div>
+
+  <h3>ナイーブベイズ</h3>
+    <div class="hidden_box">
+    <label for="label_naive_bayse">[+]</label>
+    <input type="checkbox" id="label_naive_bayse"/>
+    <div class="hidden_show">
+      <div>分類に使われる手法。</div>
+       
+    </div> </div>
+  <h3>boosting, ブースティング</h3>
+      <div class="hidden_box">
+    <label for="label_boosting">[+]</label>
+    <input type="checkbox" id="label_boosting"/>
+    <div class="hidden_show">
+      <div>分類に使われる手法。</div>
+ 　　機械学習のメタアルゴリズムで、ほかの学習アルゴリズムと組み合わせて利用する。adaBoostが有名
+       前の分類器の間違いに応じてデータの重みを調整する。
+   　　真の分類と若干の相関がある弱い分類器を組み合わせることにより、強い学習機を生成できるかを示す。
+
+    </div> </div>
+
+  <h3>サポートベクターマシン SVC, SVM</h3>
+    <div class="hidden_box">
+    <label for="label_svn">[+]</label>
+    <input type="checkbox" id="label_svn"/>
+    <div class="hidden_show">
+      <div>分類、回帰に使われる手法。</div>
+
+    </div> </div>
+
+
+  <h3>最小二乗法</h3>
+    <div class="hidden_box">
+    <label for="label_RMS">[+]</label>
+    <input type="checkbox" id="label_RMS"/>
+    <div class="hidden_show">
+
+    <div>線形回帰を求める手法。</div>
+    <div>入力の組\(\bm{U}\)、出力の組\(\bm{z}\)が与えられた時、
+    \(\bm{z} \simeq \bm{Uw}\)となる係数の組\(\bm{w}\)を、
+    残差平方和 \( \|\bm{Uw} - \bm{z}\| \) を最小にするという条件で求める。</div>
+    <div>正規方程式 \( \bm{U^{\mathrm{T}}Uw} = \bm{U^\mathrm{T}z} \)により、
+    より直接的には以下の式により$\bm{w}$を算出する。</div>
+    $$
+      \bm{w} = (\bm{U}^{\mathrm{T}}\bm{U})^{-1}\bm{U}^{\mathrm{T}} \bm{z}
+    $$
+
+    </div></div>
+  
+  <h3>random forest : ランダムフォレスト</h3>
+    <div class="hidden_box">
+    <label for="label_random_forest">[+]</label>
+    <input type="checkbox" id="label_random_forest"/>
+    <div class="hidden_show">
+    <div>分類、回帰、クラスタリングに使用される</div>
+    <div>
+      決定木を用いる方法。
+    </div>
+
+    </div> </div>
+
+  <h3>k means クラスタリング</h3>
+    <div class="hidden_box">
+    <label for="label-k-means-clustering">[+]</label>
+    <input type="checkbox" id="label-k-means-clustering"/>
+    <div class="hidden_show">
+      クラスタリング
+
+    </div></div>
+
+  <h3>Self Organizing Map (SOM, 自己組織化)</h3>
+    <div class="hidden_box">
+    <label for="label-som">[+]</label>
+    <input type="checkbox" id="label-som"/>
+    <div class="hidden_show">
+
+    <dl>
+      <dt>マルスバーグの自己組織化</dt>
+      <dd>
+        Todo:内容
+      </dd>
+      <dt>コホネンの自己組織化</dt>
+      <dd>
+        ランダムなベクトルからなる行列を用意する。入力ノード群を用意し、
+        そのノードに一番近い点とそのノードの隣接点に暴露することを繰り返すことで分類ができる。
+        (結果的に入力ノードが消える場合もある）
+      </dd>
+      <dt>リンスカーの受容野形成の自己組織化</dt>
+      <dd>
+        Todo:内容
+      </dd>
+      <dt>オジャのSOMの自己組織化</dt>
+      <dd>
+        Todo:内容
+      </dd>
+    </dl>
+    </div></div>
+
+
+  <h3>PCA 主成分分析</h3>
+    <div class="hidden_box">
+    <label for="label-pca">[+]</label>
+    <input type="checkbox" id="label-pca"/>
+    <div class="hidden_show">
+      主成分分析
+    </div></div>
+
+  <h3>Independent component analysis (ICA 独立成分分析)</h3>
+    <div class="hidden_box">
+    <label for="label-ica">[+]</label>
+    <input type="checkbox" id="label-ica"/>
+    <div class="hidden_show">
+
+    <h4>内容</h4>
+      ブラインドソース分離(多変量の信号を複数の加法的な成分に分離する)
+      ための計算手法。PCAでは合わさったデータの主成分が出力され、分離できない
+      ネゲントロピー(負のエントロピー)を考える
+    <h4>応用例</h4>
+      MEG、画像の雑音除去、保険データ
+
+    </div></div>
+
+  <h3>Matrix Factorization(行列因子化)</h3>
+    <div class="hidden_box">
+    <label for="label-MF">[+]</label>
+    <input type="checkbox" id="label-MF"/>
+    <div class="hidden_show">
+
+    <h4>非負行列因子化(NMF)</h4>
+      正の値だけをとるMatrix Factorization。こちらが先に発表され、 改良版としてMatrix Factorizationが発表された。
+      行列Xを行列Wと行列Hで近似する方法。
+      画像のパーツパーツを抽出できる。
+
+    <h4>行列因子化(MF)</h4>
+      協調フィルタリングとして働く。Netflix映画のおすすめができるようになった。
+      目標関数はRSMEで、正則化により過学習を抑制。NMFとあまり変わらない。
+      
+    </div></div>
+    
+    
+  <h3>t-Stocastic Neighbor Embedding(t-SNE)</h3>
+    <div class="hidden_box">
+    <label for="label-tSNE">[+]</label>
+    <input type="checkbox" id="label-tSNE"/>
+    <div class="hidden_show">
+
+    t分布を用いた確率的な視覚化手法で、多様体(manifold)の次元圧縮。
+    多様体とは、近傍ではユークリッド距離系となっているが、
+    全体としてはユークリッド距離系となっていない。
+    抽象的に言えば、スイスロール上のデータを広げて２次元にして表示できる。
+
+    </div></div>
+
+  <h3>Q学習</h3>
+    <div class="hidden_box">
+    <label for="label-Reinforcement-learning">[+]</label>
+    <input type="checkbox" id="label-Reinforcement-learning"/>
+    <div class="hidden_show">
+
+      動的で複雑な環境に対する学習で、価値反復と方策反復により学習を行う。
+      行動価値観数(Q, A)に基づき、時刻の行動は行動方策に従って選択されるQ(S, A)を更新する。
+      <h4>マルコフ決定過程</h4>
+        <h5>マルコフ性、マルコフ性</h5>
+          一つ前の状態の条件付き確率（一つ前の状態の条件付き確率）。それまでの状態は考慮されない。
+        <h5>POMDP</h5>
+          部分観測可能なマルコフ決定過程：POMDP
+        <h5>マルコフ過程（マルコフ連鎖)</h5>
+          状態Sと行為Aと遷移確率Pと報酬Rと(割引率γ)の組 <lt> S, A, P, R, γ <gt>
 
     </div></div>
 
@@ -541,7 +603,7 @@ X_batch, y_batch = g.next() </code> </pre>
     </dl>
     </div></div>
  
-<h2>AIの応用例</h2>
+<h2>各分野における応用技術</h2>
   <h3>自然言語処理</h3>
     <div class="hidden_box">
     <label for="label7-3">[+]</label>
@@ -572,6 +634,17 @@ X_batch, y_batch = g.next() </code> </pre>
     <label for="label-image">[+]</label>
     <input type="checkbox" id="label-image"/>
     <div class="hidden_show">
+
+    <h3>VQ(Vector Quantaization、ベクトル量子化)</h3>
+    <div class="hidden_box">
+    <label for="label-VQ">[+]</label>
+    <input type="checkbox" id="label-VQ"/>
+    <div class="hidden_show">
+    典型的な画像を組み合わせた画像を作ることができる。
+
+    </div></div>
+
+
     <h4>Regions with CNN features (R-CNN)</h4>
       画像に対してオーバーラップを許して何が写っているのかを示す。
       バウンディングボックスと呼ばれる画像領域を切り出して、正規化して、CNNに入れる。

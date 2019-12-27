@@ -1,4 +1,8 @@
 
+html {
+  font-size:100%
+}
+
 body {
   font-family: Meiryo,           /* 游ゴシックが入っていないWindows */
                blinkMacSystemFont, /* Macの欧文はSan Francisco (OS X 10.11以降) */
@@ -7,10 +11,11 @@ body {
                YuGothicM,        /* Windows8.1以上は游ゴシック */
                YuGothic,         /* Macの游ゴシック */
                sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   color:#556655;
   background:#D0FFE0;
-  width:90%;
+  --h4margin:1rem;
+  max-width:666px; /* 640 - 1rem*/
   margin:auto;
 }
 
@@ -41,9 +46,6 @@ body {
   color: #DDDDDD;
   text-decoration:none;
 }
-
-
-
 
 .last_modified{
   text-align:right;
@@ -96,14 +98,14 @@ body {
 
 
 h1{
-  margin-top: 48px;
+  margin-top: 2rem;
   margin-bottom: 0px;
   padding-top:4px;
   padding-bottom:4px;
   border-top: 3px solid #774444;
   border-bottom: 3px solid #774444;
   background:#DDDDCC;
-  font-size:26px;
+  font-size:2rem;
   counter-reset:hb;
   color:black;
 }
@@ -123,10 +125,10 @@ h2::before {
 }
 
 h2{
-  margin-top: 24px;
+  margin-top: 1.8rem;
   margin-bottom: 0px;
   border-top: 3px solid #882222;
-  font-size: 24px;
+  font-size: 1.8rem;
   counter-reset:hc;
   color:#330000;
 }
@@ -138,10 +140,10 @@ h3::before {
 }
 
 h3{
-  margin-top: 22px;
+  margin-top: 1.4rem;
   margin-bottom: 0px;
   border-top: 1px solid #775555;
-  font-size: 22px;
+  font-size: 1.4rem;
   counter-reset:hd;
   color:#113311;
 }
@@ -157,20 +159,18 @@ h4::before {
 }
 
 h4{
-  margin-top: 20px;
+  margin-top: 1.2rem;
   margin-bottom: 0px;
+  margin-left:calc(-1*var(--h4margin));
+  margin-right:calc(-1*var(--h4margin));
   border-top: 1px dotted #775555;
-  font-size: 20px;
+  font-size: 1.2rem;
   counter-reset:he;
   color:#113311;
 }
 
 .hidden_show>h4:first-child{
-  margin-top: 4px;
-}
-
-h3+h4{
-  margin-top: 4px;
+  margin-top: 0.5rem;
 }
 
 h5::before {
@@ -178,19 +178,18 @@ h5::before {
   content: counter(hb) "-" counter(hc) "-" counter(hd) "-" counter(he)" : ";
 }
 
-
 h5{
-  margin-top: 18px;
+  margin-top: 1rem;
   margin-bottom: 0px;
   border-top: 1px dotted #775555;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight:bold;
+  color:#224422;
   counter-reset:hf;
 }
 
 h4+h5{
-  border-top: none;
-  margin-top: 0px;
+  margin-top: 4px;
 }
 
 h6::before {
@@ -199,10 +198,10 @@ h6::before {
 }
 
 h6{
-  margin-top: 16px;
+  margin-top: 1rem;
   margin-bottom: 0px;
   border-top: 1px dotted #AACCAA;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 h5+h6{
@@ -228,6 +227,7 @@ dl{
   border-right: 1px solid #000000;
   border-bottom: 1px solid #000000;
   border-color:#773300;
+  font-size : 0.9rem;
 }
 
 dt{
@@ -256,7 +256,8 @@ pre{
   padding:10px;
   color:white;
   background:#446655;
-  font-size: 14px;
+  font-size : 0.9rem;
+  overflow:auto;
 }
 
 /*全体*/
@@ -270,8 +271,8 @@ pre{
     font-weight: bold;
     cursor :pointer;
     position:relative;
-    top :-28px;
-    left:-32px;
+    top :calc(-1*1.8rem);
+    left:calc(-1*1.6rem);
     margin: 0px;
     padding: 0px;
 }
@@ -295,6 +296,8 @@ pre{
     opacity: 0;
     transition: 0.3s;
     margin-top:-20px;
+    padding-left:var(--h4margin);
+    padding-right:var(--h4margin)
 }
 
 /*クリックで中身表示*/
