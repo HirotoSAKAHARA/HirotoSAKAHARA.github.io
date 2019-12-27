@@ -73,7 +73,7 @@
    document.write('最終更新日:' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-： 基本事項のまとめ。
+： 基本事項のまとめ。項目のまとめ。強化学習の記述について追加
 </div>
 
  <div class="navigation">
@@ -116,13 +116,14 @@
     <label for="label_classify_by_teacher">[+]</label>
     <input type="checkbox" id="label_classify_by_teacher"/>
     <div class="hidden_show">
-      大きく分けて、教師なし学習、教師あり学習、強化学習にわけられる。教師データの解釈の仕方で分類が変わりうる。
-    <h4>教師あり学習</h4>
-      事前に与えられたデータをいわば例題とみなして、それをガイドに学習を行う    
-    <h4>教師なし学習</h4>
+      大きく分けて、教師あり学習、教師なし学習、強化学習にわけられる。教師データの解釈の仕方で分類が変わりうる。
+    <h4>supervised learning : 教師あり学習</h4>
+      事前に与えられたデータをいわば例題とみなして、それをガイドに学習を行う。
+      学習後は、入力に対して尤度が最大となる出力を求める。
+    <h4>unsuperviesd learning : 教師なし学習</h4>
       学習データを教えることによって、それぞれのデータの分類やデータ群の特徴の抽出を行う。
-    <h4>強化学習</h4>
-      行動を行った結果に対応する報酬を与えることで行動を改善していく手法。
+    <h4>reinforcement learning : 強化学習</h4>
+      行動を行った結果に対応する報酬を与えることで行動を改善していく。
       エージェントが行動し、行動によって環境が変化し、環境から報酬を与えられ、累積報酬の最大化を目指す。
     </div></div>
 
@@ -131,21 +132,41 @@
     <label for="label_classify_by_task">[+]</label>
     <input type="checkbox" id="label_classify_by_task"/>
     <div class="hidden_show">
-
-      大きく分けて、分類と回帰がある。アルゴリズムにより得手不得手がある。
-    <h4>分類</h4>
-      Todo:中身を書く
-
-    <h4>回帰</h4>
-      Todo:中身を書く
+      代表的なものは分類と回帰だが、データ群の特徴を学習すると言う意味で、
+      クラスタリングや次元圧縮なども学習タスクとみなせる。
       
+    <h4>classification : 分類</h4>
+      教師あり学習の一種で
+      <q>入力\(\boldsymbol{x}\)を内容に応じて２種類に区別する問題</q>[2]を二値分類といい、
+      <q>入力\(\boldsymbol{x}\)を内容に応じて有限個のクラスに分類する問題</q>[2]を多クラス分類と呼ぶ。
+
+    <h4>regression : 回帰</h4>
+      教師あり学習の一種で、<q>主に連続値をとる関数を対象に、訓練データをよく再現するような関数を定めること。</q>[2]
+
+    <h4>clustering : クラスタリング</h4>
+      教師なし学習の一種で、ラベルのないデータ群を複数に分る問題。
+
+    <h4>dimensionality reduction : 次元削減(次元圧縮)</h4>
+      教師なし学習の一種で、
+      データの次元数を減らすこと。 計算の効率化を行ったり、データ群の特徴をつかむことが目標。
+      線形の場合はデータ\(\boldsymbol{Y}\)を低次元の\(\boldsymbol{W}\)と
+      \( \boldsymbol{X}\)を用いて\( \boldsymbol{Y} \approx \boldsymbol{W^TX}\)と表せるが、
+      非線形の次元削減手法も存在する。
+      
+    <h4>bayesian optimization : ベイズ最適化</h4>  
+      教師なし学習の一種で、あるデータの存在領域を学習により狭めていく。
+      
+    <h4>reinforcement learning : 強化学習</h4>  
+      各時刻に置ける最適な意思決定のルールを目的とする。
+      報酬の期待値を最大するような逐次的意思決定ルール(ポリシー)を学習する。
+   
     </div></div>
 
-<h2>教師あり学習</h2>
- <h3>分類手法</h3>
+<h2>具体的な学習手法</h2>
+  <h3>分類</h3>
     <div class="hidden_box">
-    <label for="label1-2">[+]</label>
-    <input type="checkbox" id="label1-2"/>
+    <label for="label_classification">[+]</label>
+    <input type="checkbox" id="label_classification"/>
     <div class="hidden_show">
 
     <h4>最近傍法,k近傍法</h4>
@@ -154,6 +175,9 @@
         教師データをそのまま丸暗記する怠惰学習(lazy learner)である。
         kの選択や特徴尺度の選択などのパラメータ選択が必要である。
         また、最近傍探索アルゴリズムが計算速度において重要となる
+
+    <h4>ロジスティック回帰</h4>
+    確率やダミー変数について分析、予測するのに使われる。
 
     <h4>ナイーブベイズ</h4>
         
@@ -166,13 +190,11 @@
 
     </div> </div>
 
-  <h3>回帰手法</h3>
+  <h3>回帰</h3>
     <div class="hidden_box">
-    <label for="label1-3">[+]</label>
-    <input type="checkbox" id="label1-3"/>
+    <label for="label_regression">[+]</label>
+    <input type="checkbox" id="label_regression"/>
     <div class="hidden_show">
-
-    <h4>解析的解法と探索的解法</h4>
 
     <h4>線形回帰</h4>
       解析的手法の代表的なもので、
@@ -197,8 +219,6 @@
         \bm{w} = (\bm{U}^{\mathrm{T}}\bm{U})^{-1}\bm{U}^{\mathrm{T}} \bm{z}
       $$
   
-    <h4>ロジスティック回帰</h4>
-    確率やダミー変数について分析、予測するのに使われる。
 
     <h4>サポートベクターマシン SVC, SVM</h4>
 
@@ -206,13 +226,14 @@
 
     </div> </div>
  
-<h2>教師なし学習</h2>
-  <h3>分類手法</h3>
+  <h3>クラスタリング</h3>
 
     <div class="hidden_box">
-    <label for="label2-1">[+]</label>
-    <input type="checkbox" id="label2-3"/>
+    <label for="label-clustering">[+]</label>
+    <input type="checkbox" id="label-clustering"/>
     <div class="hidden_show">
+
+    <h4>k means クラスタリング</h4>
 
     <h4>Self Organizing Map (SOM, 自己組織化)</h4>
       <dl>
@@ -235,12 +256,9 @@
         Todo:内容
       </dd>
       </dl>
-    <h4>k means クラスタリング</h4>
-
- 
     </div></div>
 
-  <h3>次元圧縮手法</h3>
+  <h3>次元削減</h3>
     <div class="hidden_box">
     <label for="label2-3">[+]</label>
     <input type="checkbox" id="label2-3"/>
@@ -254,9 +272,11 @@
       ネゲントロピー(負のエントロピー)を考える
       <h5>応用例</h5>
       MEG、画像の雑音除去、保険データ
+
     <h4>非負行列因子化(NMF)</h4>
       行列Xを行列Wと行列Hで近似する方法。値は正の値だけ取る。
       画像のパーツパーツを抽出できる。
+
     <h4>Natrix Factorization(行列因子化)</h4>
       協調フィルタリングとして働き、Netflix映画のおすすめができるようになった。
       目標関数はRSMEで、正則化により過学習を抑制。NMFとあまり変わらない。
@@ -273,15 +293,23 @@
 
     </div></div>
 
-<h2>強化学習</h2>
-
-  <h3>基本</h3>
+  <h3>強化学習</h3>
     <div class="hidden_box">
-    <label for="label-RL_base">[+]</label>
-    <input type="checkbox" id="label-RL_base"/>
+    <label for="label-Reinforcement-learning">[+]</label>
+    <input type="checkbox" id="label-Reinforcement-learning"/>
     <div class="hidden_show">
-    
-      <h4>用語</h4>
+    <h4>Q学習</h4>
+      動的で複雑な環境に対する学習で、価値反復と方策反復により学習を行う。
+      行動価値観数(Q, A)に基づき、時刻の行動は行動方策に従って選択されるQ(S, A)を更新する。
+      <h5>マルコフ決定過程</h5>
+        <h6>マルコフ性、マルコフ性</h6>
+          一つ前の状態の条件付き確率（一つ前の状態の条件付き確率）。それまでの状態は考慮されない。
+        <h6>POMDP</h6>
+          部分観測可能なマルコフ決定過程：POMDP
+        <h6>マルコフ過程（マルコフ連鎖)</h6>
+          状態Sと行為Aと遷移確率Pと報酬Rと(割引率γ)の組 <lt> S, A, P, R, γ <gt>
+
+       <h5>用語</h5>
         <dl>
           <dt>報酬</dt>
           <dd>
@@ -300,9 +328,9 @@
           <dt>TD学習</dt> 
           <dd></dd>
           <dt>ポリシー</dt>
-          <dd> 最適なポリシーを確率的に定義する。</dd>
-          <dt>価値観数</dt>
-          <dd> あるポリシーを行ったときの、報酬の期待値。 行動価値観数vと行動価値観数qがある。
+          <dd> 報酬の期待値を最大にするような逐次的意思決定ルール。</dd>
+          <dt>価値関数</dt>
+          <dd> あるポリシーを行ったときの、報酬の期待値。 状態価値観数vと行動価値観数qがある。
           状態価値関数vはある状態の価値を再帰的に書いたもの。行動価値関数qは"ある行動を取ったとき"の価値を示す。
           </dd>
           <dt>最適価値観数</dt>
@@ -312,51 +340,22 @@
           <dd>ある行動が最適かどうかは別の行動をしないとわからないが、最良の行動と決定している別の行動ばかりしていると良い行動を選べない</dd>
         </dl>
 
-        <h4>モデル</h4>
-          <dl>
-            <dt>価値ベース</dt> 
-            <dd>
-            方策なし、価値観数あり
-            </dd>
-            <dt>方策ベース</dt>
-            <dd>
-            方策あり、価値観数あり
-            </dd>
-            <dt>アクタークリティック</dt>
-            <dd>
+      <h5>モデル</h5>
+        <dl>
+          <dt>価値ベース</dt> 
+          <dd>
+          方策なし、価値観数あり
+          </dd>
+          <dt>方策ベース</dt>
+          <dd>
+          方策あり、価値観数あり
+          </dd>
+          <dt>アクタークリティック</dt>
+          <dd>
             方策を取った行動で批判しながら行動する。
-            </dd>
-          </dl>
-          </div></div>
-
-  <h3>マルコフ決定過程</h3>
-    <div class="hidden_box">
-    <label for="label-marcov">[+]</label>
-    <input type="checkbox" id="label-marcov"/>
-    <div class="hidden_show">
-
-    <h4>マルコフ性、マルコフ性</h4>
-      一つ前の状態の条件付き確率（一つ前の状態の条件付き確率）。それまでの状態は考慮されない。
-    <h4>POMDP</h4>
-      部分観測可能なマルコフ決定過程：POMDP
-    <h4>マルコフ過程（マルコフ連鎖)</h4>
-      状態Sと行為Aと遷移確率Pと報酬Rと(割引率γ)の組 <lt> S, A, P, R, γ <gt>
-
-    </div></div>
-      
-  <h3>Q学習</h3>
-    <div class="hidden_box">
-    <label for="label-q-learning">[+]</label>
-    <input type="checkbox" id="label-marcov"/>
-    <div class="hidden_show">
-    <h4>基本</h4>
-      動的で複雑な環境に対応する学習
-    <h4>価値反復と方策反復</h4>
-      <h5>更新反復</h5>
-      <h5>価値反復</h5>
-
-    <h4>アルゴリズム</h4>
-    行動価値観数(Q, A)に基づき、時刻の行動は行動方策に従って選択されるQ(S, A)を更新
+          </dd>
+        </dl>
+ 
 
     </div></div>
 
@@ -731,6 +730,7 @@ X_batch, y_batch = g.next() </code> </pre>
 <div>
   <ol>
     <li><cite><a href="https://www.shoeisha.co.jp/book/detail/9784798157559">一般社団法人日本ディープラーニング協会監修, 浅川 伸一, 江間 有沙, 工藤 郁子, 巣龍 悠輔, 瀬谷 啓介, 松井 孝之, 松尾 豊."深層学習教書 ディープラーニング G検定（ジェネラリスト） 公式テキスト", 2018, 翔泳社</li>
+    <li><cite><a href="https://www.shoeisha.co.jp/book/detail/9784798157559">岡谷 貴之."深層学習", 2015, 講談社</li>
     <li><cite><a href="https://daihen.aidemy.jp/">"Aidemy"</li>
     <li><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147655">岩田 具治."トピックモデル、機械学習プロフェッショナルシリーズ".2018,講談社</a> </cite></li>
   </ol>
