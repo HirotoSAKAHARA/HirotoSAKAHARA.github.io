@@ -73,7 +73,7 @@
    document.write('最終更新日:' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-： 最小二乗法の詳細やNNの指標の内容などについて追記
+： 基本事項のまとめ。
 </div>
 
  <div class="navigation">
@@ -87,16 +87,61 @@
 </div>
 
 <!--*********************************本文*********************************-->
-<h1>AI</h1>
+<h1>人工知能(AI)</h1>
+
+<h2>基本</h2>
+  <h3>定義</h3>
+    <div class="hidden_box">
+    <label for="label_def_of_ai">[+]</label>
+    <input type="checkbox" id="label_def_of_ai"/>
+    <div class="hidden_show">
+      <q>「人工知能」が、推論、認識、判断など、人間と同じチ的な処理能力を持つ機械（情報処理システム）であるという点については、
+      大多数の研究者の意見は一致しているといってもよい」</q>[1]　しかし、共有されている定義はない。
+    </div> </div>
+
+  <h3>人工知能の種類</h3>
+    <div class="hidden_box">
+    <label for="label_kind_of_ai">[+]</label>
+    <input type="checkbox" id="label_kind_of_ai"/>
+    <div class="hidden_show">
+      人工知能とよばれうるものを整理すると、以下のような関係となっている。機械学習は人工知能の一種であり、
+      深層学習はその中のニューラルネットと呼ばれるアルゴリズムの特殊なものである。
+    <div>
+      <img src="out\ai\kind_of_ai.png" alt="aiの種類"/>
+    </div>
+    </div> </div>
+
+  <h3>教師の有無による分類</h3>
+    <div class="hidden_box">
+    <label for="label_classify_by_teacher">[+]</label>
+    <input type="checkbox" id="label_classify_by_teacher"/>
+    <div class="hidden_show">
+      大きく分けて、教師なし学習、教師あり学習、強化学習にわけられる。教師データの解釈の仕方で分類が変わりうる。
+    <h4>教師あり学習</h4>
+      事前に与えられたデータをいわば例題とみなして、それをガイドに学習を行う    
+    <h4>教師なし学習</h4>
+      学習データを教えることによって、それぞれのデータの分類やデータ群の特徴の抽出を行う。
+    <h4>強化学習</h4>
+      行動を行った結果に対応する報酬を与えることで行動を改善していく手法。
+      エージェントが行動し、行動によって環境が変化し、環境から報酬を与えられ、累積報酬の最大化を目指す。
+    </div></div>
+
+  <h3>タスクによる分類</h3>
+    <div class="hidden_box">
+    <label for="label_classify_by_task">[+]</label>
+    <input type="checkbox" id="label_classify_by_task"/>
+    <div class="hidden_show">
+
+      大きく分けて、分類と回帰がある。アルゴリズムにより得手不得手がある。
+    <h4>分類</h4>
+      Todo:中身を書く
+
+    <h4>回帰</h4>
+      Todo:中身を書く
+      
+    </div></div>
 
 <h2>教師あり学習</h2>
-  <h3>概要</h3>
-    <div class="hidden_box">
-    <label for="label1-1">[+]</label>
-    <input type="checkbox" id="label1-1"/>
-    <div class="hidden_show">
-      事前に与えられたデータをいわば例題とみなして、それをガイドに学習を行う    
-    </div></div>
  <h3>分類手法</h3>
     <div class="hidden_box">
     <label for="label1-2">[+]</label>
@@ -162,17 +207,11 @@
     </div> </div>
  
 <h2>教師なし学習</h2>
-  <h3>概要</h3>
+  <h3>分類手法</h3>
+
     <div class="hidden_box">
     <label for="label2-1">[+]</label>
-    <input type="checkbox" id="label2-1"/>
-    <div class="hidden_show">
-    学習データを教えることによって、それぞれの点の特徴の分類を行う。
-    </div></div>
-  <h3>分類手法(クラスタリング)</h3>
-    <div class="hidden_box">
-    <label for="label2-2">[+]</label>
-    <input type="checkbox" id="label2-2"/>
+    <input type="checkbox" id="label2-3"/>
     <div class="hidden_show">
 
     <h4>Self Organizing Map (SOM, 自己組織化)</h4>
@@ -198,7 +237,6 @@
       </dl>
     <h4>k means クラスタリング</h4>
 
-    <h4><a href="ai/neural_network.html">Neural Network(NN, ニューラルネットワーク)</a></h4>
  
     </div></div>
 
@@ -242,11 +280,7 @@
     <label for="label-RL_base">[+]</label>
     <input type="checkbox" id="label-RL_base"/>
     <div class="hidden_show">
-      <h4>概要</h4>
-        動的で複雑な環境に対応する学習。環境や外部刺激がある中で、正しく意思決定する方法。
-        エージェントが行動し、行動によって応対が変化し、環境から報酬を与えられ、累積報酬の最大化を目指す。
-        外部状況の表現をNNで行うことで高精度化
-
+    
       <h4>用語</h4>
         <dl>
           <dt>報酬</dt>
@@ -695,13 +729,13 @@ X_batch, y_batch = g.next() </code> </pre>
 
 <h2>参考文献、サイト</h2>
 <div>
-  <dl>
-    <dt> <cite><a href="https://daihen.aidemy.jp/">"Aidemy"</dt>
-    <dd> AIの通信教育。ビデオ講座や実際にコードを書くプログラム講座など</dd>
-    <dt><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147655">岩田 具治."トピックモデル、機械学習プロフェッショナルシリーズ".2018,講談社</a> </cite></dt>
-    <dd>  </dd>
+  <ol>
+    <li><cite><a href="https://www.shoeisha.co.jp/book/detail/9784798157559">一般社団法人日本ディープラーニング協会監修, 浅川 伸一, 江間 有沙, 工藤 郁子, 巣龍 悠輔, 瀬谷 啓介, 松井 孝之, 松尾 豊."深層学習教書 ディープラーニング G検定（ジェネラリスト） 公式テキスト", 2018, 翔泳社</li>
+    <li><cite><a href="https://daihen.aidemy.jp/">"Aidemy"</li>
+    <li><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147655">岩田 具治."トピックモデル、機械学習プロフェッショナルシリーズ".2018,講談社</a> </cite></li>
+  </ol>
 
-  </dl>
+
 </div>
 
 <div class = "end_of_page"></div>
