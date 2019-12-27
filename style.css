@@ -169,6 +169,8 @@ h4{
   color:#113311;
 }
 
+
+
 .hidden_show>h4:first-child{
   margin-top: 0.5rem;
 }
@@ -258,6 +260,10 @@ pre{
   background:#446655;
   font-size : 0.9rem;
   overflow:auto;
+}
+
+div{
+  font-size:1rem;
 }
 
 /*全体*/
