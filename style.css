@@ -15,7 +15,7 @@ body {
   color:#556655;
   background:#D0FFE0;
   --h4margin:1rem;
-  max-width:666px; /* 640 - 1rem*/
+  max-width:784px; /* 640 - 1rem*/
   margin:auto;
 }
 
