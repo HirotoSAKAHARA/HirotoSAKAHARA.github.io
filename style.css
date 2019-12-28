@@ -15,6 +15,7 @@ body {
   color:#556655;
   background:#D0FFE0;
   --h4margin:1rem;
+  --pleft:0.0rem;
   max-width:664px; /* 680 - 1rem*/
   margin:auto;
 }
@@ -101,7 +102,8 @@ h1{
   margin-top: 2rem;
   margin-bottom: 0px;
   padding-top:4px;
-  padding-bottom:4px;
+  padding-bottom:4px; 
+  padding-left:var(--pleft);
   border-top: 3px solid #774444;
   border-bottom: 3px solid #774444;
   background:#DDDDCC;
@@ -127,6 +129,7 @@ h2::before {
 h2{
   margin-top: 1.8rem;
   margin-bottom: 0px;
+  padding-left:var(--pleft);
   border-top: 3px solid #882222;
   font-size: 1.8rem;
   counter-reset:hc;
@@ -142,6 +145,8 @@ h3::before {
 h3{
   margin-top: 1.4rem;
   margin-bottom: 0px;
+  padding:0px;
+  padding-left:var(--pleft);
   border-top: 1px solid #775555;
   font-size: 1.4rem;
   counter-reset:hd;
@@ -159,12 +164,13 @@ h4::before {
 }
 
 h4{
-  margin-top: 1.2rem;
+  margin-top: 1rem;
   margin-bottom: 0px;
   margin-left:calc(-1*var(--h4margin));
   margin-right:calc(-1*var(--h4margin));
+  padding-left:var(--pleft);
   border-top: 1px dotted #775555;
-  font-size: 1.2rem;
+  font-size: 1rem;
   counter-reset:he;
   color:#113311;
 }
@@ -172,7 +178,7 @@ h4{
 
 
 .hidden_show>h4:first-child{
-  margin-top: 0.5rem;
+  margin-top: 0rem;
 }
 
 h5::before {
@@ -183,6 +189,7 @@ h5::before {
 h5{
   margin-top: 1rem;
   margin-bottom: 0px;
+  padding-left:var(--pleft);
   border-top: 1px dotted #775555;
   font-size: 1rem;
   font-weight:bold;
@@ -202,6 +209,7 @@ h6::before {
 h6{
   margin-top: 1rem;
   margin-bottom: 0px;
+  padding-left:var(--pleft);
   border-top: 1px dotted #AACCAA;
   font-size: 1rem;
 }
@@ -214,11 +222,13 @@ h5+h6{
 ul{
   margin:0px;
   padding:0px;
+  padding-left:1rem;
 }
 
 ol{
   margin:0px;
   padding:0px;
+  padding-left:1rem;
 }
 
 dl{
@@ -268,7 +278,8 @@ div{
 
 /*全体*/
 .hidden_box {
-    margin: 0px;/*前後の余白*/
+    margin: 0rem;/*前後の余白*/
+    margin-top:0.15rem;
     padding: 0px;
 }
 
@@ -277,7 +288,7 @@ div{
     font-weight: bold;
     cursor :pointer;
     position:relative;
-    top :calc(-1*1.8rem);
+    top :calc(-1*1.9rem);
     left:calc(-1*1.6rem);
     margin: 0px;
     padding: 0px;
@@ -285,7 +296,7 @@ div{
 
 /*ボタンホバー時*/
 .hidden_box label:hover {
-    background: #efefef;
+  color:red;
 }
 
 /*チェックは見えなくする*/
@@ -326,3 +337,6 @@ div{
   border-bottom: 10px solid #003300;
 }
 
+.small{
+  font-size:0.7em;
+}

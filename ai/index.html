@@ -70,10 +70,10 @@
 
 <div class="last_modified">
 <script type="text/javascript">
-   document.write('最終更新日:' + document.lastModified);
+   document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-： 基本事項のまとめ。項目のまとめ。強化学習の記述について追加
+：ナイーブベイズ、ランダムフォレストなどの記述追加。基本の項目を大幅加筆 
 </div>
 
  <div class="navigation">
@@ -90,21 +90,22 @@
 <h1>人工知能(AI)</h1>
 
 <h2>基本</h2>
-  <h3>定義</h3>
+  <h3>人工知能の定義</h3>
     <div class="hidden_box">
-    <label for="label_def_of_ai">[+]</label>
+    <label for="label_def_of_ai">[+]　　　</label>
     <input type="checkbox" id="label_def_of_ai"/>
     <div class="hidden_show">
-      <q>「人工知能」が、推論、認識、判断など、人間と同じ知的な処理能力を持つ機械（情報処理システム）であるという点については、
-      大多数の研究者の意見は一致しているといってもよい」</q>[1]　しかし、共有されている定義はない。
+      専門家の間ですら共有されている定義はない。
+      しかし、<q>「人工知能」が、推論、認識、判断など、人間と同じ知的な処理能力を持つ機械（情報処理システム）であるという点については、
+      大多数の研究者の意見は一致しているといってもよい」</q>[1]　
     </div> </div>
 
   <h3>人工知能の種類</h3>
     <div class="hidden_box">
-    <label for="label_kind_of_ai">[+]</label>
+    <label for="label_kind_of_ai">[+]　　　</label>
     <input type="checkbox" id="label_kind_of_ai"/>
     <div class="hidden_show">
-      人工知能とよばれうるものを整理すると、以下のような関係となっている。機械学習は人工知能の一種であり、
+      機械学習は人工知能の一種であり、
       深層学習はその中のニューラルネットと呼ばれるアルゴリズムの特殊なものである。
     <div>
       <img src="out\ai\kind_of_ai.png" alt="aiの種類"/>
@@ -113,38 +114,36 @@
 
   <h3>教師の有無による分類</h3>
     <div class="hidden_box">
-    <label for="label_classify_by_teacher">[+]</label>
+    <label for="label_classify_by_teacher">[+]　　　</label>
     <input type="checkbox" id="label_classify_by_teacher"/>
     <div class="hidden_show">
       大きく分けて、教師あり学習、教師なし学習、強化学習にわけられる。教師データの解釈の仕方で分類が変わりうる。
-    <h4>supervised learning : 教師あり学習</h4>
+    <h4>supervised learning<span class="small"> : 教師あり学習</span></h4>
       事前に与えられたデータをいわば例題とみなして、それをガイドに学習を行う。
       学習後は、入力に対して尤度が最大となる出力を求める。
-    <h4>unsuperviesd learning : 教師なし学習</h4>
+    <h4>unsuperviesd learning<span class="small"> : 教師なし学習</span></h4>
       学習データを教えることによって、それぞれのデータの分類やデータ群の特徴の抽出を行う。
-    <h4>reinforcement learning : 強化学習</h4>
-      行動を行った結果に対応する報酬を与えることで行動を改善していく。
-      エージェントが行動し、行動によって環境が変化し、環境から報酬を与えられ、累積報酬の最大化を目指す。
+    <h4>reinforcement learning<span class="small"> : 強化学習</span></h4>
     </div></div>
 
   <h3>タスクによる分類</h3>
     <div class="hidden_box">
-    <label for="label_classify_by_task">[+]</label>
+    <label for="label_classify_by_task">[+]　　　</label>
     <input type="checkbox" id="label_classify_by_task"/>
     <div class="hidden_show">
       
-    <h4>classification : 分類</h4>
+    <h4>classification <span class="small"> : 分類</span></h4>
       教師あり学習の一種で、二値分類と多クラス分類がある。
       <h5>二値分類</h5>
       <q>入力\(\boldsymbol{x}\)を内容に応じて２種類に区別する問題</q>[2]
       <h5>多クラス分類</h5>
       <q>入力\(\boldsymbol{x}\)を内容に応じて有限個のクラスに分類する問題</q>[2]
 
-    <h4>regression : 回帰</h4>
-      教師あり学習の一種で、>主に連続値をとる関数を対象に、訓練データをよく再現するような関数を定める</q>[2]問題。
+    <h4>regression<span class="small"> : 回帰</span></h4>
+      教師あり学習の一種で、訓練データをよく再現するような関数を定める問題。連続値をとる関数を主な対象とする。
       <h5>線形回帰</h5>
-      解析的手法の代表的なもので、
-      \(z = w_0 + w_1u_1 + \cdots + w_uu_n + e\) のように変数の線型結合で示される。多項回帰のように、パラメータ自体は非線形の関数で表されても構わない。
+      \(z = w_0 + w_1u_1 + \cdots + w_uu_n + e\) のような、変数\(\boldsymbol{u}\)の線型結合で示される関数の係数\(\boldsymbol{w}\)を求める問題。
+      多項回帰のように、変数自体は非線形の関数で表されても構わない。
       以下に分類される。
       <dl>
         <dt>単回帰</dt>
@@ -157,27 +156,53 @@
       <h5>非線形回帰</h5>
         観測から得られたデータがモデルパラメータの非線形結合であり、1つ以上の独立した変数に依存する関数によってモデル化される。
 
-    <h4>clustering : クラスタリング</h4>
+    <h4>clustering<span class="small"> : クラスタリング</span></h4>
       教師なし学習の一種で、ラベルのないデータ群を複数に分る問題。
 
-    <h4>dimensionality reduction : 次元削減(次元圧縮)</h4>
+    <h4>dimensionality reduction<span class="small"> : 次元削減(次元圧縮)</span></h4>
       教師なし学習の一種で、
       データの次元数を減らすこと。 計算の効率化を行ったり、データ群の特徴をつかむことが目標。
       線形の場合はデータ\(\boldsymbol{Y}\)を低次元の\(\boldsymbol{W}\)と
-      \( \boldsymbol{X}\)を用いて\( \boldsymbol{Y} \approx \boldsymbol{W^TX}\)と表せるが、
+      \( \boldsymbol{X}\)を用いて\( \boldsymbol{Y} \simeq \boldsymbol{W^TX}\)と表せるが、
       非線形の次元削減手法も存在する。
       
-    <h4>bayesian optimization : ベイズ最適化</h4>  
-      教師なし学習の一種で、あるデータの存在領域を学習により狭めていく。
-      
-    <h4>reinforcement learning : 強化学習</h4>  
+    <h4>reinforcement learning<span class="small"> : 強化学習</span></h4>  
       各時刻に置ける最適な意思決定のルールを目的とする。
       報酬の期待値を最大するような逐次的意思決定ルール(ポリシー)を学習する。
-      <h5>用語</h5>
+    <h4>Recommendation <span class="small"> : 推薦</span></h4>
+      情報フィルタリング技法の一種で、特定ユーザーが興味を持つと思われる情報を提示するもの。 
+
+    <h4>bayesian optimization<span class="small"> : ベイズ最適化</span></h4>  
+      教師なし学習の一種で、あるデータの存在領域を学習により狭めていく。
+
+    </div></div>
+    
+    <h3>学習の手順(教師あり学習、教師なし学習)</h3>  
+       <div class="hidden_box">
+      <label for="label_procedure">[+]　　　</label>
+      <input type="checkbox" id="label_procedure"/>
+      <div class="hidden_show">
+        教師あり学習、教師なし学習の学習の手順を示す。
+
+      </div></div>
+
+    <h3>強化学習の基礎</h3>  
+      <div class="hidden_box">
+      <label for="label_reinforcement_learning">[+]　　　</label>
+      <input type="checkbox" id="label_reinforcement_learning"/>
+      <div class="hidden_show">
+        強化学習は人工知能の一部ではあるが、教師あり学習や教師なし学習と比較して大きく異なる。
+        強化学習の基本をまとめる。
+
+        <h4>概要</h4>
+      行動を行った結果に対応する報酬を与えることで行動を改善していく。
+      エージェントが行動し、行動によって環境が変化し、環境から報酬を与えられ、累積報酬の最大化を目指す。
+
+       <h5>用語</h5>
         <dl>
           <dt>報酬</dt>
           <dd>
-          その行動が良かったか悪かったかを示す。スカラ値。行動への具体的なヒントにならない、すぐに与えられない場合もある。
+          その行動が良かったか悪かったかを示すスカラ値。行動への具体的なヒントにならない、すぐに与えられない場合もある。
           </dd>
           <dt>収益</dt>
           <dd>即時報酬＋Σ(割引率*未来の報酬)</dd>
@@ -219,75 +244,144 @@
             方策を取った行動で批判しながら行動する。
           </dd>
         </dl>
- 
     </div></div>
 
-<h2>具体的な学習手法</h2>
-  <h3><a href="ai/neural_network.html">Neural Network(NN, ニューラルネットワーク)</a></h3>
+    <h3>その他基本的なトピック</h3>  
+      <div class="hidden_box">
+      <label for="label_basic_topics">[+]　　　</label>
+      <input type="checkbox" id="label_basic_topics"/>
+      <div class="hidden_show">
 
-  <h3>最近傍法,k近傍法</h3>
+      <h4>基本用語</h4>
+        <h5>学習データ</h5>
+        <h5>テストデータ</h5>
+        
+        <h5>過学習</h>
+
+        <h5>sota</h5>
+          その時の最高性能が出せるアルゴリズム
+        
+      </div></div>
+   
+<h2>具体的な学習手法</h2>
+  <h3><a href="ai/neural_network.html">Neural Network<span class="small"> : NN, ニューラルネットワーク</span></a></h3>
+
+    <h3>support vector machine<span class="small"> : サポートベクターマシン,SVM</span></h3>
     <div class="hidden_box">
-    <label for="label_knn">[+]</label>
+    <label for="label_svn">[+]　　　</label>
+    <input type="checkbox" id="label_svn"/>
+    <div class="hidden_show">
+      <div>分類、回帰に使われる手法。分類に使われる場合はSupport Vector Classification(SVC)とも</div>
+
+    </div> </div>
+
+  <h3>k nearest neighbor<span class="small"> : k近傍法, 最近傍法</span></h3>
+    <div class="hidden_box">
+    <label for="label_knn">[+]　　　</label>
     <input type="checkbox" id="label_knn"/>
     <div class="hidden_show">
-      <div>分類に使われる手法。</div>
-      <div>
-        空間上の点を抽出したとき、隣接の学習済みの点のラベル情報から抽出点のラベル情報を決定する
-        関数が想定されていないノンパラメトリックで
+    <h4>ターゲットタスク</h4>
+      分類、回帰。
+    <h4>アルゴリズム</h4>
+        ある空間上の入力点のラベルを、隣接のk個の学習済みの点のラベルから決定する。
+        \(k = 1 \)の時、最近傍法となる。
+        隣接の点群の中の最多のラベルを選ぶ事で分類問題に、
+        ラベルの平均や重み付き平均を取ることで回帰問題に適用できる。
+    <h4>特徴</h4>
+        関数が想定されていないノンパラメトリックの手法で、
         教師データをそのまま丸暗記する怠惰学習(lazy learner)である。
-        kの選択や特徴尺度の選択などのパラメータ選択が必要である。
-        また、最近傍探索アルゴリズムが計算速度において重要となる
-      </div>
+        また、空間の各軸である特徴尺度の選択と距離の計算方法が分類性能に大きな影響を与え、
+        最近傍探索アルゴリズムが計算速度に大きな影響を与える。
+    <h4>長所</h4>
+        単純
+    <h4>短所</h4>
+      <ul>
+        <li>データの局所的構造に左右されやすい。</li>
+        <li>不適切な特徴を入れてしまうことで、正確さが著しく損なわれる</li>
+        <li>ノイズ耐性とクラス境界の明確さがトレードオフとなり、kの決定が難しい</li>
+      </ul>
+
     </div></div>
 
-  <h3>ロジスティック回帰</h3>
+  <h3>logistic regression<span class="small"> : ロジスティック回帰</span></h3>
     <div class="hidden_box">
-
-    <label for="label_logistic_regression">[+]</label>
+    <label for="label_logistic_regression">[+]　　　</label>
     <input type="checkbox" id="label_logistic_regression"/>
     <div class="hidden_show">
 
-    確率やダミー変数について分析、予測するのに使われる。
+    <h4>ターゲットタスク</h4>
+    二値分類、確率やダミー変数について分析、予測するのに使われる。
+    <h4>アルゴリズム</h4>
 
+    <h4>長所</h4>
+      非常に簡単
+
+    <h4>短所</h4>
+      
     </div> </div>
 
-  <h3>ナイーブベイズ</h3>
+  <h3>naive bayes<span class="small"> : ナイーブベイズ, 単純ベイズ</span></h3>
     <div class="hidden_box">
-    <label for="label_naive_bayse">[+]</label>
+    <label for="label_naive_bayse">[+]　　　</label>
     <input type="checkbox" id="label_naive_bayse"/>
     <div class="hidden_show">
-      <div>分類に使われる手法。</div>
-       
+      <h4>ターゲットタスク</h4>
+      分類。特にテキスト分類、推薦、センチメント分析。
+      <h4>アルゴリズム</h4>
+        以下に示すベイズの定理を元にした学習アルゴリズムで、
+        ある事象\(y\)が起きた時にある事象\(x_k\)が起きていた確率をそれぞれの\(k\)について求め、
+        確率が最大となる\(x_k\)を選択する。
+        $$
+        p(x_k|y) = \frac{p(y|x_k)p(x_k)}{p(y)}
+        $$
+        ここで\(p(x)\)は\(x\)が起きる確率、\(p(y|x)\)は\(x\)が起きたときに\(y\)が起きる条件付き確率。
+      <h4>長所</h4>
+        単純。高速。少ないトレーニングデータでも性能が出る。
+      <h4>短所</h4>
+        各特徴量が独立という強い仮定が必要があるため、問題によっては成り立たない。
+        精度が高くならない。
+      </div>
     </div> </div>
-  <h3>boosting, ブースティング</h3>
-      <div class="hidden_box">
-    <label for="label_boosting">[+]</label>
+
+  <h3>random forest<span class="small"> : ランダムフォレスト</span></h3>
+    <div class="hidden_box">
+    <label for="label_random_forest">[+]　　　</label>
+    <input type="checkbox" id="label_random_forest"/>
+    <div class="hidden_show">
+    <div>分類、回帰、クラスタリングに使用される</div>
+    <div>
+      決定木を用いる方法。
+    </div>
+
+    </div> </div>
+
+
+
+  <h3>boosting<span class="small"> : ブースティング</span></h3>
+    <div class="hidden_box">
+    <label for="label_boosting">[+]　　　</label>
     <input type="checkbox" id="label_boosting"/>
     <div class="hidden_show">
-      <div>分類に使われる手法。</div>
- 　　機械学習のメタアルゴリズムで、ほかの学習アルゴリズムと組み合わせて利用する。adaBoostが有名
-       前の分類器の間違いに応じてデータの重みを調整する。
-   　　真の分類と若干の相関がある弱い分類器を組み合わせることにより、強い学習機を生成できるかを示す。
-
-    </div> </div>
-
-  <h3>サポートベクターマシン SVC, SVM</h3>
-    <div class="hidden_box">
-    <label for="label_svn">[+]</label>
-    <input type="checkbox" id="label_svn"/>
-    <div class="hidden_show">
-      <div>分類、回帰に使われる手法。</div>
+      <h4>ターゲットタスク</h4>
+      分類
+      <h4></h4>
+      機械学習のメタアルゴリズムで、ほかの学習アルゴリズムと組み合わせて利用する。
+      adaBoostが有名。前の分類器の間違いに応じてデータの重みを調整する。
+      真の分類と若干の相関がある弱い分類器を組み合わせることにより、強い学習機を生成できるかを示す。
 
     </div> </div>
 
 
-  <h3>最小二乗法</h3>
+
+  <h3>least squares method : <span class="small">最小二乗法</span></h3>
     <div class="hidden_box">
-    <label for="label_RMS">[+]</label>
-    <input type="checkbox" id="label_RMS"/>
+    <label for="label_LSM">[+]　　　</label>
+    <input type="checkbox" id="label_LSM"/>
     <div class="hidden_show">
 
-    <div>線形回帰を求める手法。</div>
+    <h4>ターゲットタスク</h4>
+    線形回帰
+    <h4>アルゴリズム</h4>
     <div>入力の組\(\bm{U}\)、出力の組\(\bm{z}\)が与えられた時、
     \(\bm{z} \simeq \bm{Uw}\)となる係数の組\(\bm{w}\)を、
     残差平方和 \( \|\bm{Uw} - \bm{z}\| \) を最小にするという条件で求める。</div>
@@ -299,67 +393,55 @@
 
     </div></div>
   
-  <h3>random forest : ランダムフォレスト</h3>
+  <h3>k means clustering<span class="small"> : k平均クラスタリング</span></h3>
     <div class="hidden_box">
-    <label for="label_random_forest">[+]</label>
-    <input type="checkbox" id="label_random_forest"/>
-    <div class="hidden_show">
-    <div>分類、回帰、クラスタリングに使用される</div>
-    <div>
-      決定木を用いる方法。
-    </div>
-
-    </div> </div>
-
-  <h3>k means クラスタリング</h3>
-    <div class="hidden_box">
-    <label for="label-k-means-clustering">[+]</label>
+    <label for="label-k-means-clustering">[+]　　　</label>
     <input type="checkbox" id="label-k-means-clustering"/>
     <div class="hidden_show">
       クラスタリング
 
     </div></div>
 
-  <h3>Self Organizing Map (SOM, 自己組織化)</h3>
+  <h3>self organizing map <span class="small"> :  SOM, 自己組織化</span></h3>
     <div class="hidden_box">
-    <label for="label-som">[+]</label>
+    <label for="label-som">[+]　　　</label>
     <input type="checkbox" id="label-som"/>
     <div class="hidden_show">
 
     <dl>
       <dt>マルスバーグの自己組織化</dt>
       <dd>
-        Todo:内容
+        Todo : 内容
       </dd>
       <dt>コホネンの自己組織化</dt>
       <dd>
-        ランダムなベクトルからなる行列を用意する。入力ノード群を用意し、
+        ランダムベクトルからなる行列を用意する。入力ノード群を用意し、
         そのノードに一番近い点とそのノードの隣接点に暴露することを繰り返すことで分類ができる。
-        (結果的に入力ノードが消える場合もある）
+       (結果的に入力ノードが消える場合もある）
       </dd>
       <dt>リンスカーの受容野形成の自己組織化</dt>
       <dd>
-        Todo:内容
+        Todo : 内容
       </dd>
       <dt>オジャのSOMの自己組織化</dt>
       <dd>
-        Todo:内容
+        Todo : 内容
       </dd>
     </dl>
     </div></div>
 
 
-  <h3>PCA 主成分分析</h3>
+  <h3>principal component analysis<span class="small"> : PCA, 主成分分析 </span></h3>
     <div class="hidden_box">
-    <label for="label-pca">[+]</label>
+    <label for="label-pca">[+]　　　</label>
     <input type="checkbox" id="label-pca"/>
     <div class="hidden_show">
       主成分分析
     </div></div>
 
-  <h3>Independent component analysis (ICA 独立成分分析)</h3>
+  <h3>independent component analysis<span class="small"> : ICA, 独立成分分析</span></h3>
     <div class="hidden_box">
-    <label for="label-ica">[+]</label>
+    <label for="label-ica">[+]　　　</label>
     <input type="checkbox" id="label-ica"/>
     <div class="hidden_show">
 
@@ -372,27 +454,27 @@
 
     </div></div>
 
-  <h3>Matrix Factorization(行列因子化)</h3>
+  <h3>matrix factorization<span class="small"> : 行列因子化</span></h3>
     <div class="hidden_box">
-    <label for="label-MF">[+]</label>
+    <label for="label-MF">[+]　　　</label>
     <input type="checkbox" id="label-MF"/>
     <div class="hidden_show">
 
-    <h4>非負行列因子化(NMF)</h4>
+    <h4>non-negative matrix factorization<span class="small"> : NMF, 非負行列因子化</span></h4>
       正の値だけをとるMatrix Factorization。こちらが先に発表され、 改良版としてMatrix Factorizationが発表された。
       行列Xを行列Wと行列Hで近似する方法。
       画像のパーツパーツを抽出できる。
 
-    <h4>行列因子化(MF)</h4>
+    <h4>matrix factorization<span class="small"> : 行列因子化</span></h4>
       協調フィルタリングとして働く。Netflix映画のおすすめができるようになった。
       目標関数はRSMEで、正則化により過学習を抑制。NMFとあまり変わらない。
       
     </div></div>
     
     
-  <h3>t-Stocastic Neighbor Embedding(t-SNE)</h3>
+  <h3>t-Stocastic Neighbor Embedding<span class="small"> : t-SNE</span></h3>
     <div class="hidden_box">
-    <label for="label-tSNE">[+]</label>
+    <label for="label-tSNE">[+]　　　</label>
     <input type="checkbox" id="label-tSNE"/>
     <div class="hidden_show">
 
@@ -403,9 +485,9 @@
 
     </div></div>
 
-  <h3>Q学習</h3>
+  <h3>Q-Learning<span class="small"> : Q学習</span></h3>
     <div class="hidden_box">
-    <label for="label-Reinforcement-learning">[+]</label>
+    <label for="label-Reinforcement-learning">[+]　　　</label>
     <input type="checkbox" id="label-Reinforcement-learning"/>
     <div class="hidden_show">
 
@@ -424,7 +506,7 @@
 <h2>データ前処理</h2>
   <h3>データ拡張・水増し</h3>
     <div class="hidden_box">
-    <label for="label-data-extension">[+]</label>
+    <label for="label-data-extension">[+]　　　</label>
     <input type="checkbox" id="label-data-extension"/>
     <div class="hidden_show">
 
@@ -445,7 +527,7 @@
 
   <h3>データクレンジング</h3>
     <div class="hidden_box">
-    <label for="label8-1">[+]</label>
+    <label for="label8-1">[+]　　　</label>
     <input type="checkbox" id="label8-1"/>
     <div class="hidden_show">
 
@@ -495,27 +577,27 @@ X_batch, y_batch = g.next() </code> </pre>
 
       <dt>主成分分析</dt>
       <dd>
-        Todo:内容
+        Todo : 内容
       </dd>
       <dt>特異値分解</dt>
       <dd>
-        Todo:内容
+        Todo : 内容
       </dd>
       <dt>ゼロ位相成分分析</dt>
       <dd>
-        Todo:内容
+        Todo : 内容
       </dd>
       <dt>局所的応答正規化</dt>
       <dd>
-        Todo:内容
+        Todo : 内容
       </dd>
       <dt>帯域コントラスト正規化</dt>
       <dd>
-        Todo:内容
+        Todo : 内容
       </dd>
       <dt>局所的コントラスト正規化</dt>
       <dd>
-        Todo:内容
+        Todo : 内容
       </dd>
     </dl>
 
@@ -525,7 +607,7 @@ X_batch, y_batch = g.next() </code> </pre>
 <h2>評価</h2>
   <h3>標準問題</h3>
     <div class="hidden_box">
-    <label for="label7-1">[+]</label>
+    <label for="label7-1">[+]　　　</label>
     <input type="checkbox" id="label7-1"/>
     <div class="hidden_show">
 
@@ -534,14 +616,14 @@ X_batch, y_batch = g.next() </code> </pre>
       <dd>手書き数字のデータセット、28x28で１チャンネルのデータとなっている</dd>
       <dt>CIFAR-10</dt>
       <dd>10種類のオブジェクトが映った画像の10x10のデータセットの分類</dd>
-      <dt>ImageNet(<a href="http://www.image-net.org">http://www.image-net.org/</a>)</dt>
+      <dt>ImageNet(<a href="http : //www.image-net.org">http : //www.image-net.org/</a>)</dt>
       <dd>データが公開されているので登録すればダウンロード可能</dd>
-      <dt>MS-COCO(<a href="http://cocodataset.org/#home">http://cocodataset.org/#home</a>)</dt>
+      <dt>MS-COCO(<a href="http : //cocodataset.org/#home">http : //cocodataset.org/#home</a>)</dt>
       <dd>画像に対して５つのキャプションが与えられる。表現の多様性をチェックする</dd>    </dl>
     </div></div>
   <h3>分類の評価</h3>
     <div class="hidden_box">
-    <label for="label7-2">[+]</label>
+    <label for="label7-2">[+]　　　</label>
     <input type="checkbox" id="label7-2"/>
     <div class="hidden_show">
     <dl>
@@ -575,7 +657,7 @@ X_batch, y_batch = g.next() </code> </pre>
 
   <h3>回帰の評価</h3>
     <div class="hidden_box">
-    <label for="label-evaluation-of-regression">[+]</label>
+    <label for="label-evaluation-of-regression">[+]　　　</label>
     <input type="checkbox" id="label-evaluation-of-regression"/>
     <div class="hidden_show">
     <h4>バイアスバリアンス分解</h4>
@@ -588,17 +670,17 @@ X_batch, y_batch = g.next() </code> </pre>
     </div></div>
   <h3>NNの評価</h3>
     <div class="hidden_box">
-    <label for="label7-4">[+]</label>
+    <label for="label7-4">[+]　　　</label>
     <input type="checkbox" id="label7-4"/>
     <div class="hidden_show">
     <dl>
-      <dt>BLEU (<a href="https://www.aclweb.org/anthology/P02-1040.pdf">BLEU: a Method for Automatic Evaluation of Machine Translation </a>)</dt>
+      <dt>BLEU (<a href="https : //www.aclweb.org/anthology/P02-1040.pdf">BLEU :  a Method for Automatic Evaluation of Machine Translation </a>)</dt>
       <dd>機械翻訳の指標。過去の単語から次の単語の出現確率を算出するn-gramを改良して使用する。</dd>
-      <dt>ROUGE(<a href="https://www.aclweb.org/anthology/W04-1013.pdf">ROUGE: A Package for Automatic Evaluation of Summaries </a>)</dt>
+      <dt>ROUGE(<a href="https : //www.aclweb.org/anthology/W04-1013.pdf">ROUGE :  A Package for Automatic Evaluation of Summaries </a>)</dt>
       <dd> 自動要約システムのための指標。正しい要約と自動要約システムの中のオーバーラップされた言葉の数の割合を調べる。</dd>
-      <dt>METEOR(<a href="https://www.cs.cmu.edu/~alavie/papers/BanerjeeLavie2005-final.pdf">METEOR: An Automatic Metric for MT Evaluation with Improved Correlation with Human Judgments</a>)</dt>
+      <dt>METEOR(<a href="https : //www.cs.cmu.edu/~alavie/papers/BanerjeeLavie2005-final.pdf">METEOR :  An Automatic Metric for MT Evaluation with Improved Correlation with Human Judgments</a>)</dt>
       <dd> 機械翻訳の指標。ユニグラムの正確性と再現性の調和平均を元に計算される。正確性より再現性により重きを置く。</dd>
-        <dt>CIDEr (<a href="https://arxiv.org/pdf/1411.5726.pdf">CIDEr: Consensus-based Image Description Evaluation</a>)</dt>
+        <dt>CIDEr (<a href="https : //arxiv.org/pdf/1411.5726.pdf">CIDEr :  Consensus-based Image Description Evaluation</a>)</dt>
       <dd> 画像の自動キャプション付の指標。</dd>
     </dl>
     </div></div>
@@ -606,7 +688,7 @@ X_batch, y_batch = g.next() </code> </pre>
 <h2>各分野における応用技術</h2>
   <h3>自然言語処理</h3>
     <div class="hidden_box">
-    <label for="label7-3">[+]</label>
+    <label for="label7-3">[+]　　　</label>
     <input type="checkbox" id="label7-3"/>
     <div class="hidden_show">
 
@@ -631,19 +713,12 @@ X_batch, y_batch = g.next() </code> </pre>
 
   <h3>画像認識</h3>
     <div class="hidden_box">
-    <label for="label-image">[+]</label>
+    <label for="label-image">[+]　　　</label>
     <input type="checkbox" id="label-image"/>
     <div class="hidden_show">
 
-    <h3>VQ(Vector Quantaization、ベクトル量子化)</h3>
-    <div class="hidden_box">
-    <label for="label-VQ">[+]</label>
-    <input type="checkbox" id="label-VQ"/>
-    <div class="hidden_show">
+    <h4>VQ(Vector Quantaization、ベクトル量子化)</h4>
     典型的な画像を組み合わせた画像を作ることができる。
-
-    </div></div>
-
 
     <h4>Regions with CNN features (R-CNN)</h4>
       画像に対してオーバーラップを許して何が写っているのかを示す。
@@ -668,7 +743,7 @@ X_batch, y_batch = g.next() </code> </pre>
 
   <h3>音声認識</h3>
     <div class="hidden_box">
-    <label for="label-sound">[+]</label>
+    <label for="label-sound">[+]　　　</label>
     <input type="checkbox" id="label-sound"/>
     <div class="hidden_show">
 
@@ -681,7 +756,7 @@ X_batch, y_batch = g.next() </code> </pre>
 
   <h3>ロボティクス</h3>
     <div class="hidden_box">
-    <label for="label-robotics">[+]</label>
+    <label for="label-robotics">[+]　　　</label>
     <input type="checkbox" id="label-robotics"/>
     <div class="hidden_show">
 
@@ -697,7 +772,7 @@ X_batch, y_batch = g.next() </code> </pre>
 
   <h3>ブロックチェーン</h3>
     <div class="hidden_box">
-    <label for="label-blockchain">[+]</label>
+    <label for="label-blockchain">[+]　　　</label>
     <input type="checkbox" id="label-blockchain"/>
     <div class="hidden_show">
       ブロックチェーン
@@ -705,7 +780,7 @@ X_batch, y_batch = g.next() </code> </pre>
 
   <h3>異常検知</h3>
     <div class="hidden_box">
-    <label for="label-failure-detection">[+]</label>
+    <label for="label-failure-detection">[+]　　　</label>
     <input type="checkbox" id="label-failure-detection"/>
     <div class="hidden_show">
       異常検知
@@ -716,7 +791,7 @@ X_batch, y_batch = g.next() </code> </pre>
 <h2>AIの注意点</h2>
   <h3>偏見への問題</h3>
     <div class="hidden_box">
-    <label for="label-caution1">[+]</label>
+    <label for="label-caution1">[+]　　　</label>
     <input type="checkbox" id="label-caution1"/>
     <div class="hidden_show">
     黒人の女性をゴリラとして認識された例がある。学習データが白人に偏ってしまっている。
@@ -724,7 +799,7 @@ X_batch, y_batch = g.next() </code> </pre>
     </div></div>
   <h3>ブラックボックス</h3>
     <div class="hidden_box">
-    <label for="label-caution2">[+]</label>
+    <label for="label-caution2">[+]　　　</label>
     <input type="checkbox" id="label-caution2"/>
     <div class="hidden_show">
     パラメータが改ざんされてもわからない、危険な使い方をしていてもわからない可能性がある。
@@ -732,7 +807,7 @@ X_batch, y_batch = g.next() </code> </pre>
     </div></div>
   <h3>fooling CNN</h3>
     <div class="hidden_box">
-    <label for="label-caution3">[+]</label>
+    <label for="label-caution3">[+]　　　</label>
     <input type="checkbox" id="label-caution3"/>
     <div class="hidden_show">
   　画像を少しだけ変えると、認識が変わる例がある。
@@ -741,11 +816,9 @@ X_batch, y_batch = g.next() </code> </pre>
     元画像に１画素だけ異なる所を付け加えると認識が変わる。
     </div></div>
 
-
-
 <h2>その外</h2>
     <div class="hidden_box">
-    <label for="label-sonohoka">[+]</label>
+    <label for="label-sonohoka">[+]　　　</label>
     <input type="checkbox" id="label-sonohoka"/>
     <div class="hidden_show">
 
@@ -754,7 +827,7 @@ X_batch, y_batch = g.next() </code> </pre>
     <dd><a href="math/index.html">数学-最適化問題</a>へ移動</dd>
 
     <dt>Empirical Risk Minimization(ERM, 経験損失最小化)</dt>
-    <dd>損失関数とデータについて求めた経験損失を最小化するようにモデルを選ぶ学習の基準</dd>
+   <dd>損失関数とデータについて求めた経験損失を最小化するようにモデルを選ぶ学習の基準</dd>
 
     <dt>Competitive Learning(競合学習)</dt>
     <dd>
@@ -782,11 +855,7 @@ X_batch, y_batch = g.next() </code> </pre>
 
     </dd>
 
-    <dt>sota</dt>
-    <dd>
-      その時の最高性能が出せるアルゴリズム
-    </dd>
-    <dt>minimax法</dt>
+   <dt>minimax法</dt>
     <dd>ゲーム木において、相手は自分にとって最悪手、自分は最善手を選ぶとして最善手を算出する方法</dd>
     <dt>αβ法</dt>
     <dd>minimax法でβカット(自分の手を計算する時に、現在の候補より評価値が低い手のノードを探索しないこと)とαカット(相手の手を計算するときに、現在の候補より評価値の高いノードを探索しないこと)を行う手法</dd>
@@ -802,13 +871,11 @@ X_batch, y_batch = g.next() </code> </pre>
 <h2>参考文献、サイト</h2>
 <div>
   <ol>
-    <li><cite><a href="https://www.shoeisha.co.jp/book/detail/9784798157559">一般社団法人日本ディープラーニング協会監修, 浅川 伸一, 江間 有沙, 工藤 郁子, 巣龍 悠輔, 瀬谷 啓介, 松井 孝之, 松尾 豊."深層学習教書 ディープラーニング G検定（ジェネラリスト） 公式テキスト", 2018, 翔泳社</li>
-    <li><cite><a href="https://www.shoeisha.co.jp/book/detail/9784798157559">岡谷 貴之."深層学習", 2015, 講談社</li>
-    <li><cite><a href="https://daihen.aidemy.jp/">"Aidemy"</li>
-    <li><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147655">岩田 具治."トピックモデル、機械学習プロフェッショナルシリーズ".2018,講談社</a> </cite></li>
+    <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">一般社団法人日本ディープラーニング協会監修, 浅川 伸一, 江間 有沙, 工藤 郁子, 巣龍 悠輔, 瀬谷 啓介, 松井 孝之, 松尾 豊."深層学習教書 ディープラーニング G検定（ジェネラリスト） 公式テキスト", 2018, 翔泳社</li>
+    <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">岡谷 貴之."深層学習", 2015, 講談社</li>
+    <li><cite><a href="https : //daihen.aidemy.jp/">"Aidemy"</li>
+    <li><cite><a href="http : //bookclub.kodansha.co.jp/product?item=0000147655">岩田 具治."トピックモデル、機械学習プロフェッショナルシリーズ".2018,講談社</a> </cite></li>
   </ol>
-
-
 </div>
 
 <div class = "end_of_page"></div>
