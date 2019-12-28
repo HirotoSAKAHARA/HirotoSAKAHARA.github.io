@@ -10,3 +10,49 @@ skinparam backgroundColor transparent
 深層学習<|-- CNN
 深層学習<|-- RNN
 @enduml
+
+@startuml decision_tree
+start
+:ルートノードに訓練データを入れる;
+repeat
+:各ノードにおいて、分割軸（特徴量）を決定する;
+:各ノードにおいて、分割基準を決める;
+:各ノードを基準によりツリーを複数に分ける;
+:必要なノードの枝刈りをする;
+repeat while(終了の判断をする)
+stop
+skinparam backgroundColor transparent
+@enduml
+
+
+@startuml random_forest 
+start
+:ルートノードに訓練データを入れる;
+fork
+: ルートのデータ群を
+  ランダム抽出;
+: 特徴量がランダムの
+  決定木1を作成;
+fork again
+: ルートのデータ群を
+  ランダム抽出;
+: 特徴量がランダムの
+  決定木2を作成;
+fork again
+: ルートのデータ群を
+  ランダム抽出;
+: 特徴量がランダムの
+  決定木3を作成;
+end fork
+: 評価データを抽出し各ツリーに入力;
+fork
+: 決定木1の結果を計算;
+fork again
+: 決定木2の結果を計算;
+fork again
+: 決定木3の結果を計算;
+end fork 
+: 各ツリーの出力の多数決、あるいは平均値などを結果とする;
+stop
+skinparam backgroundColor transparent
+@enduml
