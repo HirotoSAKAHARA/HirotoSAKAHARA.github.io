@@ -56,3 +56,16 @@ end fork
 stop
 skinparam backgroundColor transparent
 @enduml
+
+
+@startuml k_means_clustering
+start
+: 分割数を決定する;
+: 与えられたデータにランダムにクラスを割り当てる。;
+repeat
+: 各クラスの代表ベクトルを、そのクラスが割り当てられたデータ群の中心（重心など）とする。;
+: 各データのクラスを、各データに一番近い代表ベクトルを持つクラスとする。;
+repeat while(終了の判断をする) 
+stop
+skinparam backgroundColor transparent
+@enduml
