@@ -323,11 +323,11 @@
     成功確率を\(p\)とすると、オッズ = (成功確率) / (失敗確率) = \( \frac{p}{1-p} \)となる。
     オッズの対数をとったもの(ロジットという)が入力の線形結合で表せるとする。
     $$
-      \ln\frac({p_i}{1-p_i}) = \alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k,i}
+      \ln(\frac{p_i}{1-p_i}) = \alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k,i}
     $$
     左辺を\(p_i\)にして整理すると以下の式で表される。
     $$
-    p_i = \frac{1}{1 + e^{- ( \alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k, i}}}
+    p_i = \frac{1}{1 + e^{- ( \alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k, i})}}
     $$
     これは単純パーセプトロンの以下の式と等価である。
     $$
