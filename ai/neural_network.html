@@ -103,17 +103,8 @@
     様々な問題を解決できるようなモデルを作る。
 
    <h4>基本的なNeural Network</h4>
-      <h5>単純パーセプトロン</h5>
-        複数の入力に対し、それぞれに重みを加えたものを足し合わせ、
-        その和が0以上の場合は1、以下の場合は0を出力するアルゴリズム。
-        １本の判別直線で分離できない問題は解けない。
-
-        <div>
-          <img src="out\ai\perceptron.png" alt="パーセプトロン"/>
-        </div>
-
       <h5>ニューロン</h5>
-        単純パーセプトロンの出力に活性化関数と呼ばれる非線形の関数を加え、複雑な問題を解けるように工夫したもの。多層パーセプトロンに使用する。
+        <a href="ai/index.html#perceptron">単純パーセプトロン</a>の出力に活性化関数と呼ばれる非線形の関数を加え、複雑な問題を解けるように工夫したもの。多層パーセプトロンに使用する。
 
         <div>
           <img src="out\ai\neuron.png" alt="ニューロン"/>
@@ -740,6 +731,37 @@ model.fit(x_train, y_train,
      <dd> ポリシーベース、状態価値関数、モデルベースの強化学習 </dd>
 
     </div></div>
+
+<h2>その他</h2>
+  <h3>self organizing map <span class="small"> :  SOM, 自己組織化</span></h3>
+    <div class="hidden_box">
+    <label for="label-som">[+]　　　</label>
+    <input type="checkbox" id="label-som"/>
+    <div class="hidden_show">
+
+    <dl>
+      <dt>マルスバーグの自己組織化</dt>
+      <dd>
+        Todo : 内容
+      </dd>
+      <dt>コホネンの自己組織化</dt>
+      <dd>
+        ランダムベクトルからなる行列を用意する。入力ノード群を用意し、
+        そのノードに一番近い点とそのノードの隣接点に暴露することを繰り返すことで分類ができる。
+       (結果的に入力ノードが消える場合もある）
+      </dd>
+      <dt>リンスカーの受容野形成の自己組織化</dt>
+      <dd>
+        Todo : 内容
+      </dd>
+      <dt>オジャのSOMの自己組織化</dt>
+      <dd>
+        Todo : 内容
+      </dd>
+    </dl>
+    </div></div>
+
+
 
 <h2>参考文献、サイト</h2>
   <dd>

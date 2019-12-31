@@ -73,7 +73,7 @@
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：ロジスティック回帰の記述を追加
+：バギング、ブースティングなどの項目を追加、パーセプトロンと自己組織化の項目を移動
 </div>
 
  <div class="navigation">
@@ -124,6 +124,8 @@
     <h4>unsuperviesd learning<span class="small"> : 教師なし学習</span></h4>
       学習データを教えることによって、それぞれのデータの分類やデータ群の特徴の抽出を行う。
     <h4>reinforcement learning<span class="small"> : 強化学習</span></h4>
+      行動の結果が行動の後にスカラ値の報酬として与えられる。
+      報酬は即時に与えられるとは限らず、報酬は行動の改善の方法を与えない。
     </div></div>
 
   <h3>タスクによる分類</h3>
@@ -259,10 +261,29 @@
           訓練された各手法を評価するためのデータ
         <h5>汎化性能</h5>
           テストデータなど、未学習のデータでの性能。
-        <h5>過学習</h>
+        <h5>overfitting <span class="small"> : 過学習</span></h5>
           訓練データを学習させすぎた結果、訓練データの特徴のみに特化しすぎ、汎化性能が低くなってしまうこと。
         <h5>sota</h5>
           あるタスクにおいて、その時の最高性能が出せるアルゴリズム
+
+        <h5>boostrap method :<span class="small">ブートストラップ法</span></h5>
+          ある限られた標本集団から母集団の性質を推定するための方法で、
+          繰り返しを許してランダムにn個の標本を取得し、
+          その標本から得られる推定値の分布からパラメータの確率分布や誤差を推定する方法。
+
+        <h5>ensemble learning<span class="small"> : アンサンブル学習</span></h5>
+          より良い予測性能を出すために、複数のアルゴリズムを用いること。
+
+        <h5>bagging <spam class="small"> : バギング</spam></h5>
+          訓練サンプル集合からブーストラップサンプル集合を複数作成し、
+          それぞれのサンプル集合に対し独立なモデルを複数学習させ、
+          すべてのモデルの予測値をもとに、最終的な予測値を決定する方法。
+          モデル固有の誤差が相殺されるため、性能が安定する。
+
+        <h5>boosting <spam class="small"> : ブースティング</spam></h5>
+          一連の弱い学習機をまとめることで強い学習機を生成する機械学習のメタアルゴリズム。
+          弱い学習機とは真の分類と若干の相関がある分類器で、強い学習機とは真の分類と良く相関する学習機のこと。
+          複数の弱い学習機に繰り返し学習させ、相関の高さによりデータの重みづけが見直される。
 
         <h5>階層的クラスタリング</h5>
           データの一部をクラスタリングし、クラスタリングしたクラスを一つのデータととらえ、残りのデータとともに次のクラスタリングを行う。
@@ -272,7 +293,7 @@
       </div></div>
    
 <h2>具体的な学習手法</h2>
-  <h3><a href="ai/neural_network.html">Neural Network<span class="small"> : NN, ニューラルネットワーク</span></a></h3>
+  <h3><a href="ai/neural_network.html">neural network<span class="small"> : NN, ニューラルネットワーク</span></a></h3>
 
     <h3>support vector machine<span class="small"> : サポートベクターマシン,SVM</span></h3>
     <div class="hidden_box">
@@ -301,14 +322,45 @@
         また、空間の各軸である特徴尺度の選択と距離の計算方法が分類性能に大きな影響を与え、
         最近傍探索アルゴリズムが計算速度に大きな影響を与える。
     <h4>長所</h4>
-        単純
+      <ul>
+        <li>単純。</li>
+      </ul>
     <h4>短所</h4>
       <ul>
         <li>データの局所的構造に左右されやすい。</li>
-        <li>不適切な特徴を入れてしまうことで、正確さが著しく損なわれる</li>
-        <li>ノイズ耐性とクラス境界の明確さがトレードオフとなり、kの決定が難しい</li>
+        <li>不適切な特徴を入れてしまうことで、正確さが著しく損なわれる。</li>
+        <li>ノイズ耐性とクラス境界の明確さがトレードオフとなり、kの決定が難しい。</li>
       </ul>
 
+    </div></div>
+
+  <h3 id="perceptron">simple Perceptron<span class="small"> : 単純パーセプトロン</span></h3>
+
+    <div class="hidden_box">
+    <label for="label_perceptron">[+]　　　</label>
+    <input type="checkbox" id="label_perceptron"/>
+    <div class="hidden_show">
+
+    <h4>ターゲットタスク</h4>
+    分類
+    <h4>アルゴリズム</h4>
+    複数の入力に対し、それぞれに重みを加えたものを足し合わせ、
+    その和が0以上の場合は1、以下の場合は0を出力するアルゴリズム。
+    
+
+    <div>
+      <img src="out\ai\perceptron.png" alt="パーセプトロン"/>
+    </div>
+
+    <h4>長所</h4>
+      <ul>
+        <li>単純。</li>
+      </ul>
+    
+    <h4>短所</h4>
+      <ul>
+        <li>１本の判別直線で分離できない問題は解けない。</li>
+      </ul>
     </div></div>
 
   <h3>logistic regression<span class="small"> : ロジスティック回帰</span></h3>
@@ -428,7 +480,7 @@
 	      </ul>
   </div></div>
 
-  <h3>boosting<span class="small"> : ブースティング</span></h3>
+  <h3>ada boost<span class="small"> : アダブースト</span></h3>
     <div class="hidden_box">
     <label for="label_boosting">[+]　　　</label>
     <input type="checkbox" id="label_boosting"/>
@@ -436,13 +488,8 @@
       <h4>ターゲットタスク</h4>
       分類
       <h4></h4>
-      機械学習のメタアルゴリズムで、ほかの学習アルゴリズムと組み合わせて利用する。
-      adaBoostが有名。前の分類器の間違いに応じてデータの重みを調整する。
-      真の分類と若干の相関がある弱い分類器を組み合わせることにより、強い学習機を生成できるかを示す。
 
     </div> </div>
-
-
 
   <h3>least squares method : <span class="small">最小二乗法</span></h3>
     <div class="hidden_box">
@@ -487,34 +534,6 @@
    
     </div></div>
 
-  <h3>self organizing map <span class="small"> :  SOM, 自己組織化</span></h3>
-    <div class="hidden_box">
-    <label for="label-som">[+]　　　</label>
-    <input type="checkbox" id="label-som"/>
-    <div class="hidden_show">
-
-    <dl>
-      <dt>マルスバーグの自己組織化</dt>
-      <dd>
-        Todo : 内容
-      </dd>
-      <dt>コホネンの自己組織化</dt>
-      <dd>
-        ランダムベクトルからなる行列を用意する。入力ノード群を用意し、
-        そのノードに一番近い点とそのノードの隣接点に暴露することを繰り返すことで分類ができる。
-       (結果的に入力ノードが消える場合もある）
-      </dd>
-      <dt>リンスカーの受容野形成の自己組織化</dt>
-      <dd>
-        Todo : 内容
-      </dd>
-      <dt>オジャのSOMの自己組織化</dt>
-      <dd>
-        Todo : 内容
-      </dd>
-    </dl>
-    </div></div>
-
 
   <h3>principal component analysis<span class="small"> : PCA, 主成分分析 </span></h3>
     <div class="hidden_box">
@@ -557,7 +576,7 @@
     </div></div>
     
     
-  <h3>t-Stocastic Neighbor Embedding<span class="small"> : t-SNE</span></h3>
+  <h3>t-stocastic neighbor embedding<span class="small"> : t-SNE</span></h3>
     <div class="hidden_box">
     <label for="label-tSNE">[+]　　　</label>
     <input type="checkbox" id="label-tSNE"/>
@@ -570,7 +589,7 @@
 
     </div></div>
 
-  <h3>Q-Learning<span class="small"> : Q学習</span></h3>
+  <h3>q-learning<span class="small"> : Q学習</span></h3>
     <div class="hidden_box">
     <label for="label-Reinforcement-learning">[+]　　　</label>
     <input type="checkbox" id="label-Reinforcement-learning"/>
