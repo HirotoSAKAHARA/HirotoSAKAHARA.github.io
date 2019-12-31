@@ -72,7 +72,7 @@
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：Ada-Boostの詳細を記述
+：主成分分析について簡単に書いた。
 </div>
 
  <div class="navigation">
@@ -490,7 +490,7 @@
     <input type="checkbox" id="label_boosting"/>
     <div class="hidden_show">
       <h4>ターゲットタスク</h4>
-      二項分類
+      二値分類
       <h4>アルゴリズム</h4>
       弱い学習機とデータの重みづけによって強い学習機を作る。
       教師データは1か-1とする。
@@ -504,8 +504,8 @@
 	      </ul>
       <h4>短所</h4>
       	<ul>
-		      <li>ノイズや異常値に追従しやすい。<li>
-		      <li>並列化ができず、計算速度が遅い。<li>
+		      <li>ノイズや異常値に追従しやすい。</li>
+		      <li>並列化ができず、計算速度が遅い。</li>
 	      </ul>
     </div> </div>
 
@@ -558,7 +558,23 @@
     <label for="label-pca">[+]　　　</label>
     <input type="checkbox" id="label-pca"/>
     <div class="hidden_show">
-      主成分分析
+    <h4>ターゲットタスク</h4>
+    次元削減。
+    <h4>アルゴリズム</h4>
+    あるデータ\(\bm{X}\)の共分散\(\sum = E[\bm{(X-E[X])(X-E[X])^T}]\)を求める。
+    次に\(\sum\)の固有値と固有ベクトルを求め、固有値の大きいほうから必要な分だけ
+    主成分を抽出する。
+    抽出した主成分の固有ベクトルを並べた行列を元の行列にかけることで、次元を削減する。
+    <h4>長所</h4>
+      	<ul>
+		      <li>計算が早い</li>
+		      <li>もとデータの次元が多い場合でも解析できる。</li>
+	      </ul>
+    <h4>短所</h4>
+      	<ul>
+		      <li>異なる特徴が混じったデータでは誤った削減を行う。</li>
+	      </ul>
+
     </div></div>
 
   <h3>independent component analysis<span class="small"> : ICA, 独立成分分析</span></h3>
