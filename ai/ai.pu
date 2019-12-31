@@ -69,3 +69,22 @@ repeat while(終了の判断をする)
 stop
 skinparam backgroundColor transparent
 @enduml
+
+
+@startuml ada_boost
+start
+: 全データに等しい重みを付ける。;
+repeat
+: 重みづけられたデータを弱い学習機によって学習する。;
+: 学習後データによって予測する。;
+: 重みづけエラー率eを計算する。;
+: 係数αを計算する。(α= 0.5 log((1-e)/e);
+: 分類器の重みを計算する。w *= e^(α(i) * 教師値 * 推測値);
+: 重みをすべて足して１になるように正規化する。;
+repeat while(最後の分類器に達した)
+: 重みを考慮した各分類器の結果の合計が0以上か以下かで分類;
+stop
+
+skinparam backgroundColor transparent
+@enduml
+
