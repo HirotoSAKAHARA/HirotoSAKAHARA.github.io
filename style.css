@@ -338,5 +338,9 @@ div{
 }
 
 .small{
+  font-size:0.9em;
+}
+
+h3 .small{
   font-size:0.7em;
 }

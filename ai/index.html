@@ -680,7 +680,7 @@
       <h5>センタリング</h5>
       平均値を求めた後全データから平均値を引き、平均を0にする
 
-      <h5>standarization<span class="small">標準化</span></h5>
+      <h5>standarization<span class="small"> : 標準化</span></h5>
       特徴を平均0、分散1にすることで、特徴ごとのデータ分布を近づける。
       ImageDataGeneratorを使う場合は以下のようになる。
 <pre> <code># ジェネレーターの生成
@@ -725,7 +725,7 @@ X_batch, y_batch = g.next() </code> </pre>
       <h5>principal component analysis<span class="small"> : PCA, 主成分分析</span></h5>
         主成分分析を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
 
-      <h5>singular value decomposition<span class="small"> : 特異値分解</span></h5>
+      <h5>singular value decomposition<span class="small"> : SVD, 特異値分解</span></h5>
         特異値分解を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
         
         特異値分解とは、行列\(A\)を\( A = U\sum V^{T} \)と分解することである。ここで\(\sum\)の次元は\(A\)と等しく、\(D\)を\(A\)の固有値の対角行列とすると、\( \sum =
