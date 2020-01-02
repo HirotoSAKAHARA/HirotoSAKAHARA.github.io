@@ -72,7 +72,7 @@
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：主成分分析について簡単に書いた。
+：データクレンジングの項目を充実させた。
 </div>
 
  <div class="navigation">
@@ -670,15 +670,17 @@
     <div class="hidden_show">
 
     <h4>雑音除去</h4>
-    ICAや平準化などで行うことが可能。
+      <h5>平準化</h4>
+      ローパスフィルタを通してスパイクを除去する。
 
-    <h4>平準化</h4>
-    ローパスフィルタを通してスパイクを除去する。
+      <h5>ICA</h5>
 
-    <h4>センタリング</h4>
-    平均を0にする
 
-    <h4>正規化：標準化</h4>
+    <h4>normalization<span class="small"> : 正規化</span></h4>
+      <h5>センタリング</h5>
+      平均値を求めた後全データから平均値を引き、平均を0にする
+
+      <h5>standarization<span class="small">標準化</span></h5>
       特徴を平均0、分散1にすることで、特徴ごとのデータ分布を近づける。
       ImageDataGeneratorを使う場合は以下のようになる。
 <pre> <code># ジェネレーターの生成
@@ -687,8 +689,8 @@ data_generator = ImageDataGenerator(samplewise_center=True, samplewise_std_norma
 # 標準化
 g = data_generator.flow(X_train, y_train, shuffle=False)
 X_batch, y_batch = g.next() </code> </pre>
-    <h4>正規化：白色化</h4>
-    特徴間の相関をなくし、分散を一定にする。
+<h5>whitening<span class="small"> : 白色化</span></h5>
+        特徴間の相関をなくし、分散を一定にする。
 <pre> <code># ジェネレーターの生成
 datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
 
@@ -696,48 +698,45 @@ datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
 g = datagen.flow(X_train, y_train, shuffle=False)
 X_batch, y_batch = g.next() </code> </pre>
 
-    <dl>
-      <dt>バッチ正規化</dt>
-      <dd>
+      <h5>batch normalization<span class="small"> : バッチ正規化 </span></h5>
       ミニバッチ学習の際にバッチごとに標準化を行うこと。
       Kerasの実装は以下の通り。
 <pre> <code> model.add(BatchNormalization()) </code> </pre>
-      </dd>
 
-      <dt>重み正規化</dt>
-      <dd>
+      <h5>重み正規化</h5>
         入力xではなく、重み係数wを正則化(平均０分散１）
-      </dd>
-      <dt>層正規化</dt>
-      <dd>
+      <h5>層正規化</h5>
         層内の全ニューロンを正則化(平均０分散１）する。入力データが１でも正則化可能。
-      </dd>
 
-      <dt>主成分分析</dt>
-      <dd>
+      <h5>zero-phase component analysis<span class="small"> : ZCA, ゼロ位相成分分析</span></h5>
+        白色化の線形変換に使用する行列を対称行列に制限する。
+
+      <h5>local response  normalization<span class="small"> : LRN, 局所的応答正規化</span></h5>
+        同一位置(ピクセル)において複数の特徴マップ間で正規化する。[5]
+
+      <h5>global contrast normalization<span class="small"> : GCN, 大域コントラスト正規化</span></h5>
+        特徴マップ全体でコントラストを正規化する。
+
+      <h5>local contrast normalization<span class="small"> : LCN, 局所コントラスト正規化</span></h5>
+        特徴マップの局所領域内でコントラストを正規化する。
+
+
+    <h4>次元削減</h4>
+      <h5>principal component analysis<span class="small"> : PCA, 主成分分析</span></h5>
         主成分分析を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
-      </dd>
-      <dt>特異値分解</dt>
-      <dd>
-        Todo : 内容
-      </dd>
-      <dt>ゼロ位相成分分析</dt>
-      <dd>
-        Todo : 内容
-      </dd>
-      <dt>局所的応答正規化</dt>
-      <dd>
-        Todo : 内容
-      </dd>
-      <dt>帯域コントラスト正規化</dt>
-      <dd>
-        Todo : 内容
-      </dd>
-      <dt>局所的コントラスト正規化</dt>
-      <dd>
-        Todo : 内容
-      </dd>
-    </dl>
+
+      <h5>singular value decomposition<span class="small"> : 特異値分解</span></h5>
+        特異値分解を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
+        
+        特異値分解とは、行列\(A\)を\( A = U\sum V^{T} \)と分解することである。ここで\(\sum\)の次元は\(A\)と等しく、\(D\)を\(A\)の固有値の対角行列とすると、\( \sum =
+   \left(
+    \begin{array}{cc}
+      D & 0 \\
+      0 & 0 
+    \end{array}
+  \right)
+ \)と表される(0の数で次元を合わせる）。\(V \)は特異ベクトルを並べた右特異ベクトル、Uは\(A\)、\(\sum\)、\(V\)から求まる左特異ベクトルである。
+
 
     </div></div>
 
@@ -1013,6 +1012,7 @@ X_batch, y_batch = g.next() </code> </pre>
     <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">岡谷 貴之."深層学習", 2015, 講談社</li>
     <li><cite><a href="https : //daihen.aidemy.jp/">"Aidemy"</li>
     <li><cite><a href="http : //bookclub.kodansha.co.jp/product?item=0000147655">岩田 具治."トピックモデル、機械学習プロフェッショナルシリーズ".2018,講談社</a> </cite></li>
+    <li><cite><a href="http://may46onez.hatenablog.com/entry/2016/01/08/142843">gco(id:may46onez)."theanoでLocal Response Normalization(LRN)を使う (備忘録とか日常とか)",2016, Hatena Blog</li>
   </ol>
 </div>
 
