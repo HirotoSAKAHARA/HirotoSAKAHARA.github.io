@@ -11,6 +11,26 @@ skinparam backgroundColor transparent
 深層学習<|-- RNN
 @enduml
 
+
+@startuml learning_procedure
+start
+repeat
+fork
+: データを取得する;
+: データインジェスチョン;
+: データクレンジング;
+: データを学習データと評価データに分割;
+fork again
+: 学習モデルの作成;
+end fork
+: 学習データにてモデルパラメータを学習;
+: 評価データにて評価;
+repeat while(十分な性能だと判断)
+: モデルをデプロイする;
+stop
+skinparam backgroundColor transparent
+@enduml
+
 @startuml decision_tree
 start
 :ルートノードに訓練データを入れる;
