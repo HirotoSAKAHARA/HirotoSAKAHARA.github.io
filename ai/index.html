@@ -698,7 +698,38 @@
 
     </div></div>
 
-<h2>データ前処理</h2>
+<h2>データ分析プロセス</h2>
+
+  <h3>データ分析標準プロセス</h3>
+    <div class="hidden_box">
+    <label for="label-data-analyse-process">[+]　　　</label>
+    <input type="checkbox" id="label-data-analyse-process"/>
+    <div class="hidden_show">
+
+    <h4>cross industry standard process for data mining<span class="small"> : CRISP-DM</span></h4>
+      1.ビジネス理解で課題を明確にし、2.データ理解でデータを取得、3.データ準備でデータを整形し、4.モデリングで分析、
+      その結果を5.評価して、6.適用、あるいは、もう一度サイクルを回し、考え直す。というやり方。
+      <img src="out\ai\CRISP-DM.png" alt="CRISP-DM"/>
+    
+    <h4>Knowledge Discovery in Databases<span class="small"> : KDD</span></h4>
+      CRISP-DMと比較し、よりデータ分析部分にフォーカスしており、以下の手順ですすめる。
+
+      <ol>
+        <li> アプリケーションドメインの理解を構築し、消費者の視点でkddプロセスの目標を決定する。</li>
+        <li> 発見がなされるデータ・セットを選択し、または変数やデータサンプルのサブセットに注目し、目的データ・セットを構築する。</li>
+        <li> 適切なノイズ除去や時系列情報や変化を利用した欠損データ対策などのデータクレンジングと前処理を行う。</li>
+        <li> タスクの目標に依存するデータの特徴を見つけるために、次元削減やデータ変換をし、変数の削減あるいはデータの不変量を見つける。</li>
+        <li> kddプロセスの目標を特定のデータマイニング手法に合わせる。例えば、要約、分類、回帰、クラスタリングなど。</li>
+        <li> データのパターンを探索するデータマイニングアルゴリズムの選択する。</li>
+        <li> データマイニングを行う。</li>
+        <li> マイニングされたパターンの解釈を行う。特に、モデルパターンの可視化や得られたパターンから与えられたデータの可視化を含む。</li>
+        <li> 発見した知識を他のシステムと統合するか、あるいは単に興味ある人々のために文書化する。</li>
+      </ol>
+
+      <img src="out\ai\kdd.png" alt="kdd" width="100%"/>
+    </div></div>
+
+
   <h3>データ拡張・水増し</h3>
     <div class="hidden_box">
     <label for="label-data-extension">[+]　　　</label>
@@ -1070,6 +1101,7 @@ X_batch, y_batch = g.next() </code> </pre>
     <li><cite><a href="https : //daihen.aidemy.jp/">"Aidemy"</li>
     <li><cite><a href="http : //bookclub.kodansha.co.jp/product?item=0000147655">岩田 具治."トピックモデル、機械学習プロフェッショナルシリーズ".2018,講談社</a> </cite></li>
     <li><cite><a href="http://may46onez.hatenablog.com/entry/2016/01/08/142843">gco(id:may46onez)."theanoでLocal Response Normalization(LRN)を使う (備忘録とか日常とか)",2016, Hatena Blog</li>
+    <li><cite><a href="https://www.aaai.org/Papers/KDD/1996/KDD96-014.pdf">Usama Fayyad, Gregory Piatetsky-Shapiro, Padhraic Smyth, "Knowledge Discovery and Data Mining: Towards a Unifying Framework",1996, KDD-96 Proceedings</li>
   </ol>
 </div>
 

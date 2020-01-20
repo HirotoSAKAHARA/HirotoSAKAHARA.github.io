@@ -127,20 +127,6 @@ stop
 skinparam backgroundColor transparent
 @enduml
 
-
-@startuml k_means_clustering
-start
-: 分割数を決定する;
-: 与えられたデータにランダムにクラスを割り当てる。;
-repeat
-: 各クラスの代表ベクトルを、そのクラスが割り当てられたデータ群の中心（重心など）とする。;
-: 各データのクラスを、各データに一番近い代表ベクトルを持つクラスとする。;
-repeat while(終了の判断をする) 
-stop
-skinparam backgroundColor transparent
-@enduml
-
-
 @startuml ada_boost
 start
 : 全データに等しい重みを付ける。;
@@ -158,3 +144,40 @@ stop
 skinparam backgroundColor transparent
 @enduml
 
+@startuml CRISP-DM
+hide empty description
+[*] --> 1.ビジネス理解
+
+1.ビジネス理解 -right-> 2.データ理解
+
+2.データ理解 -left-> 1.ビジネス理解
+
+2.データ理解 -right-> 3.データ準備
+
+3.データ準備 -down-> 4.モデリング
+
+4.モデリング -up-> 3.データ準備
+
+4.モデリング -left-> 5.評価
+
+5.評価 -up-> 1.ビジネス理解
+
+5.評価 -left-> 6.適用
+
+skinparam backgroundColor transparent
+@enduml
+
+@startuml kdd
+hide empty description
+
+データ -right-> 目的データ : データ \n 選択
+目的データ -right-> 前処理後データ : データ \n 前処理 
+前処理後データ -right-> 変換済みデータ : データ \n 変換
+変換済みデータ -right-> パターン : データマイニング
+パターン -right-> 知識 : 解釈・評価
+知識 -right-> [*]
+パターン -down-> 目的データ 
+パターン -down-> 前処理後データ 
+パターン -down-> 変換済みデータ 
+skinparam backgroundColor transparent
+@enduml
