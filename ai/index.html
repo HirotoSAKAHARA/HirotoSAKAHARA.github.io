@@ -72,7 +72,7 @@
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：強化学習についての記述を追加
+：データ前処理について大幅追記、章立ての変更
 </div>
 
  <div class="navigation">
@@ -110,6 +110,20 @@
       <img src="out\ai\kind_of_ai.png" alt="aiの種類"/>
     </div>
     </div> </div>
+
+  <h3>機械学習とデータマイニング</h3>
+    <div class="hidden_box">
+    <label for="label_learning_vs_mining">[+]　　　</label>
+    <input type="checkbox" id="label_learning_vs_mining"/>
+    <div class="hidden_show">
+
+    機械学習とよく似たものにデータマイニングがある。
+    これは大量のデータにデータ解析の技法を網羅的に適用することで知識を取り出す技法であり、
+    使用する技法は機械学習と同じだが目的が異なる。
+    データマイニング目的は未知のデータの特徴を発見することであり、
+    機械学習の目的は発見したデータの特徴からあるデータに付随するデータの値を予測することである。
+    英語ではknowledge-discovery in databasesの頭文字をとってKDDとも呼ばれる。
+    </div></div>
 
   <h3>教師の有無による分類</h3>
     <div class="hidden_box">
@@ -181,12 +195,12 @@
 
     </div></div>
     
-    <h3>学習の基礎(教師あり学習、教師なし学習)</h3>  
+    <h3>学習の基礎 <span class="small">(教師あり学習、教師なし学習、データマイニング)</span></h3>  
       <div class="hidden_box">
       <label for="label_procedure">[+]　　　</label>
       <input type="checkbox" id="label_procedure"/>
       <div class="hidden_show">
-      <h4>手順</h4>
+      <h4>教師あり学習、教師なし学習の手順</h4>
         教師あり学習、教師なし学習の学習の手順を示す。用語については次節で示す。
         データは学習に利用する訓練データと検証に利用する検証データ、テストデータに分割するが、
         これは、モデルが学習のし過ぎによりオーバーフィッティング状態となり、
@@ -194,6 +208,37 @@
       <div>
         <img src="out\ai\learning_procedure.png" alt="学習手順"/>
       </div>
+
+      <h4>cross industry standard process for data mining<span class="small"> : CRISP-DM</span></h4>
+        <div>
+        CRISP-DMコンソーシアムによって提唱されたデータ分析プロジェクトのプロセスモデル。
+        </div>
+        
+        <div>
+        1.ビジネス理解で課題を明確にし、2.データ理解でデータを取得、3.データ準備でデータを整形し、4.モデリングで分析、
+        その結果を5.評価して、6.適用、あるいは、もう一度サイクルを回し、考え直す。というやり方。
+        </div>
+        <img src="out\ai\CRISP-DM.png" alt="CRISP-DM"/>
+    
+      <h4>Knowledge Discovery in Databases<span class="small"> : KDD</span></h4>
+        <div>
+        データマイニングにより、データから知識を探索するためのプロセスモデル。CRISP-DMと比較し、よりデータ分析部分にフォーカスしており、以下の手順ですすめる。
+        </div>
+        <div>
+      <ol>
+        <li> アプリケーションドメインの理解を構築し、消費者の視点でkddプロセスの目標を決定する。</li>
+        <li> 発見がなされるデータ・セットを選択し、または変数やデータサンプルのサブセットに注目し、目的データ・セットを構築する。</li>
+        <li> 適切なノイズ除去や時系列情報や変化を利用した欠損データ対策などのデータクレンジングと前処理を行う。</li>
+        <li> タスクの目標に依存するデータの特徴を見つけるために、次元削減やデータ変換をし、変数の削減あるいはデータの不変量を見つける。</li>
+        <li> kddプロセスの目標を特定のデータマイニング手法に合わせる。例えば、要約、分類、回帰、クラスタリングなど。</li>
+        <li> データのパターンを探索するデータマイニングアルゴリズムの選択する。</li>
+        <li> データマイニングを行う。</li>
+        <li> マイニングされたパターンの解釈を行う。特に、モデルパターンの可視化や得られたパターンから与えられたデータの可視化を含む。</li>
+        <li> 発見した知識を他のシステムと統合するか、あるいは単に興味ある人々のために文書化する。</li>
+      </ol>
+
+      <img src="out\ai\kdd.png" alt="kdd" width="100%"/>
+      </div>  
 
       <h4>用語</h4>
         <h5>data ingestion<span class="small"> : データインジェスチョン</span></h5>
@@ -293,6 +338,9 @@
 
     </div></div>
 
+
+
+
     <h3>その他基本的なトピック</h3>  
       <div class="hidden_box">
       <label for="label_basic_topics">[+]　　　</label>
@@ -300,9 +348,6 @@
       <div class="hidden_show">
 
       <h4>基本用語</h4>
-
-       <h5>data mining <span class="small"> : データマイニング</span></h5>
-
        <h5>sota</h5>
           あるタスクにおいて、その時の最高性能が出せるアルゴリズム
 
@@ -328,16 +373,198 @@
           難しいデータを正しく分類した学習機を重みを高め、学習機を統合する。
 
 
-
-
         <h5>階層的クラスタリング</h5>
           データの一部をクラスタリングし、クラスタリングしたクラスを一つのデータととらえ、残りのデータとともに次のクラスタリングを行う。
         <h5>非階層的クラスタリング</h5>
           すべてのデータを一気にクラスタリングする。
         
       </div></div>
+
+
+<h2>データ前処理の手法</h2>
+  <h3>データ拡張・水増し</h3>
+    <div class="hidden_box">
+    <label for="label-data-extension">[+]　　　</label>
+    <input type="checkbox" id="label-data-extension"/>
+    <div class="hidden_show">
+
+    学習の際に必要なデータを水増しする。
+    回転、平行移動、拡大・縮小、反転、アフィン変換、剪断変換、ホモグラフィ変換、色、光量変換、ノイズ追加など。
+    
+    <dl>
+      <dt>ImageDataGenerator(keras)</dt>
+      <dd>
+        ランダムにデータの反転、圧縮、移動、回転などを行うことができる。
+        ミニバッチでデータを作成しながら、学習することで、メモリも少なくてすむ。
+      </dd>
+      <dt>mixup</dt>
+      <dd>データ間を線形に補間したものを使用する。この時同時にラベルも学習する。
+          分類問題のときは、0でも1でもないデータができる。</dd>
+    </dl>
+    </div></div>
+
+  <h3>データ欠損への対応</h3>
+    <div class="hidden_box">
+    <label for="label8-1">[+]　　　</label>
+    <input type="checkbox" id="label8-1"/>
+    <div class="hidden_show">
+
+    <h4>データ欠損のパターン</h4>
+    <dl>
+      <dt>missing completely at random <span class="small"> : MCAR</span></dt>
+      <dd>あるデータ値が欠損する確率が、全データと無関係。</dd>
+      <dt>missing at random <span class="small"> : MAR</span></dt>
+      <dd>ある項目が欠損する確率が、欠損している項目以外の観測されたデータ項目のみから推測できる。例として女性は一定の確率で年齢を答えない場合など。</dd>
+      <dt>not missing at random <span class="small"> : NMAR</span></dt>
+      <dd>ある項目が欠損する確率がその項目そのものに依存し、また、その項目以外のデータ項目からも、欠損している項目の欠損率を推測できない。例としては、男女変わらず、年齢が高くなるほど年齢について答えなくなる場合など。この場合の欠損は代入法では解決できない。</dd>
+    </dl>
+    <h4>リストワイズ削除</h4>
+        欠損値が含まれるデータ行をすべて削除する。
+
+    <h4>ペアワイズ削除</h4>
+      欠損の少ない列を残し、その列において欠損値が含まれるデータ行をすべて削除する。
+
+    <h4>平均値代入法</h4>
+      欠損値をその列、あるいは行の平均値によって穴埋めする方法。分散や誤差を知りたい場合は使えない。
+      
+    <h4>回帰代入法</h4>
+      欠損値を除いた状態で回帰分析を行い、推定値を補完する。
+
+    <h4>確率的回帰代入法</h4>
+      回帰代入法により推定した値に誤差をランダムに加えて補完する。
+
+    <h4>ホットデック法</h4>
+      欠損値を含むデータ行（レシピエント）に欠損値以外の属性の似ているデータ行（ドナー)の値を使って補完。
+      ドナーは最近傍法などで探索。
+
+    <h4>多重代入法</h4>
+      観測されたデータから欠損値を予測して補完する完全なデータセットを複数作成し、
+      各セット毎に分析モデルを構築、最後に各分析モデルを統合する。
+
+    </div></div>
+
+    <h3>外れ値への対応</h3>
+    <div class="hidden_box">
+    <label for="label8-2">[+]　　　</label>
+    <input type="checkbox" id="label8-2"/>
+    <div class="hidden_show">
+
+    <h4>local outlier factor <span class="small"> : LOF </span></h4>
+      データの密度に基づいて外れ値を検知する。
+      <ul>
+        <li>近くにデータ点が少ないのが外れ値であると考える</li>
+        <li>k個の近傍点を使ってデータの密度を推定する</li>
+        <li>上記の密度が、周囲と相対的に低い点を外れ値と判定する</li>
+      </ul>
+    <h4>isolation forest</h4>
+      軸毎にランダムにデータ分割を行う空間分割ツリーを作成した時に、
+      早々にデータ分割ができなくなるデータを外れ値とする。
+      <ul>
+        <li>距離や密度に依存しないため、それらの指標を計算するコストが不要</li>
+        <li>計算が複雑でなく、省メモリである</li>
+        <li>大規模データであっても計算をスケールさせやすい</li>
+      </ul>
+    </div></div>
+
+  <h3>不均衡データへの対応</h3>
+    <div class="hidden_box">
+    <label for="label8-3">[+]　　　</label>
+    <input type="checkbox" id="label8-3"/>
+    <div class="hidden_show">
+
+    <h4>オーバーサンプリング</h4>
+    <h4>アンダーサンプリング</h4>
+    <h4>アンダーサンプリングとアンダーサンプリングの組み合わせ</h4>
+    </div></div>
+
+  <h3>雑音除去</h3>
+    <div class="hidden_box">
+    <label for="label8-4">[+]　　　</label>
+    <input type="checkbox" id="label8-4"/>
+    <div class="hidden_show">
+
+    <h4>平準化</h4>
+    ローパスフィルタを通してスパイクを除去する。
+
+    <h4>ICA</h4>
+
+    </div></div>
+
+    <h3>normalization<span class="small"> : 正規化</span></h3>
+    <div class="hidden_box">
+    <label for="label8-5">[+]　　　</label>
+    <input type="checkbox" id="label8-5"/>
+    <div class="hidden_show">
+
+    <h4>センタリング</h4>
+    平均値を求めた後全データから平均値を引き、平均を0にする
+
+    <h4>standarization<span class="small"> : 標準化</span></h4>
+    特徴を平均0、分散1にすることで、特徴ごとのデータ分布を近づける。
+    ImageDataGeneratorを使う場合は以下のようになる。
+<pre> <code># ジェネレーターの生成
+data_generator = ImageDataGenerator(samplewise_center=True, samplewise_std_normalization=True)
+
+# 標準化
+g = data_generator.flow(X_train, y_train, shuffle=False)
+X_batch, y_batch = g.next() </code> </pre>
+<h4>whitening<span class="small"> : 白色化</span></h4>
+        特徴間の相関をなくし、分散を一定にする。
+<pre> <code># ジェネレーターの生成
+datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
+
+# 標準化
+g = datagen.flow(X_train, y_train, shuffle=False)
+X_batch, y_batch = g.next() </code> </pre>
+
+    <h4>batch normalization<span class="small"> : バッチ正規化 </span></h4>
+    ミニバッチ学習の際にバッチごとに標準化を行うこと。
+    Kerasの実装は以下の通り。
+<pre> <code> model.add(BatchNormalization()) </code> </pre>
+
+    <h4>重み正規化</h4>
+      入力xではなく、重み係数wを正則化(平均０分散１）
+    <h4>層正規化</h4>
+      層内の全ニューロンを正則化(平均０分散１）する。入力データが１でも正則化可能。
+
+    <h4>zero-phase component analysis<span class="small"> : ZCA, ゼロ位相成分分析</span></h4>
+      白色化の線形変換に使用する行列を対称行列に制限する。
+
+    <h4>local response  normalization<span class="small"> : LRN, 局所的応答正規化</span></h4>
+      同一位置(ピクセル)において複数の特徴マップ間で正規化する。[5]
+
+    <h4>global contrast normalization<span class="small"> : GCN, 大域コントラスト正規化</span></h4>
+      特徴マップ全体でコントラストを正規化する。
+
+    <h4>local contrast normalization<span class="small"> : LCN, 局所コントラスト正規化</span></h4>
+      特徴マップの局所領域内でコントラストを正規化する。
+    </div></div>
+
+
+  <h3>次元削減</h3>
+    <div class="hidden_box">
+    <label for="label8-6">[+]　　　</label>
+    <input type="checkbox" id="label8-6"/>
+    <div class="hidden_show">
+
+    <h4>principal component analysis<span class="small"> : PCA, 主成分分析</span></h4>
+      主成分分析を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
+
+    <h4>singular value decomposition<span class="small"> : SVD, 特異値分解</span></h4>
+      特異値分解を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
+        
+      特異値分解とは、行列\(A\)を\( A = U\sum V^{T} \)と分解することである。ここで\(\sum\)の次元は\(A\)と等しく、\(D\)を\(A\)の固有値の対角行列とすると、\( \sum =
+   \left(
+    \begin{array}{cc}
+      D & 0 \\
+      0 & 0 
+    \end{array}
+  \right)
+ \)と表される(0の数で次元を合わせる）。\(V \)は特異ベクトルを並べた右特異ベクトル、Uは\(A\)、\(\sum\)、\(V\)から求まる左特異ベクトルである。
+    </div></div>
+
    
-<h2>具体的な学習手法</h2>
+<h2>学習の手法</h2>
   <h3><a href="ai/neural_network.html">neural network<span class="small"> : NN, ニューラルネットワーク</span></a></h3>
 
     <h3>support vector machine<span class="small"> : サポートベクターマシン,SVM</span></h3>
@@ -664,7 +891,6 @@
 
     </div></div>
 
-
   <h3>q-learning<span class="small"> : Q学習</span></h3>
     <div class="hidden_box">
     <label for="label-q-learning">[+]　　　</label>
@@ -695,136 +921,6 @@
     <label for="label-actor_critic">[+]　　　</label>
     <input type="checkbox" id="label-actor_critic"/>
     <div class="hidden_show">
-
-    </div></div>
-
-<h2>データ分析プロセス</h2>
-
-  <h3>データ分析標準プロセス</h3>
-    <div class="hidden_box">
-    <label for="label-data-analyse-process">[+]　　　</label>
-    <input type="checkbox" id="label-data-analyse-process"/>
-    <div class="hidden_show">
-
-    <h4>cross industry standard process for data mining<span class="small"> : CRISP-DM</span></h4>
-      1.ビジネス理解で課題を明確にし、2.データ理解でデータを取得、3.データ準備でデータを整形し、4.モデリングで分析、
-      その結果を5.評価して、6.適用、あるいは、もう一度サイクルを回し、考え直す。というやり方。
-      <img src="out\ai\CRISP-DM.png" alt="CRISP-DM"/>
-    
-    <h4>Knowledge Discovery in Databases<span class="small"> : KDD</span></h4>
-      CRISP-DMと比較し、よりデータ分析部分にフォーカスしており、以下の手順ですすめる。
-
-      <ol>
-        <li> アプリケーションドメインの理解を構築し、消費者の視点でkddプロセスの目標を決定する。</li>
-        <li> 発見がなされるデータ・セットを選択し、または変数やデータサンプルのサブセットに注目し、目的データ・セットを構築する。</li>
-        <li> 適切なノイズ除去や時系列情報や変化を利用した欠損データ対策などのデータクレンジングと前処理を行う。</li>
-        <li> タスクの目標に依存するデータの特徴を見つけるために、次元削減やデータ変換をし、変数の削減あるいはデータの不変量を見つける。</li>
-        <li> kddプロセスの目標を特定のデータマイニング手法に合わせる。例えば、要約、分類、回帰、クラスタリングなど。</li>
-        <li> データのパターンを探索するデータマイニングアルゴリズムの選択する。</li>
-        <li> データマイニングを行う。</li>
-        <li> マイニングされたパターンの解釈を行う。特に、モデルパターンの可視化や得られたパターンから与えられたデータの可視化を含む。</li>
-        <li> 発見した知識を他のシステムと統合するか、あるいは単に興味ある人々のために文書化する。</li>
-      </ol>
-
-      <img src="out\ai\kdd.png" alt="kdd" width="100%"/>
-    </div></div>
-
-
-  <h3>データ拡張・水増し</h3>
-    <div class="hidden_box">
-    <label for="label-data-extension">[+]　　　</label>
-    <input type="checkbox" id="label-data-extension"/>
-    <div class="hidden_show">
-
-    学習の際に必要なデータを水増しする。
-    回転、平行移動、拡大・縮小、反転、アフィン変換、剪断変換、ホモグラフィ変換、色、光量変換、ノイズ追加など。
-    
-    <dl>
-      <dt>ImageDataGenerator(keras)</dt>
-      <dd>
-        ランダムにデータの反転、圧縮、移動、回転などを行うことができる。
-        ミニバッチでデータを作成しながら、学習することで、メモリも少なくてすむ。
-      </dd>
-      <dt>mixup</dt>
-      <dd>データ間を線形に補間したものを使用する。この時同時にラベルも学習する。
-          分類問題のときは、0でも1でもないデータができる。</dd>
-    </dl>
-    </div></div>
-
-  <h3>データクレンジング</h3>
-    <div class="hidden_box">
-    <label for="label8-1">[+]　　　</label>
-    <input type="checkbox" id="label8-1"/>
-    <div class="hidden_show">
-
-    <h4>雑音除去</h4>
-      <h5>平準化</h4>
-      ローパスフィルタを通してスパイクを除去する。
-
-      <h5>ICA</h5>
-
-
-    <h4>normalization<span class="small"> : 正規化</span></h4>
-      <h5>センタリング</h5>
-      平均値を求めた後全データから平均値を引き、平均を0にする
-
-      <h5>standarization<span class="small"> : 標準化</span></h5>
-      特徴を平均0、分散1にすることで、特徴ごとのデータ分布を近づける。
-      ImageDataGeneratorを使う場合は以下のようになる。
-<pre> <code># ジェネレーターの生成
-data_generator = ImageDataGenerator(samplewise_center=True, samplewise_std_normalization=True)
-
-# 標準化
-g = data_generator.flow(X_train, y_train, shuffle=False)
-X_batch, y_batch = g.next() </code> </pre>
-<h5>whitening<span class="small"> : 白色化</span></h5>
-        特徴間の相関をなくし、分散を一定にする。
-<pre> <code># ジェネレーターの生成
-datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
-
-# 標準化
-g = datagen.flow(X_train, y_train, shuffle=False)
-X_batch, y_batch = g.next() </code> </pre>
-
-      <h5>batch normalization<span class="small"> : バッチ正規化 </span></h5>
-      ミニバッチ学習の際にバッチごとに標準化を行うこと。
-      Kerasの実装は以下の通り。
-<pre> <code> model.add(BatchNormalization()) </code> </pre>
-
-      <h5>重み正規化</h5>
-        入力xではなく、重み係数wを正則化(平均０分散１）
-      <h5>層正規化</h5>
-        層内の全ニューロンを正則化(平均０分散１）する。入力データが１でも正則化可能。
-
-      <h5>zero-phase component analysis<span class="small"> : ZCA, ゼロ位相成分分析</span></h5>
-        白色化の線形変換に使用する行列を対称行列に制限する。
-
-      <h5>local response  normalization<span class="small"> : LRN, 局所的応答正規化</span></h5>
-        同一位置(ピクセル)において複数の特徴マップ間で正規化する。[5]
-
-      <h5>global contrast normalization<span class="small"> : GCN, 大域コントラスト正規化</span></h5>
-        特徴マップ全体でコントラストを正規化する。
-
-      <h5>local contrast normalization<span class="small"> : LCN, 局所コントラスト正規化</span></h5>
-        特徴マップの局所領域内でコントラストを正規化する。
-
-
-    <h4>次元削減</h4>
-      <h5>principal component analysis<span class="small"> : PCA, 主成分分析</span></h5>
-        主成分分析を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
-
-      <h5>singular value decomposition<span class="small"> : SVD, 特異値分解</span></h5>
-        特異値分解を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
-        
-        特異値分解とは、行列\(A\)を\( A = U\sum V^{T} \)と分解することである。ここで\(\sum\)の次元は\(A\)と等しく、\(D\)を\(A\)の固有値の対角行列とすると、\( \sum =
-   \left(
-    \begin{array}{cc}
-      D & 0 \\
-      0 & 0 
-    \end{array}
-  \right)
- \)と表される(0の数で次元を合わせる）。\(V \)は特異ベクトルを並べた右特異ベクトル、Uは\(A\)、\(\sum\)、\(V\)から求まる左特異ベクトルである。
-
 
     </div></div>
 
@@ -1041,7 +1137,7 @@ X_batch, y_batch = g.next() </code> </pre>
     元画像に１画素だけ異なる所を付け加えると認識が変わる。
     </div></div>
 
-<h2>その外</h2>
+<h2>その外(未整理)</h2>
     <div class="hidden_box">
     <label for="label-sonohoka">[+]　　　</label>
     <input type="checkbox" id="label-sonohoka"/>
