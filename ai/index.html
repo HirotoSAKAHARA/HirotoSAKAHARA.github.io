@@ -144,7 +144,7 @@
       報酬は即時に与えられるとは限らず、報酬は行動の改善の方法を与えない。
     </div></div>
 
-  <h3>タスクによる分類</h3>
+  <h3>人工知能により解決するタスクの種類</h3>
     <div class="hidden_box">
     <label for="label_classify_by_task">[+]　　　</label>
     <input type="checkbox" id="label_classify_by_task"/>
@@ -195,7 +195,7 @@
 
     </div></div>
     
-    <h3>学習の基礎 <span class="small">(教師あり学習、教師なし学習、データマイニング)</span></h3>  
+    <h3>機械学習の基礎 <span class="small">(教師あり学習、教師なし学習、データマイニング)</span></h3>  
       <div class="hidden_box">
       <label for="label_procedure">[+]　　　</label>
       <input type="checkbox" id="label_procedure"/>
@@ -272,7 +272,7 @@
 
       </div></div>
 
-    <h3>強化学習の基礎</h3>  
+    <h3>機械学習の基礎 <span class="small">(強化学習)</span></h3>  
       <div class="hidden_box">
       <label for="label_reinforcement_learning">[+]　　　</label>
       <input type="checkbox" id="label_reinforcement_learning"/>
@@ -338,9 +338,6 @@
 
     </div></div>
 
-
-
-
     <h3>その他基本的なトピック</h3>  
       <div class="hidden_box">
       <label for="label_basic_topics">[+]　　　</label>
@@ -377,31 +374,35 @@
           データの一部をクラスタリングし、クラスタリングしたクラスを一つのデータととらえ、残りのデータとともに次のクラスタリングを行う。
         <h5>非階層的クラスタリング</h5>
           すべてのデータを一気にクラスタリングする。
+        <h5>正例・負例</h5>
+          ２クラス分類の学習用データで値が１となってるクラスを正例、値が−１あるいは０となっているクラスを負例と呼ぶ。
         
       </div></div>
 
 
 <h2>データ前処理の手法</h2>
-  <h3>データ拡張・水増し</h3>
+  <h3>データ量が少ない場合への対応</h3>
     <div class="hidden_box">
     <label for="label-data-extension">[+]　　　</label>
     <input type="checkbox" id="label-data-extension"/>
     <div class="hidden_show">
 
-    学習の際に必要なデータを水増しする。
-    回転、平行移動、拡大・縮小、反転、アフィン変換、剪断変換、ホモグラフィ変換、色、光量変換、ノイズ追加など。
-    
-    <dl>
-      <dt>ImageDataGenerator(keras)</dt>
-      <dd>
-        ランダムにデータの反転、圧縮、移動、回転などを行うことができる。
-        ミニバッチでデータを作成しながら、学習することで、メモリも少なくてすむ。
-      </dd>
-      <dt>mixup</dt>
-      <dd>データ間を線形に補間したものを使用する。この時同時にラベルも学習する。
-          分類問題のときは、0でも1でもないデータができる。</dd>
-    </dl>
+    <h4>data augmentation<span class="small"> : データ拡張、データ水増し</span></h4>
+      <h5>画像処理</h5>
+        回転、平行移動、拡大・縮小、反転、アフィン変換、剪断変換、ホモグラフィ変換、色変換、光量変換、ノイズ追加などを利用する。
+
+      <h5>mixup</h5>
+        データ間を線形に補間したものを使用する。この時同時にラベルも学習する。
+        分類問題のときは、0でも1でもないデータができる。
+
+      <h5>random erasing</h5>
+        画像の一部をランダムに欠損させる。
+
+    <h4>transfer learning<span class="small"> : 転移学習</span></h4>
+      別の学習に使用されたモデルの重み付けをそのまま利用したモデルを用意し、少ないデータで学習する。
+
     </div></div>
+
 
   <h3>データ欠損への対応</h3>
     <div class="hidden_box">
@@ -473,8 +474,20 @@
     <div class="hidden_show">
 
     <h4>オーバーサンプリング</h4>
+      頻度が少ない値を含むデータを複製して増加させる。SMOTE(Synthetic minority over-sampling technique)などの手法がある。
     <h4>アンダーサンプリング</h4>
+      頻度が多い値を含むデータを削減する。ENN(Edited Nearest Neighbours)などの手法がある。
     <h4>アンダーサンプリングとアンダーサンプリングの組み合わせ</h4>
+      SMOTE-ENNなどの手法がある。
+      
+    </div></div>
+
+  <h3>連続値のカテゴリ化</h3>
+    <div class="hidden_box">
+    <label for="label8-31">[+]　　　</label>
+    <input type="checkbox" id="label8-31"/>
+    <div class="hidden_show">
+
     </div></div>
 
   <h3>雑音除去</h3>
@@ -1153,10 +1166,6 @@ X_batch, y_batch = g.next() </code> </pre>
     <dt>Competitive Learning(競合学習)</dt>
     <dd>
     教師なし学習で頻繁に行われる学習で、最も入力データに反応したニューロンのみ更新したりするようなニューロン同士で競わせるような学習.</dd>
-    <dt>転移学習</dt>
-    <dd>
-      学習済みのモデルを使って新たなモデルの学習を行うこと。VGG16などがある。
-    </dd>
     <dt>NIC</dt>
     <dd>
     写真から何をしているのかを言語化する。
@@ -1185,7 +1194,11 @@ X_batch, y_batch = g.next() </code> </pre>
     <dt>BIC、ベイジアン情報量基準</dt>
     <dd>情報量基準(パラメータで記述されたモデルのクラスからモデルを選択する基準)の１つ。 T*log(s^2)+K*log(T)、 ここでTは標本の大きさ、s^2はモデル誤差校の分散推定量、Kはモデルに含まれる係数の数</dd>
 
-
+    <dt>ImageDataGenerator(keras)</dt>
+    <dd>
+      ランダムにデータの反転、圧縮、移動、回転などを行うことができる。
+      ミニバッチでデータを作成しながら、学習することで、メモリも少なくてすむ。
+    </dd>
   </dl>
   </div></div>
 
