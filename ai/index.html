@@ -72,7 +72,7 @@
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：データ前処理項目追加、ブロックチェーンの項目を消去
+：正則化、SSE、DBSCANについて記述
 </div>
 
  <div class="navigation">
@@ -373,7 +373,7 @@
         <h5>階層的クラスタリング</h5>
           データの一部をクラスタリングし、クラスタリングしたクラスを一つのデータととらえ、残りのデータとともに次のクラスタリングを行う。
         <h5>非階層的クラスタリング</h5>
-          すべてのデータを一気にクラスタリングする。
+          すべてのデータを一気にクラスタリングする。データ量が多い場合に有効な手法。
         <h5>正例・負例</h5>
           ２クラス分類の学習用データで値が１となってるクラスを正例、値が−１あるいは０となっているクラスを負例と呼ぶ。
         
@@ -621,9 +621,9 @@ X_batch, y_batch = g.next() </code> </pre>
 <pre> <code> model.add(BatchNormalization()) </code> </pre>
 
     <h4>重み正規化</h4>
-      入力xではなく、重み係数wを正則化(平均０分散１）
+      入力xではなく、重み係数wを正規化(平均０分散１）
     <h4>層正規化</h4>
-      層内の全ニューロンを正則化(平均０分散１）する。入力データが１でも正則化可能。
+      層内の全ニューロンを正規化(平均０分散１）する。入力データが１でも正則化可能。
 
     <h4>zero-phase component analysis<span class="small"> : ZCA, ゼロ位相成分分析</span></h4>
       白色化の線形変換に使用する行列を対称行列に制限する。
@@ -915,7 +915,35 @@ X_batch, y_batch = g.next() </code> </pre>
 		      <li>結果が初期値に大きく依存する。</li>
 		      <li>分割数の決定は別の考察が必要。</li>
 	      </ul>
-   
+
+      <h4>エルボー法</h4>
+        最適なkを決定するための方法で
+        kが大きくなればなるほどSSEは小さくなる傾向にあるが、必要以上に大きくしてもSSEが小さくならないことを利用し、
+        各kにおいてSSEを計算し、折れ曲がる値を最適値とみなす手法。
+        SSEについては評価の項を参照のこと。
+
+    </div></div>
+
+  <h3>DBSCAN density-based spatial clustering of applications with noise<span class="small"> : DBSCAN</span></h3>
+    <div class="hidden_box">
+    <label for="label-dbscan">[+]　　　</label>
+    <input type="checkbox" id="label-dbscan"/>
+    <div class="hidden_show">
+
+    <h4>ターゲットタスク</h4>
+    クラスタリング。
+    <h4>アルゴリズム</h4>
+     <h4>長所</h4>
+      	<ul>
+		      <li>データのクラスタ数を事前に必要としない。</li>
+		      <li>任意の形状のクラスタを見つけることができる。</li>
+		      <li>ハズレ値に対しロバストである。</li>
+	      </ul>
+      <h4>短所</h4>
+      	<ul>
+          <li>データの内容が不明な場合、パラメータ、特に\(\epsilon\)を設定するのが困難</li>
+	      </ul>
+
     </div></div>
 
 
@@ -1016,9 +1044,41 @@ X_batch, y_batch = g.next() </code> </pre>
 
   <h3>TD(\(\lambda\))</h3>
     <div class="hidden_box">
-    <label for="label-actor_critic">[+]　　　</label>
-    <input type="checkbox" id="label-actor_critic"/>
+    <label for="label-tdlambda">[+]　　　</label>
+    <input type="checkbox" id="label-tdlambda"/>
     <div class="hidden_show">
+
+    </div></div>
+
+  <h3 id="perceptron">各種法に共通する技術</h3>
+    <div class="hidden_box">
+    <label for="label-common-techniques">[+]　　　</label>
+    <input type="checkbox" id="label-common-techniques"/>
+    <div class="hidden_show">
+
+    <h4>正則化</h4>
+      回帰問題において、過学習を行った場合に係数が大きくなりがちであることを利用し、
+      損失関数にペナルティ項を設定することで、汎化性能の高いモデルの生成を目指す方法。
+      <h5>L1正則化</h5>
+        あるモデルの評価関数を次式のように設定する。L1正則化の式を使うと、
+        説明変数が０になりやすく、次元削減に利用される。
+        $$
+        \min{f(x)} + \lambda\sum^n_{i=1}|w_i|
+        $$
+        ここで\(\min{f(x)}\)は通常の損失関数。
+        この正則化を利用した回帰をラッソ回帰と呼ぶ。
+
+      <h5>L2正則化</h5>
+        モデルの評価関数を以下のように設定する。L2正則化ではモデルの過学習を防ぐために用いられる。
+        $$
+        \min{f(x)} + \frac{\lambda}{2}\sum^n_{i=1}|w_i|^2
+        $$
+        この正則化を利用した回帰をリッジ回帰と呼ぶ。
+
+      <h5>Elastic Net回帰</h5>
+        L1正則化とL2正則化を組み合わせた回帰手法
+
+      
 
     </div></div>
 
@@ -1070,8 +1130,6 @@ X_batch, y_batch = g.next() </code> </pre>
     <dt>項目応答理論</dt>
     <dd>例えば、被験者の能力に対して、各テスト項目の正答確率がモデル化できるとすると、そのモデルと実際結果を比較し、それぞれの項目が妥当かどうかを確認できる</dd>
     </dl>
-
-
     </div></div>
 
   <h3>回帰の評価</h3>
@@ -1079,6 +1137,22 @@ X_batch, y_batch = g.next() </code> </pre>
     <label for="label-evaluation-of-regression">[+]　　　</label>
     <input type="checkbox" id="label-evaluation-of-regression"/>
     <div class="hidden_show">
+    <h4>決定係数</h4>
+      一般に\(R^2\)で表され、重回帰分析の結果を読み取る指標の一つで１に近いほど分析の精度が高いことを示す。
+      0.8程度あれば十分にモデリングできていると言える。
+      $$
+        R^2 = 1 - \frac{\sum^n_{i=1}(y_i - \hat{y_i})^2}{\sum^n_{i=1}(y_i - \bar{y})^2}
+      $$
+      ここで、\(y_i\)はi番目の実測値、\(\hat{y_i})\)はi番目の予測値、\(\bar{y}\)は実測値の平均値である。
+
+    <h4>自由度調整済みの決定係数</h4>
+      決定係数は説明変数の数を多く取れば取るほど良い値となる傾向があるため、
+      説明変数の数を\(p\)、標本数を\(N\)として調整を行った決定係数。
+  
+      $$
+        R^2 = 1 - \frac{\sum^n_{i=1}(y_i - \hat{y_i})^2 / (N - p - 1)}{\sum^n_{i=1}(y_i - \bar{y})^2 / (N - 1)}
+      $$
+
     <h4>バイアスバリアンス分解</h4>
     <dl>
       <dt>バイアス</dt>
@@ -1087,6 +1161,30 @@ X_batch, y_batch = g.next() </code> </pre>
       <dd>予測値と真値の分散、オーバーフィッティング時に大きくなりがち</dd>
     </dl>
     </div></div>
+
+
+  <h3>クラスタリングの評価</h3>
+    <div class="hidden_box">
+    <label for="label-eval-clustering">[+]　　　</label>
+    <input type="checkbox" id="label-eval-clustering"/>
+    <div class="hidden_show">
+
+    <h4>sum of squared error <span class="small"> : SSE、クラスタ内誤差平方和</span></h4>
+      クラスタ\(i\)のSSEを\(E_i\)は以下の式で表される。
+      $$
+        E_i = \sum^n_{j=1}(x_j- \bar{x})^2
+      $$
+      ここで\(x_i\)はクラスタに含まれる点の座標、\(\bar{x}\)はクラスタの重心。
+      クラスタリングアルゴリズムの性能は全クラスタのSSEを合わせたものとなり、以下の式で表される。
+      $$
+        E_total = \sum_i^m{E_i}
+      $$
+      ここでｍはクラスタ数。
+
+      
+
+    </div></div>
+
   <h3>NNの評価</h3>
     <div class="hidden_box">
     <label for="label7-4">[+]　　　</label>
