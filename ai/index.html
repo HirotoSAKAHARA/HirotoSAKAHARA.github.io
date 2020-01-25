@@ -72,7 +72,7 @@
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：正則化、SSE、DBSCANについて記述
+：DBSCANのアルゴリズムについて記述
 </div>
 
  <div class="navigation">
@@ -924,7 +924,7 @@ X_batch, y_batch = g.next() </code> </pre>
 
     </div></div>
 
-  <h3>DBSCAN density-based spatial clustering of applications with noise<span class="small"> : DBSCAN</span></h3>
+  <h3>DBSCAN <span class="small"> : density-based spatial clustering of applications with noise</span></h3>
     <div class="hidden_box">
     <label for="label-dbscan">[+]　　　</label>
     <input type="checkbox" id="label-dbscan"/>
@@ -933,17 +933,34 @@ X_batch, y_batch = g.next() </code> </pre>
     <h4>ターゲットタスク</h4>
     クラスタリング。
     <h4>アルゴリズム</h4>
-     <h4>長所</h4>
-      	<ul>
-		      <li>データのクラスタ数を事前に必要としない。</li>
-		      <li>任意の形状のクラスタを見つけることができる。</li>
-		      <li>ハズレ値に対しロバストである。</li>
-	      </ul>
-      <h4>短所</h4>
-      	<ul>
-          <li>データの内容が不明な場合、パラメータ、特に\(\epsilon\)を設定するのが困難</li>
-	      </ul>
+      <h5>概要</h5>
+        以下の方法でコア点、到達可能点、外れ値に分類する。
+        <ul>
+          <li> 点\(p\)を含め、点\(p\)から距離\(\varepsilon \)以内に少なくともminPts個の点があれば、点\(p\)をコア点とする。</li>
+          <li> 点\(q\)がコア点\(p\)から距離から距離\(\varepsilon \)以内にあれば、点\(q\)は点\(p\)から直接到達可能である。</li>
+          <li> 点\(p = \) 点\(p_1\)、点\(q\) = 点\(p_n\)の時、点\(p_{i+1}\)が点\(p_i\)から直接到達可能であり、
+                 結果点\(p_n\)が点\(p_1\)から順にたどり着ける場合、点\(q\)は点\(p\)から到達可能である。
+                 この時、点\(q\)以外はコア点である(\(q\)はコア点か到達可能点である)。</li>
+          <li> どの点からもたどり着けない点は外れ点かノイズ点である。</li>
+        </ul>
+      <h5>手順</h5>
+      <ol>
+        <li>パラメータ\( \varepsilon \)、minPtsを決定する。</li>
+        <li>全ての点について、その点から 距離\(\varepsilon \)以内にある隣接点を見つけ、minPts以上の隣接点がある点をコア点とする。</li>
+        <li>隣接グラフ上のコア点群の連結グラフを見つける。この時コア点でない点は考慮しない。</li>
+        <li>コア点でない点が近くのクラスタから距離\(\varepsilon \)以内にあれば、その点を近くのクラスタに割当する。そうでない点はノイズ点とする。</li>
+      </ol>
 
+    <h4>長所</h4>
+      <ul>
+		    <li>データのクラスタ数を事前に必要としない。</li>
+		    <li>任意の形状のクラスタを見つけることができる。</li>
+		    <li>ハズレ値に対しロバストである。</li>
+	    </ul>
+    <h4>短所</h4>
+      <ul>
+        <li>データの内容が不明な場合、パラメータ、特に\(\varepsilon\)を設定するのが困難</li>
+	    </ul>
     </div></div>
 
 
