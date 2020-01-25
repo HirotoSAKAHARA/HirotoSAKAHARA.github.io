@@ -72,7 +72,7 @@
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：データ前処理について大幅追記、章立ての変更
+：データ前処理項目追加、ブロックチェーンの項目を消去
 </div>
 
  <div class="navigation">
@@ -482,11 +482,83 @@
       
     </div></div>
 
-  <h3>連続値のカテゴリ化</h3>
+  <h3>データ形式の変換</h3>
     <div class="hidden_box">
     <label for="label8-31">[+]　　　</label>
     <input type="checkbox" id="label8-31"/>
     <div class="hidden_show">
+
+    <h4>連続値のカテゴリ化</h4>
+      連続値をカテゴリ値に変換する。
+
+    <h4>カテゴリデータのダミー変数化</h4>
+      カテゴリデータを各カテゴリを示す変数に分け、排他となる２値で表す。
+
+    <h4>横持ちデータと縦持ちデータの変換</h4>
+    人が情報を認識しやすい横持ちデータと、
+    情報量が変化してもデータ構造を変更する必要のない縦持ちデータがあり、
+    データ分析モデルによりどちらかの形式に変換する必要がある。
+    <table>
+      <caption>横持ちデータ</caption>
+      <tr>
+        <th>id</th>
+        <th>item1</th>
+        <th>item2</th>
+        <th>item3</th>
+      </tr>
+      <tr>
+        <td>id1</td>
+        <td>value 11</td>
+        <td>value 12</td>
+        <td>value 13</td>
+      </tr>
+      <tr>
+        <td>id2</td>
+        <td>value 21</td>
+        <td>value 22</td>
+        <td>value 23</td>
+      </tr>
+    </table>
+
+    <table>
+      <caption>縦持ちデータ</caption>
+      <tr>
+        <th>id</th>
+        <th>items</th>
+        <th>value</th>
+      </tr>
+      <tr>
+        <td>id1</td>
+        <td>item1</td>
+        <td>value11</td>
+      </tr>
+      <tr>
+        <td>id1</td>
+        <td>item2</td>
+        <td>value12</td>
+      </tr>
+      <tr>
+        <td>id1</td>
+        <td>item2</td>
+        <td>value13</td>
+      </tr>
+      <tr>
+        <td>id2</td>
+        <td>item1</td>
+        <td>value21</td>
+      </tr>
+      <tr>
+        <td>id2</td>
+        <td>item2</td>
+        <td>value22</td>
+      </tr>
+      <tr>
+        <td>id2</td>
+        <td>item3</td>
+        <td>value23</td>
+      </tr>
+
+    </table>
 
     </div></div>
 
@@ -521,7 +593,20 @@ data_generator = ImageDataGenerator(samplewise_center=True, samplewise_std_norma
 # 標準化
 g = data_generator.flow(X_train, y_train, shuffle=False)
 X_batch, y_batch = g.next() </code> </pre>
-<h4>whitening<span class="small"> : 白色化</span></h4>
+
+    <h4>Box-Cox変換</h4>
+    以下の式に示すように\(x_i\)を\(y_i\)に変換することで、データを正規分布に近づける。
+    線形獣回帰分析など、正規分布を仮定しているようなモデルの精度を高めることができる。
+    $$
+      y_i^\lambda = 
+        \begin{cases}
+          \frac{x_i^\lambda - 1}{\lambda} & (\lambda \neq 0) \\
+          \log{(x_i)} & (\lambda = 0)
+        \end{cases}
+    $$
+
+
+    <h4>whitening<span class="small"> : 白色化</span></h4>
         特徴間の相関をなくし、分散を一定にする。
 <pre> <code># ジェネレーターの生成
 datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
@@ -1102,14 +1187,6 @@ X_batch, y_batch = g.next() </code> </pre>
     <h4>Alpha Go zero</h4>
       囲碁の定石を学習させないことでより囲碁が強くなった。
 
-    </div></div>
-
-  <h3>ブロックチェーン</h3>
-    <div class="hidden_box">
-    <label for="label-blockchain">[+]　　　</label>
-    <input type="checkbox" id="label-blockchain"/>
-    <div class="hidden_show">
-      ブロックチェーン
     </div></div>
 
   <h3>異常検知</h3>
