@@ -72,7 +72,7 @@
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：DBSCANのアルゴリズムについて記述
+：自然言語処理についての記述を追加
 </div>
 
  <div class="navigation">
@@ -209,7 +209,7 @@
         <img src="out\ai\learning_procedure.png" alt="学習手順"/>
       </div>
 
-      <h4>cross industry standard process for data mining<span class="small"> : CRISP-DM</span></h4>
+      <h4>CRISP-DM<span class="small"> : cross industry standard process for data mining-DM</span></h4>
         <div>
         CRISP-DMコンソーシアムによって提唱されたデータ分析プロジェクトのプロセスモデル。
         </div>
@@ -220,7 +220,7 @@
         </div>
         <img src="out\ai\CRISP-DM.png" alt="CRISP-DM"/>
     
-      <h4>Knowledge Discovery in Databases<span class="small"> : KDD</span></h4>
+      <h4>KDD<span class="small"> : Knowledge Discovery in Databases</span></h4>
         <div>
         データマイニングにより、データから知識を探索するためのプロセスモデル。CRISP-DMと比較し、よりデータ分析部分にフォーカスしており、以下の手順ですすめる。
         </div>
@@ -412,11 +412,11 @@
 
     <h4>データ欠損のパターン</h4>
     <dl>
-      <dt>missing completely at random <span class="small"> : MCAR</span></dt>
+      <dt>MCAR <span class="small"> : missing completely at random</span></dt>
       <dd>あるデータ値が欠損する確率が、全データと無関係。</dd>
-      <dt>missing at random <span class="small"> : MAR</span></dt>
+      <dt>MAR<span class="small"> : missing at random</span></dt>
       <dd>ある項目が欠損する確率が、欠損している項目以外の観測されたデータ項目のみから推測できる。例として女性は一定の確率で年齢を答えない場合など。</dd>
-      <dt>not missing at random <span class="small"> : NMAR</span></dt>
+      <dt>NMAR<span class="small"> : not missing at random</span></dt>
       <dd>ある項目が欠損する確率がその項目そのものに依存し、また、その項目以外のデータ項目からも、欠損している項目の欠損率を推測できない。例としては、男女変わらず、年齢が高くなるほど年齢について答えなくなる場合など。この場合の欠損は代入法では解決できない。</dd>
     </dl>
     <h4>リストワイズ削除</h4>
@@ -450,7 +450,7 @@
     <input type="checkbox" id="label8-2"/>
     <div class="hidden_show">
 
-    <h4>local outlier factor <span class="small"> : LOF </span></h4>
+    <h4>LOF<span class="small"> : local outlier factor</span></h4>
       データの密度に基づいて外れ値を検知する。
       <ul>
         <li>近くにデータ点が少ないのが外れ値であると考える</li>
@@ -625,16 +625,16 @@ X_batch, y_batch = g.next() </code> </pre>
     <h4>層正規化</h4>
       層内の全ニューロンを正規化(平均０分散１）する。入力データが１でも正則化可能。
 
-    <h4>zero-phase component analysis<span class="small"> : ZCA, ゼロ位相成分分析</span></h4>
+    <h4>ZCA<span class="small"> : zero-phase component analysis, ゼロ位相成分分析</span></h4>
       白色化の線形変換に使用する行列を対称行列に制限する。
 
-    <h4>local response  normalization<span class="small"> : LRN, 局所的応答正規化</span></h4>
+    <h4>LRN<span class="small"> : local response  normalization, 局所的応答正規化</span></h4>
       同一位置(ピクセル)において複数の特徴マップ間で正規化する。[5]
 
-    <h4>global contrast normalization<span class="small"> : GCN, 大域コントラスト正規化</span></h4>
+    <h4>GCN<span class="small"> : global contrast normalization, 大域コントラスト正規化</span></h4>
       特徴マップ全体でコントラストを正規化する。
 
-    <h4>local contrast normalization<span class="small"> : LCN, 局所コントラスト正規化</span></h4>
+    <h4>LCN<span class="small"> : local contrast normalization, 局所コントラスト正規化</span></h4>
       特徴マップの局所領域内でコントラストを正規化する。
     </div></div>
 
@@ -645,10 +645,10 @@ X_batch, y_batch = g.next() </code> </pre>
     <input type="checkbox" id="label8-6"/>
     <div class="hidden_show">
 
-    <h4>principal component analysis<span class="small"> : PCA, 主成分分析</span></h4>
+    <h4>PCA<span class="small"> : principal component analysis, 主成分分析</span></h4>
       主成分分析を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
 
-    <h4>singular value decomposition<span class="small"> : SVD, 特異値分解</span></h4>
+    <h4>SVC<span class="small"> : singular value decomposition, 特異値分解</span></h4>
       特異値分解を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
         
       特異値分解とは、行列\(A\)を\( A = U\sum V^{T} \)と分解することである。ここで\(\sum\)の次元は\(A\)と等しく、\(D\)を\(A\)の固有値の対角行列とすると、\( \sum =
@@ -661,11 +661,25 @@ X_batch, y_batch = g.next() </code> </pre>
  \)と表される(0の数で次元を合わせる）。\(V \)は特異ベクトルを並べた右特異ベクトル、Uは\(A\)、\(\sum\)、\(V\)から求まる左特異ベクトルである。
     </div></div>
 
+  <h3>表記揺れへの対応</h3>
+    <div class="hidden_box">
+    <label for="label8-7">[+]　　　</label>
+    <input type="checkbox" id="label8-7"/>
+    <div class="hidden_show">
+
+    <h4>表記揺れ</h4>
+      同じ文章の中で、同じ意味の言葉が異なって表記されていること(大文字・小文字、半角・全角、ひらがな、カタカナなど）
+
+    <h4>正規化</h4>
+      表記ゆれを防ぐために、ルールベースで文字や数字を変換すること。正規表現を使うことが多い。
+
+    </div></div>
+
    
 <h2>学習の手法</h2>
   <h3><a href="ai/neural_network.html">neural network<span class="small"> : NN, ニューラルネットワーク</span></a></h3>
 
-    <h3>support vector machine<span class="small"> : サポートベクターマシン,SVM</span></h3>
+    <h3>SVN<span class="small"> : support vector machine, サポートベクターマシン</span></h3>
     <div class="hidden_box">
     <label for="label_svn">[+]　　　</label>
     <input type="checkbox" id="label_svn"/>
@@ -716,7 +730,6 @@ X_batch, y_batch = g.next() </code> </pre>
     <h4>アルゴリズム</h4>
     複数の入力に対し、それぞれに重みを加えたものを足し合わせ、
     その和が0以上の場合は1、以下の場合は0を出力するアルゴリズム。
-    
 
     <div>
       <img src="out\ai\perceptron.png" alt="パーセプトロン"/>
@@ -964,7 +977,7 @@ X_batch, y_batch = g.next() </code> </pre>
     </div></div>
 
 
-  <h3>principal component analysis<span class="small"> : PCA, 主成分分析 </span></h3>
+  <h3>PCA<span class="small"> : principal component analysis, 主成分分析 </span></h3>
     <div class="hidden_box">
     <label for="label-pca">[+]　　　</label>
     <input type="checkbox" id="label-pca"/>
@@ -988,7 +1001,7 @@ X_batch, y_batch = g.next() </code> </pre>
 
     </div></div>
 
-  <h3>independent component analysis<span class="small"> : ICA, 独立成分分析</span></h3>
+  <h3>ICA<span class="small"> : independent component analysis, 独立成分分析</span></h3>
     <div class="hidden_box">
     <label for="label-ica">[+]　　　</label>
     <input type="checkbox" id="label-ica"/>
@@ -1009,7 +1022,7 @@ X_batch, y_batch = g.next() </code> </pre>
     <input type="checkbox" id="label-MF"/>
     <div class="hidden_show">
 
-    <h4>non-negative matrix factorization<span class="small"> : NMF, 非負行列因子化</span></h4>
+    <h4>NMF<span class="small"> : non-negative matrix factorization, 非負行列因子化</span></h4>
       正の値だけをとるMatrix Factorization。こちらが先に発表され、 改良版としてMatrix Factorizationが発表された。
       行列Xを行列Wと行列Hで近似する方法。
       画像のパーツパーツを抽出できる。
@@ -1021,7 +1034,7 @@ X_batch, y_batch = g.next() </code> </pre>
     </div></div>
     
     
-  <h3>t-stocastic neighbor embedding<span class="small"> : t-SNE</span></h3>
+  <h3>t-SNE<span class="small"> : t-stocastic neighbor embedding</span></h3>
     <div class="hidden_box">
     <label for="label-tSNE">[+]　　　</label>
     <input type="checkbox" id="label-tSNE"/>
@@ -1094,8 +1107,6 @@ X_batch, y_batch = g.next() </code> </pre>
 
       <h5>Elastic Net回帰</h5>
         L1正則化とL2正則化を組み合わせた回帰手法
-
-      
 
     </div></div>
 
@@ -1186,7 +1197,7 @@ X_batch, y_batch = g.next() </code> </pre>
     <input type="checkbox" id="label-eval-clustering"/>
     <div class="hidden_show">
 
-    <h4>sum of squared error <span class="small"> : SSE、クラスタ内誤差平方和</span></h4>
+    <h4>SSE<span class="small"> : sum of squared error、クラスタ内誤差平方和</span></h4>
       クラスタ\(i\)のSSEを\(E_i\)は以下の式で表される。
       $$
         E_i = \sum^n_{j=1}(x_j- \bar{x})^2
@@ -1197,8 +1208,6 @@ X_batch, y_batch = g.next() </code> </pre>
         E_total = \sum_i^m{E_i}
       $$
       ここでｍはクラスタ数。
-
-      
 
     </div></div>
 
@@ -1220,18 +1229,64 @@ X_batch, y_batch = g.next() </code> </pre>
     </div></div>
  
 <h2>各分野における応用技術</h2>
-  <h3>自然言語処理</h3>
+  <h3>自然言語処理 <span class="small">NLP, natural language processing</span></h3>
     <div class="hidden_box">
     <label for="label7-3">[+]　　　</label>
     <input type="checkbox" id="label7-3"/>
     <div class="hidden_show">
 
-    <h4>単語埋め込みモデル word2vec</h4>
-    "king" - "man" + "woman" = "Queen" <br>
-    単語のベクトルを用いて、単語の足し算、引き算が可能となる。同じように文法も解ける。
-    それぞれの単語が0,1の入力層が数万個で表示されていたのが、まとめてベクトルとすると、
-    ベクトルが学習によって意味を表すようになってきた。
-    自分以外の周りの単語を予測するスキップグラムとその逆のCBOWで学習させると中間層に意味の表層ができる。
+    <h4>コーパス</h4>
+      自然言語の文書を大量に集めたデータで、国立国語研究所などの様々な機関がまとめたデータのほか、青空文庫などもコーパスと言える。
+      
+
+    <h4>Ngram</h4>
+      与えられたテキストから、それぞれの語に対して隣接するn個の語の列を作って解析する方法。
+      単語単位の場合もある。
+      <ul>
+              <li>0-gram(ヌルグラム) 事前の単語を考慮しない</li>
+              <li>1-gram(ヌ二グラム) 1つ前の単語を考慮する。</li>
+              <li>2-gram(ヌ二グラム) 2つ前と2つまえの単語を考慮する。</li>
+      </ul>
+
+      統計的言語モデルからニューラルネットワーク言語モデル（リカレント．．．nnlm、rnnlm)
+
+    <h4>BOW <span class="small"> : Bags of Words</span></h4>
+      文章中の各単語の分布を記録したベクトルとして表現する。ベクトル表現には以下のようなものがある。
+      <h5>カウント表現</h5>
+        文章中の各単語の出現数を記録する。
+
+      <h5>バイナリ表現</h5>
+        文章中に各単語が存在するかどうかを記録する。
+
+      <h5>tf-idf表現</h5>
+        単語の出現頻度である\(tf\)(term frequency)と単語の希少性を示す\(idf\)(inverse document frequency:逆文書頻度)に基づいて計算される。
+        多くの文書に出現する一般的な言葉の重要度を下げる。
+        $$
+          tfidf_{i,j} = tf_{i,j}\cdot idf_i
+        $$
+        $$
+          tf_{i,j} = \frac{n_{i,j}}{\sum_k{n_{k,j}}}
+        $$
+        $$
+          idf_i = \log{\frac{|D|}{|{d: d \ni t_i}|}}
+        $$
+          ここで、\(n_{i_j}\)は文書\(d_j\)における単語\(t_i\)の出現回数、\(\sum_k{n_{k,j}}\)は文書\(d_j\)における全ての単語の出現回数の和。\(|D|\)は総文書数、\(|{d: d \ni t_i}|\)は単語\(t_i\)を含む文書数。
+
+      <h5>cos類似度</h5>
+        ベクトルがどれだけ近いかを判断する。
+        $$
+          cos(\vec{q}, \vec{d}) = \frac{\vec{q}\vec{d}}{|\vec{q}||\vec{d}|} = \frac{\sum_{i=1}q_id_i}{\sqrt{\sum_{i=1}q_i^2}\sqrt{\sum_{i=1}d_i^2}}
+        $$
+        
+    <h4>word2vec</h4>
+      "king" - "man" + "woman" = "Queen" <br>
+      単語埋め込みモデル。単語のベクトルを用いて、単語の足し算、引き算が可能となる。同じように文法も解ける。
+      それぞれの単語が0,1の入力層が数万個で表示されていたのが、まとめてベクトルとすると、
+      ベクトルが学習によって意味を表すようになってきた。
+      自分以外の周りの単語を予測するスキップグラムとその逆のCBOWで学習させると中間層に意味の表層ができる。
+
+    <h4>doc2vec</h4>
+      word2vecを応用した文章をベクトル化する技術で、文の語順も特徴として考慮に入れることができる。
 
     <h4>トピックモデル</h4>
     <dl>
