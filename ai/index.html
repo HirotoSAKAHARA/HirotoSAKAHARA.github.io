@@ -222,7 +222,7 @@
     
       <h4>KDD<span class="small"> : Knowledge Discovery in Databases</span></h4>
         <div>
-        データマイニングにより、データから知識を探索するためのプロセスモデル。CRISP-DMと比較し、よりデータ分析部分にフォーカスしており、以下の手順ですすめる。
+        データマイニングにより、データから知識を探索するためのプロセスモデル。CRISP-DMと比較し、よりデータ分析部分にフォーカスしており、以下の手順ですすめる。[6]
         </div>
         <div>
       <ol>
@@ -629,7 +629,7 @@ X_batch, y_batch = g.next() </code> </pre>
       白色化の線形変換に使用する行列を対称行列に制限する。
 
     <h4>LRN<span class="small"> : local response  normalization, 局所的応答正規化</span></h4>
-      同一位置(ピクセル)において複数の特徴マップ間で正規化する。[5]
+      同一位置(ピクセル)において複数の特徴マップ間で正規化する。[4]
 
     <h4>GCN<span class="small"> : global contrast normalization, 大域コントラスト正規化</span></h4>
       特徴マップ全体でコントラストを正規化する。
@@ -1237,8 +1237,23 @@ X_batch, y_batch = g.next() </code> </pre>
 
     <h4>コーパス</h4>
       自然言語の文書を大量に集めたデータで、国立国語研究所などの様々な機関がまとめたデータのほか、青空文庫などもコーパスと言える。
-      
 
+    <h4>わかち書き</h4>
+      文章において語の区切りに空白を挟んで記述すること。
+      
+    <h4>形態素解析 <span class="small">Morphological Analysis</span></h4>
+      文法ルールや解析辞書データに基づいて文章を単語に分割し、それぞれに品詞を付与する処理。様々なライブラリが提供されている。
+     <dl>
+      <dt><a href="http://taku910.github.io/mecab/">MeCab</a></dt>
+      <dd>  京都大学情報学研究科−日本電信電話株式会社コミュニケーション科学基礎研究所 共同研究ユニットプロジェクトを通じて開発されたオープンソース形態素解析エンジンで、言語, 辞書,コーパスに依存しない汎用的な設計を 基本方針としている。</dd>
+      <dt><a href="http://mocobeta.github.io/janome/">Janome</a></dt>
+      <dd> Janome(蛇の目)はpure pythonで書かれた、辞書内包(mecab-ipadic-2.7.0-20070801)の形態素解析器で、依存ライブラリなしでインストールできるpythonライブラリ<dd>
+      <dt><a href="https://chasen-legacy.osdn.jp/">Chasen</a></dt>
+      <dd> 茶筅システムは、奈良先端科学技術大学院大学情報科学研究科自然言語処理学講座(松本研究室)が、広く自然言語処理研究に資するため無償のソフトウェアとして開発されたもの。</dd>
+      <dt><a href="http://nlp.ist.i.kyoto-u.ac.jp/index.php?JUMAN">JUMAN</a></dt>
+      <dd>JUMANは、京都大学 大学院情報学研究科 知能情報学専攻 知能メディア講座 言語メディア分野（黒橋・河原・村脇研究室）によって、計算機による日本語の解析の研究を目指す多くの研究者に共通に使える形態素解析ツールを提供するために開発された。</dd>
+    </dl>
+     
     <h4>Ngram</h4>
       与えられたテキストから、それぞれの語に対して隣接するn個の語の列を作って解析する方法。
       単語単位の場合もある。
@@ -1272,11 +1287,30 @@ X_batch, y_batch = g.next() </code> </pre>
         $$
           ここで、\(n_{i_j}\)は文書\(d_j\)における単語\(t_i\)の出現回数、\(\sum_k{n_{k,j}}\)は文書\(d_j\)における全ての単語の出現回数の和。\(|D|\)は総文書数、\(|{d: d \ni t_i}|\)は単語\(t_i\)を含む文書数。
 
+    <h4>類似度</h4>
+      ２つのデータがどれだけ似ているかの指標
       <h5>cos類似度</h5>
-        ベクトルがどれだけ近いかを判断する。
+        ベクトルがどれだけ近いかを判断する指標
         $$
           cos(\vec{q}, \vec{d}) = \frac{\vec{q}\vec{d}}{|\vec{q}||\vec{d}|} = \frac{\sum_{i=1}q_id_i}{\sqrt{\sum_{i=1}q_i^2}\sqrt{\sum_{i=1}d_i^2}}
         $$
+      <h5>Jaccard類似度</h5>
+        集合動詞の類似度を判断する指標
+      <h5>ピアソンの積率相関係数</h5>
+      <q>2つの量的変数間の直線的関連の変数を表す係数。n組のデータ(\(x_1, y_1\)),(\(x_2, y_2\)) \(\cdots\) (\(x_n, y_n\))があり、それぞれの平均を\(\bar{x}, \bar{y}\)とした時、ピアソンの積率相関係数は以下の式で表される。</q>[6]
+      $$
+        r_{xy} = \frac{{\displaystyle \sum_{i = 1}^n (x_i - \overline{x})
+        (y_i - \overline{y})}}{\sqrt{{\displaystyle \sum_{i = 1}^n 
+        (x_i - \overline{x})^2}} \sqrt{{\displaystyle \sum_{i = 1}^n 
+        (y_i - \overline{y})^2}}} = \frac{s_{xy}}{s_xs_y}
+      $$
+      <h5>ケンドールの順位相関係数</h5>
+        対応する２つの変量\(p_i(x_i, y_i)\)がある時、\(p_s\)と\(p_t\) (\(s \lt t\)) のときの、\(x_s\)と\(x_t\), \(y_s\)と\(y_t\)の大小の向きに関する類似度を計算する相関係数。
+      <h5>スピアマンの順位相関係数</h5>
+         変量の値をその大きさ順に順位に変換し、あるいは順位しかわかっていないデータの順位により、ピアソンの相関係数を計算したもの。
+
+    <h4>単語文書行列<span class="small">term-document matrix</span></h4>
+      文書に出現する単語の頻度を表形式で表したもの。tf, idfにより単語の重みを変えると、重みあり単語文書行列になる。
         
     <h4>word2vec</h4>
       "king" - "man" + "woman" = "Queen" <br>
@@ -1367,6 +1401,7 @@ X_batch, y_batch = g.next() </code> </pre>
       異常検知
     </div></div>
 
+  <h3>ネットワーク分析</h3>
 
 
 <h2>AIの注意点</h2>
@@ -1455,9 +1490,9 @@ X_batch, y_batch = g.next() </code> </pre>
     <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">一般社団法人日本ディープラーニング協会監修, 浅川 伸一, 江間 有沙, 工藤 郁子, 巣龍 悠輔, 瀬谷 啓介, 松井 孝之, 松尾 豊."深層学習教書 ディープラーニング G検定（ジェネラリスト） 公式テキスト", 2018, 翔泳社</li>
     <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">岡谷 貴之."深層学習", 2015, 講談社</li>
     <li><cite><a href="https : //daihen.aidemy.jp/">"Aidemy"</li>
-    <li><cite><a href="http : //bookclub.kodansha.co.jp/product?item=0000147655">岩田 具治."トピックモデル、機械学習プロフェッショナルシリーズ".2018,講談社</a> </cite></li>
     <li><cite><a href="http://may46onez.hatenablog.com/entry/2016/01/08/142843">gco(id:may46onez)."theanoでLocal Response Normalization(LRN)を使う (備忘録とか日常とか)",2016, Hatena Blog</li>
     <li><cite><a href="https://www.aaai.org/Papers/KDD/1996/KDD96-014.pdf">Usama Fayyad, Gregory Piatetsky-Shapiro, Padhraic Smyth, "Knowledge Discovery and Data Mining: Towards a Unifying Framework",1996, KDD-96 Proceedings</li>
+    <li><cite><a href="https://bellcurve.jp/statistics/glossary/1233.html">BellCurve, "ピアソンの積率相関係数", 統計WEB</a>
   </ol>
 </div>
 
