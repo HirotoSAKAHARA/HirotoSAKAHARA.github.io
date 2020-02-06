@@ -75,7 +75,7 @@
 <script type="text/javascript">
    document.write('最終更新日:' + document.lastModified);
 </script>
-：手順について記述。その他情報整理
+：RNN、LSTMの記述を追加
 </div>
 
  <div class="navigation">
@@ -117,6 +117,7 @@
         </div>
       <h5>Deep Learning</h5>
         多層パーセプトロン等のニューラルネットワークの中で、３層以上のもの。
+        入力層\(x\)、1層以上の中間層(隠れ層)\(h\)、出力層\(y\)からなる。
     
     <h4>学習の手順</h4>
     ニューラルネットワークの学習の手順を以下に示す。
@@ -470,6 +471,7 @@
     <h4>万能近似定理</h4>
     どんな関数を学習するかにかかわらず、大きなmlpであれば、その関数を表現できるが、訓練可能であることを保証しない。
     <h4>ノーフリーランチ定理</h4>
+      <q>コスト関数の局地を探索するあらゆるアルゴリズムは、全ての可能なコスト関数に適用した結果を平均すると同じ性能となる。</q>[1]という組み合わせ最適化の領域の定理。
     <h4>層の数と表現力</h4>
       浅いネットワークであれば、一層あたりのニューロンが増えてしまう。
       </div></div>
@@ -519,7 +521,7 @@ model.fit(x_train, y_train,
     </div></div>
 
 
-<h2>recurrent neural network(rnn, 再帰ニューラルネットワーク)</h2>
+<h2>RNN : <span class="small"> : recurrent neural network, 再帰型ニューラルネットワーク</span></h2>
   <h3>概要</h3>
     <div class="hidden_box">
     <label for="label-rnn-outline">[+]　　　</label>
@@ -528,40 +530,89 @@ model.fit(x_train, y_train,
 
     <h4>特徴</h4>
       フィードバック結合をもつ。漸化式のような構造を持つ。
-      1時刻前の情報を使用することで、それまでの状態変化をすべて反映する。
+      最も簡単な構造のRNNの式は以下の式で表され、
+      構造は、入力層\(x_i\)、1層以上の中間層(隠れ層)\(h_i\)、出力層\(y_i\)からなる下図で示され、
+      １時刻前の中間層の出力を次の中間層に利用することで、それまでの状態変化を全て反映する。
+      $$
+        h_t = f(Ux_t + Wh_{t-1} + b_h)
+      $$
+      $$
+        y_t = g(Vh_t + b_y)
+      $$
+
+      <img src="out\ai\RNN_base.png" alt="RNN"/>
     <h4>応用分野</h4>
       手書き文字認識、音声認識、手書き文字生成、系列学習、機械翻訳、画像脚注付け、構文解析、プログラムコード生成
-    <h4>rnnの種類と応用例</h4>
-      one-to-one  : 画像分類
-      one-to-many : 中間層が時間発展で変わっていく : 画像脚注付き
-      many-to-one : 入力が沢山で出力が１つ：感性分析(レビュー文を見せて星の数を予想する)
-      many-to-many : 入力と出力がたくさん（通常のrnn)：機械翻訳
-      many-to-many(逐次) : ビデオ分類
+    <h4>RNNの種類と応用例</h4>
+      入出力の数により幾つかの種類に分けることができる。
+      <dl>
+        <dt>one-to-one</dt>
+        <dd>画像分類</dd>
+        <dt>one-to-many</dt>
+        <dd>中間層が時間発展で変わっていく : 画像脚注付き</dd>
+        <dt>many-to-one<dt>
+        <dd>入力が沢山で出力が１つ：感性分析(レビュー文を見せて星の数を予想する)</dd>
+        <dt>many-to-many<dt>
+        <dd>入力と出力がたくさん（通常のrnn)：機械翻訳</dd>
+        <dt>many-to-many(逐次)</dt>
+        <dd>ビデオ分類</dd>
+      </dl>
 
-    <h4>ジョーダンネット</h4>
-      (入力層＋context)＋中間層＋出力層。となっており、contextは1時刻前の出力層をコピーする。
-    <h4>エルマンネット</h4>
+      <h5>Elman Net<span class="small">エルマンネット</span></h5>
       (入力層+context)＋中間層＋出力層となっており、contextは1時刻前の中間層（内部状態）をコピーする。
 
+      <h5>Jordan Net<span class="small"> : ジョーダンネット</span></h5>
+      (入力層＋context)＋中間層＋出力層となっており、contextは1時刻前の出力層をコピーする。
+
+    <h4>課題</h4>
+
+      <h5>long term dependency(長距離依存)</h5>
+        いくつか前の情報に依存する時の対策は難しく、
+        再帰結合係数行列の時間発展に関して指数的に作用（勾配爆発）
+
+      <h5> the gradient exploring problem(勾配爆発問題)</h5>
+        RNNの逆伝播において、重み行列を掛けていくことにより、
+        勾配が指数関数的に大きくなってしまうこと。
+
       </div></div>
-  <h3>課題</h3>
-    <div class="hidden_box">
-    <label for="label-rnn-problem">[+]　　　</label>
-    <input type="checkbox" id="label-rnn-problem"/>
-    <div class="hidden_show">
 
-    <h4>long term dependency(長距離依存)</h4>
-      いくつか前の情報に依存する時の対策は難しく、再帰結合係数行列の時間発展に関して指数的に作用（勾配爆発）
+    <h3>LSTM<span class="small"> : long short-term memory、長・短期記憶 </span></h3>
+      <div class="hidden_box">
+      <label for="label-rnn-lstm">[+]　　　</label>
+      <input type="checkbox" id="label-rnn-lstm"/>
+      <div class="hidden_show">
+       <h4>概要</h4>
+         RNNの長距離依存の問題を解決したアーキテクチャ。
+         ネットワークの１つのニューロンをセル、入力ゲート、出力ゲート、及び忘却ゲートで再構築する。
+         各ゲートの入出力も必要なので、結合係数は５倍になる。
+         $$
+          f_t = \sigma(W_fx_t + U_fy_{t-1} + b_f)
+         $$
+         $$
+          i_t = \sigma(W_ix_t + U_iy_{t-1} + b_i)
+         $$
+         $$
+          o_t = \sigma(W_ox_t + U_iy_{t-1} + b_o)
+         $$
+         $$
+          c_t = f_t \circ h_{t-1} + i_t \circ \tanh(W_cx_t + U_cy_{t-1} + b_c)
+         $$
+         $$
+          y_t = o_t \circ \tanh(c_t)
+         $$
 
-    <h4> the gradient exploring problem(勾配爆発問題)</h4>
-      RNNの逆伝播において、重み行列を掛けていくことにより、勾配が指数関数的に大きくなってしまうこと。
+        <img src="out\ai\LSTM.png" alt="LSTM" width=100%/>
 
-    </div></div>
+        <h5>ゲートのコントロールはだれ</h5>
+          一つ前の中間層、一つ前の出力、現時刻の入力で結合係数の差により、入力、出力、忘却のそれぞれのゲートの制御の差が出る。
+
+     </div></div>
+
 
   <h3>応用技術</h3>
     <div class="hidden_box">
-    <label for="label-rnn-problem">[+]　　　</label>
-    <input type="checkbox" id="label-rnn-problem"/>
+    <label for="label-rnn-advanced">[+]　　　</label>
+    <input type="checkbox" id="label-rnn-advanced"/>
     <div class="hidden_show">
 
     <h4> back propagation through time(bptt)</h4>
@@ -590,13 +641,6 @@ model.fit(x_train, y_train,
       <h4>勾配クリップ</h4>
         勾配の幅に制限を付けることで勾配爆発を抑えることで、学習が可能となる。
 
-      <h4>long short-term memory (lstm)</h4>
-        ゲートによって長距離依存ltdを解消。
-        short term memory(アクティベーション(活性値))、long term memory(結合係数)のshort term memoryの影響をどうやって長引かせるのか？
-        全体のネットワークの中の１つのニューロンを入力ゲート、出力ゲート、忘却ゲートを用いて再構築する。
-        各ゲートの入出力も必要なので、結合係数は５倍になる。
-        <h5>ゲートのコントロールはだれ</h5>
-          一つ前の中間層、一つ前の出力、現時刻の入力で結合係数の差により、入力、出力、忘却のそれぞれのゲートの制御の差が出る。
       <h4>gru</h4>
         入力はそれ自体か内部状態と合わさったものが内部入力となり、リセットゲートにより決定される。
         過去の内部状態かそれに加え内部入力が合わさって作られたものかが新規内部状態になり、更新ゲートで決定される。
@@ -751,10 +795,34 @@ model.fit(x_train, y_train,
     </dl>
     </div></div>
 
+  <h3>深層学習を用いた自然言語処理</h3>
+    <div class="hidden_box">
+    <label for="label-nlp">[+]　　　</label>
+    <input type="checkbox" id="label-nlp"/>
+    <div class="hidden_show">
 
+    <h4>利点</h4>
+      深層学習を使わないベクトル表現では、ベクトルの次元が大きくなりすぎたり、意味を扱えなかったりするが、
+      深層学習を使うと、誤差逆伝播法により、わずか数百次元のベクトルで単語の意味を表現できるようになる。
+
+    <h4>word2vec</h4>
+      "king" - "man" + "woman" = "Queen" <br>
+      単語埋め込み(Embedding)モデル。単語のベクトルを用いて、単語の足し算、引き算が可能となる。同じように文法も解ける。
+      BOWや単語文書行列では、それぞれの単語が0,1の入力層が数万個で表示されていたのが、まとめてベクトルとすると、
+      ベクトルが学習によって意味を表すようになってきた。
+      自分以外の周りの単語を予測するスキップグラムとその逆のCBOWで学習させると中間層に意味の表層ができる。
+
+    <h4>doc2vec</h4>
+      word2vecを応用した文章をベクトル化する技術で、文の語順も特徴として考慮に入れることができる。
+
+
+
+    </div></div>
 
 <h2>参考文献、サイト</h2>
   <dd>
+  <dt> <cite><a href="https://pdfs.semanticscholar.org/8bdf/dc2c2777b395c086810c03a8cdeccc55c4db.pdf">Wolpert, D.H., Macready, W.G. "No Free Lunch Theorems for Search", Technical Report SFI-TR-95-02-010,1995, Santa Fe Institute </a></cite></dt>
+  <dd>ノーフリーランチ定理</dd>
   <dt><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147653">岡谷貴之,"深層学習(機械学習プロフェッショナルシリーズ)", 2015, 講談社</a></cite></dt>
   <dd>深層学習の基礎を網羅している本。</dd>
   <dt><cite>Akiba, Takuya, Shuji Suzuki, and Keisuke Fukuda "Extremely Large Minibatch Sgd: Training Resnet-50 on Imagenet in 15 Miniutes", 2017, arXiv Preprint.</cite>

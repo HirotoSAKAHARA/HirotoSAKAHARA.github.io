@@ -29,9 +29,6 @@ skinparam backgroundColor transparent
 skinparam backgroundColor transparent
 @enduml
 
-@startuml
-testdot
-@enduml
 
 @startuml multi_layer_perceptron
 
@@ -76,7 +73,7 @@ testdot
 skinparam backgroundColor transparent
 @enduml
 
-@startuml procedure
+@startuml proedure
 start
 repeat
 :入力層にデータを与える。;
@@ -88,4 +85,67 @@ repeat
 repeat while(終了の判断をする)
 stop
 skinparam backgroundColor transparent
+@endl
+
+@startuml RNN_base
+
+(*)  -right-> "h0"
+"h0" -right->[W] "h1"
+"h1" -up->[V] "y1"
+"x1" -up->[U] "h1"
+"h1" -right->[W] "h2"
+"h2" -up->[V] "y2"
+"x2" -up->[U] "h2"
+"h2" -right->[W] "h3"
+"h3" -up->[V] "y3"
+"x3" -up->[U] "h3"
+"h3" -right->[W] "h4"
+
+skinparam backgroundColor transparent
 @enduml
+
+@startuml LSTM
+
+(*) -right-> "h0"
+(*) -right-> "y0"
+"y0" -up-> " "
+"x1" -up-> " "
+" " -up-> "σ"
+note left: "忘却ゲート(f)"
+"σ" -up-> "x"
+"h0" -right-> "x"
+" " -right-> "   "
+"   " -up-> " σ"
+note top: "入力ゲート(i)"
+"   " -up-> "tanh"
+note top: "入力"
+"   " -right-> " σ "
+note top: "出力ゲート(o)"
+" σ" -up-> " x"
+"tanh" -up-> " x"
+"x" -right-> "+"
+" x" -up-> "+"
+note top: "(c)"
+" σ " -right-> " x "
+"+" -right-> "  "
+"  " -down-> " tanh"
+" tanh" -down-> " x "
+"  " -right-> "h1"
+" x " -right-> "y1"
+"h1" --> (*)
+"y1" -up-> (*)
+skinparam backgroundColor transparent
+@enduml
+
+" " -right-> "o2"
+" " -right-> "tanh"
+" " -right-> "o3"
+"o2" -up-> "x2"
+"tanh" -up-> "x2"
+"x2" -up-> "+"
+"x1" -right-> "+"
+"o3" -right-> "x3"
+"+" -right-> "c2"
+"+" -right-> "tanh2"
+"tanh2" -down-> "x3"
+"x3" -right-> "y1"
