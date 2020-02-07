@@ -692,7 +692,7 @@ X_batch, y_batch = g.next() </code> </pre>
     <input type="checkbox" id="label_knn"/>
     <div class="hidden_show">
     <h4>ターゲットタスク</h4>
-      分類、回帰。
+      分類、回帰、異常検知
     <h4>アルゴリズム</h4>
         ある空間上の入力点のラベルを、隣接のk個の学習済みの点のラベルから決定する。
         \(k = 1 \)の時、最近傍法となる。
@@ -713,7 +713,14 @@ X_batch, y_batch = g.next() </code> </pre>
         <li>不適切な特徴を入れてしまうことで、正確さが著しく損なわれる。</li>
         <li>ノイズ耐性とクラス境界の明確さがトレードオフとなり、kの決定が難しい。</li>
       </ul>
-
+    <h4>異常検知タスクにおける異常度</h4>
+      $$
+        \ln\frac{}{\pi_0 N^1(x)}{\pi_1 N^0(x)}
+      $$
+      \(\pi_0\)は全標本中の正常データの割合、
+      \(\pi_1\)は全標本中の異常データの割合、
+      \(N^0(x)\)は\(x\)のk近傍中の正常データの割合、
+      \(N^1(x)\)は\(x\)のk近傍中の異常データの割合。
     </div></div>
 
   <h3 id="perceptron">simple perceptron<span class="small"> : 単純パーセプトロン</span></h3>
@@ -1514,6 +1521,8 @@ X_batch, y_batch = g.next() </code> </pre>
     <div class="hidden_show">
 
   <dl>
+    <dt>怠惰学習</dt>
+    <dd>事前にモデルを構築しない学習法</dd>
     <dt>勾配降下法</dt>
     <dd><a href="math/index.html">数学-最適化問題</a>へ移動</dd>
 
