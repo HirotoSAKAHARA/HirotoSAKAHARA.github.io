@@ -72,7 +72,7 @@
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：自然言語処理のデータ前処理について追加
+：異常検知の項目を追加
 </div>
 
  <div class="navigation">
@@ -786,7 +786,7 @@ X_batch, y_batch = g.next() </code> </pre>
     <input type="checkbox" id="label_naive_bayse"/>
     <div class="hidden_show">
       <h4>ターゲットタスク</h4>
-      分類。特にテキスト分類、推薦、センチメント分析。
+      分類。特にテキスト分類、推薦、センチメント分析、異常検知。
       <h4>アルゴリズム</h4>
         以下に示すベイズの定理を元にした学習アルゴリズムで、
         ある事象\(y\)が起きた時にある事象\(x_k\)が起きていた確率をそれぞれの\(k\)について求め、
@@ -1131,30 +1131,64 @@ X_batch, y_batch = g.next() </code> </pre>
     <label for="label7-2">[+]　　　</label>
     <input type="checkbox" id="label7-2"/>
     <div class="hidden_show">
-    <dl>
-      <dt>正解率, 精度, accuracy</dt>
-      <dd>(TP + TN) / (TP + TN + FP + FN)</dd>
-      <dt>適合率, precision</dt>
-      <dd>
-        <div>trueのと予測した中で実際にtrueである割合</div>
-        <div>(TP) / (TP + FP)
-      </dd>
-      <dt>再現率, 検出率, recall</dt>
-      <dd>
-        <div>実際にtrueの値のうち正であると予測されたもの</div>
-        <div> (TP) / (TP + FN)</div>
-      </dd>
-      <dd>
-      <dt>F値, F-measure</dt>
-      <dd>
-        <div>正解率と再現率のバランス</div>
-        <div>(2 * precision * recall) / (precision + recall)</div>
-      </dd>
-    </dl>
-    <dL>
 
-    <dt>項目応答理論</dt>
-    <dd>例えば、被験者の能力に対して、各テスト項目の正答確率がモデル化できるとすると、そのモデルと実際結果を比較し、それぞれの項目が妥当かどうかを確認できる</dd>
+    <h4>Confusion Matrix<span class="small">混合行列</span></h4>
+    <table>
+      <tr>
+        <th></th>
+        <th>実際は正</th>
+        <th>実際は負</th>
+      </tr>
+      <tr>
+        <th>予測が正</th>
+        <th>TP<span class="small"> :True Positive</span></th>
+        <th>FP<span class="small"> :False Positive、偽陽性、第一種過誤</span></th>
+      </tr>
+      <tr>
+        <th>予測が負</th>
+        <th>FN<span class="small"> :False Negative、偽陰性、第二種過誤</span></th>
+        <th>TN<span class="small"> :True Negative</span></th>
+      </tr>
+    </table>
+
+    <h4>評価指標</h4>
+      <h5>Accuracy<span class="small"> : 正解率、精度</span></h5>
+        全予測の中で正答した割合。
+        $$
+          \frac{{\rm TP +  TN}}{{\rm TP + TN + FP + FN}}
+        $$
+
+      <h5>Recall<span class="small"> : 正常標本精度、再現率、検出率</span></h5>
+        実際は正である標本の中で、正と判断した割合。
+        正の標本と負の標本の数が違いすぎる場合は役に立たない。
+        $$
+          \frac{{\rm TP}}{{\rm TP +  FN}}
+        $$
+
+      <h5>誤報率</h5>
+        実際は正である標本の中で、負と判定した割合。
+        $$
+          1 - \frac{{\rm TP}}{{\rm TP + FN}}
+        $$
+      <h5>Precision<span class="small"> : 適合率</span></h5>
+        正と予測した中で実際に正である割合。
+        $$
+          \frac{{\rm TP}}{{\rm TP + FP}}
+        $$
+  
+      <h5>Specificity<span class="small"> : 異常標本精度、特異率、異常網羅率</span></h5>
+        実際は負である標本の中で、負と判断した割合。
+        $$
+          \frac{{\rm TN}}{{\rm FP + TN}}
+        $$
+
+      <h5>F-measure<span class="small"> : F値</span></h5>
+        適合率と再現率のバランス。
+        $$
+          \frac{2 \times {\rm Precision \times Recall}}{ {\rm Precision + Recall}}
+        $$
+    <h4>項目応答理論</h4>
+    例えば、被験者の能力に対して、各テスト項目の正答確率がモデル化できるとすると、そのモデルと実際結果を比較し、それぞれの項目が妥当かどうかを確認できる。
     </dl>
     </div></div>
 
@@ -1396,7 +1430,6 @@ X_batch, y_batch = g.next() </code> </pre>
     <input type="checkbox" id="label-robotics"/>
     <div class="hidden_show">
 
-
     <h4>Competitive Self Play (Open AI)</h4>
       報酬系だけを変えることによって、相撲だけでなく、サッカーのPKなどができるようになる。
       そのスキルを別のスキルに転移することもできる。
@@ -1411,7 +1444,36 @@ X_batch, y_batch = g.next() </code> </pre>
     <label for="label-failure-detection">[+]　　　</label>
     <input type="checkbox" id="label-failure-detection"/>
     <div class="hidden_show">
-      異常検知
+    <h4>異常検知の分類</h4>
+      <h5>outliner detection<span class="small"> : 外れ値検出</span></h5>
+        他の値の傾向から大きく外れた値の検出。
+      <h5>change detection<span class="small"> : 変化検知</span></h5>
+        観測値の傾向、振る舞いが変化したタイミングの検知
+      <h5>discord discovery<span class="small"> : 異常部位検出</span></h5>
+        観測値の振る舞いが他の場所の振る舞いと大きく変化している部位を検知する。
+
+    <h4>外れ値検知手法</h4>
+      <h5>ネイマン・ピアソン決定則</h5>
+        \(y=1\)の時を異常時の分布、\(y=0\)の時を正常時の分布とした時、以下の式は異常度を示し、
+        この値がしきい値を超えた場合に異常であるとみなす決定方法。
+        $$
+          \ln\frac{p(x' | y = 1, D}{p(x'| y = 0, D)}
+        $$
+      <h5>ホテリングのT二乗法</h5>
+        信頼できるデータの平均値と共分散を求め、マハラビノス距離を計算する。
+        マハラビノス距離\(d\)の2乗が一定以上であれば、異常とみなす。マハラビノス距離\(d\)は以下の式で表される。
+        $$
+          d = \sqrt{\sum^M_{i=1}(\frac{x_i - \hat{u_i}}{\hat{\sigma_i}})^2}
+        $$
+        ここで\(x_i\)は各軸の値、\(\hat{u_i}\)は各軸の平均値、\(\hat{\sigma_i}\)は各軸の標準偏差である。<br />
+        
+        また、行列式で表すと以下の式となる。
+        $$
+          d = \sqrt{(X - \mu)^T{\sum}^{-1}(X - \mu)}
+        $$
+        ここで、\(X\)は特徴ベクトル、 \(\mu\)は特徴ベクトルの母平均、\({\sum}^{-1}\)は逆共分散行列（精度行列）である。
+
+
     </div></div>
 
   <h3>ネットワーク分析</h3>
