@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai</title>
+<base href="../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+      tex: {
+        macros: {
+        x: "{\\times}",
+        bm: ["{\\boldsymbol{#1}}",1],
+        dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+        },
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true,
+        tags: "ams",
+        autoload: {
+          color: [],
+          colorV2: ['color']
+        },
+        packages: {'[+]': ['noerrors']}
+      },
+      chtml: {
+        matchFontHeight: false,
+        displayAlign: "left",
+        displayIndent: "2em"
+      },
+      options: {
+        renderActions: {
+          /* add a new named action to render <script type="math/tex"> */
+          find_script_mathtex: [10, function (doc) {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            }
+          }, '']
+        }
+      },
+      loader: {
+        load: ['[tex]/noerrors']
+      }
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle">
+      - AI
+      - learning method
+    </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<!--*********************************本文*********************************-->
+<div class=site-header-margin>
+</div>
+   
+<h2>基本的な学習手法</h2>
+    <h3>SVN<span class="small"> : support vector machine, サポートベクターマシン</span></h3>
+    <div class="hidden_box">
+    <label for="label_svn">[+]　　　</label>
+    <input type="checkbox" id="label_svn"/>
+    <div class="hidden_show">
+      <div>分類、回帰に使われる手法。分類に使われる場合はSupport Vector Classification(SVC)とも</div>
+
+    </div> </div>
+
+  <h3>k nearest neighbor<span class="small"> : k近傍法, 最近傍法</span></h3>
+    <div class="hidden_box">
+    <label for="label_knn">[+]　　　</label>
+    <input type="checkbox" id="label_knn"/>
+    <div class="hidden_show">
+    <h4>ターゲットタスク</h4>
+      分類、回帰、異常検知
+    <h4>アルゴリズム</h4>
+        ある空間上の入力点のラベルを、隣接のk個の学習済みの点のラベルから決定する。
+        \(k = 1 \)の時、最近傍法となる。
+        隣接の点群の中の最多のラベルを選ぶ事で分類問題に、
+        ラベルの平均や重み付き平均を取ることで回帰問題に適用できる。
+    <h4>特徴</h4>
+        関数が想定されていないノンパラメトリックの手法で、
+        教師データをそのまま丸暗記する怠惰学習(lazy learner)である。
+        また、空間の各軸である特徴尺度の選択と距離の計算方法が分類性能に大きな影響を与え、
+        最近傍探索アルゴリズムが計算速度に大きな影響を与える。
+    <h4>長所</h4>
+      <ul>
+        <li>単純。</li>
+      </ul>
+    <h4>短所</h4>
+      <ul>
+        <li>データの局所的構造に左右されやすい。</li>
+        <li>不適切な特徴を入れてしまうことで、正確さが著しく損なわれる。</li>
+        <li>ノイズ耐性とクラス境界の明確さがトレードオフとなり、kの決定が難しい。</li>
+      </ul>
+    <h4>異常検知タスクにおける異常度</h4>
+      $$
+        \ln\frac{}{\pi_0 N^1(x)}{\pi_1 N^0(x)}
+      $$
+      \(\pi_0\)は全標本中の正常データの割合、
+      \(\pi_1\)は全標本中の異常データの割合、
+      \(N^0(x)\)は\(x\)のk近傍中の正常データの割合、
+      \(N^1(x)\)は\(x\)のk近傍中の異常データの割合。
+    </div></div>
+
+  <h3 id="perceptron">simple perceptron<span class="small"> : 単純パーセプトロン</span></h3>
+
+    <div class="hidden_box">
+    <label for="label_perceptron">[+]　　　</label>
+    <input type="checkbox" id="label_perceptron"/>
+    <div class="hidden_show">
+
+    <h4>ターゲットタスク</h4>
+    分類
+    <h4>アルゴリズム</h4>
+    複数の入力に対し、それぞれに重みを加えたものを足し合わせ、
+    その和が0以上の場合は1、以下の場合は0を出力するアルゴリズム。
+
+    <div>
+      <img src="out\ai\perceptron.png" alt="パーセプトロン"/>
+    </div>
+
+    <h4>長所</h4>
+      <ul>
+        <li>単純。</li>
+      </ul>
+    
+    <h4>短所</h4>
+      <ul>
+        <li>１本の判別直線で分離できない問題は解けない。</li>
+      </ul>
+    </div></div>
+
+  <h3>logistic regression<span class="small"> : ロジスティック回帰</span></h3>
+    <div class="hidden_box">
+    <label for="label_logistic_regression">[+]　　　</label>
+    <input type="checkbox" id="label_logistic_regression"/>
+    <div class="hidden_show">
+
+    <h4>ターゲットタスク</h4>
+    二値分類、確率やダミー変数について分析、予測するのに使われる。
+    <h4>アルゴリズム</h4>
+    成功確率を\(p\)とすると、オッズ = (成功確率) / (失敗確率) = \( \frac{p}{1-p} \)となる。
+    オッズの対数をとったもの(ロジットという)が入力の線形結合で表せるとする。
+    $$
+      \ln(\frac{p_i}{1-p_i}) = \alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k,i}
+    $$
+    左辺を\(p_i\)にして整理すると以下の式で表される。
+    $$
+    p_i = \frac{1}{1 + e^{- ( \alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k, i})}}
+    $$
+    これは単純パーセプトロンの以下の式と等価である。
+    $$
+    p_i = \varsigma (\alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k,i})
+    $$
+    ここで\(\varsigma\)はシグモイド関数。
+
+    つまり、ロジスティック回帰とは、単純パーセプトロンの出力にシグモイド関数を付けて出力を確率にしたもの。
+
+    <h4>長所</h4>
+      <ul>
+      <li>非常に簡単</li>
+      </ul>
+    <h4>短所</h4>
+       <ul>
+      <li>直線分割しかできない</li>
+      </ul>
+    </div> </div>
+
+  <h3>naive bayes<span class="small"> : ナイーブベイズ, 単純ベイズ</span></h3>
+    <div class="hidden_box">
+    <label for="label_naive_bayse">[+]　　　</label>
+    <input type="checkbox" id="label_naive_bayse"/>
+    <div class="hidden_show">
+      <h4>ターゲットタスク</h4>
+      分類。特にテキスト分類、推薦、センチメント分析、異常検知。
+      <h4>アルゴリズム</h4>
+        以下に示すベイズの定理を元にした学習アルゴリズムで、
+        ある事象\(y\)が起きた時にある事象\(x_k\)が起きていた確率をそれぞれの\(k\)について求め、
+        確率が最大となる\(x_k\)を選択する。
+        $$
+        p(x_k|y) = \frac{p(y|x_k)p(x_k)}{p(y)}
+        $$
+        ここで\(p(x)\)は\(x\)が起きる確率、\(p(y|x)\)は\(x\)が起きたときに\(y\)が起きる条件付き確率。
+      <h4>長所</h4>
+      	<ul>
+		      <li>単純</li>
+		      <li>高速</li>
+		      <li>少ないトレーニングデータでも性能が出る</li>
+	      </ul>
+      <h4>短所</h4>
+      	<ul>
+		      <li>各特徴量が独立という強い仮定が必要なので、問題によっては成り立たない。</li>
+	      </ul>
+    </div> </div>
+
+  <h3>random forest<span class="small"> : ランダムフォレスト</span></h3>
+    <div class="hidden_box">
+    <label for="label_random_forest">[+]　　　</label>
+    <input type="checkbox" id="label_random_forest"/>
+    <div class="hidden_show">
+    <h4>ターゲットタスク</h4>
+    分類、回帰、クラスタリング。
+
+    <h4>アルゴリズム</h4>
+      複数の決定木の結果を統合し、最終結果を導く。
+    <div>
+      <img src="out\ai\random_forest.png" alt="ランダムフォレスト"/>
+    </div>
+
+    <h4>決定木のアルゴリズム</h4>
+      決定木は各軸(特徴量)において、それぞれの基準により枝を分割する事を繰り返し、ツリーを作る。
+    	<div>
+      	  <img src="out\ai\decision_tree.png" alt="決定木"/>
+    	</div>
+
+    <h4>CART</h4>
+      決定木の１つであるCARTについて説明をする。
+      CARTはジニ不純度によりノードを２つに分割し、
+      （分割前のジニ不純度)-(分割後のジニ不純度の合計)
+      が最も高くなるような分割を行う。
+
+    <h4>ジニ不純度</h4>
+      $$
+        I_G(t) = 1 - \sum^c_{i = 1}(\frac{n_i}{N})^2
+      $$
+      ここで\(c\)は目的変数のクラス数、\(t\)は現在のノード、
+      \(N\)はノード内のデータ数、
+      \(n_i\)はクラス\(i\)に属するノード内のデータの数。
+
+    <h4>そのほかの決定木</h4>
+      ID3, C4.5, CHAID等がある。分割基準や分岐の数、枝刈りの有無等が異なる。
+      分割基準として使われるものとしては、ジニ不純度のほか、エントロピーがある。
+
+    <h4>エントロピー</h4>
+      $$
+      	I_H(t) = - \sum^c_{i = 1}(\frac{n_i}{N})\log{(\frac{n_i}{N})}
+      $$
+
+    <h4>長所</h4>
+      	<ul>
+		      <li>出力結果の説明が比較的簡単。</li>
+		      <li>並列化が容易</li>
+	      </ul>
+      <h4>短所</h4>
+      	<ul>
+		      <li>軸に平行な線しか引けないので、対応できない場合がある。</li>
+	      </ul>
+  </div></div>
+
+  <h3>ada boost<span class="small"> : アダブースト</span></h3>
+    <div class="hidden_box">
+    <label for="label_boosting">[+]　　　</label>
+    <input type="checkbox" id="label_boosting"/>
+    <div class="hidden_show">
+      <h4>ターゲットタスク</h4>
+      二値分類
+      <h4>アルゴリズム</h4>
+      弱い学習機とデータの重みづけによって強い学習機を作る。
+      教師データは1か-1とする。
+      <div>
+        <img src="out\ai\ada_boost.png" alt="ada boost"/>
+      </div>
+
+      <h4>長所</h4>
+      	<ul>
+		      <li>精度が高い。</li>
+	      </ul>
+      <h4>短所</h4>
+      	<ul>
+		      <li>ノイズや異常値に追従しやすい。</li>
+		      <li>並列化ができず、計算速度が遅い。</li>
+	      </ul>
+    </div> </div>
+
+  <h3>least squares method : <span class="small">最小二乗法</span></h3>
+    <div class="hidden_box">
+    <label for="label_LSM">[+]　　　</label>
+    <input type="checkbox" id="label_LSM"/>
+    <div class="hidden_show">
+
+    <h4>ターゲットタスク</h4>
+    線形回帰
+    <h4>アルゴリズム</h4>
+    <div>入力の組\(\bm{U}\)、出力の組\(\bm{z}\)が与えられた時、
+    \(\bm{z} \simeq \bm{Uw}\)となる係数の組\(\bm{w}\)を、
+    残差平方和 \( \|\bm{Uw} - \bm{z}\| \) を最小にするという条件で求める。</div>
+    <div>正規方程式 \( \bm{U^{\mathrm{T}}Uw} = \bm{U^\mathrm{T}z} \)により、
+    より直接的には以下の式により$\bm{w}$を算出する。</div>
+    $$
+      \bm{w} = (\bm{U}^{\mathrm{T}}\bm{U})^{-1}\bm{U}^{\mathrm{T}} \bm{z}
+    $$
+
+    </div></div>
+  
+  <h3>k means clustering<span class="small"> : k平均クラスタリング</span></h3>
+    <div class="hidden_box">
+    <label for="label-k-means-clustering">[+]　　　</label>
+    <input type="checkbox" id="label-k-means-clustering"/>
+    <div class="hidden_show">
+    <h4>ターゲットタスク</h4>
+    クラスタリング。
+    <h4>アルゴリズム</h4>
+    <div>
+      <img src="out\ai\k_means_clustering.png" alt="k平均法"/>
+    </div>
+     <h4>長所</h4>
+      	<ul>
+		      <li>データ量が膨大でも高速で計算できる。</li>
+	      </ul>
+      <h4>短所</h4>
+      	<ul>
+		      <li>結果が初期値に大きく依存する。</li>
+		      <li>分割数の決定は別の考察が必要。</li>
+	      </ul>
+
+      <h4>エルボー法</h4>
+        最適なkを決定するための方法で
+        kが大きくなればなるほどSSEは小さくなる傾向にあるが、必要以上に大きくしてもSSEが小さくならないことを利用し、
+        各kにおいてSSEを計算し、折れ曲がる値を最適値とみなす手法。
+        SSEについては評価の項を参照のこと。
+
+    </div></div>
+
+  <h3>DBSCAN <span class="small"> : density-based spatial clustering of applications with noise</span></h3>
+    <div class="hidden_box">
+    <label for="label-dbscan">[+]　　　</label>
+    <input type="checkbox" id="label-dbscan"/>
+    <div class="hidden_show">
+
+    <h4>ターゲットタスク</h4>
+    クラスタリング。
+    <h4>アルゴリズム</h4>
+      <h5>概要</h5>
+        以下の方法でコア点、到達可能点、外れ値に分類する。
+        <ul>
+          <li> 点\(p\)を含め、点\(p\)から距離\(\varepsilon \)以内に少なくともminPts個の点があれば、点\(p\)をコア点とする。</li>
+          <li> 点\(q\)がコア点\(p\)から距離から距離\(\varepsilon \)以内にあれば、点\(q\)は点\(p\)から直接到達可能である。</li>
+          <li> 点\(p = \) 点\(p_1\)、点\(q\) = 点\(p_n\)の時、点\(p_{i+1}\)が点\(p_i\)から直接到達可能であり、
+                 結果点\(p_n\)が点\(p_1\)から順にたどり着ける場合、点\(q\)は点\(p\)から到達可能である。
+                 この時、点\(q\)以外はコア点である(\(q\)はコア点か到達可能点である)。</li>
+          <li> どの点からもたどり着けない点は外れ点かノイズ点である。</li>
+        </ul>
+      <h5>手順</h5>
+      <ol>
+        <li>パラメータ\( \varepsilon \)、minPtsを決定する。</li>
+        <li>全ての点について、その点から 距離\(\varepsilon \)以内にある隣接点を見つけ、minPts以上の隣接点がある点をコア点とする。</li>
+        <li>隣接グラフ上のコア点群の連結グラフを見つける。この時コア点でない点は考慮しない。</li>
+        <li>コア点でない点が近くのクラスタから距離\(\varepsilon \)以内にあれば、その点を近くのクラスタに割当する。そうでない点はノイズ点とする。</li>
+      </ol>
+
+    <h4>長所</h4>
+      <ul>
+		    <li>データのクラスタ数を事前に必要としない。</li>
+		    <li>任意の形状のクラスタを見つけることができる。</li>
+		    <li>ハズレ値に対しロバストである。</li>
+	    </ul>
+    <h4>短所</h4>
+      <ul>
+        <li>データの内容が不明な場合、パラメータ、特に\(\varepsilon\)を設定するのが困難</li>
+	    </ul>
+    </div></div>
+
+
+  <h3>PCA<span class="small"> : principal component analysis, 主成分分析 </span></h3>
+    <div class="hidden_box">
+    <label for="label-pca">[+]　　　</label>
+    <input type="checkbox" id="label-pca"/>
+    <div class="hidden_show">
+    <h4>ターゲットタスク</h4>
+    次元削減。
+    <h4>アルゴリズム</h4>
+    あるデータ\(\bm{X}\)の共分散\(\sum = E[\bm{(X-E[X])(X-E[X])^T}]\)を求める。
+    次に\(\sum\)の固有値と固有ベクトルを求め、固有値の大きいほうから必要な分だけ
+    主成分を抽出する。
+    抽出した主成分の固有ベクトルを並べた行列を元の行列にかけることで、次元を削減する。
+    <h4>長所</h4>
+      	<ul>
+		      <li>計算が早い</li>
+		      <li>もとデータの次元が多い場合でも解析できる。</li>
+	      </ul>
+    <h4>短所</h4>
+      	<ul>
+		      <li>異なる特徴が混じったデータでは誤った削減を行う。</li>
+	      </ul>
+
+    </div></div>
+
+  <h3>ICA<span class="small"> : independent component analysis, 独立成分分析</span></h3>
+    <div class="hidden_box">
+    <label for="label-ica">[+]　　　</label>
+    <input type="checkbox" id="label-ica"/>
+    <div class="hidden_show">
+
+    <h4>内容</h4>
+      ブラインドソース分離(多変量の信号を複数の加法的な成分に分離する)
+      ための計算手法。PCAでは合わさったデータの主成分が出力され、分離できない
+      ネゲントロピー(負のエントロピー)を考える
+    <h4>応用例</h4>
+      MEG、画像の雑音除去、保険データ
+
+    </div></div>
+
+  <h3>matrix factorization<span class="small"> : 行列因子化</span></h3>
+    <div class="hidden_box">
+    <label for="label-MF">[+]　　　</label>
+    <input type="checkbox" id="label-MF"/>
+    <div class="hidden_show">
+
+    <h4>NMF<span class="small"> : non-negative matrix factorization, 非負行列因子化</span></h4>
+      正の値だけをとるMatrix Factorization。こちらが先に発表され、 改良版としてMatrix Factorizationが発表された。
+      行列Xを行列Wと行列Hで近似する方法。
+      画像のパーツパーツを抽出できる。
+
+    <h4>matrix factorization<span class="small"> : 行列因子化</span></h4>
+      協調フィルタリングとして働く。Netflix映画のおすすめができるようになった。
+      目標関数はRSMEで、正則化により過学習を抑制。NMFとあまり変わらない。
+      
+    </div></div>
+    
+    
+  <h3>t-SNE<span class="small"> : t-stocastic neighbor embedding</span></h3>
+    <div class="hidden_box">
+    <label for="label-tSNE">[+]　　　</label>
+    <input type="checkbox" id="label-tSNE"/>
+    <div class="hidden_show">
+
+    t分布を用いた確率的な視覚化手法で、多様体(manifold)の次元圧縮。
+    多様体とは、近傍ではユークリッド距離系となっているが、
+    全体としてはユークリッド距離系となっていない。
+    抽象的に言えば、スイスロール上のデータを広げて２次元にして表示できる。
+
+    </div></div>
+
+  <h3>q-learning<span class="small"> : Q学習</span></h3>
+    <div class="hidden_box">
+    <label for="label-q-learning">[+]　　　</label>
+    <input type="checkbox" id="label-q-learning"/>
+    <div class="hidden_show">
+
+      動的で複雑な環境に対する学習で、価値反復と方策反復により学習を行う。
+      行動価値観数(Q, A)に基づき、時刻の行動は行動方策に従って選択されるQ(S, A)を更新する。
+      <h4>マルコフ決定過程</h4>
+        <h5>マルコフ性、マルコフ性</h5>
+          一つ前の状態の条件付き確率（一つ前の状態の条件付き確率）。それまでの状態は考慮されない。
+        <h5>POMDP</h5>
+          部分観測可能なマルコフ決定過程：POMDP
+        <h5>マルコフ過程（マルコフ連鎖)</h5>
+          状態Sと行為Aと遷移確率Pと報酬Rと(割引率γ)の組 <lt> S, A, P, R, γ <gt>
+
+    </div></div>
+  <h3>actor-critic</h3>
+    <div class="hidden_box">
+    <label for="label-actor_critic">[+]　　　</label>
+    <input type="checkbox" id="label-actor_critic"/>
+    <div class="hidden_show">
+
+    </div></div>
+
+  <h3>TD(\(\lambda\))</h3>
+    <div class="hidden_box">
+    <label for="label-tdlambda">[+]　　　</label>
+    <input type="checkbox" id="label-tdlambda"/>
+    <div class="hidden_show">
+
+    </div></div>
+
+  <h3 id="perceptron">各種法に共通する技術</h3>
+    <div class="hidden_box">
+    <label for="label-common-techniques">[+]　　　</label>
+    <input type="checkbox" id="label-common-techniques"/>
+    <div class="hidden_show">
+
+    <h4>正則化</h4>
+      回帰問題において、過学習を行った場合に係数が大きくなりがちであることを利用し、
+      損失関数にペナルティ項を設定することで、汎化性能の高いモデルの生成を目指す方法。
+      <h5>L1正則化</h5>
+        あるモデルの評価関数を次式のように設定する。L1正則化の式を使うと、
+        説明変数が０になりやすく、次元削減に利用される。
+        $$
+        \min{f(x)} + \lambda\sum^n_{i=1}|w_i|
+        $$
+        ここで\(\min{f(x)}\)は通常の損失関数。
+        この正則化を利用した回帰をラッソ回帰と呼ぶ。
+
+      <h5>L2正則化</h5>
+        モデルの評価関数を以下のように設定する。L2正則化ではモデルの過学習を防ぐために用いられる。
+        $$
+        \min{f(x)} + \frac{\lambda}{2}\sum^n_{i=1}|w_i|^2
+        $$
+        この正則化を利用した回帰をリッジ回帰と呼ぶ。
+
+      <h5>Elastic Net回帰</h5>
+        L1正則化とL2正則化を組み合わせた回帰手法
+
+    </div></div>
+
+
+<h3>参考文献、サイト</h3>
+<div>
+  <ol>
+    <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">一般社団法人日本ディープラーニング協会監修, 浅川 伸一, 江間 有沙, 工藤 郁子, 巣龍 悠輔, 瀬谷 啓介, 松井 孝之, 松尾 豊."深層学習教書 ディープラーニング G検定（ジェネラリスト） 公式テキスト", 2018, 翔泳社</li>
+    <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">岡谷 貴之."深層学習", 2015, 講談社</li>
+    <li><cite><a href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%AB%E3%82%B3%E3%83%95%E6%B1%BA%E5%AE%9A%E9%81%8E%E7%A8%8B">"マルコフ決定過程", wikipedia</a>
+    <li><cite><a href="http://may46onez.hatenablog.com/entry/2016/01/08/142843">gco(id:may46onez)."theanoでLocal Response Normalization(LRN)を使う (備忘録とか日常とか)",2016, Hatena Blog</li>
+    <li><cite><a href="https://www.aaai.org/Papers/KDD/1996/KDD96-014.pdf">Usama Fayyad, Gregory Piatetsky-Shapiro, Padhraic Smyth, "Knowledge Discovery and Data Mining: Towards a Unifying Framework",1996, KDD-96 Proceedings</li>
+    <li><cite><a href="https://bellcurve.jp/statistics/glossary/1233.html">BellCurve, "ピアソンの積率相関係数", 統計WEB</a>
+    <li><cite><a href="https : //daihen.aidemy.jp/">"Aidemy"</li>
+  </ol>
+</div>
+
+<div class = "end_of_page_margin"></div>
+<div class = "end_of_page">
+<a class="prev" href="ai/preprocessing.html" >前：データ前処理の手法</a>
+<a class="upper" href="index.html" >上：ホーム</a>
+<a class="next" href="ai/evaluation.html">次：タスクの評価手法</a>
+</div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - reinforcement learning with dnn</title>
+<base href="../" />
+
+
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+      macros: {
+      x: "{\\times}",
+      bm: ["{\\boldsymbol{#1}}",1],
+      dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+      },
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle">
+      - 
+    <a href="index.html">AI</a>
+      - reinforcement learning with dnn
+    </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日:' + document.lastModified);
+</script>
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+
+<h2>深層学習による強化学習</h2>
+  <h3>基本</h3>
+    <div class="hidden_box">
+    <label for="label-reinforcement-nn">[+]　　　</label>
+    <input type="checkbox" id="label-reinforcement-nn"/>
+    <div class="hidden_show">
+
+    Q-LearningをDNNに採用。入力はテレビ画面。出力はジョイスティック(18通り)。
+    教師信号はなし。
+    画期的な技術というよりもコンピュータの能力、データ規模の拡大、
+    アルゴリズムの改良、エコシステムの拡大
+
+    </div></div>
+
+  <h3>DQN</h3>
+    <div class="hidden_box">
+    <label for="label-dqn">[+]　　　</label>
+    <input type="checkbox" id="label-dqn"/>
+    <div class="hidden_show">
+
+    損失関数をQLearningに入れる。
+
+    </div></div>
+
+  <h3>改良版アルゴリズム</h3>
+    <div class="hidden_box">
+    <label for="label-rainbow">[+]　　　</label>
+    <input type="checkbox" id="label-rainbow"/>
+    <div class="hidden_show">
+     <dl>
+       Rainbow, Hessel et al 2017
+     </dl>
+     <dd> ポリシーベース、状態価値関数、モデルベースの強化学習 </dd>
+
+    </div></div>
+
+<h3>参考文献、サイト</h3>
+  <dd>
+  <dt> <cite><a href="https://pdfs.semanticscholar.org/8bdf/dc2c2777b395c086810c03a8cdeccc55c4db.pdf">Wolpert, D.H., Macready, W.G. "No Free Lunch Theorems for Search", Technical Report SFI-TR-95-02-010,1995, Santa Fe Institute </a></cite></dt>
+  <dd>ノーフリーランチ定理</dd>
+  <dt><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147653">岡谷貴之,"深層学習(機械学習プロフェッショナルシリーズ)", 2015, 講談社</a></cite></dt>
+  <dd>深層学習の基礎を網羅している本。</dd>
+  <dt><cite>Akiba, Takuya, Shuji Suzuki, and Keisuke Fukuda "Extremely Large Minibatch Sgd: Training Resnet-50 on Imagenet in 15 Miniutes", 2017, arXiv Preprint.</cite>
+  </dt>
+  <dd></dd>
+  Yee Wyne Teh NIPS 2017
+
+  <dt> [[1606.05908] Tutorial on Variational Autoencoders](https://arxiv.org/abs/1606.05908) 再解釈論文 (2016)</dt>
+  <dd> 変分オートエンコーダを再解釈した論文</dd>
+
+<div class = "end_of_page_margin"></div>
+<div class = "end_of_page">
+<a class="prev" href="ai/generative_model.html" >前：生成モデル</a>
+<a class="upper" href="index.html" >上：ホーム</a>
+<a class="next" href="ai/applications_with_dnn.html">次：深層学習を使った応用事例</a>
+</div>
+
+  </main>
+</body>
+</html>

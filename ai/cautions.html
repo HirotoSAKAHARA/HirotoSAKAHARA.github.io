@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - cautions</title>
+<base href="../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+      tex: {
+        macros: {
+        x: "{\\times}",
+        bm: ["{\\boldsymbol{#1}}",1],
+        dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+        },
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true,
+        tags: "ams",
+        autoload: {
+          color: [],
+          colorV2: ['color']
+        },
+        packages: {'[+]': ['noerrors']}
+      },
+      chtml: {
+        matchFontHeight: false,
+        displayAlign: "left",
+        displayIndent: "2em"
+      },
+      options: {
+        renderActions: {
+          /* add a new named action to render <script type="math/tex"> */
+          find_script_mathtex: [10, function (doc) {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            }
+          }, '']
+        }
+      },
+      loader: {
+        load: ['[tex]/noerrors']
+      }
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle">
+      - AI
+      - cautions
+    </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+
+<h2>人工知能使用上の注意</h2>
+  <h3>偏見への問題</h3>
+    <div class="hidden_box">
+    <label for="label-caution1">[+]　　　</label>
+    <input type="checkbox" id="label-caution1"/>
+    <div class="hidden_show">
+    黒人の女性をゴリラとして認識された例がある。学習データが白人に偏ってしまっている。
+    取り込められるデータが偏ると、出力が偏ってしまう。
+    </div></div>
+  <h3>ブラックボックス</h3>
+    <div class="hidden_box">
+    <label for="label-caution2">[+]　　　</label>
+    <input type="checkbox" id="label-caution2"/>
+    <div class="hidden_show">
+    パラメータが改ざんされてもわからない、危険な使い方をしていてもわからない可能性がある。
+    個人の勉強と専門家を用意するべき。
+    </div></div>
+  <h3>fooling CNN</h3>
+    <div class="hidden_box">
+    <label for="label-caution3">[+]　　　</label>
+    <input type="checkbox" id="label-caution3"/>
+    <div class="hidden_show">
+  　画像を少しだけ変えると、認識が変わる例がある。
+  　我々の認識とDNNの認識方法は異なっている。
+  <h4>One Pixcel Attack</h4>
+    元画像に１画素だけ異なる所を付け加えると認識が変わる。
+    </div></div>
+
+<h3>参考文献、サイト</h3>
+<div>
+  <ol>
+    <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">一般社団法人日本ディープラーニング協会監修, 浅川 伸一, 江間 有沙, 工藤 郁子, 巣龍 悠輔, 瀬谷 啓介, 松井 孝之, 松尾 豊."深層学習教書 ディープラーニング G検定（ジェネラリスト） 公式テキスト", 2018, 翔泳社</li>
+    <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">岡谷 貴之."深層学習", 2015, 講談社</li>
+    <li><cite><a href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%AB%E3%82%B3%E3%83%95%E6%B1%BA%E5%AE%9A%E9%81%8E%E7%A8%8B">"マルコフ決定過程", wikipedia</a>
+    <li><cite><a href="http://may46onez.hatenablog.com/entry/2016/01/08/142843">gco(id:may46onez)."theanoでLocal Response Normalization(LRN)を使う (備忘録とか日常とか)",2016, Hatena Blog</li>
+    <li><cite><a href="https://www.aaai.org/Papers/KDD/1996/KDD96-014.pdf">Usama Fayyad, Gregory Piatetsky-Shapiro, Padhraic Smyth, "Knowledge Discovery and Data Mining: Towards a Unifying Framework",1996, KDD-96 Proceedings</li>
+    <li><cite><a href="https://bellcurve.jp/statistics/glossary/1233.html">BellCurve, "ピアソンの積率相関係数", 統計WEB</a>
+    <li><cite><a href="https : //daihen.aidemy.jp/">"Aidemy"</li>
+  </ol>
+</div>
+
+<div class = "end_of_page_margin"></div>
+<div class = "end_of_page">
+<a class="prev" href="ai/applications_with_dnn.html" >前：深層学習を使った応用事例</a>
+<a class="upper" href="index.html" >上：ホーム</a>
+<a class="next" href="ai/miscellaneous.html">次：その他未整理の事柄</a>
+</div>
+
+</main>
+</body>
+</html>

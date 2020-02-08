@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - recurrent neural network</title>
+<base href="../" />
+
+
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+      macros: {
+      x: "{\\times}",
+      bm: ["{\\boldsymbol{#1}}",1],
+      dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+      },
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle">
+      - AI 
+      - recurrent neural network 
+    </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日:' + document.lastModified);
+</script>
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h2>RNN : <span class="small"> : recurrent neural network, 再帰型ニューラルネットワーク</span></h2>
+  <h3>概要</h3>
+    <div class="hidden_box">
+    <label for="label-rnn-outline">[+]　　　</label>
+    <input type="checkbox" id="label-rnn-outline"/>
+    <div class="hidden_show">
+
+    <h4>特徴</h4>
+      フィードバック結合をもつ。漸化式のような構造を持つ。
+      最も簡単な構造のRNNの式は以下の式で表され、
+      構造は、入力層\(x_i\)、1層以上の中間層(隠れ層)\(h_i\)、出力層\(y_i\)からなる下図で示され、
+      １時刻前の中間層の出力を次の中間層に利用することで、それまでの状態変化を全て反映する。
+      $$
+        h_t = f(Ux_t + Wh_{t-1} + b_h)
+      $$
+      $$
+        y_t = g(Vh_t + b_y)
+      $$
+
+      <img src="out\ai\RNN_base.png" alt="RNN"/>
+    <h4>応用分野</h4>
+      手書き文字認識、音声認識、手書き文字生成、系列学習、機械翻訳、画像脚注付け、構文解析、プログラムコード生成
+    <h4>RNNの種類と応用例</h4>
+      入出力の数により幾つかの種類に分けることができる。
+      <dl>
+        <dt>one-to-one</dt>
+        <dd>画像分類</dd>
+        <dt>one-to-many</dt>
+        <dd>中間層が時間発展で変わっていく : 画像脚注付き</dd>
+        <dt>many-to-one<dt>
+        <dd>入力が沢山で出力が１つ：感性分析(レビュー文を見せて星の数を予想する)</dd>
+        <dt>many-to-many<dt>
+        <dd>入力と出力がたくさん（通常のrnn)：機械翻訳</dd>
+        <dt>many-to-many(逐次)</dt>
+        <dd>ビデオ分類</dd>
+      </dl>
+
+      <h5>Elman Net<span class="small">エルマンネット</span></h5>
+      (入力層+context)＋中間層＋出力層となっており、contextは1時刻前の中間層（内部状態）をコピーする。
+
+      <h5>Jordan Net<span class="small"> : ジョーダンネット</span></h5>
+      (入力層＋context)＋中間層＋出力層となっており、contextは1時刻前の出力層をコピーする。
+
+    <h4>課題</h4>
+
+      <h5>long term dependency(長距離依存)</h5>
+        いくつか前の情報に依存する時の対策は難しく、
+        再帰結合係数行列の時間発展に関して指数的に作用（勾配爆発）
+
+      <h5> the gradient exploring problem(勾配爆発問題)</h5>
+        RNNの逆伝播において、重み行列を掛けていくことにより、
+        勾配が指数関数的に大きくなってしまうこと。
+
+      </div></div>
+
+    <h3>LSTM<span class="small"> : long short-term memory、長・短期記憶 </span></h3>
+      <div class="hidden_box">
+      <label for="label-rnn-lstm">[+]　　　</label>
+      <input type="checkbox" id="label-rnn-lstm"/>
+      <div class="hidden_show">
+       <h4>概要</h4>
+         RNNの長距離依存の問題を解決したアーキテクチャ。
+         ネットワークの１つのニューロンをセル、入力ゲート、出力ゲート、及び忘却ゲートで再構築する。
+         各ゲートの入出力も必要なので、結合係数は５倍になる。
+         $$
+          f_t = \sigma(W_fx_t + U_fy_{t-1} + b_f)
+         $$
+         $$
+          i_t = \sigma(W_ix_t + U_iy_{t-1} + b_i)
+         $$
+         $$
+          o_t = \sigma(W_ox_t + U_iy_{t-1} + b_o)
+         $$
+         $$
+          c_t = f_t \circ h_{t-1} + i_t \circ \tanh(W_cx_t + U_cy_{t-1} + b_c)
+         $$
+         $$
+          y_t = o_t \circ \tanh(c_t)
+         $$
+
+        <img src="out\ai\LSTM.png" alt="LSTM" width=100%/>
+
+        <h5>ゲートのコントロールはだれ</h5>
+          一つ前の中間層、一つ前の出力、現時刻の入力で結合係数の差により、入力、出力、忘却のそれぞれのゲートの制御の差が出る。
+
+     </div></div>
+
+
+  <h3>応用技術</h3>
+    <div class="hidden_box">
+    <label for="label-rnn-advanced">[+]　　　</label>
+    <input type="checkbox" id="label-rnn-advanced"/>
+    <div class="hidden_show">
+
+    <h4> back propagation through time(bptt)</h4>
+    　時間伝播において、過去のネットワークを含めて誤差逆伝播を考える。　
+      時刻０からの過去の入力を考えたものは完全bpttと呼び、時刻幅を考えたものをtrancated(切断) bpttと呼ぶ
+
+    <h4>teacher forcing(教師強制)</h4>
+      ジョーダンネットにおいて、学習初期には、出力の精度が悪いので、教師情報を入れる。
+      back propagation through time の代替として開発された。
+
+
+      <h4>BiRNN <span class="small">bi-directional RNN、双方向リカレントニューラルネットワーク</span></h4>
+        事後にデータが取得できた場合、次の時刻のデータから予測するということがあり得る
+        例えば、英語の単語(the apple)のtheはappleを確認してからtheの発音を決定できる。
+
+      <h4>BiLSTM <span class="small">Bidirectional LSTM</span></h4>
+        先頭から伝播してきた情報と後ろから伝播してきた情報の２つの入力させる向きを組み合わせたLSTM
+        
+        
+      <h4>勾配クリップ</h4>
+        勾配の幅に制限を付けることで勾配爆発を抑えることで、学習が可能となる。
+
+      <h4>gru</h4>
+        入力はそれ自体か内部状態と合わさったものが内部入力となり、リセットゲートにより決定される。
+        過去の内部状態かそれに加え内部入力が合わさって作られたものかが新規内部状態になり、更新ゲートで決定される。
+        内部状態によりリセットゲートが、内部状態により更新ゲートが決まる。
+        
+      <h4>メモリ拡張</h4>
+        rnnに外部メモリを追加すると更に知的なことができる
+        <dl>
+          <dt>q and a</dt>
+          <dd></dd>
+          <dt>プログラムの自動作成</dt>
+          <dd></dd>
+          <dt>アルゴリズムの学習</dt>
+          <dd></dd>
+          <dt>ビデオq&a</dt>
+          <dd></dd>
+          <dt>メモリネット</dt>
+          <dd></dd>
+          <dt>ポインターネット</dt>
+          <dd></dd>
+        </dl>
+    <h4>ニューラルチューリングマシン</h4>
+      チューリングマシンでできることをニューラルネットでできるようになった。
+    </div></div>
+
+<h3>参考文献、サイト</h3>
+  <dd>
+  <dt> <cite><a href="https://pdfs.semanticscholar.org/8bdf/dc2c2777b395c086810c03a8cdeccc55c4db.pdf">Wolpert, D.H., Macready, W.G. "No Free Lunch Theorems for Search", Technical Report SFI-TR-95-02-010,1995, Santa Fe Institute </a></cite></dt>
+  <dd>ノーフリーランチ定理</dd>
+  <dt><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147653">岡谷貴之,"深層学習(機械学習プロフェッショナルシリーズ)", 2015, 講談社</a></cite></dt>
+  <dd>深層学習の基礎を網羅している本。</dd>
+  <dt><cite>Akiba, Takuya, Shuji Suzuki, and Keisuke Fukuda "Extremely Large Minibatch Sgd: Training Resnet-50 on Imagenet in 15 Miniutes", 2017, arXiv Preprint.</cite>
+  </dt>
+  <dd></dd>
+  Yee Wyne Teh NIPS 2017
+
+  <dt> [[1606.05908] Tutorial on Variational Autoencoders](https://arxiv.org/abs/1606.05908) 再解釈論文 (2016)</dt>
+  <dd> 変分オートエンコーダを再解釈した論文</dd>
+
+<div class = "end_of_page_margin"></div>
+<div class = "end_of_page">
+<a class="prev" href="ai/cnn.html" >前：畳み込みニューラルネットワーク</a>
+<a class="upper" href="index.html" >上：ホーム</a>
+<a class="next" href="ai/generative_model.html">次：生成モデル</a>
+</div>
+
+  </main>
+</body>
+</html>

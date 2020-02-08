@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai</title>
+<base href="../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+      tex: {
+        macros: {
+        x: "{\\times}",
+        bm: ["{\\boldsymbol{#1}}",1],
+        dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+        },
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true,
+        tags: "ams",
+        autoload: {
+          color: [],
+          colorV2: ['color']
+        },
+        packages: {'[+]': ['noerrors']}
+      },
+      chtml: {
+        matchFontHeight: false,
+        displayAlign: "left",
+        displayIndent: "2em"
+      },
+      options: {
+        renderActions: {
+          /* add a new named action to render <script type="math/tex"> */
+          find_script_mathtex: [10, function (doc) {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            }
+          }, '']
+        }
+      },
+      loader: {
+        load: ['[tex]/noerrors']
+      }
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle">
+      - AI
+      - application
+    </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+
+<h2>各分野における応用技術</h2>
+  <h3>自然言語処理 <span class="small">NLP, natural language processing</span></h3>
+    <div class="hidden_box">
+    <label for="label7-3">[+]　　　</label>
+    <input type="checkbox" id="label7-3"/>
+    <div class="hidden_show">
+    <h4>基本用語</h4>
+      <h5>トークン</h5>
+        自然言語解析における文章の最小単位となる文字や文字列
+      <h5>タイプ</h5>
+        単語の種類を表す。
+      <h5>文章</h5>
+        まとまった内容を表す文。
+      <h5>文書</h5>
+        複数の文書からなるデータ１件分
+      <h5>コーパス</h5>
+        自然言語の文書を大量に集めたデータで、国立国語研究所などの様々な機関がまとめたデータのほか、青空文庫などもコーパスと言える。
+      <h5>シソーラス</h5>
+        単語の上位／下位関係、部分／全体関係、同義関係、類義関係などによって、単語を分類し、体系づけた類語辞典、辞書。
+      <h5>形態素</h5>
+        意味を持つ最小の単位。
+      <h5>単語</h5>
+        単一または複数の形態素から構成される小さな単位
+      <h5>わかち書き</h5>
+        文章において語の区切りに空白を挟んで記述すること。
+      <h5>表層</h5>
+        原文の記述のこと。
+      <h5>原形</h5>
+        活用する前の記述の事。
+      <h5>特徴</h5>
+        文章や文書から抽出された情報のこと。
+      <h5>辞書</h5>
+        単語のリストの事。
+      
+    <h4>形態素解析 <span class="small">Morphological Analysis</span></h4>
+      文法ルールや解析辞書データに基づいて文章を単語に分割し、それぞれに品詞を付与する処理。様々なライブラリが提供されている。
+     <dl>
+      <dt><a href="http://taku910.github.io/mecab/">MeCab</a></dt>
+      <dd>  京都大学情報学研究科−日本電信電話株式会社コミュニケーション科学基礎研究所 共同研究ユニットプロジェクトを通じて開発されたオープンソース形態素解析エンジンで、言語, 辞書,コーパスに依存しない汎用的な設計を 基本方針としている。</dd>
+      <dt><a href="http://mocobeta.github.io/janome/">Janome</a></dt>
+      <dd> Janome(蛇の目)はpure pythonで書かれた、辞書内包(mecab-ipadic-2.7.0-20070801)の形態素解析器で、依存ライブラリなしでインストールできるpythonライブラリ<dd>
+      <dt><a href="https://chasen-legacy.osdn.jp/">Chasen</a></dt>
+      <dd> 茶筅システムは、奈良先端科学技術大学院大学情報科学研究科自然言語処理学講座(松本研究室)が、広く自然言語処理研究に資するため無償のソフトウェアとして開発されたもの。</dd>
+      <dt><a href="http://nlp.ist.i.kyoto-u.ac.jp/index.php?JUMAN">JUMAN</a></dt>
+      <dd>JUMANは、京都大学 大学院情報学研究科 知能情報学専攻 知能メディア講座 言語メディア分野（黒橋・河原・村脇研究室）によって、計算機による日本語の解析の研究を目指す多くの研究者に共通に使える形態素解析ツールを提供するために開発された。</dd>
+    </dl>
+     
+    <h4>Ngram</h4>
+      与えられたテキストから、それぞれの語に対して隣接するn個の語の列を作って解析する方法。
+      単語単位の場合もある。
+      <ul>
+              <li>0-gram(ヌルグラム) 事前の単語を考慮しない</li>
+              <li>1-gram(ヌ二グラム) 1つ前の単語を考慮する。</li>
+              <li>2-gram(ヌ二グラム) 2つ前と2つまえの単語を考慮する。</li>
+      </ul>
+
+      統計的言語モデルからニューラルネットワーク言語モデル（リカレント．．．nnlm、rnnlm)
+
+    <h4>BOW <span class="small"> : Bags of Words</span></h4>
+      文章中の各単語の分布を記録したベクトルとして表現する。ベクトル表現には以下のようなものがある。
+      <h5>カウント表現</h5>
+        文章中の各単語の出現数を記録する。
+
+      <h5>バイナリ表現</h5>
+        文章中に各単語が存在するかどうかを記録する。
+
+      <h5>tf-idf表現</h5>
+        単語の出現頻度である\(tf\)(term frequency)と単語の希少性を示す\(idf\)(inverse document frequency:逆文書頻度)に基づいて計算される。
+        多くの文書に出現する一般的な言葉の重要度を下げる。
+        $$
+          tfidf_{i,j} = tf_{i,j}\cdot idf_i
+        $$
+        $$
+          tf_{i,j} = \frac{n_{i,j}}{\sum_k{n_{k,j}}}
+        $$
+        $$
+          idf_i = \log{\frac{|D|}{|{d: d \ni t_i}|}}
+        $$
+          ここで、\(n_{i_j}\)は文書\(d_j\)における単語\(t_i\)の出現回数、\(\sum_k{n_{k,j}}\)は文書\(d_j\)における全ての単語の出現回数の和。\(|D|\)は総文書数、\(|{d: d \ni t_i}|\)は単語\(t_i\)を含む文書数。
+
+      <h5>one hot vector表現</h5>
+         犬、猫、うさぎのような数値でない値を取る説明変数において、犬:(1,0,0),猫(0,1,0),うさぎ(0,0,1)のような対応する次元が1でその他が0のベクトルで表す。
+         次元数は言葉の種類の総数となる。
+
+    <h4>類似度</h4>
+      ２つのデータがどれだけ似ているかの指標
+      <h5>cos類似度</h5>
+        ベクトルがどれだけ近いかを判断する指標
+        $$
+          cos(\vec{q}, \vec{d}) = \frac{\vec{q}\vec{d}}{|\vec{q}||\vec{d}|} = \frac{\sum_{i=1}q_id_i}{\sqrt{\sum_{i=1}q_i^2}\sqrt{\sum_{i=1}d_i^2}}
+        $$
+      <h5>Jaccard類似度</h5>
+        集合動詞の類似度を判断する指標
+      <h5>ピアソンの積率相関係数</h5>
+      <q>2つの量的変数間の直線的関連の変数を表す係数。n組のデータ(\(x_1, y_1\)),(\(x_2, y_2\)) \(\cdots\) (\(x_n, y_n\))があり、それぞれの平均を\(\bar{x}, \bar{y}\)とした時、ピアソンの積率相関係数は以下の式で表される。</q>[6]
+      $$
+        r_{xy} = \frac{{\displaystyle \sum_{i = 1}^n (x_i - \overline{x})
+        (y_i - \overline{y})}}{\sqrt{{\displaystyle \sum_{i = 1}^n 
+        (x_i - \overline{x})^2}} \sqrt{{\displaystyle \sum_{i = 1}^n 
+        (y_i - \overline{y})^2}}} = \frac{s_{xy}}{s_xs_y}
+      $$
+      <h5>ケンドールの順位相関係数</h5>
+        対応する２つの変量\(p_i(x_i, y_i)\)がある時、\(p_s\)と\(p_t\) (\(s \lt t\)) のときの、\(x_s\)と\(x_t\), \(y_s\)と\(y_t\)の大小の向きに関する類似度を計算する相関係数。
+      <h5>スピアマンの順位相関係数</h5>
+         変量の値をその大きさ順に順位に変換し、あるいは順位しかわかっていないデータの順位により、ピアソンの相関係数を計算したもの。
+
+    <h4>単語文書行列<span class="small">term-document matrix</span></h4>
+      文書に出現する単語の頻度を表形式で表したもの。tf, idfにより単語の重みを変えると、重みあり単語文書行列になる。
+        
+    <h4>トピックモデル</h4>
+      文章が複数のトピックで成り立っており、文書中の単語はそれらのトピックにより確率的に生成されていると仮定するモデル。
+      <dl>
+        <dt>潜在的ディリクレ配分法</dt>
+        <dd>
+          トピックモデルにおいて、トピック分布にディリクレ分布を仮定し、ベイズ推定する手法。
+          ある現象が起きたときに次の現象が起きる確率であるガンマ分布を全ての単語で計算し、
+          確率密度関数を作成する。 適応的にパラメータが変わるノンパラメトリックモデルである。
+        </dd>
+      </dl>
+    </div></div>
+ 
+  <h3>画像認識</h3>
+    <div class="hidden_box">
+    <label for="label-image">[+]　　　</label>
+    <input type="checkbox" id="label-image"/>
+    <div class="hidden_show">
+
+    <h4>VQ(Vector Quantaization、ベクトル量子化)</h4>
+    典型的な画像を組み合わせた画像を作ることができる。
+
+    <h4>Regions with CNN features (R-CNN)</h4>
+      画像に対してオーバーラップを許して何が写っているのかを示す。
+      バウンディングボックスと呼ばれる画像領域を切り出して、正規化して、CNNに入れる。
+      関心領域の切り出し方法は従来の方法
+    <h4>fast-RCNN</h4>
+      画像の切り出しを１つのネットワークで行い実時間画像処理が可能に。
+    <h4>FCN</h4>
+      セマンティックセグメンテーション。細かい切り出しができる
+    <h4>YOLO (you lok only onece)</h4>
+      バウンディングボックスの切り分けと認識が一回でできる。
+    <h4>SSD (Single Shot Multibox Detector)</h4>
+      バウンディングボックスの切り分けと認識が一回でできる。
+    <h4> SegNet</h4>
+      実時間での画像領域の細かい切り出しができるようになった。
+
+    <h4>画像キャプション付け</h4>
+        画像処理と自然言語処理を組み合わせた問題。
+        <h5>NIC</h5>
+
+    </div></div>
+
+  <h3>音声認識</h3>
+    <div class="hidden_box">
+    <label for="label-sound">[+]　　　</label>
+    <input type="checkbox" id="label-sound"/>
+    <div class="hidden_show">
+
+    <h4>WaveNet</h4>
+      音声認識、音声生成、テキスト読み上げ。
+      delayted(スキップを伴う)学習を伴う。
+      従来モデルであるparametoricモデルとconcatenativeのモデルと比べると1.5倍ぐらいの点数。
+
+     </div></div>
+
+  <h3>ロボティクス</h3>
+    <div class="hidden_box">
+    <label for="label-robotics">[+]　　　</label>
+    <input type="checkbox" id="label-robotics"/>
+    <div class="hidden_show">
+
+    <h4>Competitive Self Play (Open AI)</h4>
+      報酬系だけを変えることによって、相撲だけでなく、サッカーのPKなどができるようになる。
+      そのスキルを別のスキルに転移することもできる。
+
+    <h4>Alpha Go zero</h4>
+      囲碁の定石を学習させないことでより囲碁が強くなった。
+
+    </div></div>
+
+  <h3>異常検知</h3>
+    <div class="hidden_box">
+    <label for="label-failure-detection">[+]　　　</label>
+    <input type="checkbox" id="label-failure-detection"/>
+    <div class="hidden_show">
+    <h4>異常検知の分類</h4>
+      <h5>outliner detection<span class="small"> : 外れ値検出</span></h5>
+        他の値の傾向から大きく外れた値の検出。
+      <h5>change detection<span class="small"> : 変化検知</span></h5>
+        観測値の傾向、振る舞いが変化したタイミングの検知
+      <h5>discord discovery<span class="small"> : 異常部位検出</span></h5>
+        観測値の振る舞いが他の場所の振る舞いと大きく変化している部位を検知する。
+
+    <h4>外れ値検知手法</h4>
+      <h5>ネイマン・ピアソン決定則</h5>
+        \(y=1\)の時を異常時の分布、\(y=0\)の時を正常時の分布とした時、以下の式は異常度を示し、
+        この値がしきい値を超えた場合に異常であるとみなす決定方法。
+        $$
+          \ln\frac{p(x' | y = 1, D}{p(x'| y = 0, D)}
+        $$
+      <h5>ホテリングのT二乗法</h5>
+        信頼できるデータの平均値と共分散を求め、マハラビノス距離を計算する。
+        マハラビノス距離\(d\)の2乗が一定以上であれば、異常とみなす。マハラビノス距離\(d\)は以下の式で表される。
+        $$
+          d = \sqrt{\sum^M_{i=1}(\frac{x_i - \hat{u_i}}{\hat{\sigma_i}})^2}
+        $$
+        ここで\(x_i\)は各軸の値、\(\hat{u_i}\)は各軸の平均値、\(\hat{\sigma_i}\)は各軸の標準偏差である。<br />
+        
+        また、行列式で表すと以下の式となる。
+        $$
+          d = \sqrt{(X - \mu)^T{\sum}^{-1}(X - \mu)}
+        $$
+        ここで、\(X\)は特徴ベクトル、 \(\mu\)は特徴ベクトルの母平均、\({\sum}^{-1}\)は逆共分散行列（精度行列）である。
+
+
+    </div></div>
+
+  <h3>ネットワーク分析</h3>
+
+<h3>参考文献、サイト</h3>
+<div>
+  <ol>
+    <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">一般社団法人日本ディープラーニング協会監修, 浅川 伸一, 江間 有沙, 工藤 郁子, 巣龍 悠輔, 瀬谷 啓介, 松井 孝之, 松尾 豊."深層学習教書 ディープラーニング G検定（ジェネラリスト） 公式テキスト", 2018, 翔泳社</li>
+    <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">岡谷 貴之."深層学習", 2015, 講談社</li>
+    <li><cite><a href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%AB%E3%82%B3%E3%83%95%E6%B1%BA%E5%AE%9A%E9%81%8E%E7%A8%8B">"マルコフ決定過程", wikipedia</a>
+    <li><cite><a href="http://may46onez.hatenablog.com/entry/2016/01/08/142843">gco(id:may46onez)."theanoでLocal Response Normalization(LRN)を使う (備忘録とか日常とか)",2016, Hatena Blog</li>
+    <li><cite><a href="https://www.aaai.org/Papers/KDD/1996/KDD96-014.pdf">Usama Fayyad, Gregory Piatetsky-Shapiro, Padhraic Smyth, "Knowledge Discovery and Data Mining: Towards a Unifying Framework",1996, KDD-96 Proceedings</li>
+    <li><cite><a href="https://bellcurve.jp/statistics/glossary/1233.html">BellCurve, "ピアソンの積率相関係数", 統計WEB</a>
+    <li><cite><a href="https : //daihen.aidemy.jp/">"Aidemy"</li>
+  </ol>
+</div>
+
+<div class = "end_of_page_margin"></div>
+<div class = "end_of_page">
+<a class="prev" href="ai/evaluation.html" >前：タスクの評価手法</a>
+<a class="upper" href="index.html" >上：ホーム</a>
+<a class="next" href="ai/deep_learning.html">次：深層学習</a>
+</div>
+
+
+
+</main>
+</body>
+</html>

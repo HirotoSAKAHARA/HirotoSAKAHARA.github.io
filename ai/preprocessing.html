@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai</title>
+<base href="../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+      tex: {
+        macros: {
+        x: "{\\times}",
+        bm: ["{\\boldsymbol{#1}}",1],
+        dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+        },
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true,
+        tags: "ams",
+        autoload: {
+          color: [],
+          colorV2: ['color']
+        },
+        packages: {'[+]': ['noerrors']}
+      },
+      chtml: {
+        matchFontHeight: false,
+        displayAlign: "left",
+        displayIndent: "2em"
+      },
+      options: {
+        renderActions: {
+          /* add a new named action to render <script type="math/tex"> */
+          find_script_mathtex: [10, function (doc) {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            }
+          }, '']
+        }
+      },
+      loader: {
+        load: ['[tex]/noerrors']
+      }
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle">
+      - AI
+      - preprocessing
+    </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<!--*********************************本文*********************************-->
+<div class=site-header-margin>
+</div>
+
+<h2>データ前処理の手法</h2>
+  <h3>データ量が少ない場合への対応</h3>
+    <div class="hidden_box">
+    <label for="label-data-extension">[+]　　　</label>
+    <input type="checkbox" id="label-data-extension"/>
+    <div class="hidden_show">
+
+    <h4>data augmentation<span class="small"> : データ拡張、データ水増し</span></h4>
+      <h5>画像処理</h5>
+        回転、平行移動、拡大・縮小、反転、アフィン変換、剪断変換、ホモグラフィ変換、色変換、光量変換、ノイズ追加などを利用する。
+
+      <h5>mixup</h5>
+        データ間を線形に補間したものを使用する。この時同時にラベルも学習する。
+        分類問題のときは、0でも1でもないデータができる。
+
+      <h5>random erasing</h5>
+        画像の一部をランダムに欠損させる。
+
+    <h4>transfer learning<span class="small"> : 転移学習</span></h4>
+      別の学習に使用されたモデルの重み付けをそのまま利用したモデルを用意し、少ないデータで学習する。
+
+    </div></div>
+
+
+  <h3>データ欠損への対応</h3>
+    <div class="hidden_box">
+    <label for="label8-1">[+]　　　</label>
+    <input type="checkbox" id="label8-1"/>
+    <div class="hidden_show">
+
+    <h4>データ欠損のパターン</h4>
+    <dl>
+      <dt>MCAR <span class="small"> : missing completely at random</span></dt>
+      <dd>あるデータ値が欠損する確率が、全データと無関係。</dd>
+      <dt>MAR<span class="small"> : missing at random</span></dt>
+      <dd>ある項目が欠損する確率が、欠損している項目以外の観測されたデータ項目のみから推測できる。例として女性は一定の確率で年齢を答えない場合など。</dd>
+      <dt>NMAR<span class="small"> : not missing at random</span></dt>
+      <dd>ある項目が欠損する確率がその項目そのものに依存し、また、その項目以外のデータ項目からも、欠損している項目の欠損率を推測できない。例としては、男女変わらず、年齢が高くなるほど年齢について答えなくなる場合など。この場合の欠損は代入法では解決できない。</dd>
+    </dl>
+    <h4>リストワイズ削除</h4>
+        欠損値が含まれるデータ行をすべて削除する。
+
+    <h4>ペアワイズ削除</h4>
+      欠損の少ない列を残し、その列において欠損値が含まれるデータ行をすべて削除する。
+
+    <h4>平均値代入法</h4>
+      欠損値をその列、あるいは行の平均値によって穴埋めする方法。分散や誤差を知りたい場合は使えない。
+      
+    <h4>回帰代入法</h4>
+      欠損値を除いた状態で回帰分析を行い、推定値を補完する。
+
+    <h4>確率的回帰代入法</h4>
+      回帰代入法により推定した値に誤差をランダムに加えて補完する。
+
+    <h4>ホットデック法</h4>
+      欠損値を含むデータ行（レシピエント）に欠損値以外の属性の似ているデータ行（ドナー)の値を使って補完。
+      ドナーは最近傍法などで探索。
+
+    <h4>多重代入法</h4>
+      観測されたデータから欠損値を予測して補完する完全なデータセットを複数作成し、
+      各セット毎に分析モデルを構築、最後に各分析モデルを統合する。
+
+    </div></div>
+
+    <h3>外れ値への対応</h3>
+    <div class="hidden_box">
+    <label for="label8-2">[+]　　　</label>
+    <input type="checkbox" id="label8-2"/>
+    <div class="hidden_show">
+
+    <h4>LOF<span class="small"> : local outlier factor</span></h4>
+      データの密度に基づいて外れ値を検知する。
+      <ul>
+        <li>近くにデータ点が少ないのが外れ値であると考える</li>
+        <li>k個の近傍点を使ってデータの密度を推定する</li>
+        <li>上記の密度が、周囲と相対的に低い点を外れ値と判定する</li>
+      </ul>
+    <h4>isolation forest</h4>
+      軸毎にランダムにデータ分割を行う空間分割ツリーを作成した時に、
+      早々にデータ分割ができなくなるデータを外れ値とする。
+      <ul>
+        <li>距離や密度に依存しないため、それらの指標を計算するコストが不要</li>
+        <li>計算が複雑でなく、省メモリである</li>
+        <li>大規模データであっても計算をスケールさせやすい</li>
+      </ul>
+    </div></div>
+
+  <h3>不均衡データへの対応</h3>
+    <div class="hidden_box">
+    <label for="label8-3">[+]　　　</label>
+    <input type="checkbox" id="label8-3"/>
+    <div class="hidden_show">
+
+    <h4>オーバーサンプリング</h4>
+      頻度が少ない値を含むデータを複製して増加させる。SMOTE(Synthetic minority over-sampling technique)などの手法がある。
+    <h4>アンダーサンプリング</h4>
+      頻度が多い値を含むデータを削減する。ENN(Edited Nearest Neighbours)などの手法がある。
+    <h4>アンダーサンプリングとアンダーサンプリングの組み合わせ</h4>
+      SMOTE-ENNなどの手法がある。
+      
+    </div></div>
+
+  <h3>データ形式の変換</h3>
+    <div class="hidden_box">
+    <label for="label8-31">[+]　　　</label>
+    <input type="checkbox" id="label8-31"/>
+    <div class="hidden_show">
+
+    <h4>連続値のカテゴリ化</h4>
+      連続値をカテゴリ値に変換する。
+
+    <h4>カテゴリデータのダミー変数化</h4>
+      カテゴリデータを各カテゴリを示す変数に分け、排他となる２値で表す。
+
+    <h4>横持ちデータと縦持ちデータの変換</h4>
+    人が情報を認識しやすい横持ちデータと、
+    情報量が変化してもデータ構造を変更する必要のない縦持ちデータがあり、
+    データ分析モデルによりどちらかの形式に変換する必要がある。
+    <table>
+      <caption>横持ちデータ</caption>
+      <tr>
+        <th>id</th>
+        <th>item1</th>
+        <th>item2</th>
+        <th>item3</th>
+      </tr>
+      <tr>
+        <td>id1</td>
+        <td>value 11</td>
+        <td>value 12</td>
+        <td>value 13</td>
+      </tr>
+      <tr>
+        <td>id2</td>
+        <td>value 21</td>
+        <td>value 22</td>
+        <td>value 23</td>
+      </tr>
+    </table>
+
+    <table>
+      <caption>縦持ちデータ</caption>
+      <tr>
+        <th>id</th>
+        <th>items</th>
+        <th>value</th>
+      </tr>
+      <tr>
+        <td>id1</td>
+        <td>item1</td>
+        <td>value11</td>
+      </tr>
+      <tr>
+        <td>id1</td>
+        <td>item2</td>
+        <td>value12</td>
+      </tr>
+      <tr>
+        <td>id1</td>
+        <td>item2</td>
+        <td>value13</td>
+      </tr>
+      <tr>
+        <td>id2</td>
+        <td>item1</td>
+        <td>value21</td>
+      </tr>
+      <tr>
+        <td>id2</td>
+        <td>item2</td>
+        <td>value22</td>
+      </tr>
+      <tr>
+        <td>id2</td>
+        <td>item3</td>
+        <td>value23</td>
+      </tr>
+
+    </table>
+
+    </div></div>
+
+  <h3>雑音除去</h3>
+    <div class="hidden_box">
+    <label for="label8-4">[+]　　　</label>
+    <input type="checkbox" id="label8-4"/>
+    <div class="hidden_show">
+
+    <h4>平準化</h4>
+    ローパスフィルタを通してスパイクを除去する。
+
+    <h4>ICA</h4>
+
+    </div></div>
+
+    <h3>normalization<span class="small"> : 正規化</span></h3>
+    <div class="hidden_box">
+    <label for="label8-5">[+]　　　</label>
+    <input type="checkbox" id="label8-5"/>
+    <div class="hidden_show">
+
+    <h4>センタリング</h4>
+    平均値を求めた後全データから平均値を引き、平均を0にする
+
+    <h4>standarization<span class="small"> : 標準化</span></h4>
+    特徴を平均0、分散1にすることで、特徴ごとのデータ分布を近づける。
+    ImageDataGeneratorを使う場合は以下のようになる。
+<pre> <code># ジェネレーターの生成
+data_generator = ImageDataGenerator(samplewise_center=True, samplewise_std_normalization=True)
+
+# 標準化
+g = data_generator.flow(X_train, y_train, shuffle=False)
+X_batch, y_batch = g.next() </code> </pre>
+
+    <h4>Box-Cox変換</h4>
+    以下の式に示すように\(x_i\)を\(y_i\)に変換することで、データを正規分布に近づける。
+    線形獣回帰分析など、正規分布を仮定しているようなモデルの精度を高めることができる。
+    $$
+      y_i^\lambda = 
+        \begin{cases}
+          \frac{x_i^\lambda - 1}{\lambda} & (\lambda \neq 0) \\
+          \log{(x_i)} & (\lambda = 0)
+        \end{cases}
+    $$
+
+
+    <h4>whitening<span class="small"> : 白色化</span></h4>
+        特徴間の相関をなくし、分散を一定にする。
+<pre> <code># ジェネレーターの生成
+datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
+
+# 標準化
+g = datagen.flow(X_train, y_train, shuffle=False)
+X_batch, y_batch = g.next() </code> </pre>
+
+    <h4>batch normalization<span class="small"> : バッチ正規化 </span></h4>
+    ミニバッチ学習の際にバッチごとに標準化を行うこと。
+    Kerasの実装は以下の通り。
+<pre> <code> model.add(BatchNormalization()) </code> </pre>
+
+    <h4>重み正規化</h4>
+      入力xではなく、重み係数wを正規化(平均０分散１）
+    <h4>層正規化</h4>
+      層内の全ニューロンを正規化(平均０分散１）する。入力データが１でも正則化可能。
+
+    <h4>ZCA<span class="small"> : zero-phase component analysis, ゼロ位相成分分析</span></h4>
+      白色化の線形変換に使用する行列を対称行列に制限する。
+
+    <h4>LRN<span class="small"> : local response  normalization, 局所的応答正規化</span></h4>
+      同一位置(ピクセル)において複数の特徴マップ間で正規化する。[4]
+
+    <h4>GCN<span class="small"> : global contrast normalization, 大域コントラスト正規化</span></h4>
+      特徴マップ全体でコントラストを正規化する。
+
+    <h4>LCN<span class="small"> : local contrast normalization, 局所コントラスト正規化</span></h4>
+      特徴マップの局所領域内でコントラストを正規化する。
+    </div></div>
+
+
+  <h3>次元削減</h3>
+    <div class="hidden_box">
+    <label for="label8-6">[+]　　　</label>
+    <input type="checkbox" id="label8-6"/>
+    <div class="hidden_show">
+
+    <h4>PCA<span class="small"> : principal component analysis, 主成分分析</span></h4>
+      主成分分析を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
+
+    <h4>SVC<span class="small"> : singular value decomposition, 特異値分解</span></h4>
+      特異値分解を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
+        
+      特異値分解とは、行列\(A\)を\( A = U\sum V^{T} \)と分解することである。ここで\(\sum\)の次元は\(A\)と等しく、\(D\)を\(A\)の固有値の対角行列とすると、\( \sum =
+   \left(
+    \begin{array}{cc}
+      D & 0 \\
+      0 & 0 
+    \end{array}
+  \right)
+ \)と表される(0の数で次元を合わせる）。\(V \)は特異ベクトルを並べた右特異ベクトル、Uは\(A\)、\(\sum\)、\(V\)から求まる左特異ベクトルである。
+    </div></div>
+
+  <h3>自然言語処理におけるデータ前処理</h3>
+    <div class="hidden_box">
+    <label for="label8-7">[+]　　　</label>
+    <input type="checkbox" id="label8-7"/>
+    <div class="hidden_show">
+
+    <h4>表記揺れへの対応</h4>
+      <h5>表記ゆれ</h5>
+        同じ文章の中で、同じ意味の言葉が異なって表記されていること(大文字・小文字、半角・全角、ひらがな、カタカナなど）
+
+      <h5>正規化</h5>
+        表記ゆれを防ぐために、ルールベースで文字や数字を変換すること。正規表現を使うことが多い。
+
+    <h5>Padding</h5>
+      入力文の長さの不一致があると、行列演算ができなくなる。そこで、長すぎる文を削り、
+      短すぎる文には０を埋める処理をして、文章の長さを統一する。
+
+    <h5>ID化</h5>
+      単語をID化することで、ニューラルネットに入力として与えれるようにする。
+
+    </div></div>
+
+<h3>参考文献、サイト</h3>
+<div>
+  <ol>
+    <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">一般社団法人日本ディープラーニング協会監修, 浅川 伸一, 江間 有沙, 工藤 郁子, 巣龍 悠輔, 瀬谷 啓介, 松井 孝之, 松尾 豊."深層学習教書 ディープラーニング G検定（ジェネラリスト） 公式テキスト", 2018, 翔泳社</li>
+    <li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">岡谷 貴之."深層学習", 2015, 講談社</li>
+    <li><cite><a href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%AB%E3%82%B3%E3%83%95%E6%B1%BA%E5%AE%9A%E9%81%8E%E7%A8%8B">"マルコフ決定過程", wikipedia</a>
+    <li><cite><a href="http://may46onez.hatenablog.com/entry/2016/01/08/142843">gco(id:may46onez)."theanoでLocal Response Normalization(LRN)を使う (備忘録とか日常とか)",2016, Hatena Blog</li>
+    <li><cite><a href="https://www.aaai.org/Papers/KDD/1996/KDD96-014.pdf">Usama Fayyad, Gregory Piatetsky-Shapiro, Padhraic Smyth, "Knowledge Discovery and Data Mining: Towards a Unifying Framework",1996, KDD-96 Proceedings</li>
+    <li><cite><a href="https://bellcurve.jp/statistics/glossary/1233.html">BellCurve, "ピアソンの積率相関係数", 統計WEB</a>
+    <li><cite><a href="https : //daihen.aidemy.jp/">"Aidemy"</li>
+  </ol>
+</div>
+
+<div class = "end_of_page_margin"></div>
+<div class = "end_of_page">
+<a class="prev" href="ai/basics.html" >前：人工知能の基礎知識</a>
+<a class="upper" href="index.html" >上：ホーム</a>
+<a class="next" href="ai/learning_methods.html">次：基本的な学習手法</a>
+</div>
+
+
+
+</main>
+</body>
+</html>
