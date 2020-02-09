@@ -14,7 +14,7 @@ body {
   font-size: 1rem;
   color:#556655;
   background:#D0FFE0;
-  --h4margin:1rem;
+  --h3margin:1rem;
   --pleft:0.0rem;
   max-width:664px; /* 680 - 1rem*/
   margin:auto;
@@ -112,20 +112,6 @@ body {
   background: #A03000;
 }
 
-
-h1{
-  margin-top: 2rem;
-  margin-bottom: 0px;
-  padding-top:4px;
-  padding-bottom:4px; 
-  padding-left:var(--pleft);
-  border-top: 3px solid #774444;
-  border-bottom: 3px solid #774444;
-  background:#DDDDCC;
-  font-size:2rem;
-  color:black;
-}
-
 .subtitle{
   font-size:16px;
 }
@@ -135,12 +121,12 @@ h1:first-child{
 }
 
 
-h2::before {
+h1::before {
 /*  counter-increment: hb;
   content: counter(hb) " : ";*/
 }
 
-/*h2{
+/*h1{
   margin-top: 1.8rem;
   margin-bottom: 0px;
   padding-left:var(--pleft);
@@ -150,7 +136,7 @@ h2::before {
   color:#330000;
 }*/
 
-h2{
+h1{
   margin-top: 2rem;
   margin-bottom: 1rem;
   padding-top:4px;
@@ -166,13 +152,13 @@ h2{
 
 
 
-h3::before {
+h2::before {
   counter-increment: hc;
 /*  content: counter(hb) "-" counter(hc)" : ";*/
   content: counter(hc)" : ";
 }
 
-h3{
+h2{
   margin-top: 1.4rem;
   margin-bottom: 0px;
   padding:0px;
@@ -184,22 +170,22 @@ h3{
 }
 
 
-h2+h3{
+h1+h2{
   margin-top: 4px;
 }
 
-h4::before {
+h3::before {
   counter-increment: hd;
 /*  content: counter(hb) "-" counter(hc) "-" counter(hd)" : ";*/
   content: counter(hc) "-" counter(hd)" : ";
 }
 
 
-h4{
+h3{
   margin-top: 1rem;
   margin-bottom: 0px;
-  margin-left:calc(-1*var(--h4margin));
-  margin-right:calc(-1*var(--h4margin));
+  margin-left:calc(-1*var(--h3margin));
+  margin-right:calc(-1*var(--h3margin));
   padding-left:var(--pleft);
   border-top: 1px dotted #775555;
   font-size: 1rem;
@@ -209,17 +195,17 @@ h4{
 
 
 
-.hidden_show>h4:first-child{
+.hidden_show>h3:first-child{
   margin-top: 0rem;
 }
 
-h5::before {
+h4::before {
   counter-increment: he;
 /*  content: counter(hb) "-" counter(hc) "-" counter(hd) "-" counter(he)" : ";*/
 content: counter(hc) "-" counter(hd) "-" counter(he)" : ";
 }
 
-h5{
+h4{
   margin-top: 1rem;
   margin-bottom: 0px;
   padding-left:var(--pleft);
@@ -230,18 +216,18 @@ h5{
   counter-reset:hf;
 }
 
-h4+h5{
+h3+h4{
   margin-top: 4px;
 }
 
-h6::before {
+h5::before {
   counter-increment: hf;
 /*  content: counter(hb) "-" counter(hc) "-" counter(hd) "-" counter(he) "-" counter(hf) " : ";*/
   content: counter(hc) "-" counter(hd) "-" counter(he) "-" counter(hf) " : ";
 
 }
 
-h6{
+h5{
   margin-top: 1rem;
   margin-bottom: 0px;
   padding-left:var(--pleft);
@@ -249,7 +235,7 @@ h6{
   font-size: 1rem;
 }
 
-h5+h6{
+h4+h5{
   border-top: none;
   margin-top: 0px;
 }
@@ -348,8 +334,8 @@ div{
     opacity: 0;
     transition: 0.3s;
     margin-top:-20px;
-    padding-left:var(--h4margin);
-    padding-right:var(--h4margin)
+    padding-left:var(--h3margin);
+    padding-right:var(--h3margin)
 }
 
 /*クリックで中身表示*/
@@ -364,7 +350,7 @@ div{
   font-size:0.9em;
 }
 
-h3 .small{
+h2 .small{
   font-size:0.7em;
 }
 

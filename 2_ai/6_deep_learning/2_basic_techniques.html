@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - deep learning - basic techniques </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+    },
+    options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+    },
+    loader: {
+load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> - ai - deep learning - basic techniques </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日:' + document.lastModified);
+</script>
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+  <h1>基本技術</h1>
+   <h2>活性化関数（基本）</h2>
+    <div class="hidden_box">
+    <label for="label_1">[+]　　　</label>
+    <input type="checkbox" id="label_1"/>
+    <div class="hidden_show">
+中間層や出力層で、入力を足し合わせたのちに通す関数。微分可能かつ非線形であることが重要。
+
+<h3>ロジスティックシグモイド関数</h3>
+入力は\((-\inf,\inf)\)出力は\((0,1)\)である関数。
+入力値が飽和する。出力が滑らかであることなどが特徴。
+微分値が\((0,0.25)\)しかとらず勾配消失の原因となった
+$$ f(u) = \frac{1}{1 + e^{-u}} $$
+
+<h3>ハイパータンジェント</h3>
+入力は\((-\inf,\inf)\)出力は\((-1, 1)\)である関数。
+入力値が飽和する。出力が滑らかであることなどが特徴。
+微分値は\((0,1.0)\)なの、シグモイドよりも勾配消失しにくいが、
+高々１なので積み重ねると勾配消失が発生する。
+$$ f(u) = \tanh(u) $$
+
+<h3>ReLU (Rectified Linear Unit 整流線型ユニット)</h3>
+簡単でかつ収束も早い。u = 0の時に少しだけ問題となる。
+$$
+f(u) = 
+\left\{
+\begin{array} {11}
+0 & (u \leq 0) \\
+u & (u > 0)
+\end{array} 
+\right.
+$$
+
+  </div></div>
+  <h2>出力ユニット</h2>
+    <div class="hidden_box">
+    <label for="label_2">[+]　　　</label>
+    <input type="checkbox" id="label_2"/>
+    <div class="hidden_show">
+最終層のニューロンの出力を意味のあるものに変換する関数。
+　<h3>ロジスティックシグモイド関数</h3>
+0から1までの確率で出力される
+　<h3>Softmax関数<span class="small">ソフトマックス関数</span></h3>
+多クラス分類に使用する。複数の候補を取得する。それぞれのyは0～1になり、すべて足すと1になる(確率の要件を満たす)
+$$
+y_i = \frac{e^{x_i}}{\sum^n_{k=1}e^{x_k}} 
+$$
+　<h3>Gaussian Mixture Model (GMM、ガウス混合分布)</h3>
+ある点が複数のガウス分布のうちどこに属しているのかを確率的に表現する。
+　<h3>Radial Basis Function (RBF, 動径基底関数)</h3>
+ある点cからの距離のみに基づいて値が決まる関数である動径関数をcを変えて集め、それらの線形和をとる。
+
+  </div></div>
+  <h2>cost function(コスト関数、loss function、損失関数、error function、誤差関数、objective function、目的関数)</h2>
+    <div class="hidden_box">
+    <label for="label_3">[+]　　　</label>
+    <input type="checkbox" id="label_3"/>
+    <div class="hidden_show">
+教師データと出力との差を定量的に示すための関数。
+<h3>二乗誤差</h3>
+出力と正解の各成分の差の二乗和による誤差
+
+<h3>クロスエントロピー誤差</h3>
+二乗誤差よりも収束がはるかに速い
+
+  </div></div>
+  <h2>勾配降下</h2>
+    <div class="hidden_box">
+    <label for="label_4">[+]　　　</label>
+    <input type="checkbox" id="label_4"/>
+    <div class="hidden_show">
+　得られた誤差の値からニューロンの重みを最適化するための手法。各手法で利用される誤差勾配は誤差逆伝播法により求める
+<dl>
+<dt>バッチ学習法</dt>
+<dd></dd>
+<dt>オンライン学習法</dt>
+<dd></dd>
+<dt>確率的勾配降下法</dt>
+<dd>勾配のαを変えて更新幅を決める、ミニバッチを用いる</dd>
+<dt>モーメント法</dt>
+<dd>1時刻前の更新幅を利用して現在の更新幅を決める</dd>
+<dt>ニュートン法</dt>
+<dd>ニュートン法と同じくヘシアン（２次微分）を用いる最適化手法。ただし、ヘシアン作るのは難しい</dd>
+<dt>Adgrad法</dt>
+<dd>ヘシアンの近似として、ヘシアンの対角行列のみをつかう。</dd>
+<dt>Adadelta法</dt>
+<dd>ヘシアンの近似として、逐次自乗平均を使う。</dd>
+<dt>RMSprop法</dt>
+<dd>逐次平均ではなくて、過去の値に重みを増やす</dd>
+<dt>Adam 法</dt>
+<dd>モーメントも使う</dd>
+</dl>
+
+  </div></div>
+  <h2>誤差逆伝播法による勾配の計算</h2>
+    <div class="hidden_box">
+    <label for="label_5">[+]　　　</label>
+    <input type="checkbox" id="label_5"/>
+    <div class="hidden_show">
+教師データと出力により得られた誤差の値から、各ニューロンの誤差勾配を求める手法。
+<h3>導出</h3>
+\(l-1\)層目の\(i\)番目のニューロンからの入力を受ける\(l\)層の\(j\)番目のニューロン\(w_{ji}^{(l)}\)の重みのコスト関数\(E_n\)に対する誤差勾配は、
+そのニューロンの出力に対する式ととらえると以下のように変形できる。
+$$
+\frac{\partial E_n}{\partial w_{ji}^{(l)}} = \frac{\partial E_n}{\partial u_j^{(l)}}\frac{\partial u_j^{(l)}}{\partial w_{ji}^{(l)}}
+$$
+また、その出力が\(l + 1\)番目の各ニューロンに与える影響を考えると、右辺第１項は以下のように式変形できる。
+$$
+\frac{\partial E_n}{\partial u_j^{(l)}} = \sum_k{\frac{\partial E_n}{\partial u_k^{(l+1)}}\frac{\partial u_k^{(l+1)}}{\partial u_j^{(l)}}}
+$$
+ここで、\( \delta_j^{(l)} \equiv \frac{\partial E_n}{\partial u_j^{(l)}} \) と置き、
+\(u_k^{(l+1)} = \sum_j{w_{kj}^{(l+1)}z_j^{(l)}} = \sum_j{w_{kj}^{(l+1)}f(u_j^{(l)})}\)の関係を使うと、上式は以下のように変形できる。 
+$$
+\delta_j^{(l)}　=　\sum_k{\delta_j^{(l+1)}(w_{kj}^{(l+1)}f'(u_j^{(l)}))}
+$$
+これは、次の層の全ニューロンの微分値が求まると、ニューロンの微分値が求まることを意味している。
+また、初めの式の右辺第２項目は\(u_j^{(l)} = \sum_i{w_{ji}^{(l)}z_i^{(l-1)}}\)の関係から簡単に以下の式で表される。
+$$
+\frac{\partial u_j^{(l)}}{\partial w_{ji}^{(l)}} = z_i^{(l-1)}
+$$
+よって、これらの式を出力層から順に利用していくことで、すべての重みに対する誤差勾配を求めることができる。
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="2_ai/6_deep_learning/1_overview.html">概要</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="2_ai/6_deep_learning/3_advanced_techniques.html">応用技術</a>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo</title>
+<!-- stylesheet-->
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+      macros: {
+      x: "{\\times}",
+      bm: ["{\\boldsymbol{#1}}",1],
+      dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+      },
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    hsmemo
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日:' + document.lastModified);
+</script>
+： ページ分割
+</div>
+</div>
+
+<div class=site-header-margin>
+</div>
+
+<h1>はじめに</h1>
+  aaabbbb
+  <h2>このサイトについて</h2>
+ <a href="1_introduction/1_about/1_about_ai.html">このサイトについて</a> 
+<h1>人工知能</h1>
+  人工知能で勉強した以下のことについて羅列しています。
+  <h2>人工知能の基礎</h2>
+ <a href="2_ai/1_basics/1_about_ai.html">人工知能とは</a>  <a href="2_ai/1_basics/2_classification.html">人工知能の分類</a>  <a href="2_ai/1_basics/3_tasks.html">人工知能により解決するタスクの種類</a>  <a href="2_ai/1_basics/4_supervised_and_unsupervised_learning.html">機械学習の基礎 <span class="small">(教師あり学習、教師なし学習、データマイニング)</span></a>  <a href="2_ai/1_basics/5_reinforcement_learning.html">強化学習</a>  <a href="2_ai/1_basics/6_others.html">人工知能の基本</a> 
+  <h2>データ前処理</h2>
+ <a href="2_ai/2_preprocessing/1_lack_of_data.html">データ前処理の手法</a>  <a href="2_ai/2_preprocessing/2_missing_data.html">データ前処理の手法</a>  <a href="2_ai/2_preprocessing/3_outlier.html">データ前処理の手法</a>  <a href="2_ai/2_preprocessing/4_imbalanced_data.html">データ前処理の手法</a>  <a href="2_ai/2_preprocessing/5_change_data_structure.html">データ前処理の手法</a>  <a href="2_ai/2_preprocessing/6_noise_reduction.html">データ前処理の手法</a>  <a href="2_ai/2_preprocessing/7_normalization.html">データ前処理の手法</a>  <a href="2_ai/2_preprocessing/8_dimensionality_reduction.html">データ前処理の手法</a>  <a href="2_ai/2_preprocessing/9_preprocessing_for_natural_language_processing.html">データ前処理の手法</a> 
+  <h2>基本的な学習手法</h2>
+ <a href="2_ai/3_learning_methods/1_support_vector_machine.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/2_k_nearest_neighbor.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/3_simple_perception.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/4_logistic_regression.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/5_naive_bayes.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/6_decision_tree.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/7_random_forest.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/8_ada_boost.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/9_least_squares_method.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/10_k_means_clustering.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/11_DBSCAN.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/12_principal_component_analysis.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/13_independent_component_analysis.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/14_matrix_factorization.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/15_t_SNE.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/16_q_learning.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/17_td_lambda.html">基本的な学習手法</a>  <a href="2_ai/3_learning_methods/18_common_technique.html">基本的な学習手法</a> 
+  <h2>タスクの評価</h2>
+ <a href="2_ai/4_evaluation/1_standard_problem.html">タスクの評価手法</a>  <a href="2_ai/4_evaluation/2_classification.html">タスクの評価手法</a>  <a href="2_ai/4_evaluation/3_regression.html">タスクの評価手法</a>  <a href="2_ai/4_evaluation/4_clustering.html">タスクの評価手法</a>  <a href="2_ai/4_evaluation/5_neural_network.html">タスクの評価手法</a> 
+  <h2>応用技術</h2>
+ <a href="2_ai/5_applications/1_natural_language_processing.html">各分野における応用技術</a>  <a href="2_ai/5_applications/2_image_recognition.html">各分野における応用技術</a>  <a href="2_ai/5_applications/3_voice_recognition.html">各分野における応用技術</a>  <a href="2_ai/5_applications/4_robotics.html">各分野における応用技術</a>  <a href="2_ai/5_applications/5_failure_detection.html">各分野における応用技術</a>  <a href="2_ai/5_applications/6_failure_detection.html">各分野における応用技術</a> 
+  <h2>深層学習の基本</h2>
+ <a href="2_ai/6_deep_learning/1_overview.html">深層学習の基本</a>  <a href="2_ai/6_deep_learning/2_basic_techniques.html">深層学習の基本</a>  <a href="2_ai/6_deep_learning/3_advanced_techniques.html">深層学習の基本</a>  <a href="2_ai/6_deep_learning/4_structures.html">深層学習の基本</a>  <a href="2_ai/6_deep_learning/5_frameworks.html">深層学習の基本</a>  <a href="2_ai/6_deep_learning/6_words.html">深層学習の基本</a> 
+  <h2>畳み込みニューラルネットワーク</h2>
+ <a href="2_ai/7_convolution_neural_network/1_overview.html">convolutional neural network(cnn, 畳み込みニューラルネットワーク)</a>  <a href="2_ai/7_convolution_neural_network/2_words.html">convolutional neural network(cnn, 畳み込みニューラルネットワーク)</a>  <a href="2_ai/7_convolution_neural_network/3_completeness.html">convolutional neural network(cnn, 畳み込みニューラルネットワーク)</a>  <a href="2_ai/7_convolution_neural_network/4_implementation.html">convolutional neural network(cnn, 畳み込みニューラルネットワーク)</a> 
+  <h2>再帰型ニューラルネットワーク</h2>
+ <a href="2_ai/8_reccurent_neural_network/1_overview.html">RNN : <span class="small"> : recurrent neural network, 再帰型ニューラルネットワーク</span></a>  <a href="2_ai/8_reccurent_neural_network/2_LSTM.html">RNN : <span class="small"> : recurrent neural network, 再帰型ニューラルネットワーク</span></a>  <a href="2_ai/8_reccurent_neural_network/3_advanced_techniques.html">RNN : <span class="small"> : recurrent neural network, 再帰型ニューラルネットワーク</span></a> 
+  <h2>生成モデル</h2>
+ <a href="2_ai/9_generative_model/1_elbo.html">生成モデル</a>  <a href="2_ai/9_generative_model/2_baysian_neural_network.html">生成モデル</a>  <a href="2_ai/9_generative_model/3_deep_generative_models.html">生成モデル</a>  <a href="2_ai/9_generative_model/4_variational_autoencoders.html">生成モデル</a>  <a href="2_ai/9_generative_model/5_GAN.html">生成モデル</a>  <a href="2_ai/9_generative_model/6_evaluation.html">生成モデル</a> 
+  <h2>深層学習による強化学習</h2>
+ <a href="2_ai/10_reinforcement_learning_with_dnn/1_overview.html">深層学習による強化学習</a>  <a href="2_ai/10_reinforcement_learning_with_dnn/2_DQN.html">深層学習による強化学習</a>  <a href="2_ai/10_reinforcement_learning_with_dnn/3_modified_algorithm.html">深層学習による強化学習</a> 
+  <h2>深層学習を使った応用事例</h2>
+ <a href="2_ai/11_applications_with_dnn/1_natural_language_processing.html">深層学習を使った応用事例</a> 
+  <h2>人工知能使用上の注意</h2>
+ <a href="2_ai/12_cautions/1_prejudice.html">人工知能使用上の注意</a>  <a href="2_ai/12_cautions/2_blackbox.html">人工知能使用上の注意</a>  <a href="2_ai/12_cautions/3_fooling_CNN.html">人工知能使用上の注意</a> 
+  <h2>その他未整理の事柄</h2>
+ <a href="2_ai/13_miscellaneous/1_self_organizing_map.html">その外(未整理)</a>  <a href="2_ai/13_miscellaneous/2_words.html">その外(未整理)</a> 
+<h1>移動ロボット</h1>
+  <h2>自己位置同定</h2>
+ <a href="3_mobile_robot/1_localization/1_localization.html">自己位置同定</a> 
+<div class = "end_of_page_margin"></div>
+<div class = "end_of_page">
+<a class="next" href="ai/basics.html">次：人工知能の基礎知識</a>
+
+</div>
+
+</main>
+
+</body>
+</html>
+
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - basics - classification </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> - ai - basics - classification </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+
+<h1>人工知能の分類</h1>
+  大きく分けて、教師あり学習、教師なし学習、強化学習にわけられる。
+  教師データの解釈の仕方で分類が変わりうる。
+
+  <h2>supervised learning<span class="small"> : 教師あり学習</span></h2>
+    <div class="hidden_box">
+    <label for="label_1">[+]　　　</label>
+    <input type="checkbox" id="label_1"/>
+    <div class="hidden_show">
+事前に与えられたデータをいわば例題とみなして、それをガイドに学習を行う。
+    学習後は、入力に対して尤度が最大となる出力を求める。
+
+  </div></div>
+  <h2>unsuperviesd learning<span class="small"> : 教師なし学習</span></h2>
+    <div class="hidden_box">
+    <label for="label_2">[+]　　　</label>
+    <input type="checkbox" id="label_2"/>
+    <div class="hidden_show">
+学習データを教えることによって、それぞれのデータの分類やデータ群の特徴の抽出を行う。
+
+  </div></div>
+  <h2>reinforcement learning<span class="small"> : 強化学習</span></h2>
+    <div class="hidden_box">
+    <label for="label_3">[+]　　　</label>
+    <input type="checkbox" id="label_3"/>
+    <div class="hidden_show">
+行動の結果が行動の後にスカラ値の報酬として与えられる。
+    報酬は即時に与えられるとは限らず、報酬は行動の改善の方法を与えない。
+
+</div>
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="2_ai/1_basics/1_about_ai.html">人工知能とは</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="2_ai/1_basics/3_tasks.html">人工知能により解決するタスクの種類</a>
+</div>
+</main>
+</body>
+</html>

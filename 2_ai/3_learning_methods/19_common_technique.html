@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - learning methods - common technique </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> - ai - learning methods - common technique </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>各種法に共通する技術</h1>
+  <h2>正則化</h2>
+    <div class="hidden_box">
+    <label for="label_1">[+]　　　</label>
+    <input type="checkbox" id="label_1"/>
+    <div class="hidden_show">
+回帰問題において、過学習を行った場合に係数が大きくなりがちであることを利用し、
+    損失関数にペナルティ項を設定することで、汎化性能の高いモデルの生成を目指す方法。
+    <h3>L1正則化</h3>
+あるモデルの評価関数を次式のように設定する。L1正則化の式を使うと、
+説明変数が０になりやすく、次元削減に利用される。
+$$
+\min{f(x)} + \lambda\sum^n_{i=1}|w_i|
+$$
+ここで\(\min{f(x)}\)は通常の損失関数。
+この正則化を利用した回帰をラッソ回帰と呼ぶ。
+
+    <h3>L2正則化</h3>
+モデルの評価関数を以下のように設定する。L2正則化ではモデルの過学習を防ぐために用いられる。
+$$
+\min{f(x)} + \frac{\lambda}{2}\sum^n_{i=1}|w_i|^2
+$$
+この正則化を利用した回帰をリッジ回帰と呼ぶ。
+
+    <h3>Elastic Net回帰</h3>
+L1正則化とL2正則化を組み合わせた回帰手法
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="2_ai/3_learning_methods/18_td_lambda.html">TD(\(\lambda\))</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="2_ai/4_evaluation/1_standard_problem.html">標準問題</a>
+</div>
+</main>
+</body>
+</html>

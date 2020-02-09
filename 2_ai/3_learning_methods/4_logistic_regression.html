@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - learning methods - logistic regression </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> - ai - learning methods - logistic regression </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>logistic regression<span class="small"> : ロジスティック回帰</span></h1>
+  <h2>ターゲットタスク</h2>
+    <div class="hidden_box">
+    <label for="label_1">[+]　　　</label>
+    <input type="checkbox" id="label_1"/>
+    <div class="hidden_show">
+二値分類、確率やダミー変数について分析、予測するのに使われる。
+  </div></div>
+  <h2>アルゴリズム</h2>
+    <div class="hidden_box">
+    <label for="label_2">[+]　　　</label>
+    <input type="checkbox" id="label_2"/>
+    <div class="hidden_show">
+成功確率を\(p\)とすると、オッズ = (成功確率) / (失敗確率) = \( \frac{p}{1-p} \)となる。
+  オッズの対数をとったもの(ロジットという)が入力の線形結合で表せるとする。
+  $$
+    \ln(\frac{p_i}{1-p_i}) = \alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k,i}
+  $$
+  左辺を\(p_i\)にして整理すると以下の式で表される。
+  $$
+  p_i = \frac{1}{1 + e^{- ( \alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k, i})}}
+  $$
+  これは単純パーセプトロンの以下の式と等価である。
+  $$
+  p_i = \varsigma (\alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k,i})
+  $$
+  ここで\(\varsigma\)はシグモイド関数。
+
+  つまり、ロジスティック回帰とは、単純パーセプトロンの出力にシグモイド関数を付けて出力を確率にしたもの。
+
+  </div></div>
+  <h2>長所</h2>
+    <div class="hidden_box">
+    <label for="label_3">[+]　　　</label>
+    <input type="checkbox" id="label_3"/>
+    <div class="hidden_show">
+<ul>
+    <li>非常に簡単</li>
+    </ul>
+  </div></div>
+  <h2>短所</h2>
+    <div class="hidden_box">
+    <label for="label_4">[+]　　　</label>
+    <input type="checkbox" id="label_4"/>
+    <div class="hidden_show">
+<ul>
+    <li>直線分割しかできない</li>
+    </ul>
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="2_ai/3_learning_methods/3_simple_perception.html">単純パーセプトロン</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="2_ai/3_learning_methods/5_naive_bayes.html">naive bayes<span class="small"> : ナイーブベイズ, 単純ベイズ</span></a>
+</div>
+</main>
+</body>
+</html>

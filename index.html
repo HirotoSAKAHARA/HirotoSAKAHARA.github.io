@@ -75,36 +75,43 @@
 <div class=site-header-margin>
 </div>
 
-<h2>このサイトについて</h2>
-<div>hiroto sakahara の学習メモです。記述の正確性は一切保証しません。</div>
-<div>万が一連絡やご指摘がある方は<a href="https://github.com/HirotoSAKAHARA/HirotoSAKAHARA.github.io">このサイトを管理しているgithub</a>でイシューを投げるか、<a href="https://www.facebook.com/hiroto.sakahara.7">facebookの私のページ</a>でお願いします。</div>
-<div>数式はMathjax、図はplantumlで書いてます（無理があります）。</div>
-
-<h2>人工知能</h2>
-<div>人工知能で勉強した以下のことについて羅列しています。</div>
-<ol>
-  <li><a href="ai/basics.html">人工知能の基礎知識</a></li>
-  <li><a href="ai/preprocessing.html">データ前処理の手法</a></li> 
-  <li><a href="ai/learning_methods.html">基本的な学習手法</a></li>
-  <li><a href="ai/evaluation.html">タスクの評価手法</a></li>
-  <li><a href="ai/applications.html">各分野における応用技術</a></li>
-  <li><a href="ai/deep_learning.html">深層学習の基本</a></li>
-  <li><a href="ai/cnn.html">畳み込みニューラルネットワーク</a></li>
-  <li><a href="ai/rnn.html">再帰型ニューラルネットワーク</a></li>
-  <li><a href="ai/generative_model.html">生成モデル</a></li>
-  <li><a href="ai/reinforcement_learning_with_dnn.html">深層学習による強化学習</a></li>
-  <li><a href="ai/applications_with_dnn.html">深層学習を使った応用事例</a></li>
-  <li><a href="ai/cautions.html">人工知能使用上の注意</a></li>
-  <li><a href="ai/miscellaneous.html">その他未整理の事柄</a></li>
-</ol>
-
-<h2><a href="mobile_robot/index.html">移動ロボット</a></h2>
-<div>移動ロボットに必要な技術を羅列する予定です。</div>
-
-
+<h1>はじめに</h1>
+  <h2>このサイトについて</h2>
+ <a href="1_introduction/1_about/1_about.html">このサイトについて</a> 
+<h1>人工知能</h1>
+  人工知能で勉強した以下のことについて羅列しています。
+  <h2>人工知能の基礎</h2>
+ <a href="2_ai/1_basics/1_about_ai.html">人工知能とは</a> ,  <a href="2_ai/1_basics/2_classification.html">人工知能の分類</a> ,  <a href="2_ai/1_basics/3_tasks.html">人工知能により解決するタスクの種類</a> ,  <a href="2_ai/1_basics/4_supervised_and_unsupervised_learning.html">教師あり・なし学習の基礎</a> ,  <a href="2_ai/1_basics/5_reinforcement_learning.html">強化学習</a> ,  <a href="2_ai/1_basics/6_others.html">基本的なトピック</a> 
+  <h2>データ前処理</h2>
+ <a href="2_ai/2_preprocessing/1_lack_of_data.html">データ量が少ない場合への対応</a> ,  <a href="2_ai/2_preprocessing/2_missing_data.html">データ欠損への対応</a> ,  <a href="2_ai/2_preprocessing/3_outlier.html">外れ値への対応</a> ,  <a href="2_ai/2_preprocessing/4_imbalanced_data.html">不均衡データへの対応</a> ,  <a href="2_ai/2_preprocessing/5_change_data_structure.html">データ形式の変換</a> ,  <a href="2_ai/2_preprocessing/6_noise_reduction.html">雑音除去</a> ,  <a href="2_ai/2_preprocessing/7_normalization.html">normalization<span class="small"> : 正規化</span></a> ,  <a href="2_ai/2_preprocessing/8_dimensionality_reduction.html">次元削減</a> ,  <a href="2_ai/2_preprocessing/9_preprocessing_for_natural_language_processing.html">自然言語処理におけるデータ前処理</a> 
+  <h2>基本的な学習手法</h2>
+ <a href="2_ai/3_learning_methods/1_support_vector_machine.html">サポートベクターマシン</a> ,  <a href="2_ai/3_learning_methods/2_k_nearest_neighbor.html">k nearest neighbor<span class="small"> : k近傍法, 最近傍法</span></a> ,  <a href="2_ai/3_learning_methods/3_simple_perception.html">単純パーセプトロン</a> ,  <a href="2_ai/3_learning_methods/4_logistic_regression.html">logistic regression<span class="small"> : ロジスティック回帰</span></a> ,  <a href="2_ai/3_learning_methods/5_naive_bayes.html">naive bayes<span class="small"> : ナイーブベイズ, 単純ベイズ</span></a> ,  <a href="2_ai/3_learning_methods/6_decision_tree.html">決定木</a> ,  <a href="2_ai/3_learning_methods/7_random_forest.html">random forest<span class="small"> : ランダムフォレスト</span></a> ,  <a href="2_ai/3_learning_methods/8_ada_boost.html">ada boost<span class="small"> : アダブースト</span></a> ,  <a href="2_ai/3_learning_methods/9_least_squares_method.html">least squares method : <span class="small">最小二乗法</span></a> ,  <a href="2_ai/3_learning_methods/10_k_means_clustering.html">k means clustering<span class="small"> : k平均クラスタリング</span></a> ,  <a href="2_ai/3_learning_methods/11_DBSCAN.html">DBSCAN <span class="small"> : density-based spatial clustering of applications with noise</span></a> ,  <a href="2_ai/3_learning_methods/12_principal_component_analysis.html">PCA<span class="small"> : principal component analysis, 主成分分析 </span></a> ,  <a href="2_ai/3_learning_methods/13_independent_component_analysis.html">ICA<span class="small"> : independent component analysis, 独立成分分析</span></a> ,  <a href="2_ai/3_learning_methods/14_matrix_factorization.html">matrix factorization<span class="small"> : 行列因子化</span></a> ,  <a href="2_ai/3_learning_methods/15_t_SNE.html">t-SNE<span class="small"> : t-stocastic neighbor embedding</span></a> ,  <a href="2_ai/3_learning_methods/16_q_learning.html">q-learning<span class="small"> : Q学習</span></a> ,  <a href="2_ai/3_learning_methods/17_actor_critic.html">actor-critic</a> ,  <a href="2_ai/3_learning_methods/18_td_lambda.html">TD(\(\lambda\))</a> ,  <a href="2_ai/3_learning_methods/19_common_technique.html">各種法に共通する技術</a> 
+  <h2>タスクの評価</h2>
+ <a href="2_ai/4_evaluation/1_standard_problem.html">標準問題</a> ,  <a href="2_ai/4_evaluation/2_classification.html">分類の評価</a> ,  <a href="2_ai/4_evaluation/3_regression.html">回帰の評価</a> ,  <a href="2_ai/4_evaluation/4_clustering.html">クラスタリングの評価</a> ,  <a href="2_ai/4_evaluation/5_neural_network.html">NNの評価</a> 
+  <h2>応用技術</h2>
+ <a href="2_ai/5_applications/1_natural_language_processing.html">自然言語処理 <span class="small">NLP, natural language processing</span></a> ,  <a href="2_ai/5_applications/2_image_recognition.html">画像認識</a> ,  <a href="2_ai/5_applications/3_voice_recognition.html">音声認識</a> ,  <a href="2_ai/5_applications/4_robotics.html">ロボティクス</a> ,  <a href="2_ai/5_applications/5_failure_detection.html">異常検知</a> ,  <a href="2_ai/5_applications/6_network_analysis.html">ネットワーク分析</a> 
+  <h2>深層学習の基本</h2>
+ <a href="2_ai/6_deep_learning/1_overview.html">概要</a> ,  <a href="2_ai/6_deep_learning/2_basic_techniques.html">基本技術</a> ,  <a href="2_ai/6_deep_learning/3_advanced_techniques.html">応用技術</a> ,  <a href="2_ai/6_deep_learning/4_structures.html">具体的な構造</a> ,  <a href="2_ai/6_deep_learning/5_frameworks.html">DNNフレームワーク</a> ,  <a href="2_ai/6_deep_learning/6_words.html">用語</a> 
+  <h2>畳み込みニューラルネットワーク</h2>
+ <a href="2_ai/7_convolution_neural_network/1_overview.html">概要</a> ,  <a href="2_ai/7_convolution_neural_network/2_words.html">用語</a> ,  <a href="2_ai/7_convolution_neural_network/3_completeness.html">3層パーセプトロンの関数近似としての完全性</a> ,  <a href="2_ai/7_convolution_neural_network/4_implementation.html">実装</a> 
+  <h2>再帰型ニューラルネットワーク</h2>
+ <a href="2_ai/8_reccurent_neural_network/1_overview.html">概要</a> ,  <a href="2_ai/8_reccurent_neural_network/2_LSTM.html">LSTM<span class="small"> : long short-term memory、長・短期記憶 </span></a> ,  <a href="2_ai/8_reccurent_neural_network/3_advanced_techniques.html">応用技術</a> 
+  <h2>生成モデル</h2>
+ <a href="2_ai/9_generative_model/1_elbo.html">evidence of lower bound (elbo, 変分下限)</a> ,  <a href="2_ai/9_generative_model/2_baysian_neural_network.html">baysian nn (ベイズ流ニューラルネットワーク)</a> ,  <a href="2_ai/9_generative_model/3_deep_generative_models.html">deep generative models</a> ,  <a href="2_ai/9_generative_model/4_variational_autoencoders.html">variational autoencoders (vae 変分オートエンコーダ)</a> ,  <a href="2_ai/9_generative_model/5_GAN.html">generative adversarial networks (GAN =敵対ネットワーク)</a> ,  <a href="2_ai/9_generative_model/6_evaluation.html">評価</a> 
+  <h2>深層学習による強化学習</h2>
+ <a href="2_ai/10_reinforcement_learning_with_dnn/1_overview.html">基本</a> ,  <a href="2_ai/10_reinforcement_learning_with_dnn/2_DQN.html">DQN</a> ,  <a href="2_ai/10_reinforcement_learning_with_dnn/3_modified_algorithm.html">改良版アルゴリズム</a> 
+  <h2>深層学習を使った応用事例</h2>
+ <a href="2_ai/11_applications_with_dnn/1_natural_language_processing.html">深層学習を用いた自然言語処理</a> 
+  <h2>人工知能使用上の注意</h2>
+ <a href="2_ai/12_cautions/1_prejudice.html">偏見への問題</a> ,  <a href="2_ai/12_cautions/2_blackbox.html">ブラックボックス</a> ,  <a href="2_ai/12_cautions/3_fooling_CNN.html">fooling CNN</a> 
+  <h2>その他未整理の事柄</h2>
+ <a href="2_ai/13_miscellaneous/1_self_organizing_map.html">self organizing map <span class="small"> :  SOM, 自己組織化</span></a> ,  <a href="2_ai/13_miscellaneous/2_words.html">その他用語</a> 
+<h1>移動ロボット</h1>
+  <h2>自己位置同定</h2>
+ <a href="3_mobile_robot/1_localization/1_localization.html">自己位置同定</a> 
 <div class = "end_of_page_margin"></div>
 <div class = "end_of_page">
-<a class="next" href="ai/basics.html">次：人工知能の基礎知識</a>
+<a class="next" href="1_introduction/1_about/1_about.html">次：このサイトについて</a>
 
 </div>
 

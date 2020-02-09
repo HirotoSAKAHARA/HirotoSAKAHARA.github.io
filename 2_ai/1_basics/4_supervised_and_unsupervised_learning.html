@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - basics - supervised and unsupervised learning </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> - ai - basics - supervised and unsupervised learning </span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>教師あり・なし学習の基礎</h1>  
+  <h2>教師あり学習、教師なし学習の手順</h2>
+    <div class="hidden_box">
+    <label for="label_1">[+]　　　</label>
+    <input type="checkbox" id="label_1"/>
+    <div class="hidden_show">
+教師あり学習、教師なし学習の学習の手順を示す。用語については次節で示す。
+    データは学習に利用する訓練データと検証に利用する検証データ、テストデータに分割するが、
+    これは、モデルが学習のし過ぎによりオーバーフィッティング状態となり、
+    汎化性能が下がっていないことを確認するためである。
+  <div>
+    <img src="out\ai\learning_procedure.png" alt="学習手順"/>
+  </div>
+
+  </div></div>
+  <h2>CRISP-DM<span class="small"> : cross industry standard process for data mining-DM</span></h2>
+    <div class="hidden_box">
+    <label for="label_2">[+]　　　</label>
+    <input type="checkbox" id="label_2"/>
+    <div class="hidden_show">
+<div>
+    CRISP-DMコンソーシアムによって提唱されたデータ分析プロジェクトのプロセスモデル。
+    </div>
+    
+    <div>
+    1.ビジネス理解で課題を明確にし、2.データ理解でデータを取得、3.データ準備でデータを整形し、4.モデリングで分析、
+    その結果を5.評価して、6.適用、あるいは、もう一度サイクルを回し、考え直す。というやり方。
+    </div>
+    <img src="out\ai\CRISP-DM.png" alt="CRISP-DM"/>
+
+  </div></div>
+  <h2>KDD<span class="small"> : Knowledge Discovery in Databases</span></h2>
+    <div class="hidden_box">
+    <label for="label_3">[+]　　　</label>
+    <input type="checkbox" id="label_3"/>
+    <div class="hidden_show">
+<div>
+    データマイニングにより、データから知識を探索するためのプロセスモデル。CRISP-DMと比較し、よりデータ分析部分にフォーカスしており、以下の手順ですすめる。[6]
+    </div>
+    <div>
+  <ol>
+    <li> アプリケーションドメインの理解を構築し、消費者の視点でkddプロセスの目標を決定する。</li>
+    <li> 発見がなされるデータ・セットを選択し、または変数やデータサンプルのサブセットに注目し、目的データ・セットを構築する。</li>
+    <li> 適切なノイズ除去や時系列情報や変化を利用した欠損データ対策などのデータクレンジングと前処理を行う。</li>
+    <li> タスクの目標に依存するデータの特徴を見つけるために、次元削減やデータ変換をし、変数の削減あるいはデータの不変量を見つける。</li>
+    <li> kddプロセスの目標を特定のデータマイニング手法に合わせる。例えば、要約、分類、回帰、クラスタリングなど。</li>
+    <li> データのパターンを探索するデータマイニングアルゴリズムの選択する。</li>
+    <li> データマイニングを行う。</li>
+    <li> マイニングされたパターンの解釈を行う。特に、モデルパターンの可視化や得られたパターンから与えられたデータの可視化を含む。</li>
+    <li> 発見した知識を他のシステムと統合するか、あるいは単に興味ある人々のために文書化する。</li>
+  </ol>
+
+  <img src="out\ai\kdd.png" alt="kdd" width="100%"/>
+  </div>  
+
+  </div></div>
+  <h2>用語</h2>
+    <div class="hidden_box">
+    <label for="label_4">[+]　　　</label>
+    <input type="checkbox" id="label_4"/>
+    <div class="hidden_show">
+<h3>data ingestion<span class="small"> : データインジェスチョン</span></h3>
+csv, excel, xml, 紙, 音声などの様々な媒体、形式で保存されている様々な形式のデータを
+同じ形式で利用できるよう加工すること。通常はデータベースに格納する。
+
+    <h3>data cleansing<span class="small"> : データクレンジング</span></h3>
+データを検査し、不正なデータや、同じデータ、文法異常のデータなどを修正、破棄することで、
+データの質（有効性、正確さ、完全さ、一貫性、統一性）を上げること。
+
+    <h3>training dataset<span class="small"> : 訓練データ</span></h3>
+モデルを適合するためのデータのサンプル
+
+    <h3>validation dataset<span class="small"> : 検証データ</span></h3>
+訓練データで適合したモデルを評価し、
+チューニングの要否やチューニングの方向性を決めるためのデータのサンプル。
+
+    <h3>test dataset<span class="small"> : テストデータ</span></h3>
+訓練データで適合され、検証データを使いチューニングされた
+最終的なモデルの評価のために使用されるデータのサンプル。
+
+    <h3>generalization performance<span class="small"> : 汎化性能</span></h3>
+テストデータなど、未学習のデータでの性能。
+
+    <h3>overfitting <span class="small"> : 過学習, 過剰適合</span></h3>
+訓練データを学習させすぎた結果、訓練データの特徴のみに特化しすぎ、汎化性能が低くなってしまうこと。
+
+    <h3>underfitting <span class="small"> : 未学習</span></h3>
+学習が足りず、訓練データのみならず、テストデータでも性能が出ないこと。
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="2_ai/1_basics/3_tasks.html">人工知能により解決するタスクの種類</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="2_ai/1_basics/5_reinforcement_learning.html">強化学習</a>
+</div>
+
+</main>
+</body>
+</html>
