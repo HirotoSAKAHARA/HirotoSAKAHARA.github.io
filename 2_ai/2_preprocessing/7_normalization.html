@@ -78,19 +78,26 @@ load: ['[tex]/noerrors']
 <!--*********************************本文*********************************-->
 <div class=site-header-margin>
 </div>
-<h1>normalization<span class="small"> : 正規化</span></h1>
-  <h2>センタリング</h2>
+<h1>正規化</h1>
+  <h2>英語名、略称など</h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
     <input type="checkbox" id="label_1"/>
     <div class="hidden_show">
-平均値を求めた後全データから平均値を引き、平均を0にする
-
+Normalization
   </div></div>
-  <h2>standarization<span class="small"> : 標準化</span></h2>
+  <h2>センタリング</h2>
     <div class="hidden_box">
     <label for="label_2">[+]　　　</label>
     <input type="checkbox" id="label_2"/>
+    <div class="hidden_show">
+平均値を求めた後全データから平均値を引き、平均を0にする
+
+      </div></div>
+  <h2>standarization<span class="small"> : 標準化</span></h2>
+    <div class="hidden_box">
+    <label for="label_3">[+]　　　</label>
+    <input type="checkbox" id="label_3"/>
     <div class="hidden_show">
 特徴を平均0、分散1にすることで、特徴ごとのデータ分布を近づける。
   ImageDataGeneratorを使う場合は以下のようになる。
@@ -101,11 +108,11 @@ data_generator = ImageDataGenerator(samplewise_center=True, samplewise_std_norma
 g = data_generator.flow(X_train, y_train, shuffle=False)
 X_batch, y_batch = g.next() </code> </pre>
 
-  </div></div>
+      </div></div>
   <h2>Box-Cox変換</h2>
     <div class="hidden_box">
-    <label for="label_3">[+]　　　</label>
-    <input type="checkbox" id="label_3"/>
+    <label for="label_4">[+]　　　</label>
+    <input type="checkbox" id="label_4"/>
     <div class="hidden_show">
 以下の式に示すように\(x_i\)を\(y_i\)に変換することで、データを正規分布に近づける。
   線形獣回帰分析など、正規分布を仮定しているようなモデルの精度を高めることができる。
@@ -118,11 +125,11 @@ X_batch, y_batch = g.next() </code> </pre>
   $$
 
 
-  </div></div>
+      </div></div>
   <h2>whitening<span class="small"> : 白色化</span></h2>
     <div class="hidden_box">
-    <label for="label_4">[+]　　　</label>
-    <input type="checkbox" id="label_4"/>
+    <label for="label_5">[+]　　　</label>
+    <input type="checkbox" id="label_5"/>
     <div class="hidden_show">
 特徴間の相関をなくし、分散を一定にする。
 <pre> <code># ジェネレーターの生成
@@ -132,74 +139,74 @@ datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
 g = datagen.flow(X_train, y_train, shuffle=False)
 X_batch, y_batch = g.next() </code> </pre>
 
-  </div></div>
+      </div></div>
   <h2>batch normalization<span class="small"> : バッチ正規化 </span></h2>
     <div class="hidden_box">
-    <label for="label_5">[+]　　　</label>
-    <input type="checkbox" id="label_5"/>
+    <label for="label_6">[+]　　　</label>
+    <input type="checkbox" id="label_6"/>
     <div class="hidden_show">
 ミニバッチ学習の際にバッチごとに標準化を行うこと。
   Kerasの実装は以下の通り。
 <pre> <code> model.add(BatchNormalization()) </code> </pre>
 
-  </div></div>
+      </div></div>
   <h2>重み正規化</h2>
-    <div class="hidden_box">
-    <label for="label_6">[+]　　　</label>
-    <input type="checkbox" id="label_6"/>
-    <div class="hidden_show">
-入力xではなく、重み係数wを正規化(平均０分散１）
-  </div></div>
-  <h2>層正規化</h2>
     <div class="hidden_box">
     <label for="label_7">[+]　　　</label>
     <input type="checkbox" id="label_7"/>
     <div class="hidden_show">
-層内の全ニューロンを正規化(平均０分散１）する。入力データが１でも正則化可能。
-
-  </div></div>
-  <h2>ZCA<span class="small"> : zero-phase component analysis, ゼロ位相成分分析</span></h2>
+入力xではなく、重み係数wを正規化(平均０分散１）
+      </div></div>
+  <h2>層正規化</h2>
     <div class="hidden_box">
     <label for="label_8">[+]　　　</label>
     <input type="checkbox" id="label_8"/>
     <div class="hidden_show">
-白色化の線形変換に使用する行列を対称行列に制限する。
+層内の全ニューロンを正規化(平均０分散１）する。入力データが１でも正則化可能。
 
-  </div></div>
-  <h2>LRN<span class="small"> : local response  normalization, 局所的応答正規化</span></h2>
+      </div></div>
+  <h2>ZCA<span class="small"> : zero-phase component analysis, ゼロ位相成分分析</span></h2>
     <div class="hidden_box">
     <label for="label_9">[+]　　　</label>
     <input type="checkbox" id="label_9"/>
     <div class="hidden_show">
-同一位置(ピクセル)において複数の特徴マップ間で正規化する。[1]
+白色化の線形変換に使用する行列を対称行列に制限する。
 
-  </div></div>
-  <h2>GCN<span class="small"> : global contrast normalization, 大域コントラスト正規化</span></h2>
+      </div></div>
+  <h2>LRN<span class="small"> : local response  normalization, 局所的応答正規化</span></h2>
     <div class="hidden_box">
     <label for="label_10">[+]　　　</label>
     <input type="checkbox" id="label_10"/>
     <div class="hidden_show">
-特徴マップ全体でコントラストを正規化する。
+同一位置(ピクセル)において複数の特徴マップ間で正規化する。[1]
 
-  </div></div>
-  <h2>LCN<span class="small"> : local contrast normalization, 局所コントラスト正規化</span></h2>
+      </div></div>
+  <h2>GCN<span class="small"> : global contrast normalization, 大域コントラスト正規化</span></h2>
     <div class="hidden_box">
     <label for="label_11">[+]　　　</label>
     <input type="checkbox" id="label_11"/>
     <div class="hidden_show">
-特徴マップの局所領域内でコントラストを正規化する。
-  
-  </div></div>
-  <h2>参考文献、サイト</h2>
+特徴マップ全体でコントラストを正規化する。
+
+      </div></div>
+  <h2>LCN<span class="small"> : local contrast normalization, 局所コントラスト正規化</span></h2>
     <div class="hidden_box">
     <label for="label_12">[+]　　　</label>
     <input type="checkbox" id="label_12"/>
+    <div class="hidden_show">
+特徴マップの局所領域内でコントラストを正規化する。
+  
+      </div></div>
+  <h2>参考文献、サイト</h2>
+    <div class="hidden_box">
+    <label for="label_13">[+]　　　</label>
+    <input type="checkbox" id="label_13"/>
     <div class="hidden_show">
 <ol>
     <li><cite><a href="http://may46onez.hatenablog.com/entry/2016/01/08/142843">gco(id:may46onez)."theanoでLocal Response Normalization(LRN)を使う (備忘録とか日常とか)",2016, Hatena Blog</li>
   </ol>
 
-    </div></div>
+        </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
 <a class="prev" href="2_ai/2_preprocessing/6_noise_reduction.html">雑音除去</a>

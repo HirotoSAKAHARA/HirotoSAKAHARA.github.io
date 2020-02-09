@@ -77,58 +77,65 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>k nearest neighbor<span class="small"> : k近傍法, 最近傍法</span></h1>
-  <h2>ターゲットタスク</h2>
+<h1>k近傍法</h1>
+  <h2>英語名、略称など</h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
     <input type="checkbox" id="label_1"/>
     <div class="hidden_show">
-分類、回帰、異常検知
-  </div></div>
-  <h2>アルゴリズム</h2>
+k nearest neighbor、ｋが１のときは最近傍法
+      </div></div>
+  <h2>ターゲットタスク</h2>
     <div class="hidden_box">
     <label for="label_2">[+]　　　</label>
     <input type="checkbox" id="label_2"/>
+    <div class="hidden_show">
+分類、回帰、異常検知
+      </div></div>
+  <h2>アルゴリズム</h2>
+    <div class="hidden_box">
+    <label for="label_3">[+]　　　</label>
+    <input type="checkbox" id="label_3"/>
     <div class="hidden_show">
 ある空間上の入力点のラベルを、隣接のk個の学習済みの点のラベルから決定する。
 \(k = 1 \)の時、最近傍法となる。
 隣接の点群の中の最多のラベルを選ぶ事で分類問題に、
 ラベルの平均や重み付き平均を取ることで回帰問題に適用できる。
-  </div></div>
+      </div></div>
   <h2>特徴</h2>
     <div class="hidden_box">
-    <label for="label_3">[+]　　　</label>
-    <input type="checkbox" id="label_3"/>
+    <label for="label_4">[+]　　　</label>
+    <input type="checkbox" id="label_4"/>
     <div class="hidden_show">
 関数が想定されていないノンパラメトリックの手法で、
 教師データをそのまま丸暗記する怠惰学習(lazy learner)である。
 また、空間の各軸である特徴尺度の選択と距離の計算方法が分類性能に大きな影響を与え、
 最近傍探索アルゴリズムが計算速度に大きな影響を与える。
-  </div></div>
+      </div></div>
   <h2>長所</h2>
     <div class="hidden_box">
-    <label for="label_4">[+]　　　</label>
-    <input type="checkbox" id="label_4"/>
+    <label for="label_5">[+]　　　</label>
+    <input type="checkbox" id="label_5"/>
     <div class="hidden_show">
 <ul>
 <li>単純。</li>
     </ul>
-  </div></div>
+      </div></div>
   <h2>短所</h2>
     <div class="hidden_box">
-    <label for="label_5">[+]　　　</label>
-    <input type="checkbox" id="label_5"/>
+    <label for="label_6">[+]　　　</label>
+    <input type="checkbox" id="label_6"/>
     <div class="hidden_show">
 <ul>
 <li>データの局所的構造に左右されやすい。</li>
 <li>不適切な特徴を入れてしまうことで、正確さが著しく損なわれる。</li>
 <li>ノイズ耐性とクラス境界の明確さがトレードオフとなり、kの決定が難しい。</li>
     </ul>
-  </div></div>
+      </div></div>
   <h2>異常検知タスクにおける異常度</h2>
     <div class="hidden_box">
-    <label for="label_6">[+]　　　</label>
-    <input type="checkbox" id="label_6"/>
+    <label for="label_7">[+]　　　</label>
+    <input type="checkbox" id="label_7"/>
     <div class="hidden_show">
 $$
 \ln\frac{}{\pi_0 N^1(x)}{\pi_1 N^0(x)}
@@ -138,7 +145,7 @@ $$
     \(N^0(x)\)は\(x\)のk近傍中の正常データの割合、
     \(N^1(x)\)は\(x\)のk近傍中の異常データの割合。
   
-    </div></div>
+        </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
 <a class="prev" href="2_ai/3_learning_methods/1_support_vector_machine.html">サポートベクターマシン</a>

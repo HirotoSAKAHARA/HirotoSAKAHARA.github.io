@@ -77,48 +77,55 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>PCA<span class="small"> : principal component analysis, 主成分分析 </span></h1>
-  <h2>ターゲットタスク</h2>
+<h1>主成分分析</h1>
+  <h2>英語名、略称など</h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
     <input type="checkbox" id="label_1"/>
     <div class="hidden_show">
-次元削減。
-  </div></div>
-  <h2>アルゴリズム</h2>
+PCA、Principal Component Analysis 
+      </div></div>
+  <h2>ターゲットタスク</h2>
     <div class="hidden_box">
     <label for="label_2">[+]　　　</label>
     <input type="checkbox" id="label_2"/>
+    <div class="hidden_show">
+次元削減。
+      </div></div>
+  <h2>アルゴリズム</h2>
+    <div class="hidden_box">
+    <label for="label_3">[+]　　　</label>
+    <input type="checkbox" id="label_3"/>
     <div class="hidden_show">
 あるデータ\(\bm{X}\)の共分散\(\sum = E[\bm{(X-E[X])(X-E[X])^T}]\)を求める。
   次に\(\sum\)の固有値と固有ベクトルを求め、固有値の大きいほうから必要な分だけ
   主成分を抽出する。
   抽出した主成分の固有ベクトルを並べた行列を元の行列にかけることで、次元を削減する。
-  </div></div>
+      </div></div>
   <h2>長所</h2>
-    <div class="hidden_box">
-    <label for="label_3">[+]　　　</label>
-    <input type="checkbox" id="label_3"/>
-    <div class="hidden_show">
-<ul>
-<li>計算が早い</li>
-<li>もとデータの次元が多い場合でも解析できる。</li>
-</ul>
-  </div></div>
-  <h2>短所</h2>
     <div class="hidden_box">
     <label for="label_4">[+]　　　</label>
     <input type="checkbox" id="label_4"/>
     <div class="hidden_show">
 <ul>
+<li>計算が早い</li>
+<li>もとデータの次元が多い場合でも解析できる。</li>
+</ul>
+      </div></div>
+  <h2>短所</h2>
+    <div class="hidden_box">
+    <label for="label_5">[+]　　　</label>
+    <input type="checkbox" id="label_5"/>
+    <div class="hidden_show">
+<ul>
 <li>異なる特徴が混じったデータでは誤った削減を行う。</li>
 </ul>
-    </div></div>
+        </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="2_ai/3_learning_methods/11_DBSCAN.html">DBSCAN <span class="small"> : density-based spatial clustering of applications with noise</span></a>
+<a class="prev" href="2_ai/3_learning_methods/11_DBSCAN.html">DBSCAN </a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="2_ai/3_learning_methods/13_independent_component_analysis.html">ICA<span class="small"> : independent component analysis, 独立成分分析</span></a>
+<a class="next" href="2_ai/3_learning_methods/13_independent_component_analysis.html">独立成分分析</a>
 </div>
 </main>
 </body>

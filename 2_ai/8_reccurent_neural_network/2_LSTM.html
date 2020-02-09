@@ -78,11 +78,19 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>LSTM<span class="small"> : long short-term memory、長・短期記憶 </span></h1>
-  <h2>概要</h2>
+<h1>LSTM</h1>
+  <h2>英語名、略称など</h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
     <input type="checkbox" id="label_1"/>
+    <div class="hidden_show">
+long short-term memory、長・短期記憶
+
+  </div></div>
+  <h2>概要</h2>
+    <div class="hidden_box">
+    <label for="label_2">[+]　　　</label>
+    <input type="checkbox" id="label_2"/>
     <div class="hidden_show">
 RNNの長距離依存の問題を解決したアーキテクチャ。
     ネットワークの１つのニューロンをセル、入力ゲート、出力ゲート、及び忘却ゲートで再構築する。
@@ -109,7 +117,7 @@ y_t = o_t \circ \tanh(c_t)
 一つ前の中間層、一つ前の出力、現時刻の入力で結合係数の差により、
 入力、出力、忘却のそれぞれのゲートの制御の差が出る。
 
-    </div></div>
+        </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
 <a class="prev" href="2_ai/8_reccurent_neural_network/1_overview.html">概要</a>

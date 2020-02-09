@@ -1,0 +1,14 @@
+@startuml slam_procedure
+start
+:周囲データ取得;
+:スキャン前処理;
+:参照スキャン生成;
+repeat
+  :データ対応付け;
+  :ロボット位置最適化;
+repeat while(推定位置が収束したか) is (収束していない)
+:センサ融合;
+:地図生成;
+end
+skinparam backgroundColor transparent
+@enduml

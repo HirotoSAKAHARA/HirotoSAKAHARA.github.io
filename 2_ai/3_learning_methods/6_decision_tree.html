@@ -79,40 +79,47 @@ load: ['[tex]/noerrors']
 <!--*********************************本文*********************************-->
    
 <h1>決定木</h1>
-  <h2>ターゲットタスク</h2>
+  <h2>英語名、略称など</h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
     <input type="checkbox" id="label_1"/>
     <div class="hidden_show">
-分類、回帰、クラスタリング。
-
-  </div></div>
-  <h2>アルゴリズム</h2>
+Decision Tree
+      </div></div>
+  <h2>ターゲットタスク</h2>
     <div class="hidden_box">
     <label for="label_2">[+]　　　</label>
     <input type="checkbox" id="label_2"/>
+    <div class="hidden_show">
+分類、回帰、クラスタリング。
+
+      </div></div>
+  <h2>アルゴリズム</h2>
+    <div class="hidden_box">
+    <label for="label_3">[+]　　　</label>
+    <input type="checkbox" id="label_3"/>
     <div class="hidden_show">
 各軸(特徴量)において、それぞれの基準により枝を分割する事を繰り返し、ツリーを作る。
     <div>
 <img src="out\ai\decision_tree.png" alt="決定木"/>
     </div>
 
-  </div></div>
+      </div></div>
   <h2>CART</h2>
     <div class="hidden_box">
-    <label for="label_3">[+]　　　</label>
-    <input type="checkbox" id="label_3"/>
+    <label for="label_4">[+]　　　</label>
+    <input type="checkbox" id="label_4"/>
     <div class="hidden_show">
 決定木の１つであるCARTについて説明をする。
     CARTはジニ不純度によりノードを２つに分割し、
     （分割前のジニ不純度)-(分割後のジニ不純度の合計)
     が最も高くなるような分割を行う。
 
-  </div></div>
+      </div></div>
   <h2>ジニ不純度</h2>
     <div class="hidden_box">
-    <label for="label_4">[+]　　　</label>
-    <input type="checkbox" id="label_4"/>
+    <label for="label_5">[+]　　　</label>
+    <input type="checkbox" id="label_5"/>
     <div class="hidden_show">
 $$
 I_G(t) = 1 - \sum^c_{i = 1}(\frac{n_i}{N})^2
@@ -121,50 +128,50 @@ I_G(t) = 1 - \sum^c_{i = 1}(\frac{n_i}{N})^2
     \(N\)はノード内のデータ数、
     \(n_i\)はクラス\(i\)に属するノード内のデータの数。
 
-  </div></div>
+      </div></div>
   <h2>そのほかの決定木</h2>
     <div class="hidden_box">
-    <label for="label_5">[+]　　　</label>
-    <input type="checkbox" id="label_5"/>
+    <label for="label_6">[+]　　　</label>
+    <input type="checkbox" id="label_6"/>
     <div class="hidden_show">
 ID3, C4.5, CHAID等がある。分割基準や分岐の数、枝刈りの有無等が異なる。
     分割基準として使われるものとしては、ジニ不純度のほか、エントロピーがある。
 
-  </div></div>
+      </div></div>
   <h2>エントロピー</h2>
     <div class="hidden_box">
-    <label for="label_6">[+]　　　</label>
-    <input type="checkbox" id="label_6"/>
+    <label for="label_7">[+]　　　</label>
+    <input type="checkbox" id="label_7"/>
     <div class="hidden_show">
 $$
 I_H(t) = - \sum^c_{i = 1}(\frac{n_i}{N})\log{(\frac{n_i}{N})}
     $$
 
-  </div></div>
+      </div></div>
   <h2>長所</h2>
-    <div class="hidden_box">
-    <label for="label_7">[+]　　　</label>
-    <input type="checkbox" id="label_7"/>
-    <div class="hidden_show">
-<ul>
-<li>簡単。</li>
-</ul>
-  </div></div>
-  <h2>短所</h2>
     <div class="hidden_box">
     <label for="label_8">[+]　　　</label>
     <input type="checkbox" id="label_8"/>
     <div class="hidden_show">
 <ul>
+<li>簡単。</li>
+</ul>
+      </div></div>
+  <h2>短所</h2>
+    <div class="hidden_box">
+    <label for="label_9">[+]　　　</label>
+    <input type="checkbox" id="label_9"/>
+    <div class="hidden_show">
+<ul>
 <li>軸に平行な線しか引けないので、対応できない場合がある。</li>
 </ul>
 
-    </div></div>
+        </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="2_ai/3_learning_methods/5_naive_bayes.html">naive bayes<span class="small"> : ナイーブベイズ, 単純ベイズ</span></a>
+<a class="prev" href="2_ai/3_learning_methods/5_naive_bayes.html">ナイーブベイズ</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="2_ai/3_learning_methods/7_random_forest.html">random forest<span class="small"> : ランダムフォレスト</span></a>
+<a class="next" href="2_ai/3_learning_methods/7_random_forest.html">ランダムフォレスト</a>
 </div>
 </main>
 </body>
