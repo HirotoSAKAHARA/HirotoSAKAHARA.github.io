@@ -71,13 +71,13 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：
+：ハイパーパラメータの計算を追加
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>共通する技術</h1>
+<h1>共通技術</h1>
   <h2>正則化</h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
@@ -105,11 +105,21 @@ $$
 L1正則化とL2正則化を組み合わせた回帰手法
 
     </div></div>
+  <h2>ハイパーパラメータの計算</h2>
+    <div class="hidden_box">
+    <label for="label_2">[+]　　　</label>
+    <input type="checkbox" id="label_2"/>
+    <div class="hidden_show">
+    複数のハイパーパラメータの候補を用意しておき、
+    <a href="2_ai/4_evaluation/1_general_method.html">交差検証</a>などでそれぞれの精度を確認、
+    一番良いものを採用する。
+
+    </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
 <a class="prev" href="2_ai/3_learning_methods/18_td_lambda.html">TD(\(\lambda\))</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="2_ai/4_evaluation/1_standard_problem.html">標準問題</a>
+<a class="next" href="2_ai/4_evaluation/1_general_method.html">タスクによらない評価手法</a>
 </div>
 </main>
 </body>
