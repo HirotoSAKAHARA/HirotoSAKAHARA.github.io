@@ -43,6 +43,5 @@ for i in range(nChapter):
         update_hidden(base_dir + item_urls[i][j][k]) 
         update_title(base_dir + item_urls[i][j][k] \
             , chapter_strings[i] \
-            , section_strings[i][j] \
-            , item_strings[i][j][k] ) 
+            , section_strings[i][j])
 
