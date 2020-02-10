@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 import re
 from bs4 import BeautifulSoup
@@ -266,7 +268,7 @@ def update_hidden(target_file):
   with open(target_file, "w") as f:
     f.write(data)
 
-def update_title(target_file):
+def update_title(target_file, chapter_string, section_string, item_string):
   data = ""
   with open(target_file, "r") as f:
     data = f.read()
@@ -301,7 +303,7 @@ def update_title(target_file):
   data = re.sub("<div class=\"title\">.+?</div>", "<div class=\"title\">\n  </div>", data, flags=(re.MULTILINE | re.DOTALL))
   spdata2 = re.split("<div class=\"title\"> *?\n", data)
   data = spdata2[0] + "<div class=\"title\">\n" + "    <a href=\"index.html\">hsmemo</a>\n" +\
-          "    <span class=\"subtitle\"> - " + title + "</span>\n" + spdata2[1]
+          "    <span class=\"subtitle\"> : " + chapter_string + " - " + section_string + " - " + item_string + "</span>\n" + spdata2[1]
  
   with open(target_file, "w") as f:
     f.write(data)

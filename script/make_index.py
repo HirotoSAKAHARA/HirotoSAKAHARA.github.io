@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 import re
 from bs4 import BeautifulSoup
@@ -39,4 +41,8 @@ for i in range(nChapter):
             , item_next_urls[i][j][k] \
             , item_next_strings[i][j][k])
         update_hidden(base_dir + item_urls[i][j][k]) 
-        update_title(base_dir + item_urls[i][j][k])
+        update_title(base_dir + item_urls[i][j][k] \
+            , chapter_strings[i] \
+            , section_strings[i][j] \
+            , item_strings[i][j][k] ) 
+
