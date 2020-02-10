@@ -71,17 +71,36 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：
+：分類の項にあった記述を移動
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>教師あり・なし学習の基礎</h1>  
-  <h2>教師あり学習、教師なし学習の手順</h2>
+<h1>教師あり学習・教師なし学習</h1>  
+  <h2>教師あり学習とは</h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
     <input type="checkbox" id="label_1"/>
+    <div class="hidden_show">
+    事前に与えられたデータをいわば例題とみなして、それをガイドに学習を行う。
+    学習後は、入力に対して尤度が最大となる出力を求める。
+    英語ではsupervised learning。
+
+    </div></div>
+  <h2>教師なし学習とは</h2>
+    <div class="hidden_box">
+    <label for="label_2">[+]　　　</label>
+    <input type="checkbox" id="label_2"/>
+    <div class="hidden_show">
+学習データを教えることによって、それぞれのデータの分類やデータ群の特徴の抽出を行う。
+英語では、unsuperviesd learning。
+
+    </div></div>
+  <h2>学習の手順</h2>
+    <div class="hidden_box">
+    <label for="label_3">[+]　　　</label>
+    <input type="checkbox" id="label_3"/>
     <div class="hidden_show">
 教師あり学習、教師なし学習の学習の手順を示す。用語については次節で示す。
     データは学習に利用する訓練データと検証に利用する検証データ、テストデータに分割するが、
@@ -94,8 +113,8 @@ load: ['[tex]/noerrors']
     </div></div>
   <h2>CRISP-DM<span class="small"> : cross industry standard process for data mining-DM</span></h2>
     <div class="hidden_box">
-    <label for="label_2">[+]　　　</label>
-    <input type="checkbox" id="label_2"/>
+    <label for="label_4">[+]　　　</label>
+    <input type="checkbox" id="label_4"/>
     <div class="hidden_show">
 <div>
     CRISP-DMコンソーシアムによって提唱されたデータ分析プロジェクトのプロセスモデル。
@@ -110,8 +129,8 @@ load: ['[tex]/noerrors']
     </div></div>
   <h2>KDD<span class="small"> : Knowledge Discovery in Databases</span></h2>
     <div class="hidden_box">
-    <label for="label_3">[+]　　　</label>
-    <input type="checkbox" id="label_3"/>
+    <label for="label_5">[+]　　　</label>
+    <input type="checkbox" id="label_5"/>
     <div class="hidden_show">
 <div>
     データマイニングにより、データから知識を探索するためのプロセスモデル。CRISP-DMと比較し、よりデータ分析部分にフォーカスしており、以下の手順ですすめる。[6]
@@ -135,8 +154,8 @@ load: ['[tex]/noerrors']
     </div></div>
   <h2>用語</h2>
     <div class="hidden_box">
-    <label for="label_4">[+]　　　</label>
-    <input type="checkbox" id="label_4"/>
+    <label for="label_6">[+]　　　</label>
+    <input type="checkbox" id="label_6"/>
     <div class="hidden_show">
 <h3>data ingestion<span class="small"> : データインジェスチョン</span></h3>
 csv, excel, xml, 紙, 音声などの様々な媒体、形式で保存されている様々な形式のデータを
@@ -169,9 +188,9 @@ csv, excel, xml, 紙, 音声などの様々な媒体、形式で保存されて�
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="2_ai/1_basics/3_tasks.html">人工知能により解決するタスク</a>
+<a class="prev" href="2_ai/1_basics/2_tasks.html">人工知能により解決するタスク</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="2_ai/1_basics/5_reinforcement_learning.html">強化学習</a>
+<a class="next" href="2_ai/1_basics/4_reinforcement_learning.html">強化学習</a>
 </div>
 
 </main>
