@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - introduction - about - policy </title>
+<title>hsmemo - ai - learning methods - common technique </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -62,7 +62,7 @@ load: ['[tex]/noerrors']
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : はじめに - このサイトについて</span>
+    <span class="subtitle"> : 人工知能 - 非深層学習系の学習手法</span>
   </div>
 </div>
 
@@ -71,49 +71,55 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：
+：ハイパーパラメータの計算を追加
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>方針</h1>
-  <h2>基本的な編集方針</h2>
+<h1>共通技術</h1>
+  <h2>正則化</h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
     <input type="checkbox" id="label_1"/>
     <div class="hidden_show">
-    <ul>
-      <li>必要な要素だが、勉強する時間が取れない時は項目だけでも追加する。</li>
-      <li>タイトルには一般的だと思われる日本語表記を使う。日本語表記がない場合は英語表記でも可。</li>
-      <li>名前については記述の中に英語表記も追記すること。</li>
-      <li>多重管理はできるだけしない。
-        <ul>
-          <li>複数ヶ所で使いまわすデータがあれば自動化で展開することを考える。</li>
-          <li>手法の説明には具体的な応用例については書かない。</li>
-          <li>応用例の手法の説明は基本的にはリンクを貼る。応用に必要な工夫は応用例に記述する。</li>
-          <li>章・節はindex.htmlがマスター、項は各ページのh1がマスター。リンクは自動で貼る</li>
-      </ul>
-      </li>
-      <li>各アルゴリズムに関しては記述のみで実装ができる程度の内容を心がける。</li>
-      <li> 作図ツールの良し悪しで悩みたくないため、図はできるだけplantumlで書く。</li>
-      <li>pythonの練習も兼ねて、自動化できるものは自動化する。</li>
-      <li>文章の最後には。をつける。</li>
-    </ul>
+回帰問題において、過学習を行った場合に係数が大きくなりがちであることを利用し、
+    損失関数にペナルティ項を設定することで、汎化性能の高いモデルの生成を目指す方法。
+    <h3>L1正則化</h3>
+あるモデルの評価関数を次式のように設定する。L1正則化の式を使うと、
+説明変数が０になりやすく、次元削減に利用される。
+$$
+\min{f(x)} + \lambda\sum^n_{i=1}|w_i|
+$$
+ここで\(\min{f(x)}\)は通常の損失関数。
+この正則化を利用した回帰をラッソ回帰と呼ぶ。
+
+    <h3>L2正則化</h3>
+モデルの評価関数を以下のように設定する。L2正則化ではモデルの過学習を防ぐために用いられる。
+$$
+\min{f(x)} + \frac{\lambda}{2}\sum^n_{i=1}|w_i|^2
+$$
+この正則化を利用した回帰をリッジ回帰と呼ぶ。
+
+    <h3>Elastic Net回帰</h3>
+L1正則化とL2正則化を組み合わせた回帰手法
+
     </div></div>
-  <h2>数式について</h2>
+  <h2>ハイパーパラメータの計算</h2>
     <div class="hidden_box">
     <label for="label_2">[+]　　　</label>
     <input type="checkbox" id="label_2"/>
     <div class="hidden_show">
-    <li>入出力、内部状態の文字は統一する(早々に決める必要あり)。</li>
-    <li>期待値の書き方を統一する(早々に決める必要あり)。</li>
+    複数のハイパーパラメータの候補を用意しておき、
+    <a href="2_ai/4_evaluation/1_general_method.html">交差検証</a>などでそれぞれの精度を確認、
+    一番良いものを採用する。
+
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="1_introduction/1_about/2_contact.html">連絡先</a>
+<a class="prev" href="3_ai/4_learning_methods/18_td_lambda.html">TD(\(\lambda\))</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="2_math/1_optimization_problem/1_optimization.html">最適化問題</a>
+<a class="next" href="3_ai/5_deep_learning/1_overview.html">概要</a>
 </div>
 </main>
 </body>

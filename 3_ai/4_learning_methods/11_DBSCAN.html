@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - introduction - about - about </title>
+<title>hsmemo - ai - learning methods - DBSCAN </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -56,12 +56,13 @@ load: ['[tex]/noerrors']
 <body>
 <main>
 
+
 <!--***************************ヘッダー領域****************************-->
 <div class="site-header">
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : はじめに - このサイトについて</span>
+    <span class="subtitle"> : 人工知能 - 非深層学習系の学習手法</span>
   </div>
 </div>
 
@@ -76,62 +77,70 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>このサイトについて</h1>
-  <h2>目的</h2>
+<h1>DBSCAN </h1>
+  <h2>英語名、略称など</h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
     <input type="checkbox" id="label_1"/>
     <div class="hidden_show">
-    <ul>
-      <li>このサイトはhiroto sakahara の学習メモです。</li>
-      <li>aidemyのweb[1]でAIを勉強を始めたのですが、
-          確実な理解のため、何らかの出力の必要性を感じたために作っています。</li>
-      <li>後で自分が思い出せたらいいな程度のわかりやすさしかありません。</li>
-      <li>万が一間違いがあったり、紛らわしいといったご指摘をくださるのであれば<a href="1_introduction/1_about/2_contact.html">連絡先</a>までお願いします。</li>
+density-based spatial clustering of applications with noise
     </div></div>
-  <h2>免責</h2>
+  <h2>ターゲットタスク</h2>
     <div class="hidden_box">
     <label for="label_2">[+]　　　</label>
     <input type="checkbox" id="label_2"/>
     <div class="hidden_show">
-    <ul>
-      <li>内容の責任は個人に帰属し、 所属する組織とは関係ありません。</li>
-      <li>正確な記述を目指してはいますが、記述の正確性に責任は負いません。</li>
+クラスタリング。
     </div></div>
-  <h2>ナビゲーションについて</h2>
+  <h2>アルゴリズム</h2>
     <div class="hidden_box">
     <label for="label_3">[+]　　　</label>
     <input type="checkbox" id="label_3"/>
     <div class="hidden_show">
-    <ul>
-      <li>indexページのindexと下部のナビゲーションバーで移動してください。</li>
-      <li>タイトルのhsmemoの部分はホームページへのリンクです。</li>
-    </ul>
+<h3>概要</h3>
+以下の方法でコア点、到達可能点、外れ値に分類する。
+<ul>
+<li> 点\(p\)を含め、点\(p\)から距離\(\varepsilon \)以内に少なくともminPts個の点があれば、点\(p\)をコア点とする。</li>
+<li> 点\(q\)がコア点\(p\)から距離から距離\(\varepsilon \)以内にあれば、点\(q\)は点\(p\)から直接到達可能である。</li>
+<li> 点\(p = \) 点\(p_1\)、点\(q\) = 点\(p_n\)の時、点\(p_{i+1}\)が点\(p_i\)から直接到達可能であり、
+結果点\(p_n\)が点\(p_1\)から順にたどり着ける場合、点\(q\)は点\(p\)から到達可能である。
+この時、点\(q\)以外はコア点である(\(q\)はコア点か到達可能点である)。</li>
+<li> どの点からもたどり着けない点は外れ点かノイズ点である。</li>
+</ul>
+    <h3>手順</h3>
+    <ol>
+<li>パラメータ\( \varepsilon \)、minPtsを決定する。</li>
+<li>全ての点について、その点から 距離\(\varepsilon \)以内にある隣接点を見つけ、minPts以上の隣接点がある点をコア点とする。</li>
+<li>隣接グラフ上のコア点群の連結グラフを見つける。この時コア点でない点は考慮しない。</li>
+<li>コア点でない点が近くのクラスタから距離\(\varepsilon \)以内にあれば、その点を近くのクラスタに割当する。そうでない点はノイズ点とする。</li>
+    </ol>
+
     </div></div>
-  <h2>使用しているツールなど</h2>
+  <h2>長所</h2>
     <div class="hidden_box">
     <label for="label_4">[+]　　　</label>
     <input type="checkbox" id="label_4"/>
     <div class="hidden_show">
-    githubで完結できることを目指し、数式はMathjax、図はplantumlで書いてます
-    (が、一部無理があります)。
-    また、pythonでhtml作成を一部自動化しています。
-    ソースが汚くて残念ですが、全てgithubの同じページで公開しています。
+<ul>
+<li>データのクラスタ数を事前に必要としない。</li>
+<li>任意の形状のクラスタを見つけることができる。</li>
+<li>ハズレ値に対しロバストである。</li>
+    </ul>
     </div></div>
-  <h2>参考文献、サイト</h2>
+  <h2>短所</h2>
     <div class="hidden_box">
     <label for="label_5">[+]　　　</label>
     <input type="checkbox" id="label_5"/>
     <div class="hidden_show">
-    <ol>
-      <li><cite><a href="https://aidemy.net">"Aidemy"</li>
-    </ol>
+<ul>
+<li>データの内容が不明な場合、パラメータ、特に\(\varepsilon\)を設定するのが困難</li>
+    </ul>
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="index.html">ホーム</a>
+<a class="prev" href="3_ai/4_learning_methods/10_k_means_clustering.html">k平均クラスタリング</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="1_introduction/1_about/2_contact.html">連絡先</a>
+<a class="next" href="3_ai/4_learning_methods/12_principal_component_analysis.html">主成分分析</a>
 </div>
 </main>
 </body>

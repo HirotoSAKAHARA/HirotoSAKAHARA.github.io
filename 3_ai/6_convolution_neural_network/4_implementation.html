@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - convolution neural network - implementation </title>
+<base href="../../" />
+
+
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+    },
+    options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+    },
+    loader: {
+load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - 畳み込みニューラルネットワーク</span>
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日:' + document.lastModified);
+</script>
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>実装</h1>
+  <h2>python + keras</h2>
+    <div class="hidden_box">
+    <label for="label_1">[+]　　　</label>
+    <input type="checkbox" id="label_1"/>
+    <div class="hidden_show">
+<!--==============================コード==============================-->
+<pre> <code> # モデルの定義
+model = sequential()
+
+// 畳み込み層の挿入
+model.add(conv2d(filters=32, kernel_size=(3, 3), input_shape=(28,28,1))) 
+
+// 活性化関数の挿入
+model.add(activation('relu')) 
+
+// プーリング層の挿入
+model.add(maxpooling2d(pool_size=(2, 2)))
+
+// 入力にドロップアウトを適用(ランダムに入力ユニットを0とする)
+model.add(dropout(0.25))
+// 入力を平坦化
+model.add(flatten())
+// 全結合レイヤーの挿入
+model.add(dense(128))
+
+// アクティベーション層の導入(softmax)
+model.add(activation('softmax'))
+
+// 学習のためのモデルを設定
+model.compile(loss='categorical_crossentropy',
+optimizer='adadelta',
+metrics=['accuracy'])
+
+// 固定回数の施行で学習
+model.fit(x_train, y_train,
+batch_size=128,
+epochs=1,
+verbose=1,
+validation_data=(x_test, y_test)) </code> </pre>
+<!--==================================================================-->
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="3_ai/6_convolution_neural_network/3_completeness.html">3層パーセプトロンの関数近似としての完全性</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="3_ai/7_reccurent_neural_network/1_overview.html">概要</a>
+</div>
+</main>
+</body>
+</html>

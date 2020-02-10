@@ -8,7 +8,7 @@ from make_index_sub import *
 base_dir = "../"
 
 #各フォルダ毎のデータを作る
-nChapter = 5
+nChapter = 20
 nSection = 20
 nItem = 20
 
@@ -35,6 +35,7 @@ for i in range(nChapter):
   for j in range(nSection):
     for k in range(nItem):
       if(item_urls[i][j][k] != 0):
+        print(i,j,k)
         update_navigation(base_dir + item_urls[i][j][k] \
             , item_prev_urls[i][j][k] \
             , item_prev_strings[i][j][k] \

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - introduction - about - about </title>
+<title>hsmemo - ai - preprocessing - imbalanced data </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -56,12 +56,13 @@ load: ['[tex]/noerrors']
 <body>
 <main>
 
+
 <!--***************************ヘッダー領域****************************-->
 <div class="site-header">
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : はじめに - このサイトについて</span>
+    <span class="subtitle"> : 人工知能 - データ前処理</span>
   </div>
 </div>
 
@@ -76,62 +77,33 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>このサイトについて</h1>
-  <h2>目的</h2>
+<h1>不均衡データへの対応</h1>
+  <h2>オーバーサンプリング</h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
     <input type="checkbox" id="label_1"/>
     <div class="hidden_show">
-    <ul>
-      <li>このサイトはhiroto sakahara の学習メモです。</li>
-      <li>aidemyのweb[1]でAIを勉強を始めたのですが、
-          確実な理解のため、何らかの出力の必要性を感じたために作っています。</li>
-      <li>後で自分が思い出せたらいいな程度のわかりやすさしかありません。</li>
-      <li>万が一間違いがあったり、紛らわしいといったご指摘をくださるのであれば<a href="1_introduction/1_about/2_contact.html">連絡先</a>までお願いします。</li>
+頻度が少ない値を含むデータを複製して増加させる。SMOTE(Synthetic minority over-sampling technique)などの手法がある。
     </div></div>
-  <h2>免責</h2>
+  <h2>アンダーサンプリング</h2>
     <div class="hidden_box">
     <label for="label_2">[+]　　　</label>
     <input type="checkbox" id="label_2"/>
     <div class="hidden_show">
-    <ul>
-      <li>内容の責任は個人に帰属し、 所属する組織とは関係ありません。</li>
-      <li>正確な記述を目指してはいますが、記述の正確性に責任は負いません。</li>
+頻度が多い値を含むデータを削減する。ENN(Edited Nearest Neighbours)などの手法がある。
     </div></div>
-  <h2>ナビゲーションについて</h2>
+  <h2>アンダーサンプリングとアンダーサンプリングの組み合わせ</h2>
     <div class="hidden_box">
     <label for="label_3">[+]　　　</label>
     <input type="checkbox" id="label_3"/>
     <div class="hidden_show">
-    <ul>
-      <li>indexページのindexと下部のナビゲーションバーで移動してください。</li>
-      <li>タイトルのhsmemoの部分はホームページへのリンクです。</li>
-    </ul>
-    </div></div>
-  <h2>使用しているツールなど</h2>
-    <div class="hidden_box">
-    <label for="label_4">[+]　　　</label>
-    <input type="checkbox" id="label_4"/>
-    <div class="hidden_show">
-    githubで完結できることを目指し、数式はMathjax、図はplantumlで書いてます
-    (が、一部無理があります)。
-    また、pythonでhtml作成を一部自動化しています。
-    ソースが汚くて残念ですが、全てgithubの同じページで公開しています。
-    </div></div>
-  <h2>参考文献、サイト</h2>
-    <div class="hidden_box">
-    <label for="label_5">[+]　　　</label>
-    <input type="checkbox" id="label_5"/>
-    <div class="hidden_show">
-    <ol>
-      <li><cite><a href="https://aidemy.net">"Aidemy"</li>
-    </ol>
+SMOTE-ENNなどの手法がある。
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="index.html">ホーム</a>
+<a class="prev" href="3_ai/2_preprocessing/3_outlier.html">外れ値への対応</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="1_introduction/1_about/2_contact.html">連絡先</a>
+<a class="next" href="3_ai/2_preprocessing/5_change_data_structure.html">データ形式の変換</a>
 </div>
 </main>
 </body>

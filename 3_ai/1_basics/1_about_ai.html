@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - introduction - about - about </title>
+<title>hsmemo - ai - basics - about ai </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -56,12 +56,13 @@ load: ['[tex]/noerrors']
 <body>
 <main>
 
+
 <!--***************************ヘッダー領域****************************-->
 <div class="site-header">
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : はじめに - このサイトについて</span>
+    <span class="subtitle"> : 人工知能 - 概要</span>
   </div>
 </div>
 
@@ -70,68 +71,76 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：
+：分類の項にあった記述を移動
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>このサイトについて</h1>
-  <h2>目的</h2>
+<h1>人工知能とは</h1>
+  <h2>定義</h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
     <input type="checkbox" id="label_1"/>
     <div class="hidden_show">
-    <ul>
-      <li>このサイトはhiroto sakahara の学習メモです。</li>
-      <li>aidemyのweb[1]でAIを勉強を始めたのですが、
-          確実な理解のため、何らかの出力の必要性を感じたために作っています。</li>
-      <li>後で自分が思い出せたらいいな程度のわかりやすさしかありません。</li>
-      <li>万が一間違いがあったり、紛らわしいといったご指摘をくださるのであれば<a href="1_introduction/1_about/2_contact.html">連絡先</a>までお願いします。</li>
+専門家の間ですら共有されている定義はない。
+    しかし、<q>「人工知能」が、推論、認識、判断など、
+    人間と同じ知的な処理能力を持つ機械（情報処理システム）
+    であるという点については、
+    大多数の研究者の意見は一致しているといってもよい」</q>[1]　
+    
     </div></div>
-  <h2>免責</h2>
+  <h2>人工知能の種類</h2>
     <div class="hidden_box">
     <label for="label_2">[+]　　　</label>
     <input type="checkbox" id="label_2"/>
     <div class="hidden_show">
-    <ul>
-      <li>内容の責任は個人に帰属し、 所属する組織とは関係ありません。</li>
-      <li>正確な記述を目指してはいますが、記述の正確性に責任は負いません。</li>
+人工知能には様々な手法が含まれる。
+    機械学習と呼ばれる手法は大量のデータによって予測を行う人工知能の一種であり、
+    深層学習はその中でもニューラルネットと呼ばれるアルゴリズムの特殊なものである。
+    <div>
+<img src="out\ai\kind_of_ai.png" alt="aiの種類"/>
+    </div>
+
+    
     </div></div>
-  <h2>ナビゲーションについて</h2>
+  <h2>機械学習とデータマイニング</h2>
     <div class="hidden_box">
     <label for="label_3">[+]　　　</label>
     <input type="checkbox" id="label_3"/>
     <div class="hidden_show">
-    <ul>
-      <li>indexページのindexと下部のナビゲーションバーで移動してください。</li>
-      <li>タイトルのhsmemoの部分はホームページへのリンクです。</li>
-    </ul>
+大量のデータを利用して特徴を見つけ出す手法には、
+    機械学習とデータマイニングがある。
+    これらは使用する技法は同じだが目的が異なる。
+    機械学習の目的は発見したデータの特徴からあるデータに付随するデータの値を予測することであり、
+    データマイニング目的は未知のデータの特徴を発見することである。
+    データマイニングは英語ではknowledge-discovery in databasesの頭文字をとってKDDとも呼ばれる。
     </div></div>
-  <h2>使用しているツールなど</h2>
+  <h2>機械学習の分類</h2>
     <div class="hidden_box">
     <label for="label_4">[+]　　　</label>
     <input type="checkbox" id="label_4"/>
     <div class="hidden_show">
-    githubで完結できることを目指し、数式はMathjax、図はplantumlで書いてます
-    (が、一部無理があります)。
-    また、pythonでhtml作成を一部自動化しています。
-    ソースが汚くて残念ですが、全てgithubの同じページで公開しています。
+  機械学習(データマイニング)は、大きく分けて、教師あり学習、教師なし学習、強化学習にわけられる。
+  ただし、教師データの解釈の仕方で分類が変わりうるため、厳密には境界は曖昧である。
+
     </div></div>
   <h2>参考文献、サイト</h2>
     <div class="hidden_box">
     <label for="label_5">[+]　　　</label>
     <input type="checkbox" id="label_5"/>
     <div class="hidden_show">
-    <ol>
-      <li><cite><a href="https://aidemy.net">"Aidemy"</li>
-    </ol>
+<ol>
+<li><cite><a href="https : //www.shoeisha.co.jp/book/detail/9784798157559">一般社団法人日本ディープラーニング協会監修, 浅川 伸一, 江間 有沙, 工藤 郁子, 巣龍 悠輔, 瀬谷 啓介, 松井 孝之, 松尾 豊."深層学習教書 ディープラーニング G検定（ジェネラリスト） 公式テキスト", 2018, 翔泳社</li>
+   </ol>
+   
+
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="index.html">ホーム</a>
+<a class="prev" href="2_math/3_quatanion/1_quatanion.html">quatanion (四元数)</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="1_introduction/1_about/2_contact.html">連絡先</a>
+<a class="next" href="3_ai/1_basics/2_tasks.html">人工知能により解決するタスク</a>
 </div>
 </main>
 </body>

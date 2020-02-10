@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - introduction - about - policy </title>
+<title>hsmemo - ai - preprocessing - dimensionality reduction </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -62,7 +62,7 @@ load: ['[tex]/noerrors']
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : はじめに - このサイトについて</span>
+    <span class="subtitle"> : 人工知能 - データ前処理</span>
   </div>
 </div>
 
@@ -77,43 +77,38 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>方針</h1>
-  <h2>基本的な編集方針</h2>
+<h1>次元削減</h1>
+  <h2>PCA<span class="small"> : principal component analysis, 主成分分析</span></h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
     <input type="checkbox" id="label_1"/>
     <div class="hidden_show">
-    <ul>
-      <li>必要な要素だが、勉強する時間が取れない時は項目だけでも追加する。</li>
-      <li>タイトルには一般的だと思われる日本語表記を使う。日本語表記がない場合は英語表記でも可。</li>
-      <li>名前については記述の中に英語表記も追記すること。</li>
-      <li>多重管理はできるだけしない。
-        <ul>
-          <li>複数ヶ所で使いまわすデータがあれば自動化で展開することを考える。</li>
-          <li>手法の説明には具体的な応用例については書かない。</li>
-          <li>応用例の手法の説明は基本的にはリンクを貼る。応用に必要な工夫は応用例に記述する。</li>
-          <li>章・節はindex.htmlがマスター、項は各ページのh1がマスター。リンクは自動で貼る</li>
-      </ul>
-      </li>
-      <li>各アルゴリズムに関しては記述のみで実装ができる程度の内容を心がける。</li>
-      <li> 作図ツールの良し悪しで悩みたくないため、図はできるだけplantumlで書く。</li>
-      <li>pythonの練習も兼ねて、自動化できるものは自動化する。</li>
-      <li>文章の最後には。をつける。</li>
-    </ul>
+主成分分析を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
+
     </div></div>
-  <h2>数式について</h2>
+  <h2>SVC<span class="small"> : singular value decomposition, 特異値分解</span></h2>
     <div class="hidden_box">
     <label for="label_2">[+]　　　</label>
     <input type="checkbox" id="label_2"/>
     <div class="hidden_show">
-    <li>入出力、内部状態の文字は統一する(早々に決める必要あり)。</li>
-    <li>期待値の書き方を統一する(早々に決める必要あり)。</li>
+特異値分解を行い、不要な次元を削減することで、学習パラメータの大幅削減を行う。
+
+    特異値分解とは、行列\(A\)を\( A = U\sum V^{T} \)と分解することである。ここで\(\sum\)の次元は\(A\)と等しく、\(D\)を\(A\)の固有値の対角行列とすると、\( \sum =
+ \left(
+  \begin{array}{cc}
+    D & 0 \\
+    0 & 0 
+  \end{array}
+\right)
+\)と表される(0の数で次元を合わせる）。\(V \)は特異ベクトルを並べた右特異ベクトル、Uは\(A\)、\(\sum\)、\(V\)から求まる左特異ベクトルである。
+ 
+
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="1_introduction/1_about/2_contact.html">連絡先</a>
+<a class="prev" href="3_ai/2_preprocessing/7_normalization.html">正規化</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="2_math/1_optimization_problem/1_optimization.html">最適化問題</a>
+<a class="next" href="3_ai/2_preprocessing/9_preprocessing_for_natural_language_processing.html">自然言語処理におけるデータ前処理</a>
 </div>
 </main>
 </body>

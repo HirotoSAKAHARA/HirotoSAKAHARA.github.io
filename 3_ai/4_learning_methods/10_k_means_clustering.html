@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - introduction - about - about </title>
+<title>hsmemo - ai - learning methods - k means clustering </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -56,12 +56,13 @@ load: ['[tex]/noerrors']
 <body>
 <main>
 
+
 <!--***************************ヘッダー領域****************************-->
 <div class="site-header">
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : はじめに - このサイトについて</span>
+    <span class="subtitle"> : 人工知能 - 非深層学習系の学習手法</span>
   </div>
 </div>
 
@@ -76,62 +77,68 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>このサイトについて</h1>
-  <h2>目的</h2>
+<h1>k平均クラスタリング</h1>
+  <h2>英語名、略称など</h2>
     <div class="hidden_box">
     <label for="label_1">[+]　　　</label>
     <input type="checkbox" id="label_1"/>
     <div class="hidden_show">
-    <ul>
-      <li>このサイトはhiroto sakahara の学習メモです。</li>
-      <li>aidemyのweb[1]でAIを勉強を始めたのですが、
-          確実な理解のため、何らかの出力の必要性を感じたために作っています。</li>
-      <li>後で自分が思い出せたらいいな程度のわかりやすさしかありません。</li>
-      <li>万が一間違いがあったり、紛らわしいといったご指摘をくださるのであれば<a href="1_introduction/1_about/2_contact.html">連絡先</a>までお願いします。</li>
+k means clustering
+
     </div></div>
-  <h2>免責</h2>
+  <h2>ターゲットタスク</h2>
     <div class="hidden_box">
     <label for="label_2">[+]　　　</label>
     <input type="checkbox" id="label_2"/>
     <div class="hidden_show">
-    <ul>
-      <li>内容の責任は個人に帰属し、 所属する組織とは関係ありません。</li>
-      <li>正確な記述を目指してはいますが、記述の正確性に責任は負いません。</li>
+クラスタリング。
     </div></div>
-  <h2>ナビゲーションについて</h2>
+  <h2>アルゴリズム</h2>
     <div class="hidden_box">
     <label for="label_3">[+]　　　</label>
     <input type="checkbox" id="label_3"/>
     <div class="hidden_show">
-    <ul>
-      <li>indexページのindexと下部のナビゲーションバーで移動してください。</li>
-      <li>タイトルのhsmemoの部分はホームページへのリンクです。</li>
-    </ul>
+<div>
+    <img src="out\ai\k_means_clustering.png" alt="k平均法"/>
+  </div>
     </div></div>
-  <h2>使用しているツールなど</h2>
+  <h2>長所</h2>
     <div class="hidden_box">
     <label for="label_4">[+]　　　</label>
     <input type="checkbox" id="label_4"/>
     <div class="hidden_show">
-    githubで完結できることを目指し、数式はMathjax、図はplantumlで書いてます
-    (が、一部無理があります)。
-    また、pythonでhtml作成を一部自動化しています。
-    ソースが汚くて残念ですが、全てgithubの同じページで公開しています。
+<ul>
+<li>データ量が膨大でも高速で計算できる。</li>
+    </ul>
     </div></div>
-  <h2>参考文献、サイト</h2>
+  <h2>短所</h2>
     <div class="hidden_box">
     <label for="label_5">[+]　　　</label>
     <input type="checkbox" id="label_5"/>
     <div class="hidden_show">
-    <ol>
-      <li><cite><a href="https://aidemy.net">"Aidemy"</li>
-    </ol>
+<ul>
+<li>結果が初期値に大きく依存する。</li>
+<li>分割数の決定は別の考察が必要。</li>
+    </ul>
+
+    </div></div>
+  <h2>エルボー法</h2>
+    <div class="hidden_box">
+    <label for="label_6">[+]　　　</label>
+    <input type="checkbox" id="label_6"/>
+    <div class="hidden_show">
+最適なkを決定するための方法で
+    kが大きくなればなるほどSSEは小さくなる傾向にあるが、必要以上に大きくしてもSSEが小さくならないことを利用し、
+    各kにおいてSSEを計算し、折れ曲がる値を最適値とみなす手法。
+    SSEについては評価の項を参照のこと。
+
+  
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="index.html">ホーム</a>
+<a class="prev" href="3_ai/4_learning_methods/9_least_squares_method.html">最小二乗法</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="1_introduction/1_about/2_contact.html">連絡先</a>
+<a class="next" href="3_ai/4_learning_methods/11_DBSCAN.html">DBSCAN </a>
 </div>
 </main>
 </body>
