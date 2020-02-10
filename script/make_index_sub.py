@@ -46,17 +46,19 @@ def update_index(base_dir, item_urls, item_strings, nChapter, nSection, nItem):
     index_html = f.read()
 
   #h2の中身を一旦全部削除する
-  index_html = re.sub("</h2>.+?(?P<tag><div|<h1>|<h2>)","</h2>\n\g<1>", index_html, flags=(re.MULTILINE | re.DOTALL)) 
+  index_html = re.sub("</h2>.+?(?P<tag><div class=\"end_of_page_margin\">|<h1>|<h2>)","</h2>\n\g<1>", index_html, flags=(re.MULTILINE | re.DOTALL)) 
   index_html = re.sub("\n<h2>","\n  <h2>", index_html, flags=(re.MULTILINE | re.DOTALL)) 
 
   index_html_h1 = re.split("<h1>",index_html);
 
   index_html_rev = ""
+  #各章で分ける
   for chapter_p1 in range(len(index_html_h1)):
     if chapter_p1 == 0:
       index_html_rev = index_html_h1[0] + "<h1>"
       continue
     index_html_h2 = re.split("</h2> *?\n",index_html_h1[chapter_p1])
+    #各節で分ける
     for section_p1 in range(len(index_html_h2)):
       if section_p1 == 0:
         index_html_rev = index_html_rev + index_html_h2[0] + "</h2>\n"
@@ -72,7 +74,9 @@ def update_index(base_dir, item_urls, item_strings, nChapter, nSection, nItem):
             item_strings[chapter_p1-1][section_p1 - 1][item] + \
             "</a> "
           section_items = section_items + item_string
-      section_items = section_items + "\n"
+
+      #3つ(+1)の空白をおいて項目を書き出し
+      section_items = "   " + section_items + "\n"
       index_html_h2[section_p1] = section_items + index_html_h2[section_p1];
       index_html_rev += index_html_h2[section_p1]
       if section_p1 != len(index_html_h2) - 1:
@@ -204,12 +208,13 @@ def update_hidden(target_file):
     data = f.read()
 
   #delete all
-  data = re.sub("<div class=\"hidden_box\">\n", "",data)
-  data = re.sub("<label for.+?label>\n", "",data)
-  data = re.sub("<input type=\"checkbox\".+?/>\n", "",data)
-  data = re.sub("<div class=\"hidden_show\">\n", "",data)
-  data = re.sub("</div></div>\n", "",data)
-  data = re.sub("      *", "",data)
+  data = re.sub(" *<div class=\"hidden_box\">\n", "",data)
+  data = re.sub(" *<label for.+?label>\n", "",data)
+  data = re.sub(" *<input type=\"checkbox\".+?/>\n", "",data)
+  data = re.sub(" *<div class=\"hidden_show\">\n", "",data)
+  data = re.sub(" *</div></div>\n", "",data)
+
+
 
 #</h2>の後に隠すやつをつける
   sp_datas_bh2 = re.split("</h2> *?\n",data);
@@ -226,18 +231,33 @@ def update_hidden(target_file):
         if i != len(sp_datas_bh2) - 1:
            sp_datas_bh2[i] = sp_datas_bh2[i] + "</h2>\n"
         data += sp_datas_bh2[i];
+
 #<h2>の前に隠すやつ終了をつける
-    sp_datas_th2 = re.split("<h2>",data);
+    sp_datas_th1 = re.split(" *<h1>",data)
+
     data = ""
-    for i in range(len(sp_datas_th2)):
-      if i == 0:
-      #最初のやつ
-        data += sp_datas_th2[i] + "<h2>"
-      elif i != len(sp_datas_th2) - 1:
-      #最後のやつ以外(後ろにh2がある)
-        data += sp_datas_th2[i] + "  </div></div>\n  " + "<h2>";
-      else:
-        data += sp_datas_th2[i];
+    for h1i in range(len(sp_datas_th1)):
+      sp_datas_th2 = re.split(" *<h2>",sp_datas_th1[h1i]);
+      # h2がない時 
+      if len(sp_datas_th2) == 1:
+        data += sp_datas_th2[0]
+        if( h1i != len(sp_datas_th1) - 1):
+          data += "<h1>"
+        continue
+
+      #　h2がある時は分割に従って処理
+      for i in range(len(sp_datas_th2)):
+        if i == 0:
+        #最初のやつ
+          data += sp_datas_th2[i] + "  <h2>"
+        elif i != len(sp_datas_th2) - 1:
+        #最後のやつ以外(後ろにh2がある)
+          data += sp_datas_th2[i] + "    </div></div>\n" + "  <h2>";
+        elif h1i != len(sp_datas_th1) - 1:
+        #h1の最後のやつ以外(後ろにh1がある)
+          data += sp_datas_th2[i] + "    </div></div>\n" + "<h1>";
+        else:
+          data += sp_datas_th2[i];
 
     sp_datas_eop = re.split("<div class.*?=.*?\"end_of_page_margin\"></div> *?\n",data);
     data = sp_datas_eop[0] + "    </div></div>\n" + "<div class=\"end_of_page_margin\"></div>\n"

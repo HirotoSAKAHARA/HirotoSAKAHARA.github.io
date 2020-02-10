@@ -91,7 +91,7 @@ body {
   position: relative;
   transition: box-shadow .3s ease-in-out;
 }
-.navigation>ul>li:first-child() {
+.navigation>ul>li:first-child {
   border-left: 0;
 }
 .navigation>ul>li:hover {
@@ -120,22 +120,6 @@ h1:first-child{
   margin-top: 4px;
 }
 
-
-h1::before {
-/*  counter-increment: hb;
-  content: counter(hb) " : ";*/
-}
-
-/*h1{
-  margin-top: 1.8rem;
-  margin-bottom: 0px;
-  padding-left:var(--pleft);
-  border-top: 3px solid #882222;
-  font-size: 1.8rem;
-  counter-reset:hc;
-  color:#330000;
-}*/
-
 h1{
   margin-top: 1.5rem;
   margin-bottom: 1rem;
@@ -145,7 +129,7 @@ h1{
   border-top: 3px solid #774444;
   border-bottom: 3px solid #774444;
   background:#DDDDCC;
-  font-size:1.5rem;
+  font-size:1.4rem;
   color:black;
   counter-reset:hc;
 }
@@ -153,13 +137,12 @@ h1{
 
 h2::before {
   counter-increment: hc;
-/*  content: counter(hb) "-" counter(hc)" : ";*/
   content: counter(hc)" : ";
 }
 
 h2{
-  margin-top: 1.4rem;
-  margin-bottom: 0px;
+  margin-top: 1.0rem;
+  margin-bottom: -0.3rem;
   padding:0px;
   padding-left:var(--pleft);
   border-top: 1px solid #775555;
@@ -175,7 +158,6 @@ h1+h2{
 
 h3::before {
   counter-increment: hd;
-/*  content: counter(hb) "-" counter(hc) "-" counter(hd)" : ";*/
   content: counter(hc) "-" counter(hd)" : ";
 }
 
@@ -200,8 +182,7 @@ h3{
 
 h4::before {
   counter-increment: he;
-/*  content: counter(hb) "-" counter(hc) "-" counter(hd) "-" counter(he)" : ";*/
-content: counter(hc) "-" counter(hd) "-" counter(he)" : ";
+  content: counter(hc) "-" counter(hd) "-" counter(he)" : ";
 }
 
 h4{
@@ -221,7 +202,6 @@ h3+h4{
 
 h5::before {
   counter-increment: hf;
-/*  content: counter(hb) "-" counter(hc) "-" counter(hd) "-" counter(he) "-" counter(hf) " : ";*/
   content: counter(hc) "-" counter(hd) "-" counter(he) "-" counter(hf) " : ";
 
 }
@@ -362,6 +342,46 @@ table, th, td {
   padding : 3px;
 }
 
+
+
+.index_page
+{
+  font-size: 1.0rem;
+}
+
+.index_page h1{
+  margin-top: 1.0rem;
+  margin-bottom: -1.5rem;
+  padding-top:2px;
+  padding-bottom:2px; 
+  padding-left:var(--pleft);
+  border-top: 3px solid #774444;
+  border-bottom: 3px solid #774444;
+  background:#DDDDCC;
+  font-size:1.4rem;
+  color:black;
+  counter-reset:hc;
+}
+
+.index_page h1:first-child{
+  margin-top: 1.5rem;
+}
+
+
+
+.index_page h1+h2{
+  margin-top: 0px;
+}
+
+
+.index_page a{
+  background:#D0FFE0;
+  text-decoration:underline;
+  color:#772222;
+  font-style:oblique;
+  font-size: 0.9rem;
+}
+
 .end_of_page_margin{
   padding-top:65px;
 }
@@ -408,30 +428,43 @@ table, th, td {
   font-size: 0.8rem;
 }
 
-.index_page
-{
-  font-size: 1.0rem;
-}
-
-.index_page h1{
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  padding-top:2px;
-  padding-bottom:2px; 
-  padding-left:var(--pleft);
-  border-top: 3px solid #774444;
-  border-bottom: 3px solid #774444;
-  background:#DDDDCC;
-  font-size:1.4rem;
-  color:black;
-  counter-reset:hc;
-}
-
-
-
 .index_page h2
 {
+}
+
+.index_page h2::after
+{
+  content: " :";
+}
+
+.index_page h2{
+  display:inline;
+  border-top: none;
   font-size: 1.2rem;
-  margin-top: 0.5rem;
+
+}
+
+.index_page h2::before {
+  counter-increment: hc;
+  content: "\A" counter(hc)" : ";
+    white-space: pre;
+
+}
+
+.index_page .prev{
+  background-color: #001100;
+  color: #DDDDDD;
+  text-decoration:none;
+}
+.index_page .upper{
+  background-color: #001100;
+  color: #DDDDDD;
+  text-decoration:none;
+}
+.index_page .next{
+  background-color: #001100;
+  color: #DDDDDD;
+  text-decoration:none;
+  font-style:normal;
 }
 

@@ -40,4 +40,3 @@ for i in range(nChapter):
             , item_next_strings[i][j][k])
         update_hidden(base_dir + item_urls[i][j][k]) 
         update_title(base_dir + item_urls[i][j][k])
-
