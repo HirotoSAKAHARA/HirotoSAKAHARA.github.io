@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - image processing - image processing with dnn - image processing </title>
+<title>hsmemo - math - others - similarity </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -62,7 +62,7 @@ load: ['[tex]/noerrors']
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 画像処理 - 深層学習を利用した画像処理</span>
+    <span class="subtitle"> : 数学 - その他</span>
   </div>
 
 </div>
@@ -78,58 +78,52 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>深層学習を使った画像認識</h1>
-  <h2>VQ(Vector Quantaization、ベクトル量子化)</h2>
-    <div><div class="hidden_show">
+<h1>類似度</h1>
     
-  典型的な画像を組み合わせた画像を作ることができる。
+  ２つのデータがどれだけ似ているかの指標
+  <h2>cos類似度</h2>
+    <div><div class="hidden_show">
+ベクトルがどれだけ近いかを判断する指標
+$$
+cos(\vec{q}, \vec{d}) = \frac{\vec{q}\vec{d}}{|\vec{q}||\vec{d}|} = \frac{\sum_{i=1}q_id_i}{\sqrt{\sum_{i=1}q_i^2}\sqrt{\sum_{i=1}d_i^2}}
+$$
+    </div></div>
+  <h2>Jaccard類似度</h2>
+    <div><div class="hidden_show">
+集合動詞の類似度を判断する指標
+    </div></div>
+  <h2>ピアソンの積率相関係数</h2>
+    <div><div class="hidden_show">
+    <q>2つの量的変数間の直線的関連の変数を表す係数。n組のデータ(\(x_1, y_1\)),(\(x_2, y_2\)) \(\cdots\) (\(x_n, y_n\))があり、それぞれの平均を\(\bar{x}, \bar{y}\)とした時、ピアソンの積率相関係数は以下の式で表される。</q>[1]
+    $$
+r_{xy} = \frac{{\displaystyle \sum_{i = 1}^n (x_i - \overline{x})
+(y_i - \overline{y})}}{\sqrt{{\displaystyle \sum_{i = 1}^n 
+(x_i - \overline{x})^2}} \sqrt{{\displaystyle \sum_{i = 1}^n 
+(y_i - \overline{y})^2}}} = \frac{s_{xy}}{s_xs_y}
+    $$
+    </div></div>
+  <h2>ケンドールの順位相関係数</h2>
+    <div><div class="hidden_show">
+対応する２つの変量\(p_i(x_i, y_i)\)がある時、\(p_s\)と\(p_t\) (\(s \lt t\)) のときの、\(x_s\)と\(x_t\), \(y_s\)と\(y_t\)の大小の向きに関する類似度を計算する相関係数。
+    </div></div>
+  <h2>スピアマンの順位相関係数</h2>
+    <div><div class="hidden_show">
+変量の値をその大きさ順に順位に変換し、あるいは順位しかわかっていないデータの順位により、ピアソンの相関係数を計算したもの。
 
     </div></div>
-  <h2>Regions with CNN features (R-CNN)</h2>
+  <h2>参考文献、サイト</h2>
     <div><div class="hidden_show">
-    
-  画像に対してオーバーラップを許して何が写っているのかを示す。
-    バウンディングボックスと呼ばれる画像領域を切り出して、正規化して、CNNに入れる。
-    関心領域の切り出し方法は従来の方法
-    </div></div>
-  <h2>fast-RCNN</h2>
-    <div><div class="hidden_show">
-    
-  画像の切り出しを１つのネットワークで行い実時間画像処理が可能に。
-    </div></div>
-  <h2>FCN</h2>
-    <div><div class="hidden_show">
-    
-  セマンティックセグメンテーション。細かい切り出しができる
-    </div></div>
-  <h2>YOLO (you lok only onece)</h2>
-    <div><div class="hidden_show">
-    
-  バウンディングボックスの切り分けと認識が一回でできる。
-    </div></div>
-  <h2>SSD (Single Shot Multibox Detector)</h2>
-    <div><div class="hidden_show">
-    
-  バウンディングボックスの切り分けと認識が一回でできる。
-    </div></div>
-  <h2> SegNet</h2>
-    <div><div class="hidden_show">
-    
-  実時間での画像領域の細かい切り出しができるようになった。
-
-    </div></div>
-  <h2>画像キャプション付け</h2>
-    <div><div class="hidden_show">
-    
-  画像処理と自然言語処理を組み合わせた問題。
-<h4>NIC</h4>
+      <ol>
+    <li><cite><a href="https://bellcurve.jp/statistics/glossary/1233.html">BellCurve, "ピアソンの積率相関係数", 統計WEB</a>
+  </ol>
+</div>
 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="5_image_processing/8_triangulation/6_triangulation.html">三角測量</a>
+<a class="prev" href="2_math/3_quatanion/1_quatanion.html">quatanion (四元数)</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="6_failure_detection/1_basics/1_basics.html">異常検知の分類</a>
+<a class="next" href="3_ai/1_basics/1_about_ai.html">人工知能とは</a>
 </div>
 </main>
 </body>

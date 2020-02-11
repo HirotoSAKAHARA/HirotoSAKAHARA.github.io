@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - other - network analysis - network analysis </title>
+<title>hsmemo - failure detection - outlier detection - k nearest neighbor </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -62,7 +62,7 @@ load: ['[tex]/noerrors']
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : その他 - ネットワーク分析</span>
+    <span class="subtitle"> : 異常検知 - 外れ値検知</span>
   </div>
 
 </div>
@@ -72,21 +72,38 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：
+：k近傍法を追加
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>ネットワーク分析</h1>
+<h1><a href="2_ai/3_learning_methods/2_k_nearest_neighbor.html">k近傍法</a></h1>
+  <h2>アルゴリズム</h2>
+    <div><div class="hidden_show">
+    判別したいデータとの距離が近いデータをk個抽出し、
+    全体の異常データの割合と抽出したデータの中の異常データの割合から異常度を計算し、 
+    閾値を超えたら異常と判定する。
+    通常の<a href="3_ai/4_learning_methods/2_k_nearest_neighbor.html">k近傍法</a> のように単純に近傍に一番多いラベルに割り当てるのでないことに注意。
 
+    </div></div>
+  <h2>異常度</h2>
+    <div><div class="hidden_show">
+    $$
+      \ln\frac{\pi_0 N^1(x)}{\pi_1 N^0(x)}
+    $$
+    \(\pi_0\)は全標本中の正常データの割合、
+    \(\pi_1\)は全標本中の異常データの割合、
+    \(N^0(x)\)は\(x\)のk近傍中の正常データの割合、
+    \(N^1(x)\)は\(x\)のk近傍中の異常データの割合。
+
+    </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="7_other/2_voice_recognition/1_voice_recognition.html">音声認識</a>
+<a class="prev" href="6_failure_detection/2_outlier_detection/3_naive_bayse.html">ナイーブベイズ</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="7_other/4_other/1_index.html">その他</a>
+<a class="next" href="6_failure_detection/3_change_detection/1_cumulative_sum_method.html">累積話法</a>
 </div>
 </main>
 </body>
 </html>
-

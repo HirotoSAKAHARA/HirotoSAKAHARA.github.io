@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - image processing - image processing with dnn - image processing </title>
+<title>hsmemo - others - natural language processing - ngram </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -62,7 +62,7 @@ load: ['[tex]/noerrors']
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 画像処理 - 深層学習を利用した画像処理</span>
+    <span class="subtitle"> : その他 - 自然言語処理</span>
   </div>
 
 </div>
@@ -78,58 +78,25 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>深層学習を使った画像認識</h1>
-  <h2>VQ(Vector Quantaization、ベクトル量子化)</h2>
+<h1>Ngram</h1>
+  <h2>概要</h2>
     <div><div class="hidden_show">
-    
-  典型的な画像を組み合わせた画像を作ることができる。
+  与えられたテキストから、それぞれの語に対して隣接するn個の語の列を作って解析する方法。
+    単語単位の場合もある。
+    <ul>
+<li>0-gram(ヌルグラム) 事前の単語を考慮しない</li>
+<li>1-gram(ヌ二グラム) 1つ前の単語を考慮する。</li>
+<li>2-gram(ヌ二グラム) 2つ前と2つまえの単語を考慮する。</li>
+    </ul>
 
-    </div></div>
-  <h2>Regions with CNN features (R-CNN)</h2>
-    <div><div class="hidden_show">
-    
-  画像に対してオーバーラップを許して何が写っているのかを示す。
-    バウンディングボックスと呼ばれる画像領域を切り出して、正規化して、CNNに入れる。
-    関心領域の切り出し方法は従来の方法
-    </div></div>
-  <h2>fast-RCNN</h2>
-    <div><div class="hidden_show">
-    
-  画像の切り出しを１つのネットワークで行い実時間画像処理が可能に。
-    </div></div>
-  <h2>FCN</h2>
-    <div><div class="hidden_show">
-    
-  セマンティックセグメンテーション。細かい切り出しができる
-    </div></div>
-  <h2>YOLO (you lok only onece)</h2>
-    <div><div class="hidden_show">
-    
-  バウンディングボックスの切り分けと認識が一回でできる。
-    </div></div>
-  <h2>SSD (Single Shot Multibox Detector)</h2>
-    <div><div class="hidden_show">
-    
-  バウンディングボックスの切り分けと認識が一回でできる。
-    </div></div>
-  <h2> SegNet</h2>
-    <div><div class="hidden_show">
-    
-  実時間での画像領域の細かい切り出しができるようになった。
-
-    </div></div>
-  <h2>画像キャプション付け</h2>
-    <div><div class="hidden_show">
-    
-  画像処理と自然言語処理を組み合わせた問題。
-<h4>NIC</h4>
+    統計的言語モデルからニューラルネットワーク言語モデル（リカレント．．．nnlm、rnnlm)
 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="5_image_processing/8_triangulation/6_triangulation.html">三角測量</a>
+<a class="prev" href="7_others/1_natural_language_processing/2_morphological_analysis.html">形態素解析 </a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="6_failure_detection/1_basics/1_basics.html">異常検知の分類</a>
+<a class="next" href="7_others/1_natural_language_processing/4_bags_of_words.html">Bags of Words</a>
 </div>
 </main>
 </body>
