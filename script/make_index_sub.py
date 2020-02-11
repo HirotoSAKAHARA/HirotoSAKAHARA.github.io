@@ -43,7 +43,22 @@ def get_item_strings(base_dir, item_urls, nChapter, nSection, nItem):
             item_strings[i][j][k] = item_string;
   return item_strings;
 
-def update_index(base_dir, item_urls, item_strings, nChapter, nSection, nItem):
+def get_item_has_contents(base_dir, item_urls, nChapter, nSection, nItem):
+  item_has_contents = [[[False for i3 in range(nItem)] for i2 in range(nSection)] for i1 in range(nChapter)]
+  for i in range(nChapter):
+    for j in range(nSection):
+      for k in range(nItem):
+        if(item_urls[i][j][k] != 0):
+          with open(base_dir+ item_urls[i][j][k], "r") as f:
+            html = f.read()
+            index_html_h2 = re.split("<h2>",html);
+            if(len(index_html_h2) != 1):
+              item_has_contents[i][j][k] = True
+
+  return item_has_contents;
+
+
+def update_index(base_dir, item_urls, item_strings, item_has_contents, nChapter, nSection, nItem):
   with open(base_dir + "index.html", "r") as f:
     index_html = f.read()
 
@@ -70,11 +85,19 @@ def update_index(base_dir, item_urls, item_strings, nChapter, nSection, nItem):
         if(item_urls[chapter_p1-1][section_p1 - 1][item] != 0):
           if(item != 0):
             section_items += ", "
-          item_string = " <a href=\"" + \
-            item_urls[chapter_p1-1][section_p1 - 1][item] + \
-            "\">" + \
-            item_strings[chapter_p1-1][section_p1 - 1][item] + \
-            "</a> "
+          if(item_has_contents[chapter_p1-1][section_p1 - 1][item] == True):
+            item_string = " <a href=\"" + \
+              item_urls[chapter_p1-1][section_p1 - 1][item] + \
+              "\">" + \
+              item_strings[chapter_p1-1][section_p1 - 1][item] + \
+              "</a> "
+          else:
+            item_string = " <a class=\"nocontents\" href=\"" + \
+              item_urls[chapter_p1-1][section_p1 - 1][item] + \
+              "\">" + \
+              item_strings[chapter_p1-1][section_p1 - 1][item] + \
+              "</a> "
+
           section_items = section_items + item_string
 
       #3つ(+1)の空白をおいて項目を書き出し
@@ -210,13 +233,12 @@ def update_hidden(target_file):
     data = f.read()
 
   #delete all
+  data = re.sub("<div>", "",data)
   data = re.sub(" *<div class=\"hidden_box\">\n", "",data)
   data = re.sub(" *<label for.+?label>\n", "",data)
   data = re.sub(" *<input type=\"checkbox\".+?/>\n", "",data)
   data = re.sub(" *<div class=\"hidden_show\">\n", "",data)
   data = re.sub(" *</div></div>\n", "",data)
-
-
 
 #</h2>の後に隠すやつをつける
   sp_datas_bh2 = re.split("</h2> *?\n",data);
@@ -226,10 +248,11 @@ def update_hidden(target_file):
       if i == 0:
         data += sp_datas_bh2[i] + "</h2>\n"
       else:
-        sp_datas_bh2[i] = "    <div class=\"hidden_show\">\n" + sp_datas_bh2[i];
-        sp_datas_bh2[i] = "    <input type=\"checkbox\" id=\"label_" + str(i) + "\"/>\n" + sp_datas_bh2[i];
-        sp_datas_bh2[i] = "    <label for=\"label_" + str(i) + "\">[+]　　　</label>\n" + sp_datas_bh2[i];
-        sp_datas_bh2[i] = "    <div class=\"hidden_box\">\n" + sp_datas_bh2[i];
+        sp_datas_bh2[i] = "    <div><div class=\"hidden_show\">\n" + sp_datas_bh2[i];
+#        sp_datas_bh2[i] = "    <div class=\"hidden_show\">\n" + sp_datas_bh2[i];
+#        sp_datas_bh2[i] = "    <input type=\"checkbox\" id=\"label_" + str(i) + "\"/>\n" + sp_datas_bh2[i];
+#        sp_datas_bh2[i] = "    <label for=\"label_" + str(i) + "\">[+]　　　</label>\n" + sp_datas_bh2[i];
+#        sp_datas_bh2[i] = "    <div class=\"hidden_box\">\n" + sp_datas_bh2[i];
         if i != len(sp_datas_bh2) - 1:
            sp_datas_bh2[i] = sp_datas_bh2[i] + "</h2>\n"
         data += sp_datas_bh2[i];
@@ -264,7 +287,6 @@ def update_hidden(target_file):
     sp_datas_eop = re.split("<div class.*?=.*?\"end_of_page_margin\"></div> *?\n",data);
     data = sp_datas_eop[0] + "    </div></div>\n" + "<div class=\"end_of_page_margin\"></div>\n"
     data = data + sp_datas_eop[1]
-
   with open(target_file, "w") as f:
     f.write(data)
 

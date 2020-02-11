@@ -66,6 +66,7 @@ load: ['[tex]/noerrors']
     <a href="index.html">hsmemo</a>
     <span class="subtitle"> : 移動ロボット - 自己位置同定</span>
   </div>
+
 </div>
 
 <div class="last_modified">
@@ -81,32 +82,25 @@ load: ['[tex]/noerrors']
 <!--*********************************本文*********************************-->
 <h1>グラフベースドスラム</h1>
   <h2>手順</h2>
-    <div class="hidden_box">
-    <label for="label_1">[+]　　　</label>
-    <input type="checkbox" id="label_1"/>
-    <div class="hidden_show">
-
+    <div><div class="hidden_show">
+    
+  
     <img src="out/mobile_robot/localization/slam_procedure.png" /> 
 
-    </div>
 
     </div></div>
   <h2>周囲データ取得</h2>
-    <div class="hidden_box">
-    <label for="label_2">[+]　　　</label>
-    <input type="checkbox" id="label_2"/>
-    <div class="hidden_show">
-
+    <div><div class="hidden_show">
+    
+  
     センサでスキャンを行う。
 
     
     </div></div>
   <h2>スキャン前処理</h2>
-    <div class="hidden_box">
-    <label for="label_3">[+]　　　</label>
-    <input type="checkbox" id="label_3"/>
-    <div class="hidden_show">
-
+    <div><div class="hidden_show">
+    
+  
     <ol>
 <li>データ間引き</li>
 <li>クラスタリング</li>
@@ -116,11 +110,9 @@ load: ['[tex]/noerrors']
     
     </div></div>
   <h2>参照スキャン生成</h2>
-    <div class="hidden_box">
-    <label for="label_4">[+]　　　</label>
-    <input type="checkbox" id="label_4"/>
-    <div class="hidden_show">
-
+    <div><div class="hidden_show">
+    
+  
 
     <ol>
 <li>前回の地図で参照スキャン</li>
@@ -131,11 +123,9 @@ load: ['[tex]/noerrors']
     
     </div></div>
   <h2>データ対応付</h2>
-    <div class="hidden_box">
-    <label for="label_5">[+]　　　</label>
-    <input type="checkbox" id="label_5"/>
-    <div class="hidden_show">
-
+    <div><div class="hidden_show">
+    
+  
     <ol>
 
 <li>全探索</li>
@@ -148,11 +138,9 @@ load: ['[tex]/noerrors']
     
     </div></div>
   <h2>ロボット位置最適化</h2>
-    <div class="hidden_box">
-    <label for="label_6">[+]　　　</label>
-    <input type="checkbox" id="label_6"/>
-    <div class="hidden_show">
-
+    <div><div class="hidden_show">
+    
+  
 <input type="checkbox" id="label-pose-optimization">
     
     <ol>
@@ -173,11 +161,9 @@ load: ['[tex]/noerrors']
     
     </div></div>
   <h2>センサ融合</h2>
-    <div class="hidden_box">
-    <label for="label_7">[+]　　　</label>
-    <input type="checkbox" id="label_7"/>
-    <div class="hidden_show">
-
+    <div><div class="hidden_show">
+    
+  
 <input type="checkbox" id="label-sensor-fusion">
 
     <ol>
@@ -188,22 +174,18 @@ load: ['[tex]/noerrors']
     
     </div></div>
   <h2>地図生成</h2>
-    <div class="hidden_box">
-    <label for="label_8">[+]　　　</label>
-    <input type="checkbox" id="label_8"/>
-    <div class="hidden_show">
-<input type="checkbox" id="label-generate-map">
+    <div><div class="hidden_show">
+    
+  <input type="checkbox" id="label-generate-map">
 
 <li>ロボット位置グラフ生成して位置のズレを最小化</li>
     </ol>
     
     </div></div>
   <h2>SLAMの種類</h2>
-    <div class="hidden_box">
-    <label for="label_9">[+]　　　</label>
-    <input type="checkbox" id="label_9"/>
-    <div class="hidden_show">
-<h3>レーザセンサSLAM</h3>
+    <div><div class="hidden_show">
+    
+  <h3>レーザセンサSLAM</h3>
 <h3>Visual SLAM</h3>
 <h4>Orb SLAM</h4>
 <h4>Direct Sparse Odometry</h4>
@@ -214,21 +196,17 @@ load: ['[tex]/noerrors']
 
     </div></div>
   <h2>調べるリスト</h2>
-    <div class="hidden_box">
-    <label for="label_10">[+]　　　</label>
-    <input type="checkbox" id="label_10"/>
-    <div class="hidden_show">
-<ul>
+    <div><div class="hidden_show">
+    
+  <ul>
 <li>SfM</li>
     </ul>
 
     </div></div>
   <h2>参考文献、サイト</h2>
-    <div class="hidden_box">
-    <label for="label_11">[+]　　　</label>
-    <input type="checkbox" id="label_11"/>
-    <div class="hidden_show">
-<ul>
+    <div><div class="hidden_show">
+    
+  <ul>
   <li><cite><a href="https://www.ohmsha.co.jp/book/9784274221668/">友納正裕."SLAM入門 ロボットの自己位置推定と地図構築の技術".2018,Ohmsha</a> </cite></li>
   <li><cite><a href="根の探索アルゴリズム">@nariaki3551,"根の探索あるゴリズム",2019,Qiita</a></cite></li>
   </ul>

@@ -64,6 +64,7 @@ load: ['[tex]/noerrors']
     <a href="index.html">hsmemo</a>
     <span class="subtitle"> : その他 - 自然言語処理</span>
   </div>
+
 </div>
 
 <div class="last_modified">
@@ -79,19 +80,15 @@ load: ['[tex]/noerrors']
 <!--*********************************本文*********************************-->
 <h1>自然言語処理 </h1>
   <h2>英語名、略称など</h2>
-    <div class="hidden_box">
-    <label for="label_1">[+]　　　</label>
-    <input type="checkbox" id="label_1"/>
-    <div class="hidden_show">
-NLP, natural language processing
+    <div><div class="hidden_show">
+    
+  NLP, natural language processing
 
     </div></div>
   <h2>基本用語</h2>
-    <div class="hidden_box">
-    <label for="label_2">[+]　　　</label>
-    <input type="checkbox" id="label_2"/>
-    <div class="hidden_show">
-<h3>トークン</h3>
+    <div><div class="hidden_show">
+    
+  <h3>トークン</h3>
 自然言語解析における文章の最小単位となる文字や文字列
     <h3>タイプ</h3>
 単語の種類を表す。
@@ -120,11 +117,9 @@ NLP, natural language processing
     
     </div></div>
   <h2>形態素解析 <span class="small">Morphological Analysis</span></h2>
-    <div class="hidden_box">
-    <label for="label_3">[+]　　　</label>
-    <input type="checkbox" id="label_3"/>
-    <div class="hidden_show">
-文法ルールや解析辞書データに基づいて文章を単語に分割し、それぞれに品詞を付与する処理。様々なライブラリが提供されている。
+    <div><div class="hidden_show">
+    
+  文法ルールや解析辞書データに基づいて文章を単語に分割し、それぞれに品詞を付与する処理。様々なライブラリが提供されている。
    <dl>
     <dt><a href="http://taku910.github.io/mecab/">MeCab</a></dt>
     <dd>  京都大学情報学研究科−日本電信電話株式会社コミュニケーション科学基礎研究所 共同研究ユニットプロジェクトを通じて開発されたオープンソース形態素解析エンジンで、言語, 辞書,コーパスに依存しない汎用的な設計を 基本方針としている。</dd>
@@ -138,11 +133,9 @@ NLP, natural language processing
    
     </div></div>
   <h2>Ngram</h2>
-    <div class="hidden_box">
-    <label for="label_4">[+]　　　</label>
-    <input type="checkbox" id="label_4"/>
-    <div class="hidden_show">
-与えられたテキストから、それぞれの語に対して隣接するn個の語の列を作って解析する方法。
+    <div><div class="hidden_show">
+    
+  与えられたテキストから、それぞれの語に対して隣接するn個の語の列を作って解析する方法。
     単語単位の場合もある。
     <ul>
 <li>0-gram(ヌルグラム) 事前の単語を考慮しない</li>
@@ -154,11 +147,9 @@ NLP, natural language processing
 
     </div></div>
   <h2>BOW <span class="small"> : Bags of Words</span></h2>
-    <div class="hidden_box">
-    <label for="label_5">[+]　　　</label>
-    <input type="checkbox" id="label_5"/>
-    <div class="hidden_show">
-文章中の各単語の分布を記録したベクトルとして表現する。ベクトル表現には以下のようなものがある。
+    <div><div class="hidden_show">
+    
+  文章中の各単語の分布を記録したベクトルとして表現する。ベクトル表現には以下のようなものがある。
     <h3>カウント表現</h3>
 文章中の各単語の出現数を記録する。
 
@@ -185,11 +176,9 @@ $$
 
     </div></div>
   <h2>類似度</h2>
-    <div class="hidden_box">
-    <label for="label_6">[+]　　　</label>
-    <input type="checkbox" id="label_6"/>
-    <div class="hidden_show">
-２つのデータがどれだけ似ているかの指標
+    <div><div class="hidden_show">
+    
+  ２つのデータがどれだけ似ているかの指標
     <h3>cos類似度</h3>
 ベクトルがどれだけ近いかを判断する指標
 $$
@@ -212,19 +201,15 @@ r_{xy} = \frac{{\displaystyle \sum_{i = 1}^n (x_i - \overline{x})
 
     </div></div>
   <h2>単語文書行列<span class="small">term-document matrix</span></h2>
-    <div class="hidden_box">
-    <label for="label_7">[+]　　　</label>
-    <input type="checkbox" id="label_7"/>
-    <div class="hidden_show">
-文書に出現する単語の頻度を表形式で表したもの。tf, idfにより単語の重みを変えると、重みあり単語文書行列になる。
+    <div><div class="hidden_show">
+    
+  文書に出現する単語の頻度を表形式で表したもの。tf, idfにより単語の重みを変えると、重みあり単語文書行列になる。
 
     </div></div>
   <h2>トピックモデル</h2>
-    <div class="hidden_box">
-    <label for="label_8">[+]　　　</label>
-    <input type="checkbox" id="label_8"/>
-    <div class="hidden_show">
-文章が複数のトピックで成り立っており、文書中の単語はそれらのトピックにより確率的に生成されていると仮定するモデル。
+    <div><div class="hidden_show">
+    
+  文章が複数のトピックで成り立っており、文書中の単語はそれらのトピックにより確率的に生成されていると仮定するモデル。
     <dl>
 <dt>潜在的ディリクレ配分法</dt>
 <dd>
@@ -236,20 +221,16 @@ r_{xy} = \frac{{\displaystyle \sum_{i = 1}^n (x_i - \overline{x})
 
     </div></div>
   <h2>深層学習を使った自然言語処理</h2>
-    <div class="hidden_box">
-    <label for="label_9">[+]　　　</label>
-    <input type="checkbox" id="label_9"/>
-    <div class="hidden_show">
-深層学習を使わないベクトル表現では、ベクトルの次元が大きくなりすぎたり、意味を扱えなかったりするが、
+    <div><div class="hidden_show">
+    
+  深層学習を使わないベクトル表現では、ベクトルの次元が大きくなりすぎたり、意味を扱えなかったりするが、
 深層学習を使うと、誤差逆伝播法により、わずか数百次元のベクトルで単語の意味を表現できるようになる。
 
     </div></div>
   <h2>word2vec</h2>
-    <div class="hidden_box">
-    <label for="label_10">[+]　　　</label>
-    <input type="checkbox" id="label_10"/>
-    <div class="hidden_show">
-"king" - "man" + "woman" = "Queen" <br>
+    <div><div class="hidden_show">
+    
+  "king" - "man" + "woman" = "Queen" <br>
 単語埋め込み(Embedding)モデル。単語のベクトルを用いて、単語の足し算、引き算が可能となる。同じように文法も解ける。
 BOWや単語文書行列では、それぞれの単語が0,1の入力層が数万個で表示されていたのが、まとめてベクトルとすると、
 ベクトルが学習によって意味を表すようになってきた。
@@ -257,19 +238,15 @@ BOWや単語文書行列では、それぞれの単語が0,1の入力層が数�
 
     </div></div>
   <h2>doc2vec</h2>
-    <div class="hidden_box">
-    <label for="label_11">[+]　　　</label>
-    <input type="checkbox" id="label_11"/>
-    <div class="hidden_show">
-word2vecを応用した文章をベクトル化する技術で、文の語順も特徴として考慮に入れることができる。
+    <div><div class="hidden_show">
+    
+  word2vecを応用した文章をベクトル化する技術で、文の語順も特徴として考慮に入れることができる。
 
     </div></div>
   <h2>Sequence-to-Sequence <span class="small">: Encoder-Decoder、系列変換モデル</span></h2>
-    <div class="hidden_box">
-    <label for="label_12">[+]　　　</label>
-    <input type="checkbox" id="label_12"/>
-    <div class="hidden_show">
-ソースとターゲットで２つのRNN(LSTM)を使用する手法
+    <div><div class="hidden_show">
+    
+  ソースとターゲットで２つのRNN(LSTM)を使用する手法
 ソースに系列（文章など)を入れ、ソース側で双方向リカレントニューラルネットワークを使用して、
 束ねてベクトル情報に圧縮してターゲットに入力し、ターゲット側で新たな系列を生成する手法。
 
@@ -278,21 +255,17 @@ word2vecを応用した文章をベクトル化する技術で、文の語順も
 
     </div></div>
   <h2>Attention Mechanism <span class="small">注意機構</span></h2>
-    <div class="hidden_box">
-    <label for="label_13">[+]　　　</label>
-    <input type="checkbox" id="label_13"/>
-    <div class="hidden_show">
-Sequence-to-Sequenceモデルの２つのRNN間の情報伝達を改善する手法で、長いネットワークにおいて、
+    <div><div class="hidden_show">
+    
+  Sequence-to-Sequenceモデルの２つのRNN間の情報伝達を改善する手法で、長いネットワークにおいて、
 最初に入力された情報が復号化器まで伝播しづらくなるのを解決するために、直接的に入力情報を出力時に利用する。
 具体的には、各単語に対して、各時刻で出力されたベクトルの重み付き平均を計算し、それを利用する。
 
     </div></div>
   <h2>参考文献、サイト</h2>
-    <div class="hidden_box">
-    <label for="label_14">[+]　　　</label>
-    <input type="checkbox" id="label_14"/>
-    <div class="hidden_show">
-    <ol>
+    <div><div class="hidden_show">
+    
+      <ol>
     <li><cite><a href="https://bellcurve.jp/statistics/glossary/1233.html">BellCurve, "ピアソンの積率相関係数", 統計WEB</a>
   </ol>
 </div>

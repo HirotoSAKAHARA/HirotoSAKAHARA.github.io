@@ -64,6 +64,7 @@ load: ['[tex]/noerrors']
     <a href="index.html">hsmemo</a>
     <span class="subtitle"> : 人工知能 - タスクの評価</span>
   </div>
+
 </div>
 
 <div class="last_modified">
@@ -79,11 +80,9 @@ load: ['[tex]/noerrors']
 <!--*********************************本文*********************************-->
 <h1>回帰の評価</h1>
   <h2>決定係数</h2>
-    <div class="hidden_box">
-    <label for="label_1">[+]　　　</label>
-    <input type="checkbox" id="label_1"/>
-    <div class="hidden_show">
-一般に\(R^2\)で表され、重回帰分析の結果を読み取る指標の一つで１に近いほど分析の精度が高いことを示す。
+    <div><div class="hidden_show">
+    
+  一般に\(R^2\)で表され、重回帰分析の結果を読み取る指標の一つで１に近いほど分析の精度が高いことを示す。
     0.8程度あれば十分にモデリングできていると言える。
     $$
 R^2 = 1 - \frac{\sum^n_{i=1}(y_i - \hat{y_i})^2}{\sum^n_{i=1}(y_i - \bar{y})^2}
@@ -92,11 +91,9 @@ R^2 = 1 - \frac{\sum^n_{i=1}(y_i - \hat{y_i})^2}{\sum^n_{i=1}(y_i - \bar{y})^2}
 
     </div></div>
   <h2>自由度調整済みの決定係数</h2>
-    <div class="hidden_box">
-    <label for="label_2">[+]　　　</label>
-    <input type="checkbox" id="label_2"/>
-    <div class="hidden_show">
-決定係数は説明変数の数を多く取れば取るほど良い値となる傾向があるため、
+    <div><div class="hidden_show">
+    
+  決定係数は説明変数の数を多く取れば取るほど良い値となる傾向があるため、
     説明変数の数を\(p\)、標本数を\(N\)として調整を行った決定係数。
 
     $$
@@ -105,11 +102,9 @@ R^2 = 1 - \frac{\sum^n_{i=1}(y_i - \hat{y_i})^2 / (N - p - 1)}{\sum^n_{i=1}(y_i 
 
     </div></div>
   <h2>バイアスバリアンス分解</h2>
-    <div class="hidden_box">
-    <label for="label_3">[+]　　　</label>
-    <input type="checkbox" id="label_3"/>
-    <div class="hidden_show">
-<dl>
+    <div><div class="hidden_show">
+    
+  <dl>
     <dt>バイアス</dt>
     <dd>予測値と真値の誤差、アンダーフィッティング時に大きくなりがち</dd>
     <dt>バリアンス</dt>

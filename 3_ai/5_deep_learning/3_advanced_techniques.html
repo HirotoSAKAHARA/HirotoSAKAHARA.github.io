@@ -66,6 +66,7 @@ load: ['[tex]/noerrors']
     <a href="index.html">hsmemo</a>
     <span class="subtitle"> : 人工知能 - 深層学習</span>
   </div>
+
 </div>
 
 <div class="last_modified">
@@ -80,11 +81,9 @@ load: ['[tex]/noerrors']
 <!--*********************************本文*********************************-->
 <h1>応用技術</h1>
   <h2>活性化関数（応用）</h2>
-    <div class="hidden_box">
-    <label for="label_1">[+]　　　</label>
-    <input type="checkbox" id="label_1"/>
-    <div class="hidden_show">
-<h3>parametric ReLU</h3>
+    <div><div class="hidden_show">
+    
+  <h3>parametric ReLU</h3>
     $$
 f(u) = 
 \left\{
@@ -128,11 +127,9 @@ u & (u > 0)
 
     </div></div>
   <h2>過適合の緩和</h2>
-    <div class="hidden_box">
-    <label for="label_2">[+]　　　</label>
-    <input type="checkbox" id="label_2"/>
-    <div class="hidden_show">
-<h3>Dropout <span class="small"> : ドロップアウト</h3>
+    <div><div class="hidden_show">
+    
+  <h3>Dropout <span class="small"> : ドロップアウト</h3>
     途中のノードを確率的に無効化（ニューロンの重みを０に）することで、オーバーフィッティングを避ける。
     中間層だけでなく、入力層でもドロップアウトすることで性能が良くできる場合がある。
     RNNの場合、フィードフォワードの分はドロップアウトした方がよいが、時系列のドロップアウトはしない方がよい。

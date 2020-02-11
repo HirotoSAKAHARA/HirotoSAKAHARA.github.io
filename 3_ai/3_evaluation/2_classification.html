@@ -63,6 +63,7 @@ load: ['[tex]/noerrors']
     <a href="index.html">hsmemo</a>
     <span class="subtitle"> : 人工知能 - タスクの評価</span>
   </div>
+
 </div>
 
 <div class="last_modified">
@@ -78,11 +79,9 @@ load: ['[tex]/noerrors']
 <!--*********************************本文*********************************-->
 <h1>分類の評価</h1>
   <h2>Confusion Matrix<span class="small">混合行列</span></h2>
-    <div class="hidden_box">
-    <label for="label_1">[+]　　　</label>
-    <input type="checkbox" id="label_1"/>
-    <div class="hidden_show">
-<table>
+    <div><div class="hidden_show">
+    
+  <table>
     <tr>
 <th></th>
 <th>実際は正</th>
@@ -102,11 +101,9 @@ load: ['[tex]/noerrors']
 
     </div></div>
   <h2>評価指標</h2>
-    <div class="hidden_box">
-    <label for="label_2">[+]　　　</label>
-    <input type="checkbox" id="label_2"/>
-    <div class="hidden_show">
-<h3>Accuracy<span class="small"> : 正解率、精度</span></h3>
+    <div><div class="hidden_show">
+    
+  <h3>Accuracy<span class="small"> : 正解率、精度</span></h3>
 全予測の中で正答した割合。
 $$
 \frac{{\rm TP +  TN}}{{\rm TP + TN + FP + FN}}

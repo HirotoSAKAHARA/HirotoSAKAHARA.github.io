@@ -64,6 +64,7 @@ load: ['[tex]/noerrors']
     <a href="index.html">hsmemo</a>
     <span class="subtitle"> : 人工知能 - 概要</span>
   </div>
+
 </div>
 
 <div class="last_modified">
@@ -79,63 +80,46 @@ load: ['[tex]/noerrors']
 <!--*********************************本文*********************************-->
 <h1>教師あり学習・教師なし学習</h1>  
   <h2>教師あり学習とは</h2>
-    <div class="hidden_box">
-    <label for="label_1">[+]　　　</label>
-    <input type="checkbox" id="label_1"/>
-    <div class="hidden_show">
-    事前に与えられたデータをいわば例題とみなして、それをガイドに学習を行う。
+    <div><div class="hidden_show">
+    
+      事前に与えられたデータをいわば例題とみなして、それをガイドに学習を行う。
     学習後は、入力に対して尤度が最大となる出力を求める。
     英語ではsupervised learning。
 
     </div></div>
   <h2>教師なし学習とは</h2>
-    <div class="hidden_box">
-    <label for="label_2">[+]　　　</label>
-    <input type="checkbox" id="label_2"/>
-    <div class="hidden_show">
-学習データを教えることによって、それぞれのデータの分類やデータ群の特徴の抽出を行う。
+    <div><div class="hidden_show">
+    
+  学習データを教えることによって、それぞれのデータの分類やデータ群の特徴の抽出を行う。
 英語では、unsuperviesd learning。
 
     </div></div>
   <h2>学習の手順</h2>
-    <div class="hidden_box">
-    <label for="label_3">[+]　　　</label>
-    <input type="checkbox" id="label_3"/>
-    <div class="hidden_show">
-教師あり学習、教師なし学習の学習の手順を示す。用語については次節で示す。
+    <div><div class="hidden_show">
+    
+  教師あり学習、教師なし学習の学習の手順を示す。用語については次節で示す。
     データは学習に利用する訓練データと検証に利用する検証データ、テストデータに分割するが、
     これは、モデルが学習のし過ぎによりオーバーフィッティング状態となり、
     汎化性能が下がっていないことを確認するためである。
-  <div>
     <img src="out\ai\learning_procedure.png" alt="学習手順"/>
-  </div>
 
     </div></div>
   <h2>CRISP-DM<span class="small"> : cross industry standard process for data mining-DM</span></h2>
-    <div class="hidden_box">
-    <label for="label_4">[+]　　　</label>
-    <input type="checkbox" id="label_4"/>
-    <div class="hidden_show">
-<div>
-    CRISP-DMコンソーシアムによって提唱されたデータ分析プロジェクトのプロセスモデル。
-    </div>
+    <div><div class="hidden_show">
     
-    <div>
+  
+    CRISP-DMコンソーシアムによって提唱されたデータ分析プロジェクトのプロセスモデル。
+    
     1.ビジネス理解で課題を明確にし、2.データ理解でデータを取得、3.データ準備でデータを整形し、4.モデリングで分析、
     その結果を5.評価して、6.適用、あるいは、もう一度サイクルを回し、考え直す。というやり方。
-    </div>
     <img src="out\ai\CRISP-DM.png" alt="CRISP-DM"/>
 
     </div></div>
   <h2>KDD<span class="small"> : Knowledge Discovery in Databases</span></h2>
-    <div class="hidden_box">
-    <label for="label_5">[+]　　　</label>
-    <input type="checkbox" id="label_5"/>
-    <div class="hidden_show">
-<div>
+    <div><div class="hidden_show">
+    
+  
     データマイニングにより、データから知識を探索するためのプロセスモデル。CRISP-DMと比較し、よりデータ分析部分にフォーカスしており、以下の手順ですすめる。[6]
-    </div>
-    <div>
   <ol>
     <li> アプリケーションドメインの理解を構築し、消費者の視点でkddプロセスの目標を決定する。</li>
     <li> 発見がなされるデータ・セットを選択し、または変数やデータサンプルのサブセットに注目し、目的データ・セットを構築する。</li>
@@ -153,11 +137,9 @@ load: ['[tex]/noerrors']
 
     </div></div>
   <h2>用語</h2>
-    <div class="hidden_box">
-    <label for="label_6">[+]　　　</label>
-    <input type="checkbox" id="label_6"/>
-    <div class="hidden_show">
-<h3>data ingestion<span class="small"> : データインジェスチョン</span></h3>
+    <div><div class="hidden_show">
+    
+  <h3>data ingestion<span class="small"> : データインジェスチョン</span></h3>
 csv, excel, xml, 紙, 音声などの様々な媒体、形式で保存されている様々な形式のデータを
 同じ形式で利用できるよう加工すること。通常はデータベースに格納する。
 

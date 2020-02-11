@@ -174,12 +174,6 @@ h3{
   color:#113311;
 }
 
-
-
-.hidden_show>h3:first-child{
-  margin-top: 0rem;
-}
-
 h4::before {
   counter-increment: he;
   content: counter(hc) "-" counter(hd) "-" counter(he)" : ";
@@ -306,6 +300,16 @@ div{
     padding: 0px;
 }
 
+/*クリックで中身表示*/
+.hidden_show {
+    height: auto;
+    opacity: 1;
+    background:#EAFFF5;
+    padding-left:var(--h3margin);
+    padding-right:var(--h3margin);
+    margin-top:10px;
+}
+
 /*中身を非表示にしておく*/
 .hidden_box .hidden_show {
     height: 0;
@@ -322,6 +326,11 @@ div{
     height: auto;
     opacity: 1;
     background:#EAFFF5;
+}
+
+.hidden_show>h3:first-child
+{
+  margin-top:0px;
 }
 
 
@@ -379,7 +388,15 @@ table, th, td {
   text-decoration:underline;
   color:#772222;
   font-style:oblique;
-  font-size: 0.9rem;
+  font-size: 1.0rem;
+}
+
+.index_page a.nocontents{
+  background:#D0FFE0;
+  text-decoration:none;
+  color:#CC6666;
+  font-style:oblique;
+  font-size: 0.6rem;
 }
 
 .end_of_page_margin{
@@ -466,5 +483,6 @@ table, th, td {
   color: #DDDDDD;
   text-decoration:none;
   font-style:normal;
+  font-size: 0.8rem;
 }
 

@@ -64,6 +64,7 @@ load: ['[tex]/noerrors']
     <a href="index.html">hsmemo</a>
     <span class="subtitle"> : 人工知能 - 非深層学習系の学習手法</span>
   </div>
+
 </div>
 
 <div class="last_modified">
@@ -79,11 +80,9 @@ load: ['[tex]/noerrors']
 <!--*********************************本文*********************************-->
 <h1>共通技術</h1>
   <h2>正則化</h2>
-    <div class="hidden_box">
-    <label for="label_1">[+]　　　</label>
-    <input type="checkbox" id="label_1"/>
-    <div class="hidden_show">
-回帰問題において、過学習を行った場合に係数が大きくなりがちであることを利用し、
+    <div><div class="hidden_show">
+    
+  回帰問題において、過学習を行った場合に係数が大きくなりがちであることを利用し、
     損失関数にペナルティ項を設定することで、汎化性能の高いモデルの生成を目指す方法。
     <h3>L1正則化</h3>
 あるモデルの評価関数を次式のように設定する。L1正則化の式を使うと、
@@ -106,11 +105,9 @@ L1正則化とL2正則化を組み合わせた回帰手法
 
     </div></div>
   <h2>ハイパーパラメータの計算</h2>
-    <div class="hidden_box">
-    <label for="label_2">[+]　　　</label>
-    <input type="checkbox" id="label_2"/>
-    <div class="hidden_show">
-    複数のハイパーパラメータの候補を用意しておき、
+    <div><div class="hidden_show">
+    
+      複数のハイパーパラメータの候補を用意しておき、
     <a href="2_ai/4_evaluation/1_general_method.html">交差検証</a>などでそれぞれの精度を確認、
     一番良いものを採用する。
 

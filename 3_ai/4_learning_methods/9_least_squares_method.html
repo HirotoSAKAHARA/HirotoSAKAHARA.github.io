@@ -64,6 +64,7 @@ load: ['[tex]/noerrors']
     <a href="index.html">hsmemo</a>
     <span class="subtitle"> : 人工知能 - 非深層学習系の学習手法</span>
   </div>
+
 </div>
 
 <div class="last_modified">
@@ -79,28 +80,22 @@ load: ['[tex]/noerrors']
 <!--*********************************本文*********************************-->
 <h1>最小二乗法</h1>
   <h2>英語名、略称など</h2>
-    <div class="hidden_box">
-    <label for="label_1">[+]　　　</label>
-    <input type="checkbox" id="label_1"/>
-    <div class="hidden_show">
-Least Squares Method
+    <div><div class="hidden_show">
+    
+  Least Squares Method
     </div></div>
   <h2>ターゲットタスク</h2>
-    <div class="hidden_box">
-    <label for="label_2">[+]　　　</label>
-    <input type="checkbox" id="label_2"/>
-    <div class="hidden_show">
-線形回帰
+    <div><div class="hidden_show">
+    
+  線形回帰
     </div></div>
   <h2>アルゴリズム</h2>
-    <div class="hidden_box">
-    <label for="label_3">[+]　　　</label>
-    <input type="checkbox" id="label_3"/>
-    <div class="hidden_show">
-<div>入力の組\(\bm{U}\)、出力の組\(\bm{z}\)が与えられた時、
+    <div><div class="hidden_show">
+    
+  入力の組\(\bm{U}\)、出力の組\(\bm{z}\)が与えられた時、
     \(\bm{z} \simeq \bm{Uw}\)となる係数の組\(\bm{w}\)を、
     残差平方和 \( \|\bm{Uw} - \bm{z}\| \) を最小にするという条件で求める。</div>
-    <div>正規方程式 \( \bm{U^{\mathrm{T}}Uw} = \bm{U^\mathrm{T}z} \)により、
+    正規方程式 \( \bm{U^{\mathrm{T}}Uw} = \bm{U^\mathrm{T}z} \)により、
     より直接的には以下の式により$\bm{w}$を算出する。</div>
     $$
 \bm{w} = (\bm{U}^{\mathrm{T}}\bm{U})^{-1}\bm{U}^{\mathrm{T}} \bm{z}

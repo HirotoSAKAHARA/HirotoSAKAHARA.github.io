@@ -67,6 +67,7 @@ load: ['[tex]/noerrors']
     <a href="index.html">hsmemo</a>
     <span class="subtitle"> : 人工知能 - 畳み込みニューラルネットワーク</span>
   </div>
+
 </div>
 
 <div class="last_modified">
@@ -81,102 +82,74 @@ load: ['[tex]/noerrors']
 <!--*********************************本文*********************************-->
 <h1>用語</h1>
   <h2>全結合層</h2>
-    <div class="hidden_box">
-    <label for="label_1">[+]　　　</label>
-    <input type="checkbox" id="label_1"/>
-    <div class="hidden_show">
-全ての上位層から全ての下位層にネットワークが伝播する。責任の所在がわからなくなる。
+    <div><div class="hidden_show">
+    
+  全ての上位層から全ての下位層にネットワークが伝播する。責任の所在がわからなくなる。
     </div></div>
   <h2>畳み込み層</h2>
-    <div class="hidden_box">
-    <label for="label_2">[+]　　　</label>
-    <input type="checkbox" id="label_2"/>
-    <div class="hidden_show">
-入力データの１部分に注目し、その部分画像の特徴を調べる層,カーネルと一部分の内積を求める。特徴はデータや損失関数により自動的に定まるが、入力層に近いところでは点や線といった低次元概念、出力層に近いところでは目や鼻といった高次元概念の注目をする。各特徴に１つのフィルターを使う
+    <div><div class="hidden_show">
+    
+  入力データの１部分に注目し、その部分画像の特徴を調べる層,カーネルと一部分の内積を求める。特徴はデータや損失関数により自動的に定まるが、入力層に近いところでは点や線といった低次元概念、出力層に近いところでは目や鼻といった高次元概念の注目をする。各特徴に１つのフィルターを使う
     </div></div>
   <h2>プーリング層</h2>
-    <div class="hidden_box">
-    <label for="label_3">[+]　　　</label>
-    <input type="checkbox" id="label_3"/>
-    <div class="hidden_show">
-畳み込み層の出力を縮約し、データ量を削減する層、maxプーリングやaverageプーリングなどでデータの圧縮を実現する
+    <div><div class="hidden_show">
+    
+  畳み込み層の出力を縮約し、データ量を削減する層、maxプーリングやaverageプーリングなどでデータの圧縮を実現する
     </div></div>
   <h2>カーネル</h2>
-    <div class="hidden_box">
-    <label for="label_4">[+]　　　</label>
-    <input type="checkbox" id="label_4"/>
-    <div class="hidden_show">
-畳み込みに使用する重み行列(フィルタ)
+    <div><div class="hidden_show">
+    
+  畳み込みに使用する重み行列(フィルタ)
     </div></div>
   <h2>maxプーリング</h2>
-    <div class="hidden_box">
-    <label for="label_5">[+]　　　</label>
-    <input type="checkbox" id="label_5"/>
-    <div class="hidden_show">
-元行列の最大値を出力するプーリング
+    <div><div class="hidden_show">
+    
+  元行列の最大値を出力するプーリング
     </div></div>
   <h2>サブサンプリング</h2>
-    <div class="hidden_box">
-    <label for="label_6">[+]　　　</label>
-    <input type="checkbox" id="label_6"/>
-    <div class="hidden_show">
-
+    <div><div class="hidden_show">
+    
+  
     </div></div>
   <h2>averageプーリング</h2>
-    <div class="hidden_box">
-    <label for="label_7">[+]　　　</label>
-    <input type="checkbox" id="label_7"/>
-    <div class="hidden_show">
-元行列の平均値を出力するプーリング
+    <div><div class="hidden_show">
+    
+  元行列の平均値を出力するプーリング
     </div></div>
   <h2>filters(keras)</h2>
-    <div class="hidden_box">
-    <label for="label_8">[+]　　　</label>
-    <input type="checkbox" id="label_8"/>
-    <div class="hidden_show">
-生成する特徴マップの数、filterはランダムに選ばれる
+    <div><div class="hidden_show">
+    
+  生成する特徴マップの数、filterはランダムに選ばれる
     </div></div>
   <h2>kernel_size(keras)</h2>
-    <div class="hidden_box">
-    <label for="label_9">[+]　　　</label>
-    <input type="checkbox" id="label_9"/>
-    <div class="hidden_show">
-カーネル行列の大きさ
+    <div><div class="hidden_show">
+    
+  カーネル行列の大きさ
     </div></div>
   <h2>strides(keras)</h2>
-    <div class="hidden_box">
-    <label for="label_10">[+]　　　</label>
-    <input type="checkbox" id="label_10"/>
-    <div class="hidden_show">
-カーネルを動かす距離
+    <div><div class="hidden_show">
+    
+  カーネルを動かす距離
     </div></div>
   <h2>padding(keras)</h2>
-    <div class="hidden_box">
-    <label for="label_11">[+]　　　</label>
-    <input type="checkbox" id="label_11"/>
-    <div class="hidden_show">
-入力画像の縮小を抑えるため、入力画像の周辺を0で埋めること
+    <div><div class="hidden_show">
+    
+  入力画像の縮小を抑えるため、入力画像の周辺を0で埋めること
     </div></div>
   <h2>pool_size(keras)</h2>
-    <div class="hidden_box">
-    <label for="label_12">[+]　　　</label>
-    <input type="checkbox" id="label_12"/>
-    <div class="hidden_show">
-一度にpoolingを適用する領域のサイズ
+    <div><div class="hidden_show">
+    
+  一度にpoolingを適用する領域のサイズ
     </div></div>
   <h2>global average pooling</h2>
-    <div class="hidden_box">
-    <label for="label_13">[+]　　　</label>
-    <input type="checkbox" id="label_13"/>
-    <div class="hidden_show">
-1つの特徴マップに 1 つのクラスを対応させることで分類を行う
+    <div><div class="hidden_show">
+    
+  1つの特徴マップに 1 つのクラスを対応させることで分類を行う
     </div></div>
   <h2>次元の祝福</h2>
-    <div class="hidden_box">
-    <label for="label_14">[+]　　　</label>
-    <input type="checkbox" id="label_14"/>
-    <div class="hidden_show">
-弁別可能性が高まることや、ミクロとマクロを結びつけることでシンプルに書けること。
+    <div><div class="hidden_show">
+    
+  弁別可能性が高まることや、ミクロとマクロを結びつけることでシンプルに書けること。
 
     </div></div>
 <div class="end_of_page_margin"></div>

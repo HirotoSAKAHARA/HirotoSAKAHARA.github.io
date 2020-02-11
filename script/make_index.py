@@ -17,11 +17,12 @@ chapter_strings= [0 for i1 in range(nChapter)]
 
 item_urls = get_item_urls(base_dir, nChapter, nSection, nItem);
 item_strings = get_item_strings(base_dir, item_urls, nChapter, nSection, nItem)
+item_has_contents = get_item_has_contents(base_dir, item_urls, nChapter, nSection, nItem)
 
 #print(item_urls)
 #print(item_strings)
 
-update_index(base_dir, item_urls, item_strings, nChapter, nSection, nItem)
+update_index(base_dir, item_urls, item_strings, item_has_contents, nChapter, nSection, nItem)
 
 (item_prev_urls, item_prev_strings, item_next_urls, item_next_strings) = \
   get_prev_and_next_urls_and_strings(item_urls, item_strings, nChapter, nSection, nItem)

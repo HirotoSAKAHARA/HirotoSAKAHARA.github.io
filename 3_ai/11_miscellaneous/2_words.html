@@ -64,6 +64,7 @@ load: ['[tex]/noerrors']
     <a href="index.html">hsmemo</a>
     <span class="subtitle"> : 人工知能 - その他未整理の事柄</span>
   </div>
+
 </div>
 
 <div class="last_modified">
@@ -78,53 +79,68 @@ load: ['[tex]/noerrors']
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
 <h1>その他用語</h1>
-  <dl>
-    <dt>怠惰学習</dt>
-    <dd>事前にモデルを構築しない学習法</dd>
-    <dt>勾配降下法</dt>
-    <dd><a href="math/index.html">数学-最適化問題</a>へ移動</dd>
+  <h2>怠惰学習</h2>
+    <div><div class="hidden_show">
+    
+      事前にモデルを構築しない学習法
 
-    <dt>Empirical Risk Minimization(ERM, 経験損失最小化)</dt>
-   <dd>損失関数とデータについて求めた経験損失を最小化するようにモデルを選ぶ学習の基準</dd>
+    </div></div>
+  <h2>Empirical Risk Minimization(ERM, 経験損失最小化)</h2>
+    <div><div class="hidden_show">
+    
+      損失関数とデータについて求めた経験損失を最小化するようにモデルを選ぶ学習の基準
 
-    <dt>Competitive Learning(競合学習)</dt>
-    <dd>
-    教師なし学習で頻繁に行われる学習で、最も入力データに反応したニューロンのみ更新したりするようなニューロン同士で競わせるような学習.</dd>
-    <dt>NIC</dt>
-    <dd>
-    写真から何をしているのかを言語化する。
-    </dd>
-    <dt>識別モデル</dt>
-    <dd>
-Xをデータ、Yをラベル(従属変数)とするとXとYの関係を直接記述する。
-    </dd>
-
-    <dt>生成モデル</dt>
-    <dd>
-    クラスに対する条件付き分布をもとめることで、クラスに属するデータがどういうものであるかを知ることができる。
-    ここから逆算して、入力に人工的なデータを作り出すことができる。
-    ベイズモデルは生成モデルであり、代表的なものとしてはナイーブベイズモデルがある。
-    <dt>TPU</dt>
-    <dd>
-
-    </dd>
-
-   <dt>minimax法</dt>
-    <dd>ゲーム木において、相手は自分にとって最悪手、自分は最善手を選ぶとして最善手を算出する方法</dd>
-    <dt>αβ法</dt>
-    <dd>minimax法でβカット(自分の手を計算する時に、現在の候補より評価値が低い手のノードを探索しないこと)とαカット(相手の手を計算するときに、現在の候補より評価値の高いノードを探索しないこと)を行う手法</dd>
-    <dt>AIC、赤池情報量基準</dt>
-    <dd>情報量基準(パラメータで記述されたモデルのクラスからモデルを選択する基準)の１つ。 T*log(s^2)+2K、ここでTは標本の大きさ、s^2はモデル誤差校の分散推定量、Kはモデルに含まれる係数の数</dd>
-    <dt>BIC、ベイジアン情報量基準</dt>
-    <dd>情報量基準(パラメータで記述されたモデルのクラスからモデルを選択する基準)の１つ。 T*log(s^2)+K*log(T)、 ここでTは標本の大きさ、s^2はモデル誤差校の分散推定量、Kはモデルに含まれる係数の数</dd>
-
-    <dt>ImageDataGenerator(keras)</dt>
-    <dd>
-ランダムにデータの反転、圧縮、移動、回転などを行うことができる。
-ミニバッチでデータを作成しながら、学習することで、メモリも少なくてすむ。
-    </dd>
-  </dl>
+    </div></div>
+  <h2>Competitive Learning(競合学習)</h2>
+    <div><div class="hidden_show">
+    
+      教師なし学習で頻繁に行われる学習で、最も入力データに反応したニューロンのみ更新したりするようなニューロン同士で競わせるような学習.
+    </div></div>
+  <h2>NIC</h2>
+    <div><div class="hidden_show">
+    
+      写真から何をしているのかを言語化する。
   
+    </div></div>
+  <h2>識別モデル</h2>
+    <div><div class="hidden_show">
+    
+      Xをデータ、Yをラベル(従属変数)とするとXとYの関係を直接記述する。
+
+    </div></div>
+  <h2>TPU</h2>
+    <div><div class="hidden_show">
+    
+  
+    </div></div>
+  <h2>minimax法</h2>
+    <div><div class="hidden_show">
+    
+      ゲーム木において、相手は自分にとって最悪手、自分は最善手を選ぶとして最善手を算出する方法
+    </div></div>
+  <h2>αβ法</h2>
+    <div><div class="hidden_show">
+    
+      minimax法でβカット(自分の手を計算する時に、現在の候補より評価値が低い手のノードを探索しないこと)とαカット(相手の手を計算するときに、現在の候補より評価値の高いノードを探索しないこと)を行う手法
+    </div></div>
+  <h2>AIC、赤池情報量基準</h2>
+    <div><div class="hidden_show">
+    
+      情報量基準(パラメータで記述されたモデルのクラスからモデルを選択する基準)の１つ。 T*log(s^2)+2K、ここでTは標本の大きさ、s^2はモデル誤差校の分散推定量、Kはモデルに含まれる係数の数
+    </div></div>
+  <h2>BIC、ベイジアン情報量基準</h2>
+    <div><div class="hidden_show">
+    
+      情報量基準(パラメータで記述されたモデルのクラスからモデルを選択する基準)の１つ。 T*log(s^2)+K*log(T)、 ここでTは標本の大きさ、s^2はモデル誤差校の分散推定量、Kはモデルに含まれる係数の数
+
+    </div></div>
+  <h2>ImageDataGenerator(keras)</h2>
+    <div><div class="hidden_show">
+    
+      ランダムにデータの反転、圧縮、移動、回転などを行うことができる。
+    ミニバッチでデータを作成しながら、学習することで、メモリも少なくてすむ。
+
+    </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
 <a class="prev" href="3_ai/11_miscellaneous/1_self_organizing_map.html">self organizing map <span class="small"> :  SOM, 自己組織化</span></a>
