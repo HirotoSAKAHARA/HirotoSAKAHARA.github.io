@@ -89,11 +89,34 @@ load: ['[tex]/noerrors']
     <div><div class="hidden_show">
     分類、回帰、クラスタリングなど、ほぼあらゆる機械学習に使われる。
 
+
     </div></div>
-  <h2>2クラス分類</h2>
+  <h2>概要</h2>
+    <div><div class="hidden_show">
+    多次元空間上のデータを超平面（サポートベクトル）により分類する手法。
+
+    </div></div>
+  <h2>長所</h2>
+    <div><div class="hidden_show">
+    <ul>
+      <li>局所解収束の問題がない。</li>
+      <li>逆誤差伝播法などと違い、できるだけマージンを取って分類するため、未学習データに強い。</li>
+    </ul>
+
+    </div></div>
+  <h2>短所</h2>
+    <div><div class="hidden_show">
+    <ul>
+      <li>多クラス分類などでは計算量が多くなる。</li>
+      <li>非線形分類に対しての設計基準がない。</li>
+    </ul>
+
+    </div></div>
+
+  <h2>基本</h2>
     <div><div class="hidden_show">
     <h3>ハードマージン</h3>
-      訓練集合内のデータを正しく分類できる直線\(f(\bm{x}) = \bm{w}^\mathrm{T}\bm{x}+b\)が求められる場合、訓練集合は\(f(\bm{x})\)によって分離可能(separable)であると表現される。この時、\(f(\bm{x})\)は無数に存在するが、SVNでは\(f(\bm{x})\)と両方のクラスの最近隣接点の距離の和を最大にする、つまりマージン最大化(margin maximization)するパラメータを選択する。この場合、SVMは以下の最適化問題によって定式化できる。
+      訓練集合内のデータを正しく分類できる超平面\(f(\bm{x}) = \bm{w}^\mathrm{T}\bm{x}+b\)が求められる場合、訓練集合は\(f(\bm{x})\)によって分離可能(separable)であると表現される。この時、\(f(\bm{x})\)は無数に存在するが、SVNでは\(f(\bm{x})\)と両方のクラスの最近隣接点の距離の和を最大にする、つまりマージン最大化(margin maximization)するパラメータを選択する。この場合、SVMは以下の最適化問題によって定式化できる。
       $$
         \max_{\bm{w},b,M}\frac{M}{||\bm{w}||}
       $$
@@ -102,23 +125,38 @@ load: ['[tex]/noerrors']
       $$
       この式を更に\(\tilde{\bm{w}} = \bm{w}/M\), \(\tilde{b} = b/M\)で置き換え、変形した以下の式が、一般的なハードマージンの定式化となる。
       $$
-        \min_{\bm{\tilde{w}},b}||\bm{\tilde{w}}||
+        \min_{\bm{\tilde{w}},b}||\bm{\tilde{w}}||^2
       $$
       $$
         \text{        s.t. } y_i(\bm{\tilde{w}}^\mathrm{T}\bm{x}_i+\tilde{b}) \ge 1, i \in [n]
       $$
     <h3>ソフトマージン</h3>
-      
+      全てのデータが１枚の超平面で区別できると考えるハードマージンの仮定は、現実には強すぎるため、反対側への誤差\(\xi_i \ge 0, i \in [n]\)を導入し、制約条件を修正する。これをソフトマージンと呼ぶ。
+      また、ハードマージンにおける\(||\bm{\tilde{w}}||\)と同じく、\(xi_i\)もできるだけ小さくしたいので、以下の定式化が成り立つ。また下式で\(C\)は正則化係数(regularization parameter)と呼ばれる正の定数で、事前に決定しておく必要がある。\(C\)は小さいほど誤分類を許容しやすくなり、\(C = \infty\)でハードマージンと等しい。
+       $$
+        \min_{\bm{\tilde{w}},b,\bm{\xi}}||\bm{\tilde{w}}||^2 + C \sum_{i \in [n]} \xi_i
+      $$
+      $$
+        \text{        s.t. } \begin{eqnarray*} 
+        y_i(\bm{\tilde{w}}^\mathrm{T}\bm{x}_i+\tilde{b}) &\ge& 1 - \xi_i&, i \in [n]  \\
+        \xi_i &\ge& 0&, i \in [n]
+        \end{eqnarray*}
+      $$
+      ここで\(\bm{\xi} := (\xi_1, \cdots, \xi_n)^\mathrm{T}\)
     </div></div>
-  <h2>多クラス分類</h2>
+
+    <h3>双対表現</h3>
+      
+
+  <h2>多クラス分類への拡張</h2>
     <div><div class="hidden_show">
     
     </div></div>
-  <h2>回帰</h2>
+  <h2>回帰への拡張</h2>
     <div><div class="hidden_show">
 
     </div></div>
-  <h2>１クラスSVM</h2>
+  <h2>教師なし学習への拡張：１クラスSVM</h2>
     <div><div class="hidden_show">
     <h3>概要</h3>
       教師なし学習のためのSVM
