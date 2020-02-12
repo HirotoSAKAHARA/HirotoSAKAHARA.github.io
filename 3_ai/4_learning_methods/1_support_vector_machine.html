@@ -72,7 +72,7 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：
+：双対問題、カーネル関数について記述
 </div>
 </div>
 
@@ -144,8 +144,33 @@ load: ['[tex]/noerrors']
       $$
       ここで\(\bm{\xi} := (\xi_1, \cdots, \xi_n)^\mathrm{T}\)
 
-    <h3>双対表現</h3>
-      
+    <h3>双対問題</h3>
+    前項の定式化(主問題)に対する<a href="2_math/1_optimization_problem/2_linear_programming_problem.html">双対問題</a>を考えると、以下のように表現できる。SVMの場合、強双対性が成り立ち、主問題と双対問題の目標関数値が最適解において一致する。
+       $$
+        \max_{\bm{{\alpha}}}- \frac{1}{2} \sum_{i,j \in [n]} \alpha_i, \alpha_j,y_i, y_j, \bm{x}_i^\mathrm{T}\bm{x}_j + \sum_{i \in [n]} \alpha_i
+      $$
+      $$
+        \text{        s.t. } \begin{eqnarray*}
+          \sum_{i \in [n]} \alpha_iy_i = 0 \\
+          0 \gt \alpha_i \ge C, i \in [n]
+        \end{eqnarray*}
+      $$
+    <h3>カーネル関数</h3>
+      入力\(x\)を何らかの特徴空間\(\mathcal{F}\)へ写像する関数\(\phi:\mathbb{R}^d \rightarrow \mathcal{F}\)を考え、\(\phi\)を新たな特徴ベクトルだと考えると、主問題の目的関数は以下のように書き換えられる。
+       $$
+        \min_{\bm{\tilde{w}},b,\phi(\bm{\xi})}||\bm{\tilde{w}}||^2 + C \sum_{i \in [n]} \xi_i
+      $$
+      また、この時、双対問題は以下となる。
+       $$
+        \max_{\bm{{\alpha}}}- \frac{1}{2} \sum_{i,j \in [n]} \alpha_i, \alpha_j,y_i, y_j, \phi(\bm{x}_i)^\mathrm{T}\phi(\bm{x}_j) + \sum_{i \in [n]} \alpha_i
+      $$
+      $$
+        \text{        s.t. } \begin{eqnarray*}
+          \sum_{i \in [n]} \alpha_iy_i = 0 \\
+          0 \gt \alpha_i \ge C, i \in [n]
+        \end{eqnarray*}
+      $$
+      この双対問題において、\(\phi\)は内積\(\phi(\bm{x}_i)^\mathrm{T}\phi(\bm{x}_j)\)の形でのみ現れている。この内積をカーネル関数として定義する。この時、\(\phi(\bm{x})\)が直接計算できなくても、カーネル関数が計算できると、上記双対問題を解くことができる。
 
     </div></div>
   <h2>多クラス分類への拡張</h2>
@@ -165,6 +190,14 @@ load: ['[tex]/noerrors']
   <h2>カーネル関数</h2>
     <div><div class="hidden_show">
     
+
+    </div></div>
+  <h2>参考文献、サイト</h2>
+    <div><div class="hidden_show">
+  本稿は以下の参考文献を参照して作成しています。数式は基本的には同じものを使わせてもらっています。
+    <ol>
+      <li><cite><a href="https://www.kspub.co.jp/book/detail/1529069.html">竹内一郎, 烏山昌幸, "サポートベクトルマシン",2015,講談社サイエンティフィク</li>
+    </ol>
 
     </div></div>
 <div class="end_of_page_margin"></div>
