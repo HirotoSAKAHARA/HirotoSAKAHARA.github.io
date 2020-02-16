@@ -12,13 +12,14 @@ nChapter = 20
 nSection = 20
 nItem = 20
 
-section_strings= [[0 for i2 in range(nSection)] for i1 in range(nChapter)]
-chapter_strings= [0 for i1 in range(nChapter)]
+#section_strings= [[0 for i2 in range(nSection)] for i1 in range(nChapter)]
+#chapter_strings= [0 for i1 in range(nChapter)]
 
-item_urls = get_item_urls(base_dir, nChapter, nSection, nItem);
+item_urls = get_item_urls(base_dir, nChapter, nSection, nItem)
 item_strings = get_item_strings(base_dir, item_urls, nChapter, nSection, nItem)
 item_has_contents = get_item_has_contents(base_dir, item_urls, nChapter, nSection, nItem)
 
+#print(item_strings)
 #print(item_urls)
 #print(item_strings)
 
@@ -36,7 +37,6 @@ for i in range(nChapter):
   for j in range(nSection):
     for k in range(nItem):
       if(item_urls[i][j][k] != 0):
-        print(i,j,k)
         update_navigation(base_dir + item_urls[i][j][k] \
             , item_prev_urls[i][j][k] \
             , item_prev_strings[i][j][k] \
