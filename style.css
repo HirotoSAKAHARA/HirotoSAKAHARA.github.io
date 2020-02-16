@@ -486,3 +486,11 @@ table, th, td {
   font-size: 0.8rem;
 }
 
+.img{
+  text-align:center;
+}
+img{
+  diaplay:block;
+  margin:0 auto;
+}
+
