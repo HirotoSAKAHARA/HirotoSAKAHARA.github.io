@@ -81,24 +81,30 @@ load: ['[tex]/noerrors']
 <h1>サポートベクトルマシン(教師なし学習、1クラス分類)</h1>
   <h2>概要</h2>
     <div><div class="hidden_show">
-    ある分類に当てはまるベクトル\(\bm{x}\)が\(f(\bm{x}) \ge 0\)、そうでないものは\(f(\bm{x}) \le 0\)となるような\(f(\bm{x})\)を見つけることを目的とする。
-    ２つのベクトルの類似度が高ければ高いほど大きな値をとるカーネル関数\( K(\bm{x}, \bm{x}') = \phi(\bm{x}_i)^\top\phi(\bm{x}_j) \)を考えると、
-    １クラスsvmの分類問題は、決定関数 \(f(\bm{x}) = \bm{w}^\top\phi(\bm{x}) - \rho\)で分類する問題となる。
-    ここで、\(\rho\)はバイアス\(b\)の符号を逆にしたものであり、境界\(f(\bm{x})\)と原点の距離は\( \frac{\rho}{\|w\|} \)と表される。
-    この時１クラスSVMは以下のように書ける。
+    <ul>
+      <li>ある分類に当てはまるベクトル\(\bm{x}\)が\(f(\bm{x}) \ge 0\)、そうでないものは\(f(\bm{x}) \le 0\)となるような\(f(\bm{x})\)を見つけることを目的とする。</li>
+    <li>２つのベクトルの類似度が高ければ高いほど非負の大きな値をとるカーネル関数\( K(\bm{x}, \bm{x}') = \phi(\bm{x}_i)^\top\phi(\bm{x}_j) \)を考える。</li>
+    <li>１クラスサポートベクトルマシンの分類問題は、決定関数 \(f(\bm{x}) = \bm{w}^\top\phi(\bm{x}) - \rho\)で分類する問題となる。</li>
+    <li>ここで、\(\rho\)はバイアス\(b\)の符号を逆にしたものであり、境界\(f(\bm{x})\)と原点の距離は\( \frac{\rho}{\|w\|} \)と表される。</li>
+    <li>この時１クラスサポートベクトルマシンは以下のように書ける。</li>
+    </ul>
     $$
       \min_{\bm{w}, \rho \in \mathbb{R}} \frac{1}{2} \|w\|^2 - \rho + \frac{1}{n\nu} \sum_{i \in [n]} max{\{0, -(\bm{w}^\top \phi(\bm{x}_i) - \rho)\}}
     $$
-    ここで、\( \nu \)は学習後の関数\(f(x)\)の偽陽性率の割合である。
-    さらに、スラック変数\(\{\xi_i\}_{i \in [n]}\)を使うと、以下の式と制約に書き直せる。
+    <ul>
+      <li>ここで、\( \nu \)は学習後の関数\(f(x)\)の偽陽性率の割合である。</li>
+      <li>さらに、スラック変数\(\{\xi_i\}_{i \in [n]}\)を使うと、以下の式と制約に書き直せる。</li>
+      <li>この時、\(\rho\)に制限がないので、以下の制約条件は実現可能となる。</li>
+    </ul>
     $$
       \min_{\bm{w} \in \chi, \rho \in \mathbb{R}, \xi \in \mathbb{R}^n } \frac{1}{2} \|w\|^2 - \rho + \frac{1}{n\nu} \sum_{i \in [n]} \xi_i
     $$
     $$
-      \text{        s.t. } \xi_i \gt - (\bm{w}^\top \phi(\bm{x}_i) - \rho), \xi_i \gt 0, \forall_i \in [n]
+      \text{        s.t. } \xi_i \ge - (\bm{w}^\top \phi(\bm{x}_i) - \rho), \xi_i \ge 0, \forall_i \in [n]
     $$
-
-    この主問題の双対問題は以下のように書ける。
+    <ul>
+      <li> この主問題の双対問題は以下のように書ける。 </li>
+    </ul>
     $$
       \min_{\bm{\alpha} \in \mathbb{R}^n} \frac{1}{2} \sum_{i \in [n]} \sum_{j \in [n]} \alpha_i \alpha_j K(\bm{x}_i, \bm{x}_j)
     $$
@@ -114,7 +120,8 @@ load: ['[tex]/noerrors']
   <h2>参考文献、サイト</h2>
     <div><div class="hidden_show">
     <ol>
-      <li><cite><a href="https://www.kspub.co.jp/book/detail/1529069.html">竹内一郎, 烏山昌幸, "サポートベクトルマシン",2015,講談社サイエンティフィク</li>
+      <li><a href="https://www.kspub.co.jp/book/detail/1529069.html">竹内一郎, 烏山昌幸, "サポートベクトルマシン",2015,講談社サイエンティフィク</li>
+      <li><a href="http://users.cecs.anu.edu.au/~williams/papers/P132.pdf">Barnhard Scholkopf, Jhon C. Platt, Jhon Shawe-Taylor, Alex J. Smola, Robert C. Williamson, "Estimating the Support of a High-Dimensional Distribution", Neural Computation, 1443-1471,2001</li>
     </ol>
 
     </div></div>
