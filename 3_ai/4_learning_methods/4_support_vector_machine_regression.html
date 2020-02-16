@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - learning methods - logistic regression </title>
+<title>hsmemo - ai - learning methods - support vector machine regression </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -72,65 +72,21 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：
+：双対問題、カーネル関数について記述
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>ロジスティック回帰</h1>
-  <h2>英語名、略称など</h2>
-    <div><div class="hidden_show">
-    
-  logistic regression
-    </div></div>
-  <h2>ターゲットタスク</h2>
-    <div><div class="hidden_show">
-    
-  二値分類、確率やダミー変数について分析、予測するのに使われる。
-    </div></div>
-  <h2>アルゴリズム</h2>
-    <div><div class="hidden_show">
-    
-  成功確率を\(p\)とすると、オッズ = (成功確率) / (失敗確率) = \( \frac{p}{1-p} \)となる。
-  オッズの対数をとったもの(ロジットという)が入力の線形結合で表せるとする。
-  $$
-    \ln(\frac{p_i}{1-p_i}) = \alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k,i}
-  $$
-  左辺を\(p_i\)にして整理すると以下の式で表される。
-  $$
-  p_i = \frac{1}{1 + e^{- ( \alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k, i})}}
-  $$
-  これは単純パーセプトロンの以下の式と等価である。
-  $$
-  p_i = \varsigma (\alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k,i})
-  $$
-  ここで\(\varsigma\)はシグモイド関数。
+<h1>サポートベクトルマシン(回帰)</h1>
 
-  つまり、ロジスティック回帰とは、単純パーセプトロンの出力にシグモイド関数を付けて出力を確率にしたもの。
-
-    </div></div>
-  <h2>長所</h2>
-    <div><div class="hidden_show">
-    
-  <ul>
-    <li>非常に簡単</li>
-    </ul>
-    </div></div>
-  <h2>短所</h2>
-    <div><div class="hidden_show">
-    
-  <ul>
-    <li>直線分割しかできない</li>
-    </ul>
-
-    </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="3_ai/4_learning_methods/3_simple_perception.html">単純パーセプトロン</a>
+<a class="prev" href="3_ai/4_learning_methods/3_support_vector_machine_multi.html">サポートベクトルマシン(多クラス分類)</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="3_ai/4_learning_methods/5_naive_bayes.html">ナイーブベイズ</a>
+<a class="next" href="3_ai/4_learning_methods/5_support_vector_machine_one.html">サポートベクトルマシン(教師なし学習、1クラス分類)</a>
 </div>
 </main>
 </body>
 </html>
+

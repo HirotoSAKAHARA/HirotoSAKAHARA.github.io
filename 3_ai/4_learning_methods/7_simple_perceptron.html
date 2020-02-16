@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - learning methods - principal component analysis </title>
+<title>hsmemo - ai - learning methods - simple perception </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -78,45 +78,48 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>主成分分析</h1>
+<h1>単純パーセプトロン</h1>
   <h2>英語名、略称など</h2>
     <div><div class="hidden_show">
     
-  PCA、Principal Component Analysis 
+  Simple Perceptoron
+
     </div></div>
   <h2>ターゲットタスク</h2>
     <div><div class="hidden_show">
     
-  次元削減。
+  分類
     </div></div>
   <h2>アルゴリズム</h2>
     <div><div class="hidden_show">
     
-  あるデータ\(\bm{X}\)の共分散\(\sum = E[\bm{(X-E[X])(X-E[X])^T}]\)を求める。
-  次に\(\sum\)の固有値と固有ベクトルを求め、固有値の大きいほうから必要な分だけ
-  主成分を抽出する。
-  抽出した主成分の固有ベクトルを並べた行列を元の行列にかけることで、次元を削減する。
+  複数の入力に対し、それぞれに重みを加えたものを足し合わせ、
+  その和が0以上の場合は1、以下の場合は0を出力するアルゴリズム。
+
+    <img src="out\ai\perceptron.png" alt="パーセプトロン"/>
+
     </div></div>
   <h2>長所</h2>
     <div><div class="hidden_show">
     
   <ul>
-<li>計算が早い</li>
-<li>もとデータの次元が多い場合でも解析できる。</li>
-</ul>
+<li>単純。</li>
+    </ul>
+  
     </div></div>
   <h2>短所</h2>
     <div><div class="hidden_show">
     
   <ul>
-<li>異なる特徴が混じったデータでは誤った削減を行う。</li>
-</ul>
+<li>１本の判別直線で分離できない問題は解けない。</li>
+    </ul>
+  
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="3_ai/4_learning_methods/11_DBSCAN.html">DBSCAN </a>
+<a class="prev" href="3_ai/4_learning_methods/6_k_nearest_neighbor.html">k近傍法</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="3_ai/4_learning_methods/13_independent_component_analysis.html">独立成分分析</a>
+<a class="next" href="3_ai/4_learning_methods/8_logistic_regression.html">ロジスティック回帰</a>
 </div>
 </main>
 </body>

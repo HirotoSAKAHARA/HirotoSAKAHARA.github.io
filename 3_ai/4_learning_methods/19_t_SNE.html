@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - learning methods - q learning </title>
+<title>hsmemo - ai - learning methods - t SNE </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -78,34 +78,27 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>Q学習</h1>
+<h1>t-SNE</h1>
   <h2>英語名、略称など</h2>
     <div><div class="hidden_show">
     
-  q-learning
+  t-stocastic neighbor embedding
+
     </div></div>
   <h2>概要</h2>
     <div><div class="hidden_show">
     
-  動的で複雑な環境に対する学習で、価値反復と方策反復により学習を行う。
-  行動価値観数(Q, A)に基づき、時刻の行動は行動方策に従って選択されるQ(S, A)を更新する。
-    </div></div>
-  <h2>マルコフ決定過程</h2>
-    <div><div class="hidden_show">
-    
-  <h3>マルコフ性、マルコフ性</h3>
-    一つ前の状態の条件付き確率（一つ前の状態の条件付き確率）。それまでの状態は考慮されない。
-    <h3>POMDP</h3>
-    部分観測可能なマルコフ決定過程：POMDP
-    <h3>マルコフ過程（マルコフ連鎖)</h3>
-    状態Sと行為Aと遷移確率Pと報酬Rと(割引率γ)の組 <lt> S, A, P, R, γ <gt>
+  t分布を用いた確率的な視覚化手法で、多様体(manifold)の次元圧縮。
+  多様体とは、近傍ではユークリッド距離系となっているが、
+  全体としてはユークリッド距離系となっていない。
+  抽象的に言えば、スイスロール上のデータを広げて２次元にして表示できる。
 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="3_ai/4_learning_methods/15_t_SNE.html">t-SNE</a>
+<a class="prev" href="3_ai/4_learning_methods/18_matrix_factorization.html">行列因子化</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="3_ai/4_learning_methods/17_actor_critic.html">アクタークリティック</a>
+<a class="next" href="3_ai/4_learning_methods/20_q_learning.html">Q学習</a>
 </div>
 </main>
 </body>

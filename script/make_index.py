@@ -10,7 +10,7 @@ base_dir = "../"
 #各フォルダ毎のデータを作る
 nChapter = 20
 nSection = 20
-nItem = 20
+nItem = 50
 
 #section_strings= [[0 for i2 in range(nSection)] for i1 in range(nChapter)]
 #chapter_strings= [0 for i1 in range(nChapter)]

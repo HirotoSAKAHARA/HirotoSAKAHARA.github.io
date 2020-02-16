@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - evaluation - standard problem </title>
+<title>hsmemo - ai - learning methods - k nearest neighbor </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -62,7 +62,7 @@ load: ['[tex]/noerrors']
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 人工知能 - タスクの評価</span>
+    <span class="subtitle"> : 人工知能 - 非深層学習系の学習手法</span>
   </div>
 
 </div>
@@ -72,39 +72,61 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：
+：異常検知の応用例を異常検知の項目に移動
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>標準問題</h1>
-  <h2>MNIST(エムニスト)</h2>
+<h1>k近傍法</h1>
+  <h2>英語名、略称など</h2>
     <div><div class="hidden_show">
     
-  手書き数字のデータセット、28x28で１チャンネルのデータとなっている
+  k nearest neighbor、ｋが１のときは最近傍法
     </div></div>
-  <h2>CIFAR-10</h2>
+  <h2>ターゲットタスク</h2>
     <div><div class="hidden_show">
     
-  10種類のオブジェクトが映った画像の10x10のデータセットの分類
+        分類、回帰、異常検知
     </div></div>
-  <h2>ImageNet(<a href="http : //www.image-net.org">http : //www.image-net.org/</a>)</h2>
+  <h2>アルゴリズム</h2>
     <div><div class="hidden_show">
     
-  データが公開されているので登録すればダウンロード可能
+      ある空間上の入力点のラベルを、隣接のk個の学習済みの点のラベルから決定する。
+    \(k = 1 \)の時、最近傍法となる。
+    隣接の点群の中の最多のラベルを選ぶ事で分類問題に、
+    ラベルの平均や重み付き平均を取ることで回帰問題に適用できる。
     </div></div>
-  <h2>MS-COCO(<a href="http : //cocodataset.org/#home">http : //cocodataset.org/#home</a>)</h2>
+  <h2>特徴</h2>
     <div><div class="hidden_show">
     
-  画像に対して５つのキャプションが与えられる。表現の多様性をチェックする    </dl>
+      関数が想定されていないノンパラメトリックの手法で、
+    教師データをそのまま丸暗記する怠惰学習(lazy learner)である。
+    また、空間の各軸である特徴尺度の選択と距離の計算方法が分類性能に大きな影響を与え、
+    最近傍探索アルゴリズムが計算速度に大きな影響を与える。
+    </div></div>
+  <h2>長所</h2>
+    <div><div class="hidden_show">
+    
+  <ul>
+<li>単純。</li>
+    </ul>
+    </div></div>
+  <h2>短所</h2>
+    <div><div class="hidden_show">
+    
+      <ul>
+      <li>データの局所的構造に左右されやすい。</li>
+      <li>不適切な特徴を入れてしまうことで、正確さが著しく損なわれる。</li>
+      <li>ノイズ耐性とクラス境界の明確さがトレードオフとなり、kの決定が難しい。</li>
+    </ul>
 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="3_ai/3_evaluation/5_neural_network.html">NNの評価</a>
+<a class="prev" href="3_ai/4_learning_methods/5_support_vector_machine_one.html">サポートベクトルマシン(教師なし学習、1クラス分類)</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="3_ai/4_learning_methods/1_support_vector_machine_base.html">サポートベクトルマシン(基本)</a>
+<a class="next" href="3_ai/4_learning_methods/7_simple_perception.html">単純パーセプトロン</a>
 </div>
 </main>
 </body>

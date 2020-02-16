@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - learning methods - least squares method </title>
+<title>hsmemo - ai - learning methods - DBSCAN </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -78,36 +78,60 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>最小二乗法</h1>
+<h1>DBSCAN </h1>
   <h2>英語名、略称など</h2>
     <div><div class="hidden_show">
     
-  Least Squares Method
+  density-based spatial clustering of applications with noise
     </div></div>
   <h2>ターゲットタスク</h2>
     <div><div class="hidden_show">
     
-  線形回帰
+  クラスタリング。
     </div></div>
   <h2>アルゴリズム</h2>
     <div><div class="hidden_show">
     
-  入力の組\(\bm{U}\)、出力の組\(\bm{z}\)が与えられた時、
-    \(\bm{z} \simeq \bm{Uw}\)となる係数の組\(\bm{w}\)を、
-    残差平方和 \( \|\bm{Uw} - \bm{z}\| \) を最小にするという条件で求める。</div>
-    正規方程式 \( \bm{U^{\mathrm{T}}Uw} = \bm{U^\mathrm{T}z} \)により、
-    より直接的には以下の式により$\bm{w}$を算出する。</div>
-    $$
-\bm{w} = (\bm{U}^{\mathrm{T}}\bm{U})^{-1}\bm{U}^{\mathrm{T}} \bm{z}
-    $$
+  <h3>概要</h3>
+以下の方法でコア点、到達可能点、外れ値に分類する。
+<ul>
+<li> 点\(p\)を含め、点\(p\)から距離\(\varepsilon \)以内に少なくともminPts個の点があれば、点\(p\)をコア点とする。</li>
+<li> 点\(q\)がコア点\(p\)から距離から距離\(\varepsilon \)以内にあれば、点\(q\)は点\(p\)から直接到達可能である。</li>
+<li> 点\(p = \) 点\(p_1\)、点\(q\) = 点\(p_n\)の時、点\(p_{i+1}\)が点\(p_i\)から直接到達可能であり、
+結果点\(p_n\)が点\(p_1\)から順にたどり着ける場合、点\(q\)は点\(p\)から到達可能である。
+この時、点\(q\)以外はコア点である(\(q\)はコア点か到達可能点である)。</li>
+<li> どの点からもたどり着けない点は外れ点かノイズ点である。</li>
+</ul>
+    <h3>手順</h3>
+    <ol>
+<li>パラメータ\( \varepsilon \)、minPtsを決定する。</li>
+<li>全ての点について、その点から 距離\(\varepsilon \)以内にある隣接点を見つけ、minPts以上の隣接点がある点をコア点とする。</li>
+<li>隣接グラフ上のコア点群の連結グラフを見つける。この時コア点でない点は考慮しない。</li>
+<li>コア点でない点が近くのクラスタから距離\(\varepsilon \)以内にあれば、その点を近くのクラスタに割当する。そうでない点はノイズ点とする。</li>
+    </ol>
 
+    </div></div>
+  <h2>長所</h2>
+    <div><div class="hidden_show">
     
+  <ul>
+<li>データのクラスタ数を事前に必要としない。</li>
+<li>任意の形状のクラスタを見つけることができる。</li>
+<li>ハズレ値に対しロバストである。</li>
+    </ul>
+    </div></div>
+  <h2>短所</h2>
+    <div><div class="hidden_show">
+    
+  <ul>
+<li>データの内容が不明な場合、パラメータ、特に\(\varepsilon\)を設定するのが困難</li>
+    </ul>
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="3_ai/4_learning_methods/8_ada_boost.html">アダブースト</a>
+<a class="prev" href="3_ai/4_learning_methods/14_k_means_clustering.html">k平均クラスタリング</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="3_ai/4_learning_methods/10_k_means_clustering.html">k平均クラスタリング</a>
+<a class="next" href="3_ai/4_learning_methods/16_principal_component_analysis.html">主成分分析</a>
 </div>
 </main>
 </body>

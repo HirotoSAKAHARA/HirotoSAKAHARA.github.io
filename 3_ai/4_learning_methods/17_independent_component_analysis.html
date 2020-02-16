@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - learning methods - ada boost </title>
+<title>hsmemo - ai - learning methods - independent component analysis </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -78,45 +78,29 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>アダブースト</h1>
+<h1>独立成分分析</h1>
   <h2>英語名、略称など</h2>
     <div><div class="hidden_show">
     
-  Ada Boost
+  ICA、Independent Component Analysis, 
     </div></div>
-  <h2>ターゲットタスク</h2>
+  <h2>内容</h2>
     <div><div class="hidden_show">
     
-  二値分類
+  ブラインドソース分離(多変量の信号を複数の加法的な成分に分離する)
+    ための計算手法。PCAでは合わさったデータの主成分が出力され、分離できない
+    ネゲントロピー(負のエントロピー)を考える
     </div></div>
-  <h2>アルゴリズム</h2>
+  <h2>応用例</h2>
     <div><div class="hidden_show">
     
-  弱い学習機とデータの重みづけによって強い学習機を作る。
-  教師データは1か-1とする。
-    <div class="img"><img src="out\ai\ada_boost.png" alt="ada boost"/></div>
-
-    </div></div>
-  <h2>長所</h2>
-    <div><div class="hidden_show">
-    
-  <ul>
-<li>精度が高い。</li>
-    </ul>
-    </div></div>
-  <h2>短所</h2>
-    <div><div class="hidden_show">
-    
-  <ul>
-<li>ノイズや異常値に追従しやすい。</li>
-<li>並列化ができず、計算速度が遅い。</li>
-    </ul>
+  MEG、画像の雑音除去、保険データ
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="3_ai/4_learning_methods/7_random_forest.html">ランダムフォレスト</a>
+<a class="prev" href="3_ai/4_learning_methods/16_principal_component_analysis.html">主成分分析</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="3_ai/4_learning_methods/9_least_squares_method.html">最小二乗法</a>
+<a class="next" href="3_ai/4_learning_methods/18_matrix_factorization.html">行列因子化</a>
 </div>
 </main>
 </body>

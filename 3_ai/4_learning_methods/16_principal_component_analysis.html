@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - learning methods - decision tree </title>
+<title>hsmemo - ai - learning methods - principal component analysis </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -78,81 +78,45 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-   
-<h1>決定木</h1>
+<h1>主成分分析</h1>
   <h2>英語名、略称など</h2>
     <div><div class="hidden_show">
     
-  Decision Tree
+  PCA、Principal Component Analysis 
     </div></div>
   <h2>ターゲットタスク</h2>
     <div><div class="hidden_show">
     
-  分類、回帰、クラスタリング。
-
+  次元削減。
     </div></div>
   <h2>アルゴリズム</h2>
     <div><div class="hidden_show">
     
-  各軸(特徴量)において、それぞれの基準により枝を分割する事を繰り返し、ツリーを作る。
-<img src="out\ai\decision_tree.png" alt="決定木"/>
-
-    </div></div>
-  <h2>CART</h2>
-    <div><div class="hidden_show">
-    
-  決定木の１つであるCARTについて説明をする。
-    CARTはジニ不純度によりノードを２つに分割し、
-    （分割前のジニ不純度)-(分割後のジニ不純度の合計)
-    が最も高くなるような分割を行う。
-
-    </div></div>
-  <h2>ジニ不純度</h2>
-    <div><div class="hidden_show">
-    
-  $$
-I_G(t) = 1 - \sum^c_{i = 1}(\frac{n_i}{N})^2
-    $$
-    ここで\(c\)は目的変数のクラス数、\(t\)は現在のノード、
-    \(N\)はノード内のデータ数、
-    \(n_i\)はクラス\(i\)に属するノード内のデータの数。
-
-    </div></div>
-  <h2>そのほかの決定木</h2>
-    <div><div class="hidden_show">
-    
-  ID3, C4.5, CHAID等がある。分割基準や分岐の数、枝刈りの有無等が異なる。
-    分割基準として使われるものとしては、ジニ不純度のほか、エントロピーがある。
-
-    </div></div>
-  <h2>エントロピー</h2>
-    <div><div class="hidden_show">
-    
-  $$
-I_H(t) = - \sum^c_{i = 1}(\frac{n_i}{N})\log{(\frac{n_i}{N})}
-    $$
-
+  あるデータ\(\bm{X}\)の共分散\(\sum = E[\bm{(X-E[X])(X-E[X])^T}]\)を求める。
+  次に\(\sum\)の固有値と固有ベクトルを求め、固有値の大きいほうから必要な分だけ
+  主成分を抽出する。
+  抽出した主成分の固有ベクトルを並べた行列を元の行列にかけることで、次元を削減する。
     </div></div>
   <h2>長所</h2>
     <div><div class="hidden_show">
     
   <ul>
-<li>簡単。</li>
+<li>計算が早い</li>
+<li>もとデータの次元が多い場合でも解析できる。</li>
 </ul>
     </div></div>
   <h2>短所</h2>
     <div><div class="hidden_show">
     
   <ul>
-<li>軸に平行な線しか引けないので、対応できない場合がある。</li>
+<li>異なる特徴が混じったデータでは誤った削減を行う。</li>
 </ul>
-
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="3_ai/4_learning_methods/5_naive_bayes.html">ナイーブベイズ</a>
+<a class="prev" href="3_ai/4_learning_methods/15_DBSCAN.html">DBSCAN </a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="3_ai/4_learning_methods/7_random_forest.html">ランダムフォレスト</a>
+<a class="next" href="3_ai/4_learning_methods/17_independent_component_analysis.html">独立成分分析</a>
 </div>
 </main>
 </body>

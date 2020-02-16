@@ -173,9 +173,9 @@ load: ['[tex]/noerrors']
         <li> \(\hat{p}^{ij}(\bm{x})\)と上記右辺の値の差がなるべく小さくなるようにp^iを推定する。</li>
         <li> 各クラスペアの事例で重み付けしたKLダイバージェンスを和s(ij)を最小化するように\(p^i\)を推定する。</li>
         $$
-          s(ij) = \sum_{i \ne j} (n_i + n_j) KL(\hat{p}^{ij}||p^{ij}) = \sum_{i \ne j} (n_i + n_j) KL(\hat{p}^{ij}||\frac{p^i}{p^i + p^j})
+          s(ij) = \sum_{i \ne j} (n_i + n_j) KL(\hat{p}^{ij}\|p^{ij}) = \sum_{i \ne j} (n_i + n_j) KL(\hat{p}^{ij}\|\frac{p^i}{p^i + p^j})
         $$
-        ここで、\(n_i\)はクラス\(i\)の事例数、\(KL(\hat{p}^{ij}||p^{ij})\)は\(\hat{p}^{ij}\)と\(p^{ij})\)のKLダイバージェンス。
+        ここで、\(n_i\)はクラス\(i\)の事例数、\(KL(\hat{p}^{ij}\|p^{ij})\)は\(\hat{p}^{ij}\)と\(p^{ij})\)のKLダイバージェンス。
       </ul>
     </div></div>
   <h2>誤り訂正出力符号</h2>
@@ -204,9 +204,9 @@ load: ['[tex]/noerrors']
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="3_ai/4_learning_methods/18_td_lambda.html">TD(\(\lambda\))</a>
+<a class="prev" href="3_ai/4_learning_methods/22_td_lambda.html">TD(\(\lambda\))</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="3_ai/4_learning_methods/20_common_technique.html">共通技術</a>
+<a class="next" href="3_ai/4_learning_methods/24_common_technique.html">共通技術</a>
 </div>
 </main>
 </body>

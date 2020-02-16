@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - learning methods - actor critic </title>
+<title>hsmemo - ai - learning methods - matrix factorization </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -78,15 +78,33 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>アクタークリティック</h1>
-actor-critic
+<h1>行列因子化</h1>
+  <h2>英語名、略称など</h2>
+    <div><div class="hidden_show">
+    
+  Matrix Factorization、MF
+    </div></div>
+  <h2>NMF<span class="small"> : non-negative matrix factorization, 非負行列因子化</span></h2>
+    <div><div class="hidden_show">
+    
+  正の値だけをとるMatrix Factorization。こちらが先に発表され、 改良版としてMatrix Factorizationが発表された。
+    行列Xを行列Wと行列Hで近似する方法。
+    画像のパーツパーツを抽出できる。
+
+    </div></div>
+  <h2>matrix factorization<span class="small"> : 行列因子化</span></h2>
+    <div><div class="hidden_show">
+    
+  協調フィルタリングとして働く。Netflix映画のおすすめができるようになった。
+    目標関数はRSMEで、正則化により過学習を抑制。NMFとあまり変わらない。
+
+    </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="3_ai/4_learning_methods/16_q_learning.html">Q学習</a>
+<a class="prev" href="3_ai/4_learning_methods/17_independent_component_analysis.html">独立成分分析</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="3_ai/4_learning_methods/18_td_lambda.html">TD(\(\lambda\))</a>
+<a class="next" href="3_ai/4_learning_methods/19_t_SNE.html">t-SNE</a>
 </div>
 </main>
 </body>
 </html>
-

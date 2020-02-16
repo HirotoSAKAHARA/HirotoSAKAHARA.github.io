@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - learning methods - t SNE </title>
+<title>hsmemo - ai - learning methods - support vector machine base </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -72,34 +72,58 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：
+：双対問題、カーネル関数について記述
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>t-SNE</h1>
+<h1>サポートベクトルマシン(基本)</h1>
   <h2>英語名、略称など</h2>
     <div><div class="hidden_show">
     
-  t-stocastic neighbor embedding
+  SVN、Support Vector Machine。分類に使われる場合はSupport Vector Classification(SVC)とも。
+
+    </div></div>
+  <h2>ターゲットタスク</h2>
+    <div><div class="hidden_show">
+    分類、回帰、クラスタリングなど、ほぼあらゆる機械学習に使われる。
 
     </div></div>
   <h2>概要</h2>
     <div><div class="hidden_show">
-    
-  t分布を用いた確率的な視覚化手法で、多様体(manifold)の次元圧縮。
-  多様体とは、近傍ではユークリッド距離系となっているが、
-  全体としてはユークリッド距離系となっていない。
-  抽象的に言えば、スイスロール上のデータを広げて２次元にして表示できる。
+    多次元空間上のデータを超平面（サポートベクトル）により分類する手法。
+
+    </div></div>
+  <h2>長所</h2>
+    <div><div class="hidden_show">
+    <ul>
+      <li>局所解収束の問題がない。</li>
+      <li>逆誤差伝播法などと違い、できるだけマージンを取って分類するため、未学習データに強い。</li>
+    </ul>
+
+    </div></div>
+  <h2>短所</h2>
+    <div><div class="hidden_show">
+    <ul>
+      <li>多クラス分類などでは計算量が多くなる。</li>
+      <li>非線形分類に対しての設計基準がない。</li>
+    </ul>
+    </div></div>
+  <h2>参考文献、サイト</h2>
+    <div><div class="hidden_show">
+    <ol>
+      <li><cite><a href="https://www.kspub.co.jp/book/detail/1529069.html">竹内一郎, 烏山昌幸, "サポートベクトルマシン",2015,講談社サイエンティフィク</li>
+    </ol>
 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="3_ai/4_learning_methods/14_matrix_factorization.html">行列因子化</a>
+<a class="prev" href="3_ai/3_evaluation/6_standard_problem.html">標準問題</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="3_ai/4_learning_methods/16_q_learning.html">Q学習</a>
+<a class="next" href="3_ai/4_learning_methods/2_support_vector_machine_binary.html">サポートベクトルマシン(2クラス分類)</a>
 </div>
 </main>
 </body>
 </html>
+

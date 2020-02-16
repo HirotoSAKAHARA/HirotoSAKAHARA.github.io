@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - learning methods - DBSCAN </title>
+<title>hsmemo - ai - learning methods - logistic regression </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -78,60 +78,58 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>DBSCAN </h1>
+<h1>ロジスティック回帰</h1>
   <h2>英語名、略称など</h2>
     <div><div class="hidden_show">
     
-  density-based spatial clustering of applications with noise
+  logistic regression
     </div></div>
   <h2>ターゲットタスク</h2>
     <div><div class="hidden_show">
     
-  クラスタリング。
+  二値分類、確率やダミー変数について分析、予測するのに使われる。
     </div></div>
   <h2>アルゴリズム</h2>
     <div><div class="hidden_show">
     
-  <h3>概要</h3>
-以下の方法でコア点、到達可能点、外れ値に分類する。
-<ul>
-<li> 点\(p\)を含め、点\(p\)から距離\(\varepsilon \)以内に少なくともminPts個の点があれば、点\(p\)をコア点とする。</li>
-<li> 点\(q\)がコア点\(p\)から距離から距離\(\varepsilon \)以内にあれば、点\(q\)は点\(p\)から直接到達可能である。</li>
-<li> 点\(p = \) 点\(p_1\)、点\(q\) = 点\(p_n\)の時、点\(p_{i+1}\)が点\(p_i\)から直接到達可能であり、
-結果点\(p_n\)が点\(p_1\)から順にたどり着ける場合、点\(q\)は点\(p\)から到達可能である。
-この時、点\(q\)以外はコア点である(\(q\)はコア点か到達可能点である)。</li>
-<li> どの点からもたどり着けない点は外れ点かノイズ点である。</li>
-</ul>
-    <h3>手順</h3>
-    <ol>
-<li>パラメータ\( \varepsilon \)、minPtsを決定する。</li>
-<li>全ての点について、その点から 距離\(\varepsilon \)以内にある隣接点を見つけ、minPts以上の隣接点がある点をコア点とする。</li>
-<li>隣接グラフ上のコア点群の連結グラフを見つける。この時コア点でない点は考慮しない。</li>
-<li>コア点でない点が近くのクラスタから距離\(\varepsilon \)以内にあれば、その点を近くのクラスタに割当する。そうでない点はノイズ点とする。</li>
-    </ol>
+  成功確率を\(p\)とすると、オッズ = (成功確率) / (失敗確率) = \( \frac{p}{1-p} \)となる。
+  オッズの対数をとったもの(ロジットという)が入力の線形結合で表せるとする。
+  $$
+    \ln(\frac{p_i}{1-p_i}) = \alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k,i}
+  $$
+  左辺を\(p_i\)にして整理すると以下の式で表される。
+  $$
+  p_i = \frac{1}{1 + e^{- ( \alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k, i})}}
+  $$
+  これは単純パーセプトロンの以下の式と等価である。
+  $$
+  p_i = \varsigma (\alpha + \beta_1 x_{1,i} + \cdots + \beta_k x_{k,i})
+  $$
+  ここで\(\varsigma\)はシグモイド関数。
+
+  つまり、ロジスティック回帰とは、単純パーセプトロンの出力にシグモイド関数を付けて出力を確率にしたもの。
 
     </div></div>
   <h2>長所</h2>
     <div><div class="hidden_show">
     
   <ul>
-<li>データのクラスタ数を事前に必要としない。</li>
-<li>任意の形状のクラスタを見つけることができる。</li>
-<li>ハズレ値に対しロバストである。</li>
+    <li>非常に簡単</li>
     </ul>
     </div></div>
   <h2>短所</h2>
     <div><div class="hidden_show">
     
   <ul>
-<li>データの内容が不明な場合、パラメータ、特に\(\varepsilon\)を設定するのが困難</li>
+    <li>直線分割しかできない</li>
     </ul>
+
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="3_ai/4_learning_methods/10_k_means_clustering.html">k平均クラスタリング</a>
+<a class="prev" href="3_ai/4_learning_methods/7_simple_perception.html">単純パーセプトロン</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="3_ai/4_learning_methods/12_principal_component_analysis.html">主成分分析</a>
+<a class="next" href="3_ai/4_learning_methods/9_naive_bayes.html">ナイーブベイズ</a>
 </div>
 </main>
 </body>

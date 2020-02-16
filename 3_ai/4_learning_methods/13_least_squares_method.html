@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - learning methods - k means clustering </title>
+<title>hsmemo - ai - learning methods - least squares method </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -78,55 +78,36 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>k平均クラスタリング</h1>
+<h1>最小二乗法</h1>
   <h2>英語名、略称など</h2>
     <div><div class="hidden_show">
     
-  k means clustering
-
+  Least Squares Method
     </div></div>
   <h2>ターゲットタスク</h2>
     <div><div class="hidden_show">
     
-  クラスタリング。
+  線形回帰
     </div></div>
   <h2>アルゴリズム</h2>
     <div><div class="hidden_show">
     
-  
-    <img src="out\ai\k_means_clustering.png" alt="k平均法"/>
-    </div></div>
-  <h2>長所</h2>
-    <div><div class="hidden_show">
-    
-  <ul>
-<li>データ量が膨大でも高速で計算できる。</li>
-    </ul>
-    </div></div>
-  <h2>短所</h2>
-    <div><div class="hidden_show">
-    
-  <ul>
-<li>結果が初期値に大きく依存する。</li>
-<li>分割数の決定は別の考察が必要。</li>
-    </ul>
+  入力の組\(\bm{U}\)、出力の組\(\bm{z}\)が与えられた時、
+    \(\bm{z} \simeq \bm{Uw}\)となる係数の組\(\bm{w}\)を、
+    残差平方和 \( \|\bm{Uw} - \bm{z}\| \) を最小にするという条件で求める。
+    正規方程式 \( \bm{U^{\top}Uw} = \bm{U^\top z} \)により、
+    より直接的には以下の式により$\bm{w}$を算出する。
+    $$
+\bm{w} = (\bm{U}^{\top}\bm{U})^{-1}\bm{U}^{\top} \bm{z}
+    $$
 
-    </div></div>
-  <h2>エルボー法</h2>
-    <div><div class="hidden_show">
     
-  最適なkを決定するための方法で
-    kが大きくなればなるほどSSEは小さくなる傾向にあるが、必要以上に大きくしてもSSEが小さくならないことを利用し、
-    各kにおいてSSEを計算し、折れ曲がる値を最適値とみなす手法。
-    SSEについては評価の項を参照のこと。
-
-  
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="3_ai/4_learning_methods/9_least_squares_method.html">最小二乗法</a>
+<a class="prev" href="3_ai/4_learning_methods/12_ada_boost.html">アダブースト</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="3_ai/4_learning_methods/11_DBSCAN.html">DBSCAN </a>
+<a class="next" href="3_ai/4_learning_methods/14_k_means_clustering.html">k平均クラスタリング</a>
 </div>
 </main>
 </body>
