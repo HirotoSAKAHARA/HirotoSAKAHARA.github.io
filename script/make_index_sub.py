@@ -35,7 +35,7 @@ def get_item_strings(base_dir, item_urls, nChapter, nSection, nItem):
     for j in range(nSection):
       for k in range(nItem):
         if(item_urls[i][j][k] != 0):
-          with open(base_dir+ item_urls[i][j][k], "r") as f:
+          with open(base_dir+ item_urls[i][j][k], "r", encoding="utf-8", newline="\n") as f:
             html = f.read()
             soup = BeautifulSoup(html, "html.parser")
             item_string = str(soup.find("h1"))
@@ -49,7 +49,7 @@ def get_item_has_contents(base_dir, item_urls, nChapter, nSection, nItem):
     for j in range(nSection):
       for k in range(nItem):
         if(item_urls[i][j][k] != 0):
-          with open(base_dir+ item_urls[i][j][k], "r") as f:
+          with open(base_dir+ item_urls[i][j][k], "r", encoding="utf-8", newline="\n") as f:
             html = f.read()
             index_html_h2 = re.split("<h2>",html);
             if(len(index_html_h2) != 1):
@@ -59,7 +59,7 @@ def get_item_has_contents(base_dir, item_urls, nChapter, nSection, nItem):
 
 
 def update_index(base_dir, item_urls, item_strings, item_has_contents, nChapter, nSection, nItem):
-  with open(base_dir + "index.html", "r") as f:
+  with open(base_dir + "index.html", "r", encoding="utf-8", newline="\n") as f:
     index_html = f.read()
 
   #h2の中身を一旦全部削除する
@@ -109,7 +109,7 @@ def update_index(base_dir, item_urls, item_strings, item_has_contents, nChapter,
     if chapter_p1 != len(index_html_h1) - 1:
       index_html_rev += "<h1>"
 
-  with open(base_dir + "index.html", "w") as f:
+  with open(base_dir + "index.html", "w", encoding="utf-8", newline="\n") as f:
     f.write(index_html_rev)
 
 def get_prev_and_next_urls_and_strings(item_urls, item_strings, nChapter, nSection, nItem):
@@ -180,7 +180,7 @@ def get_prev_and_next_urls_and_strings(item_urls, item_strings, nChapter, nSecti
 
 def get_chapter_string(base_dir, nChapter):
   chapter_strings= [0 for i1 in range(nChapter)]
-  with open(base_dir + "index.html", "r") as f:
+  with open(base_dir + "index.html", "r", encoding="utf-8", newline="\n") as f:
     index_html = f.read()
 
   soup = BeautifulSoup(index_html, "html.parser")
@@ -193,7 +193,7 @@ def get_chapter_string(base_dir, nChapter):
 
 def get_section_string(base_dir, nChapter, nSection):
   section_strings= [[0 for i2 in range(nSection)] for i1 in range(nChapter)]
-  with open(base_dir + "index.html", "r") as f:
+  with open(base_dir + "index.html", "r", encoding="utf-8", newline="\n") as f:
     index_html = f.read()
 
   index_html_h1 = re.split("<h1>",index_html);
@@ -210,7 +210,7 @@ def get_section_string(base_dir, nChapter, nSection):
 
 def update_navigation(target_file, prev_urls, prev_string, next_urls, next_string):
   data = ""
-  with open(target_file, "r") as f:
+  with open(target_file, "r", encoding="utf-8", newline="\n") as f:
     data = f.read()
 
   data = re.sub("<a class=\"prev.+?a>\n", "",data)
@@ -224,12 +224,12 @@ def update_navigation(target_file, prev_urls, prev_string, next_urls, next_strin
   data += "<a class=\"next\" href=\"" + next_urls + "\">" + next_string + "</a>\n"
   data += sp_datas_eop[1];
 
-  with open(target_file, "w") as f:
+  with open(target_file, "w", encoding="utf-8", newline="\n") as f:
     f.write(data)
 
 def update_hidden(target_file):
   data = ""
-  with open(target_file, "r") as f:
+  with open(target_file, "r", encoding="utf-8", newline="\n") as f:
     data = f.read()
 
   #delete all
@@ -287,12 +287,12 @@ def update_hidden(target_file):
     sp_datas_eop = re.split("<div class.*?=.*?\"end_of_page_margin\"></div> *?\n",data);
     data = sp_datas_eop[0] + "    </div></div>\n" + "<div class=\"end_of_page_margin\"></div>\n"
     data = data + sp_datas_eop[1]
-  with open(target_file, "w") as f:
+  with open(target_file, "w", encoding="utf-8", newline="\n") as f:
     f.write(data)
 
 def update_title(target_file, chapter_string, section_string):
   data = ""
-  with open(target_file, "r") as f:
+  with open(target_file, "r", encoding="utf-8", newline="\n") as f:
     data = f.read()
   data = re.sub("<title>.+?</title>", "<title></title>", data)
 
@@ -327,6 +327,6 @@ def update_title(target_file, chapter_string, section_string):
   data = spdata2[0] + "<div class=\"title\">\n" + "    <a href=\"index.html\">hsmemo</a>\n" +\
           "    <span class=\"subtitle\"> : " + chapter_string + " - " + section_string + "</span>\n" + spdata2[1]
  
-  with open(target_file, "w") as f:
+  with open(target_file, "w", encoding="utf-8", newline="\n") as f:
     f.write(data)
 
