@@ -72,7 +72,7 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：k近傍法を追加
+：
 </div>
 </div>
 
@@ -81,6 +81,41 @@ load: ['[tex]/noerrors']
 <h1>方向データによる異常検知</h1>
   <h2>基本</h2>
     <div><div class="hidden_show">
+    各データを表すベクトルを正規化し、超球面上の正規分布と言えるフォン・ミーゼスフィッシャー分布（下式）を求め、閾値より外側のデータを外れ値とみなす。
+$$
+  \mathcal{M}( \bm{x} | \bm{\mu}, \kappa )  = \frac{\kappa^{M/2 - 1}}{(2\pi)^{M/2}I_{M/2-1}(\kappa)}e^{\kappa \bm{\mu}^\top \bm{x}}
+$$
+ここで、分母の\(I\)は第一種変形ベッセル関数であり、以下のように定義される。
+$$
+  I_\alpha(\kappa) = \frac{2^{-\alpha}\kappa^{\alpha}}{\sqrt{\pi}\Gamma(\alpha + (1/2))}\int^\pi_0 d \phi \sin^{2\alpha}\phi e^{\kappa cos\phi}
+$$
+
+    </div></div>
+  <h2>アルゴリズム</h2>
+    <div><div class="hidden_show">
+    <h3>訓練時</h3>
+    <ul>
+      <li>訓練データ\(\mathcal{D} = { \bm{x}^{(n)} | n=1, \ldots, N}\)に対して、尤度推定値\(\hat{\bm{\mu}}\) を下式で求める</li>
+    </ul>
+    $$
+      \hat{\bm{\mu}} = \frac{\bm{m}}{\sqrt{\bm{m}^\top\bm{m}}} \text{ただし} m := \frac{1}{N} \sum^N_{n=1}\bm{x}^{(n)}
+    $$
+    <ul>
+      <li>各標本\(\bm{x}^{(n)}\)について、異常度\(a(\bm{x}^{(n)})\) を以下の式で計算する</li>
+    </ul>
+    $$
+      a(\bm{x}) = 1 - \hat{\bm{\mu}}^\top \bm{x}
+    $$
+    <ul>
+      <li>積率法(モーメント法)などを用いて、計算された異常度\(a(\bm{x}^{(1)}),\ldots,a(\bm{x}^{(N)})\)に対しカイ２乗分布\(\chi^2(\hat{m}_{mo}, \hat{s}_{mo})\)を当てはめる。</li>
+      <li>上記分布から、異常度の閾値\(a_{th}\)を決定する。</li>
+    </ul>
+    <h3>運用時</h3>
+    <ul>
+      <li>観測データ\(\bm{x}'\)に対して、異常度\(a(\bm{x}')\)を計算する。 </li>
+      <li>\(a(\bm{x}') \gt a_{th}\)なら異常と判定する。</li>
+    </ul>
+
     </div></div>
   <h2>参考文献、サイト</h2>
     <div><div class="hidden_show">

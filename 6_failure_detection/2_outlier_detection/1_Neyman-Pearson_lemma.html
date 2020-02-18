@@ -84,8 +84,9 @@ load: ['[tex]/noerrors']
   \(y=1\)の時を異常時の分布、\(y=0\)の時を正常時の分布とした時、以下の式は異常度を示し、
   この値がしきい値を超えた場合に異常であるとみなす決定方法。
   $$
-    \ln\frac{p(x' | y = 1, D)}{p(x'| y = 0, D)}
+    \ln\frac{p(x' | y = 1, \mathcal{D})}{p(x'| y = 0, \mathcal{D})}
   $$
+  ここで\(mathcal{D}\)は訓練データ（元データの分布を示している）。
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">

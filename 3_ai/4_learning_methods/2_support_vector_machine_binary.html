@@ -83,8 +83,8 @@ load: ['[tex]/noerrors']
     <div><div class="hidden_show">
       訓練集合\(\{(\bm{x}_i, y_i)\}_{i \in [n]}\)内のデータを正しく分類できる超平面が決定関数\(f(\bm{x}) = \bm{w}^\top\bm{x}+b\)で求められる場合、
       訓練集合は\(f(\bm{x})\)によって分離可能(separable)であると表現される。
-      この時、\(f(\bm{x})\)は無数に存在するが、SVNでは\(f(\bm{x})\)と両方のクラスの最近隣接点の距離の和を最大にする、
-      つまりマージン最大化(margin maximization)するパラメータを選択する。この場合、SVMはマージン\(M\)を利用して以下の最適化問題によって定式化できる。
+      この時、\(f(\bm{x})\)は無数に存在するが、サポートベクトルマシンでは\(f(\bm{x})\)と両方のクラスの最近隣接点の距離の和を最大にする、
+      つまりマージン最大化(margin maximization)するパラメータを選択する。この場合、サポートベクトルマシンはマージン\(M\)を利用して以下の最適化問題によって定式化できる。
       $$
         \max_{\bm{w},b,M}\frac{M}{\|\bm{w}\|}
       $$
@@ -117,7 +117,7 @@ load: ['[tex]/noerrors']
     </div></div>
   <h2>双対問題</h2>
     <div><div class="hidden_show">
-    前項の定式化(主問題)に対する<a href="2_math/1_optimization_problem/2_linear_programming_problem.html">双対問題</a>を考えると、以下のように表現できる。SVMの場合、強双対性が成り立ち、主問題と双対問題の目標関数値が最適解において一致する。
+    前項の定式化(主問題)に対する<a href="2_math/1_optimization_problem/2_linear_programming_problem.html">双対問題</a>を考えると、以下のように表現できる。サポートベクトルマシンの場合、強双対性が成り立ち、主問題と双対問題の目標関数値が最適解において一致する。
        $$
         \max_{\bm{{\alpha}}}- \frac{1}{2} \sum_{i,j \in [n]} \alpha_i, \alpha_j,y_i, y_j, \bm{x}_i^\top\bm{x}_j + \sum_{i \in [n]} \alpha_i
       $$
