@@ -72,7 +72,7 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：
+： 平均方向と集中度の記述を追加
 </div>
 </div>
 
@@ -85,7 +85,7 @@ load: ['[tex]/noerrors']
 $$
   \mathcal{M}( \bm{x} | \bm{\mu}, \kappa )  = \frac{\kappa^{M/2 - 1}}{(2\pi)^{M/2}I_{M/2-1}(\kappa)}e^{\kappa \bm{\mu}^\top \bm{x}}
 $$
-ここで、分母の\(I\)は第一種変形ベッセル関数であり、以下のように定義される。
+ここで、\(\bm{\mu}\)は平均方向、\(\kappa\)は集中度である。また、分母の\(I\)は第一種変形ベッセル関数であり、以下のように定義される。
 $$
   I_\alpha(\kappa) = \frac{2^{-\alpha}\kappa^{\alpha}}{\sqrt{\pi}\Gamma(\alpha + (1/2))}\int^\pi_0 d \phi \sin^{2\alpha}\phi e^{\kappa cos\phi}
 $$
