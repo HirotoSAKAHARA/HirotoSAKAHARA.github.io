@@ -1,0 +1,86 @@
+set shiftwidth=4  " Two space indents
+set tabstop=4     " Tab key indents two spaces at a time
+set expandtab     " Use spaces when the <Tab> key is pressed
+set cindent       " Turn on automatic C-code indentation
+set shiftround
+set virtualedit=all
+set showmatch
+set matchtime=3
+
+au BufReadPost *.launch set filetype=xml "ros launch file
+au BufReadPost *.urdf   set filetype=xml   "ros urdf   file
+au BufReadPost *.xacro  set filetype=xml  "ros xacro  file
+au BufReadPost *.world  set filetype=xml  "ros xacro  file
+au BufReadPost *.sdf    set filetype=xml  "ros xacro  file
+au BufReadPost model.config set filetype=xml  "ros xacro  file
+
+colorscheme gruvbox
+set background=dark
+
+if has('unnamedplus')
+    " set clipboard& clipboard+=unnamedplus " 2013-07-03 14:30 unnamed 追加
+    set clipboard& clipboard+=unnamedplus,unnamed 
+else
+    " set clipboard& clipboard+=unnamed,autoselect 2013-06-24 10:00 autoselect 削除
+    set clipboard& clipboard+=unnamed
+endif
+
+set list                " 不可視文字の可視化
+set number              " 行番号の表示
+set wrap                " 長いテキストの折り返し
+set textwidth=0         " 自動的に改行が入るのを無効化
+set colorcolumn=80      " その代わり80文字目にラインを入れる
+
+
+" デフォルト不可視文字は美しくないのでUnicodeで綺麗に
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
+
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+
+
+
+"==============================================================================
+if &compatible
+  set nocompatible
+endif
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
+
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('scrooloose/nerdtree')
+
+ 
+"  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+"  endif
+  " .toml file
+  let s:rc_dir = expand('~/.vim')
+  if !isdirectory(s:rc_dir)
+    call mkdir(s:rc_dir, 'p')
+  endif
+  let s:toml = s:rc_dir . '/dein.toml'
+
+  call map(dein#check_clean(), "delete(v:val, 'rf')")
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+filetype plugin indent on
+syntax enable
+
+"End dein Scripts-------------------------
+
+autocmd vimenter * NERDTree | wincmd p
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif 
