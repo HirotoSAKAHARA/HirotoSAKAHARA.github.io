@@ -171,7 +171,7 @@ load: ['[tex]/noerrors']
           p^{ij} = \frac{p^i}{p^i + p^j}
         $$
         <li> \(\hat{p}^{ij}(\bm{x})\)と上記右辺の値の差がなるべく小さくなるように\(p^i\)を推定する。</li>
-        <li> 各クラスペアの事例で重み付けしたKLダイバージェンスを和\(s(ij)\)を最小化するように\(p^i\)を推定する。</li>
+        <li> 各クラスペアの事例で重み付けした<a href="2_math/4_probability_and_statictics/1_kullback_leibler_divergence.html">KLダイバージェンス</a>を和\(s(ij)\)を最小化するように\(p^i\)を推定する。</li>
         $$
           s(ij) = \sum_{i \ne j} (n_i + n_j) KL(\hat{p}^{ij}\|p^{ij}) = \sum_{i \ne j} (n_i + n_j) KL(\hat{p}^{ij}\|\frac{p^i}{p^i + p^j})
         $$

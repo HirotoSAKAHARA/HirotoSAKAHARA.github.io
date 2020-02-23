@@ -96,7 +96,7 @@ load: ['[tex]/noerrors']
       ここで、\(x_n\)はプロセスのサンプル、\(w\)は重みづけ。
 
     <h3>応用</h3>
-    モデルに<a href="6_failure_detection/2_outlier_detection/1_Neyman-Pearson_lemma.html">ネイマンピアソンの決定則</a>を使うことも可能。この場合、データ\(\xi\)の分布が正規分布\(\mathcal{N}(\xi|\mu, \sigma^2) \)で書ける(\(\mu\)は\(\xi\)の安定時の値,\(\sigma^2\)は\(\xi\)の安定時の分散)とすると、異常度は以下の式で書ける。
+    モデルに<a href="6_failure_detection/2_outlier_detection/1_neyman_pearson_lemma.html">ネイマンピアソンの決定則</a>を使うことも可能。この場合、データ\(\xi\)の分布が正規分布\(\mathcal{N}(\xi|\mu, \sigma^2) \)で書ける(\(\mu\)は\(\xi\)の安定時の値,\(\sigma^2\)は\(\xi\)の安定時の分散)とすると、異常度は以下の式で書ける。
     $$
     a(\xi^{(t)}) := \ln \frac{\mathcal{N}(\xi^{(t)}|\mu+\nu_{+}, \sigma^2) }{ \mathcal{N}(\xi^{(t)}|\mu, \sigma^2)  }
     = (\frac{\nu_{+}}{\sigma})\frac{\xi^{(t)} - \mu - (\nu_{+} / 2)}{\sigma}

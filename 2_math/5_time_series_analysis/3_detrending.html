@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - math - others - similarity </title>
+<title>hsmemo - math - time series analysis - detrending </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -62,7 +62,7 @@ load: ['[tex]/noerrors']
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 数学 - その他</span>
+    <span class="subtitle"> : 数学 - 時系列解析</span>
   </div>
 
 </div>
@@ -72,58 +72,57 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：
+：初稿
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>類似度</h1>
-    
-  ２つのデータがどれだけ似ているかの指標
-  <h2>cos類似度</h2>
+<h1>傾向除去</h1>
+  <h2>概要</h2>
     <div><div class="hidden_show">
-ベクトルがどれだけ近いかを判断する指標
-$$
-cos(\vec{q}, \vec{d}) = \frac{\vec{q}\vec{d}}{|\vec{q}||\vec{d}|} = \frac{\sum_{i=1}q_id_i}{\sqrt{\sum_{i=1}q_i^2}\sqrt{\sum_{i=1}d_i^2}}
-$$
+        平均、自己共分散、自己相関など、時系列データで重要となるデータは、定常性がないデータでは求めにくい。
+        そこで、非定常性を取り除き、定常なデータを作る作業は重要となる。取り除く主なものはトレンドと季節変動である。
+
     </div></div>
-  <h2>Jaccard類似度</h2>
+  <h2>方法</h2>
     <div><div class="hidden_show">
-集合動詞の類似度を判断する指標
-    </div></div>
-  <h2>ピアソンの積率相関係数</h2>
-    <div><div class="hidden_show">
-    <q>2つの量的変数間の直線的関連の変数を表す係数。n組のデータ(\(x_1, y_1\)),(\(x_2, y_2\)) \(\cdots\) (\(x_n, y_n\))があり、それぞれの平均を\(\bar{x}, \bar{y}\)とした時、ピアソンの積率相関係数は以下の式で表される。</q>[1]
-    $$
-r_{xy} = \frac{{\displaystyle \sum_{i = 1}^n (x_i - \overline{x})
-(y_i - \overline{y})}}{\sqrt{{\displaystyle \sum_{i = 1}^n 
-(x_i - \overline{x})^2}} \sqrt{{\displaystyle \sum_{i = 1}^n 
-(y_i - \overline{y})^2}}} = \frac{s_{xy}}{s_xs_y}
-    $$
-    </div></div>
-  <h2>ケンドールの順位相関係数</h2>
-    <div><div class="hidden_show">
-対応する２つの変量\(p_i(x_i, y_i)\)がある時、\(p_s\)と\(p_t\) (\(s \lt t\)) のときの、\(x_s\)と\(x_t\), \(y_s\)と\(y_t\)の大小の向きに関する類似度を計算する相関係数。
-    </div></div>
-  <h2>スピアマンの順位相関係数</h2>
-    <div><div class="hidden_show">
-変量の値をその大きさ順に順位に変換し、あるいは順位しかわかっていないデータの順位により、ピアソンの相関係数を計算したもの。
+        <h3>対数変換</h3>
+            対数は大きな数字を小さく変換する効果があるので、変動の激しい時系列に対して、自己共分散を一様にする効果がある。
+
+        <h3>移動平均</h3>
+            移動平均をとってトレンド推定後、トレンド成分を除去する。
+            
+        <h3>階差数列</h3>
+            階差数列に変換することで、トレンド、季節変動を除去する。 
+
+        <h3>季節調整</h3>
+            季節調整によって、季節変動を除去する。
+            <h4>月別平均法</h4>
+                月ごとの平均値を季節変動値とみなす方法。傾向変動も除去してしまう。
+            <h4>パーソンズ法(連環比率法)</h4>
+                月ごとの前月比を計算し、その前月比の平均値を季節変動値とみなす方法。
+            <h4>12ヶ月移動平均法</h4>
+                波の周期の平均を求めれば波動成分は除去できるという考えで、
+                常に12ヶ月のスライド窓をもつ移動平均を取る。
+   
 
     </div></div>
   <h2>参考文献、サイト</h2>
     <div><div class="hidden_show">
-      <ol>
-    <li><cite><a href="https://bellcurve.jp/statistics/glossary/1233.html">BellCurve, "ピアソンの積率相関係数", 統計WEB</a>
-  </ol>
-</div>
+        <ol>
+            <li><a href="https://aidemy.net">"Aidemy"</a></li>
+            <li><a href="https://ja.wikipedia.org/wiki/%E5%AD%A3%E7%AF%80%E8%AA%BF%E6%95%B4">"季節調整",フリー百科事典『ウィキペディア（Wikipedia）』 </a></li>
+        </ol>
+        </ol>
+
 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="2_math/5_time_series_analysis/4_sarima_model.html">SARIMA モデル</a>
+<a class="prev" href="2_math/5_time_series_analysis/2_arma_model.html">ARIMAモデル</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="2_math/6_others/２_references.html">参考資料（数学)</a>
+<a class="next" href="2_math/5_time_series_analysis/4_sarima_model.html">SARIMA モデル</a>
 </div>
 </main>
 </body>
