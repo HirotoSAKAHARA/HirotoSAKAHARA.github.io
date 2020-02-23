@@ -151,14 +151,40 @@ load: ['[tex]/noerrors']
       自己相関係数をグラフで表したもの。
     <h3>自己相関係数のラグ</h3>
       ずらしたデータのステップ数。ラグを0にすると自己相関係数は1(同じもの)になる。
+    <h3>定常性(stationarity)</h3>
+      時系列データが時間の経過によらず一定の値を軸に、同程度の幅で振れて変化すること。
+      <h4>弱定常性(weak stationarity)</h4>
+        時系列データの期待値と自己共分散が時間を通して一定であること。    
+      <h4>強定常性(strict stationarity)</h4>
+        時系列データの同時分布が不変であること。時間が変化しても確率分布が変わらないこと。
+    <h3>ホワイトノイズ</h3>
+      期待値が０で共分散が０の時系列データ。下式で表せる。
+      $$
+        E(\varepsilon_t) = 0
+      $$
+      $$
+      \gamma_k = E(\varepsilon_t\varepsilon_t-k) = \{ \begin{eqnarray*}
+      s^2 & k = 0 \\
+      0   & k \ne 0
+      \end{eqnarray*}
+      $$
 
+
+
+    </div></div>
+  <h2>参考文献、サイト</h2>
+    <div><div class="hidden_show">
+    <ol>
+      <li><a href="https://aidemy.net">"Aidemy"</a></li>
+      <li><a href="https://analytics-note.xyz/time-series/stationarity/">YUTARO, "確率過程の弱定常性と強定常性", 2019, 分析ノート データサイエンティストのメモ書き, </a></li>
+    </ol>
 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
 <a class="prev" href="2_math/4_probability_and_statictics/3_method_of_moments.html">積率法・モーメント法</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="2_math/6_others/1_similarity.html">類似度</a>
+<a class="next" href="2_math/5_time_series_analysis/2_arma_model.html">ARIMAモデル</a>
 </div>
 </main>
 </body>
