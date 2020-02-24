@@ -64,7 +64,7 @@ def update_index(base_dir, item_urls, item_strings, item_has_contents, nChapter,
 
   #h2の中身を一旦全部削除する
   index_html = re.sub("</h2>.+?(?P<tag><div class=\"end_of_page_margin\">|<h1>|<h2>)","</h2>\n\g<1>", index_html, flags=(re.MULTILINE | re.DOTALL)) 
-  index_html = re.sub("\n<h2>","\n  <h2>", index_html, flags=(re.MULTILINE | re.DOTALL)) 
+  index_html = re.sub("\n<h2>","\n    <h2>", index_html, flags=(re.MULTILINE | re.DOTALL)) 
 
   index_html_h1 = re.split("<h1>",index_html);
 
@@ -248,7 +248,7 @@ def update_hidden(target_file):
       if i == 0:
         data += sp_datas_bh2[i] + "</h2>\n"
       else:
-        sp_datas_bh2[i] = "    <div><div class=\"hidden_show\">\n" + sp_datas_bh2[i];
+        sp_datas_bh2[i] = "        <div><div class=\"hidden_show\">\n" + sp_datas_bh2[i];
 #        sp_datas_bh2[i] = "    <div class=\"hidden_show\">\n" + sp_datas_bh2[i];
 #        sp_datas_bh2[i] = "    <input type=\"checkbox\" id=\"label_" + str(i) + "\"/>\n" + sp_datas_bh2[i];
 #        sp_datas_bh2[i] = "    <label for=\"label_" + str(i) + "\">[+]　　　</label>\n" + sp_datas_bh2[i];
@@ -274,13 +274,13 @@ def update_hidden(target_file):
       for i in range(len(sp_datas_th2)):
         if i == 0:
         #最初のやつ
-          data += sp_datas_th2[i] + "  <h2>"
+          data += sp_datas_th2[i] + "    <h2>"
         elif i != len(sp_datas_th2) - 1:
         #最後のやつ以外(後ろにh2がある)
-          data += sp_datas_th2[i] + "    </div></div>\n" + "  <h2>";
+          data += sp_datas_th2[i] + "        </div></div>\n" + "    <h2>";
         elif h1i != len(sp_datas_th1) - 1:
         #h1の最後のやつ以外(後ろにh1がある)
-          data += sp_datas_th2[i] + "    </div></div>\n" + "<h1>";
+          data += sp_datas_th2[i] + "        </div></div>\n" + "<h1>";
         else:
           data += sp_datas_th2[i];
 

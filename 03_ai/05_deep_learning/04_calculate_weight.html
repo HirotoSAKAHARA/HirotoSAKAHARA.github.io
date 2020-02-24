@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - deep learning - basic techniques </title>
+<title>hsmemo - ai - deep learning - calculate weight </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -79,75 +79,19 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>基本技術</h1>
-  <h2>活性化関数（基本）</h2>
-    <div><div class="hidden_show">
-    
-  中間層や出力層で、入力を足し合わせたのちに通す関数。微分可能かつ非線形であることが重要。
+<h1>重みの学習</h1>
+    <h2>手順</h2>
+        <div><div class="hidden_show">
+        以下の手順で行う。
+        <ul>
+            <li>教師データと出力と各ニューロンの重みにより、各ニューロンの重みによる誤差関数の勾配を求める。</li>
+            <li>勾配降下法により重みを修正する。</li>
+            <li>収束と判断するまで繰り返す。</li>
+        </ul>
 
-<h3>ロジスティックシグモイド関数</h3>
-入力は\((-\inf,\inf)\)出力は\((0,1)\)である関数。
-入力値が飽和する。出力が滑らかであることなどが特徴。
-微分値が\((0,0.25)\)しかとらず勾配消失の原因となった
-$$ f(u) = \frac{1}{1 + e^{-u}} $$
-
-<h3>ハイパータンジェント</h3>
-入力は\((-\inf,\inf)\)出力は\((-1, 1)\)である関数。
-入力値が飽和する。出力が滑らかであることなどが特徴。
-微分値は\((0,1.0)\)なの、シグモイドよりも勾配消失しにくいが、
-高々１なので積み重ねると勾配消失が発生する。
-$$ f(u) = \tanh(u) $$
-
-<h3>ReLU (Rectified Linear Unit 整流線型ユニット)</h3>
-簡単でかつ収束も早い。u = 0の時に少しだけ問題となる。
-$$
-f(u) = 
-\left\{
-\begin{array} {11}
-0 & (u \leq 0) \\
-u & (u > 0)
-\end{array} 
-\right.
-$$
-
-    </div></div>
-  <h2>出力ユニット</h2>
-    <div><div class="hidden_show">
-    
-  最終層のニューロンの出力を意味のあるものに変換する関数。
-　<h3>ロジスティックシグモイド関数</h3>
-0から1までの確率で出力される
-　<h3>Softmax関数<span class="small">ソフトマックス関数</span></h3>
-多クラス分類に使用する。複数の候補を取得する。それぞれのyは0～1になり、すべて足すと1になる(確率の要件を満たす)
-$$
-y_i = \frac{e^{x_i}}{\sum^n_{k=1}e^{x_k}} 
-$$
-　<h3>Gaussian Mixture Model (GMM、ガウス混合分布)</h3>
-ある点が複数のガウス分布のうちどこに属しているのかを確率的に表現する。
-　<h3>Radial Basis Function (RBF, 動径基底関数)</h3>
-ある点cからの距離のみに基づいて値が決まる関数である動径関数をcを変えて集め、それらの線形和をとる。
-
-    </div></div>
-  <h2>cost function(コスト関数、loss function、損失関数、error function、誤差関数、objective function、目的関数)</h2>
-    <div><div class="hidden_show">
-    
-  教師データと出力との差を定量的に示すための関数。
-<h3>二乗誤差</h3>
-出力と正解の各成分の差の二乗和による誤差
-
-<h3>クロスエントロピー誤差</h3>
-二乗誤差よりも収束がはるかに速い
-
-    </div></div>
-  <h2>勾配降下</h2>
-    <div><div class="hidden_show">
-  　得られた誤差の値からニューロンの重みを最適化するための手法。各手法で利用される誤差勾配は誤差逆伝播法により求める
-
-    </div></div>
-  <h2>誤差逆伝播法による勾配の計算</h2>
-    <div><div class="hidden_show">
-    
-  教師データと出力により得られた誤差の値から、各ニューロンの誤差勾配を求める手法。
+        </div></div>
+    <h2>誤差逆伝播法による勾配の計算</h2>
+        <div><div class="hidden_show">
 <h3>導出</h3>
 \(l-1\)層目の\(i\)番目のニューロンからの入力を受ける\(l\)層の\(j\)番目のニューロン\(w_{ji}^{(l)}\)の重みのコスト関数\(E_n\)に対する誤差勾配は、
 そのニューロンの出力に対する式ととらえると以下のように変形できる。
@@ -170,12 +114,19 @@ $$
 $$
 よって、これらの式を出力層から順に利用していくことで、すべての重みに対する誤差勾配を求めることができる。
 
+
+        </div></div>
+    <h2>重みの計算</h2>
+        <div><div class="hidden_show">
+        誤差逆伝播法などで求めた誤差関数の勾配から<a href="02_math/01_optimization_problem/01_base.html">勾配降下法</a>などにより求める。
+
+
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="03_ai/05_deep_learning/01_base.html">基礎</a>
+<a class="prev" href="03_ai/05_deep_learning/03_output_layer.html">出力層の設計</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="03_ai/05_deep_learning/03_advanced_techniques.html">応用技術</a>
+<a class="next" href="03_ai/05_deep_learning/05_overtraining_countermeasure.html">過学習対策</a>
 </div>
 </main>
 </body>

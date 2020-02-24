@@ -80,50 +80,50 @@ load: ['[tex]/noerrors']
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
 <h1>応用技術</h1>
-  <h2> back propagation through time(bptt)</h2>
-    <div><div class="hidden_show">
+    <h2> back propagation through time(bptt)</h2>
+        <div><div class="hidden_show">
     
   　時間伝播において、過去のネットワークを含めて誤差逆伝播を考える。　
     時刻０からの過去の入力を考えたものは完全bpttと呼び、時刻幅を考えたものをtrancated(切断) bpttと呼ぶ
 
-    </div></div>
-  <h2>teacher forcing(教師強制)</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>teacher forcing(教師強制)</h2>
+        <div><div class="hidden_show">
     
   ジョーダンネットにおいて、学習初期には、出力の精度が悪いので、教師情報を入れる。
     back propagation through time の代替として開発された。
 
 
-    </div></div>
-  <h2>BiRNN <span class="small">bi-directional RNN、双方向リカレントニューラルネットワーク</span></h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>BiRNN <span class="small">bi-directional RNN、双方向リカレントニューラルネットワーク</span></h2>
+        <div><div class="hidden_show">
     
   事後にデータが取得できた場合、次の時刻のデータから予測するということがあり得る
     例えば、英語の単語(the apple)のtheはappleを確認してからtheの発音を決定できる。
 
-    </div></div>
-  <h2>BiLSTM <span class="small">Bidirectional LSTM</span></h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>BiLSTM <span class="small">Bidirectional LSTM</span></h2>
+        <div><div class="hidden_show">
     
   先頭から伝播してきた情報と後ろから伝播してきた情報の２つの入力させる向きを組み合わせたLSTM
 
-    </div></div>
-  <h2>勾配クリップ</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>勾配クリップ</h2>
+        <div><div class="hidden_show">
     
   勾配の幅に制限を付けることで勾配爆発を抑えることで、学習が可能となる。
 
-    </div></div>
-  <h2>gru</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>gru</h2>
+        <div><div class="hidden_show">
     
   入力はそれ自体か内部状態と合わさったものが内部入力となり、リセットゲートにより決定される。
     過去の内部状態かそれに加え内部入力が合わさって作られたものかが新規内部状態になり、更新ゲートで決定される。
     内部状態によりリセットゲートが、内部状態により更新ゲートが決まる。
 
-    </div></div>
-  <h2>メモリ拡張</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>メモリ拡張</h2>
+        <div><div class="hidden_show">
     
   rnnに外部メモリを追加すると更に知的なことができる
     <dl>
@@ -140,9 +140,9 @@ load: ['[tex]/noerrors']
 <dt>ポインターネット</dt>
 <dd></dd>
     </dl>
-    </div></div>
-  <h2>ニューラルチューリングマシン</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>ニューラルチューリングマシン</h2>
+        <div><div class="hidden_show">
     
   チューリングマシンでできることをニューラルネットでできるようになった。
   

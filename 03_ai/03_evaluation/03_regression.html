@@ -79,8 +79,8 @@ load: ['[tex]/noerrors']
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
 <h1>回帰の評価</h1>
-  <h2>決定係数</h2>
-    <div><div class="hidden_show">
+    <h2>決定係数</h2>
+        <div><div class="hidden_show">
     
   一般に\(R^2\)で表され、重回帰分析の結果を読み取る指標の一つで１に近いほど分析の精度が高いことを示す。
     0.8程度あれば十分にモデリングできていると言える。
@@ -89,9 +89,9 @@ R^2 = 1 - \frac{\sum^n_{i=1}(y_i - \hat{y_i})^2}{\sum^n_{i=1}(y_i - \bar{y})^2}
     $$
     ここで、\(y_i\)はi番目の実測値、\(\hat{y_i})\)はi番目の予測値、\(\bar{y}\)は実測値の平均値である。
 
-    </div></div>
-  <h2>自由度調整済みの決定係数</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>自由度調整済みの決定係数</h2>
+        <div><div class="hidden_show">
     
   決定係数は説明変数の数を多く取れば取るほど良い値となる傾向があるため、
     説明変数の数を\(p\)、標本数を\(N\)として調整を行った決定係数。
@@ -100,9 +100,9 @@ R^2 = 1 - \frac{\sum^n_{i=1}(y_i - \hat{y_i})^2}{\sum^n_{i=1}(y_i - \bar{y})^2}
 R^2 = 1 - \frac{\sum^n_{i=1}(y_i - \hat{y_i})^2 / (N - p - 1)}{\sum^n_{i=1}(y_i - \bar{y})^2 / (N - 1)}
     $$
 
-    </div></div>
-  <h2>バイアスバリアンス分解</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>バイアスバリアンス分解</h2>
+        <div><div class="hidden_show">
     
   <dl>
     <dt>バイアス</dt>

@@ -79,8 +79,8 @@ load: ['[tex]/noerrors']
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
 <h1>方向データによる異常検知</h1>
-  <h2>基本</h2>
-    <div><div class="hidden_show">
+    <h2>基本</h2>
+        <div><div class="hidden_show">
     各データを表すベクトルを正規化し、超球面上の正規分布と言えるフォン・ミーゼスフィッシャー分布（下式）を求め、閾値より外側のデータを外れ値とみなす。
 $$
   \mathcal{M}( \bm{x} | \bm{\mu}, \kappa )  = \frac{\kappa^{M/2 - 1}}{(2\pi)^{M/2}I_{M/2-1}(\kappa)}e^{\kappa \bm{\mu}^\top \bm{x}}
@@ -90,9 +90,9 @@ $$
   I_\alpha(\kappa) = \frac{2^{-\alpha}\kappa^{\alpha}}{\sqrt{\pi}\Gamma(\alpha + (1/2))}\int^\pi_0 d \phi \sin^{2\alpha}\phi e^{\kappa cos\phi}
 $$
 
-    </div></div>
-  <h2>アルゴリズム</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>アルゴリズム</h2>
+        <div><div class="hidden_show">
     <h3>訓練時</h3>
     <ul>
       <li>訓練データ\(\mathcal{D} = { \bm{x}^{(n)} | n=1, \ldots, N}\)に対して、尤度推定値\(\hat{\bm{\mu}}\) を下式で求める</li>
@@ -116,9 +116,9 @@ $$
       <li>\(a(\bm{x}') \gt a_{th}\)なら異常と判定する。</li>
     </ul>
 
-    </div></div>
-  <h2>参考文献、サイト</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
     <ol>
       <li> <a href="https://www.kspub.co.jp/book/detail/1529083.html">井手剛,杉山将 "異常検知と変化検知 機械学習プロフェッショナルシリーズ",2015,講談社サイエンティフィク </a>   </li>
     </ol>

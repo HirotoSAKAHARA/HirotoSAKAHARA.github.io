@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - deep learning - words </title>
+<title>hsmemo - ai - deep learning - output layer </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -13,7 +13,7 @@
 macros: {
 x: "{\\times}",
 bm: ["{\\boldsymbol{#1}}",1],
-: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
 },
 inlineMath: [['$','$'], ['\\(','\\)']],
 processEscapes: true,
@@ -31,7 +31,7 @@ displayIndent: "2em"
     },
     options: {
 renderActions: {
-/* a a new named action to render <script type="math/tex"> */
+/* add a new named action to render <script type="math/tex"> */
 find_script_mathtex: [10, function (doc) {
 for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
 const display = !!node.type.match(/; *mode=display/);
@@ -79,47 +79,45 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>用語</h1>
-  <h2>Artificial Neural Network(ANN, 人工ニューラルネットワーク)</h2>
-    <div><div class="hidden_show">
+<h1>出力層の設計</h1>
+    <h2>活性化関数</h2>
+        <div><div class="hidden_show">
+        最終層のニューロンの出力を意味のあるものに変換する関数。
+
+　      <h3>ロジスティックシグモイド関数</h3>
+            0から1までの確率で出力される
+
+　      <h3>Softmax関数<span class="small">ソフトマックス関数</span></h3>
+            多クラス分類に使用する。複数の候補を取得する。
+            それぞれのyは0～1になり、すべて足すと1になる(確率の要件を満たす)
+$$
+y_i = \frac{e^{x_i}}{\sum^n_{k=1}e^{x_k}} 
+$$
+
+　      <h3>Gaussian Mixture Model (GMM、ガウス混合分布)</h3>
+            ある点が複数のガウス分布のうちどこに属しているのかを確率的に表現する。
+　
+        <h3>Radial Basis Function (RBF, 動径基底関数)</h3>
+            ある点cからの距離のみに基づいて値が決まる関数である動径関数をcを変えて集め、それらの線形和をとる。
+
+
+        </div></div>
+    <h2>誤差関数</h2>
+        <div><div class="hidden_show">
     
-  コンピュータの中のニューラルネットワーク, BNNの対比
-    </div></div>
-  <h2>Biologinal Neural Network(BNN, 生物学的ニューラルネットワーク)</h2>
-    <div><div class="hidden_show">
-    
-  
-    人間や動物が生物学的に持っているニューラルネットワーク 
-    </div></div>
-  <h2>Convolusional Neural Network(CNN, 畳み込みニューラルネットワーク)</h2>
-    <div><div class="hidden_show">
-    
-  「畳み込み層」という層を使って特徴抽出を行うニューラルネットワーク
-    
-    </div></div>
-  <h2>Deep Neural Network(DNN, 深層学習)</h2>
-    <div><div class="hidden_show">
-    
-  入力層＋中間層＋出力層からなるニューラルネットのなかで、中間層が２層以上のもの。
-    </div></div>
-  <h2>Feedforward Neural Network(順伝播型ニューラルネットワーク)</h2>
-    <div><div class="hidden_show">
-    
-  層状に並べたユニットが隣接層間でのみ結合した構造をもち、情報が入力側から出力側へ一方向に伝播する。
-multi layer perceptron（多層パーセプトロン）とも呼ぶ。
-    
-    </div></div>
-  <h2>変分オートエンコーダ</h2>
-    <div><div class="hidden_show">
-    
-  内容
+        <h3>二乗誤差</h3>
+            出力と正解の各成分の差の二乗和による誤差
+
+        <h3>クロスエントロピー誤差</h3>
+            二乗誤差よりも収束がはるかに速い
+
 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="03_ai/05_deep_learning/05_frameworks.html">フレームワーク</a>
+<a class="prev" href="03_ai/05_deep_learning/02_hidden_layer.html">隠れ層の設計</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="03_ai/06_convolution_neural_network/01_base.html">基礎</a>
+<a class="next" href="03_ai/05_deep_learning/04_calculate_weight.html">重みの学習</a>
 </div>
 </main>
 </body>

@@ -83,8 +83,8 @@ load: ['[tex]/noerrors']
   深層学習を使わないベクトル表現では、ベクトルの次元が大きくなりすぎたり、意味を扱えなかったりするが、
 深層学習を使うと、誤差逆伝播法により、わずか数百次元のベクトルで単語の意味を表現できるようになる。
 
-  <h2>word2vec</h2>
-    <div><div class="hidden_show">
+    <h2>word2vec</h2>
+        <div><div class="hidden_show">
     
   "king" - "man" + "woman" = "Queen" <br>
 単語埋め込み(Embedding)モデル。単語のベクトルを用いて、単語の足し算、引き算が可能となる。同じように文法も解ける。
@@ -92,15 +92,15 @@ BOWや単語文書行列では、それぞれの単語が0,1の入力層が数�
 ベクトルが学習によって意味を表すようになってきた。
 自分以外の周りの単語を予測するスキップグラムとその逆のCBOWで学習させると中間層に意味の表層ができる。
 
-    </div></div>
-  <h2>doc2vec</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>doc2vec</h2>
+        <div><div class="hidden_show">
     
   word2vecを応用した文章をベクトル化する技術で、文の語順も特徴として考慮に入れることができる。
 
-    </div></div>
-  <h2>Sequence-to-Sequence <span class="small">: Encoder-Decoder、系列変換モデル</span></h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>Sequence-to-Sequence <span class="small">: Encoder-Decoder、系列変換モデル</span></h2>
+        <div><div class="hidden_show">
     
   ソースとターゲットで２つのRNN(LSTM)を使用する手法
 ソースに系列（文章など)を入れ、ソース側で双方向リカレントニューラルネットワークを使用して、
@@ -109,9 +109,9 @@ BOWや単語文書行列では、それぞれの単語が0,1の入力層が数�
 ソースからの複数の出力のうちのどれを使うのかをattentionとして出力側が決定する。
 中間層の一工夫として、入力系列(文章)は逆順に入れると精度が上がることが報告されている。
 
-    </div></div>
-  <h2>Attention Mechanism <span class="small">注意機構</span></h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>Attention Mechanism <span class="small">注意機構</span></h2>
+        <div><div class="hidden_show">
     
   Sequence-to-Sequenceモデルの２つのRNN間の情報伝達を改善する手法で、長いネットワークにおいて、
 最初に入力された情報が復号化器まで伝播しづらくなるのを解決するために、直接的に入力情報を出力時に利用する。

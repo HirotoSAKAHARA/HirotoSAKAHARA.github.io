@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - deep learning - hidden layer </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+    },
+    options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+    },
+    loader: {
+load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - 深層学習</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日:' + document.lastModified);
+</script>
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>隠れ層の設計</h1>
+    <h2>層数</h2>
+        <div><div class="hidden_show">
+        層が多いほど表現力が高くなるが、一般的な学習法である誤差逆電波法では、層が多いほど正しく計算ができなくなり、また、次元の呪いにより過学習しやすくなる。さらに、学習の計算時間も増える。従って、総数は入力により出力を表現するのに必要な数にとどめて置くのが良い。
+
+        </div></div>
+    <h2>活性化関数</h2>
+        <div><div class="hidden_show">
+        <h3>概要</h3>
+            まず指針を示し、
+            その後いくつかの活性化関数について述べる。
+
+        <h3>設計指針</h3>
+            微分の値が重要となる場合は、
+            任意の数でいい微分値を取るような関数が適しているが、
+            計算時間などを考慮に入れると、
+            ReLUのような簡単な関数のほうが性能が出ることも多い。
+    
+
+        <h3>ロジスティックシグモイド関数</h3>
+            入力は\((-\inf,\inf)\)出力は\((0,1)\)である関数。
+            入力値が飽和する。出力が滑らかであることなどが特徴。
+            微分値が\((0,0.25)\)しかとらず勾配消失の原因となった
+            $$ f(u) = \frac{1}{1 + e^{-u}} $$
+
+        <h3>ハイパータンジェント</h3>
+            入力は\((-\inf,\inf)\)出力は\((-1, 1)\)である関数。
+            入力値が飽和する。出力が滑らかであることなどが特徴。
+            微分値は\((0,1.0)\)なの、シグモイドよりも勾配消失しにくいが、
+            高々１なので積み重ねると勾配消失が発生する。
+            $$ f(u) = \tanh(u) $$
+
+        <h3>ReLU (Rectified Linear Unit 整流線型ユニット)</h3>
+            簡単でかつ収束も早い。u = 0の時に少しだけ問題となる。
+            $$
+            f(u) = 
+            \left\{
+            \begin{array} {11}
+            0 & (u \leq 0) \\
+            u & (u > 0)
+            \end{array} 
+            \right.
+            $$
+
+          <h3>parametric ReLU</h3>
+                $$
+            f(u) = 
+            \left\{
+            \begin{array} {11}
+            \alpha u & (u \leq 0) \\
+            u & (u > 0)
+            \end{array} 
+            \right.
+                $$
+
+            <h3>leaky ReLU</h3>
+                \(\alpha = 0.01\)のparametric ReLU
+            <h3>maxout</h3>
+                K個の異なるユニットが異なる重みとバイアスを持ち、
+                それらの最大値を出力とする。
+                性能は良いがパラメータ数が多いため、それほどよく使われるわけではない。
+                $$
+                u_{jk} = \sum_i{w_{jik}z_i}+b_{jk} (k = 1,...,K)
+                f(u_j) = \max_{k=1,...,K}u_{jk}
+                $$
+
+            <h3>ソフトプラス</h3>
+                ReLUの連続近似、ソフトプラスを微分するとシグモイド関数になる。
+                $$
+                f(u) = \log{(1 + e^u)}
+                $$
+              
+            <h3>ELU</h3>
+                ReLUに比べてあまり広く使われていないがReLUよりも高速だと言われる。
+                $$
+                f(u) = 
+                \left\{
+            \begin{array} {11}
+            \alpha (e^u - 1) & (u \leq 0) \\
+            u & (u > 0)
+            \end{array} 
+                \right.
+                $$
+
+        <h3>SELU</h3>
+            ELUを\(\lambda\)倍する。
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="03_ai/05_deep_learning/01_base.html">基礎</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="03_ai/05_deep_learning/03_output_layer.html">出力層の設計</a>
+</div>
+</main>
+</body>
+</html>

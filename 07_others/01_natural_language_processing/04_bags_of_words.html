@@ -79,26 +79,26 @@ load: ['[tex]/noerrors']
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
 <h1>Bags of Words</h1>
-  <h2>英語名、略称など</h2>
-    <div><div class="hidden_show">
+    <h2>英語名、略称など</h2>
+        <div><div class="hidden_show">
   BOW
-    </div></div>
-  <h2>概要</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>概要</h2>
+        <div><div class="hidden_show">
     文章中の各単語の分布を記録したベクトルとして表現する。ベクトル表現には以下のようなものがある。
-    </div></div>
-  <h2>カウント表現</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>カウント表現</h2>
+        <div><div class="hidden_show">
 文章中の各単語の出現数を記録する。
 
-    </div></div>
-  <h2>バイナリ表現</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>バイナリ表現</h2>
+        <div><div class="hidden_show">
 文章中に各単語が存在するかどうかを記録する。
 
-    </div></div>
-  <h2>tf-idf表現</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>tf-idf表現</h2>
+        <div><div class="hidden_show">
 単語の出現頻度である\(tf\)(term frequency)と単語の希少性を示す\(idf\)(inverse document frequency:逆文書頻度)に基づいて計算される。
 多くの文書に出現する一般的な言葉の重要度を下げる。
 $$
@@ -112,16 +112,16 @@ idf_i = \log{\frac{|D|}{|{d: d \ni t_i}|}}
 $$
 ここで、\(n_{i_j}\)は文書\(d_j\)における単語\(t_i\)の出現回数、\(\sum_k{n_{k,j}}\)は文書\(d_j\)における全ての単語の出現回数の和。\(|D|\)は総文書数、\(|{d: d \ni t_i}|\)は単語\(t_i\)を含む文書数。
 
-    </div></div>
-  <h2>one hot vector表現</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>one hot vector表現</h2>
+        <div><div class="hidden_show">
 犬、猫、うさぎのような数値でない値を取る説明変数において、犬:(1,0,0),猫(0,1,0),うさぎ(0,0,1)のような対応する次元が1でその他が0のベクトルで表す。
 次元数は言葉の種類の総数となる。
 
 
-    </div></div>
-  <h2>単語文書行列<span class="small">term-document matrix</span></h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>単語文書行列<span class="small">term-document matrix</span></h2>
+        <div><div class="hidden_show">
     
   文書に出現する単語の頻度を表形式で表したもの。tf, idfにより単語の重みを変えると、重みあり単語文書行列になる。
 

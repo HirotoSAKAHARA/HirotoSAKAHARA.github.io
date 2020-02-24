@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - deep learning - structures </title>
+<title>hsmemo - ai - deep learning - auto encoder </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -79,59 +79,27 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>具体的な構造</h1>
- ユニット数・層数・層間の結合、カーネルの幅などにより、様々なネットワークがある。
+<h1>自己符号化器</h1>
+    <h2>英語名、略称、別名など</h2>
+        <div><div class="hidden_show">
+        auto encoder, オートエンコーダー
+        </div></div>
+    <h2>概要</h2>
+        <div><div class="hidden_show">
+        3層のネットワークを考え、中間層のユニット数が入力層と出力層よりも小さく、
+        かつ出力層で入力を再現できるような重み付けを行うこと。
+        この時、中間層は入力層の次元を圧縮できたことになる。
+        自己符号化器を多層に重ねることで勾配消失問題を解決し、深層学習が可能となったことから、
+        歴史的に重要な技術であるが、 現在では活性化関数の工夫により勾配消失問題を解決していることから
+        異常検知以外ではあまり使われていない。
 
-  <h2>ネオコグニトロン</h2>
-    <div><div class="hidden_show">
-    
-  ニューラルネットワークがメジャーになる前に考えられた構成。add-if silentと呼ばれる学習方法を用いる。
-    </div></div>
-  <h2>LeNet</h2>
-    <div><div class="hidden_show">
-    
-  畳み込みニューラルネットワークの起源。誤差逆伝播法を用いる。
-    </div></div>
-  <h2>AlexNet(2012)</h2>
-    <div><div class="hidden_show">
-    
-  224x224のRGB３原色の画像を認識, 2枚のGPUボードで実装(中は同じ)
-    </div></div>
-  <h2>LuNet</h2>
-    <div><div class="hidden_show">
-    
-  手書き文字の認識で使用される。
-    </div></div>
-  <h2>GoogLeNet</h2>
-    <div><div class="hidden_show">
-    
-    </div></div>
-  <h2>VGG</h2>
-    <div><div class="hidden_show">
-    
-    </div></div>
-  <h2>ResNet(2015)</h2>
-    <div><div class="hidden_show">
-    
-  層を飛ばして出力するSkip Connectができる。カーネルが3x3で同じ形で何度も繰り返す。
-    </div></div>
-  <h2>ResNet16</h2>
-    <div><div class="hidden_show">
-    
-  入力+conv64+conv64+maxpool+conv128+conv128+maxpool+conv256+conv256+maxpool+conv512+conv512+maxpool+FC4096(完全結合)+FC4096+FC1000+softmax
-
-    </div></div>
-  <h2>DensNet(2018)</h2>
-    <div><div class="hidden_show">
-    
-  複数の階層を飛ばすSkip Connectがある。大脳新皮質のつながりに近くなる。
-
+   
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="03_ai/05_deep_learning/03_advanced_techniques.html">応用技術</a>
+<a class="prev" href="03_ai/05_deep_learning/07_frameworks.html">フレームワーク</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="03_ai/05_deep_learning/05_frameworks.html">フレームワーク</a>
+<a class="next" href="03_ai/06_convolution_neural_network/01_base.html">基礎</a>
 </div>
 </main>
 </body>

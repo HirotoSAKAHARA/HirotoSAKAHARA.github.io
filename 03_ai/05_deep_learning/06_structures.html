@@ -2,9 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - generative model - variational autoencoders </title>
+<title>hsmemo - ai - deep learning - structures </title>
 <base href="../../" />
-
 
 <link rel="stylesheet" href="style.css">
 <!-- 数式を使う宣言-->
@@ -60,11 +59,12 @@ load: ['[tex]/noerrors']
 <main>
 
 <!--***************************ヘッダー領域****************************-->
+
 <div class="site-header">
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 人工知能 - 生成モデル</span>
+    <span class="subtitle"> : 人工知能 - 深層学習</span>
   </div>
 
 </div>
@@ -79,44 +79,59 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>変分オートエンコーダ</h1>
-    <h2>英語名、略称など</h2>
+<h1>具体的な構造</h1>
+ ユニット数・層数・層間の結合、カーネルの幅などにより、様々なネットワークがある。
+
+    <h2>ネオコグニトロン</h2>
         <div><div class="hidden_show">
     
-  variational autoencoders、VAE
+  ニューラルネットワークがメジャーになる前に考えられた構成。add-if silentと呼ばれる学習方法を用いる。
         </div></div>
-    <h2>概要</h2>
+    <h2>LeNet</h2>
         <div><div class="hidden_show">
     
-  生成モデルの枠組みで自己符号化器 (autoencoders) を解釈したもので、 生成モデルで言う潜在変数を観測データの符号と見做す. すなわち、観測データから潜在変数を推定する手続きが符号化であり、その逆が復号化である.
-    グラフを使って似た画像を並べて、潜在変数を解釈することができる。
+  畳み込みニューラルネットワークの起源。誤差逆伝播法を用いる。
         </div></div>
-    <h2> ベイズ推論 </h2>
+    <h2>AlexNet(2012)</h2>
         <div><div class="hidden_show">
     
-  条件付き確率の出力から、条件を算出する。
+  224x224のRGB３原色の画像を認識, 2枚のGPUボードで実装(中は同じ)
+        </div></div>
+    <h2>LuNet</h2>
+        <div><div class="hidden_show">
+    
+  手書き文字の認識で使用される。
+        </div></div>
+    <h2>GoogLeNet</h2>
+        <div><div class="hidden_show">
+    
+        </div></div>
+    <h2>VGG</h2>
+        <div><div class="hidden_show">
+    
+        </div></div>
+    <h2>ResNet(2015)</h2>
+        <div><div class="hidden_show">
+    
+  層を飛ばして出力するSkip Connectができる。カーネルが3x3で同じ形で何度も繰り返す。
+        </div></div>
+    <h2>ResNet16</h2>
+        <div><div class="hidden_show">
+    
+  入力+conv64+conv64+maxpool+conv128+conv128+maxpool+conv256+conv256+maxpool+conv512+conv512+maxpool+FC4096(完全結合)+FC4096+FC1000+softmax
 
         </div></div>
-    <h2>変分ベイズ法 (変分推論、変分近似法)</h2>
+    <h2>DensNet(2018)</h2>
         <div><div class="hidden_show">
     
-  データ(x)と未知パラメータ(z)と潜在変数(θ)の確率分布がある場合、
-  <a href="02_math/04_probability_and_statictics/01_kullback_leibler_divergence.html">KLダイバージェンス</a>の最小化を解析的手法で求めることで最適値が求まる。
-
-        </div></div>
-    <h2>リパラメトライゼーショントリック</h2>
-        <div><div class="hidden_show">
-    
-  x -> z -> xを求める過程でzは確率変数でなく
-    真値(平均)とノイズの組み合わせだとみなして解く。
-    RNNにも応用できて、中間の文章が生成できる。
+  複数の階層を飛ばすSkip Connectがある。大脳新皮質のつながりに近くなる。
 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="03_ai/08_generative_model/03_deep_generative_models.html">deep generative models</a>
+<a class="prev" href="03_ai/05_deep_learning/05_overtraining_countermeasure.html">過学習対策</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="03_ai/08_generative_model/05_GAN.html">GAN</a>
+<a class="next" href="03_ai/05_deep_learning/07_frameworks.html">フレームワーク</a>
 </div>
 </main>
 </body>

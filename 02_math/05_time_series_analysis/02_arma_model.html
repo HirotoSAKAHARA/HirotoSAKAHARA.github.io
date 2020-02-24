@@ -80,8 +80,8 @@ load: ['[tex]/noerrors']
 <!--*********************************本文*********************************-->
 <h1>ARIMAモデル</h1>
 
-  <h2>ARモデル(自己回帰モデル, autoregressive model)</h2>
-    <div><div class="hidden_show">
+    <h2>ARモデル(自己回帰モデル, autoregressive model)</h2>
+        <div><div class="hidden_show">
         規則的に値が変化していくモデルで、ある時点\(t\)のデータに対して、n時点前までのデータがモデルに使用される。 ここで\(\varepsilon_t\)はある時点のホワイトノイズである。また、下式で\(n=1\)の時1次ARモデルといい、nの時n次ARモデルと呼ぶ。
         $$
         y_t = \phi_0+ \varepsilon_t + \sum_{k = 1}^n{\phi_k y_{t - k}}
@@ -111,9 +111,9 @@ load: ['[tex]/noerrors']
         $$
 
 
-    </div></div>
-  <h2>MAモデル(移動平均モデル, moving average model)</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>MAモデル(移動平均モデル, moving average model)</h2>
+        <div><div class="hidden_show">
         ホワイトノイズを過去の誤差に影響されるように拡張させたモデルで、ホワイトモデルの加重和で表される。ここで\(varepsilon_t\)はある時点のホワイトノイズである。下式の\(n=1\)の時、1次MAモデルといい\(MA(1)\)と表記し、nの時はn次MAモデルと呼び\(MA(n)\)と呼ぶ。
         $$
         y_t = \theta_0 + \varepsilon_t + \sum_{k = 1}^n{\theta_k\varepsilon_{t - k}}
@@ -134,23 +134,23 @@ load: ['[tex]/noerrors']
         $$
 
 
-    </div></div>
-  <h2>ARMAモデル(自己回帰移動平均モデル)</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>ARMAモデル(自己回帰移動平均モデル)</h2>
+        <div><div class="hidden_show">
     ARモデルとMAモデルはお互いに競合する性質を持たないため、組み合わせることができる。
     p次ARモデルとq次MAモデルを組み合わせたモデルを\(ARMA(p, q)\)と表記できる。
 
-    </div></div>
-  <h2>ARIMAモデル(自己回帰移動平均モデル)</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>ARIMAモデル(自己回帰移動平均モデル)</h2>
+        <div><div class="hidden_show">
     ARMAモデルへ原系列を階差系列に変換し適応したもので、非定常過程にも適応可能。
     \(d\)時点前との差分を取った場合の\(ARMA(p,q)\)で構築したARIMAモデルを\(ARIMA(p,d,q)\)と表示する。
     ここで、\(p\)を自己相関度、\(d\)を誘導、\(q\)を移動平均と呼ぶ。
     
 
-    </div></div>
-  <h2>参考文献、サイト</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
         <ol>
             <li><a href="https://aidemy.net">"Aidemy"</a></li>
             <li><a href="https://to-kei.net/time-series-analysis/time-series-analysis-n-dim-armodel_stats/">kanbe, "n次ARモデルの特徴や統計量について", 2019, to-kei.net 全人類がわかる統計学 </a></li>

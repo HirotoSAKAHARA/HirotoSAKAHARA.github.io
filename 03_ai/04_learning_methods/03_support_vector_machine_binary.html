@@ -79,8 +79,8 @@ load: ['[tex]/noerrors']
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
 <h1>サポートベクトルマシン(2クラス分類)</h1>
-  <h2>ハードマージン</h2>
-    <div><div class="hidden_show">
+    <h2>ハードマージン</h2>
+        <div><div class="hidden_show">
       訓練集合\(\{(\bm{x}_i, y_i)\}_{i \in [n]}\)内のデータを正しく分類できる超平面が決定関数\(f(\bm{x}) = \bm{w}^\top\bm{x}+b\)で求められる場合、
       訓練集合は\(f(\bm{x})\)によって分離可能(separable)であると表現される。
       この時、\(f(\bm{x})\)は無数に存在するが、サポートベクトルマシンでは\(f(\bm{x})\)と両方のクラスの最近隣接点の距離の和を最大にする、
@@ -98,9 +98,9 @@ load: ['[tex]/noerrors']
       $$
         \text{        s.t. } y_i(\bm{\tilde{w}}^\top\bm{x}_i+\tilde{b}) \ge 1, i \in [n]
       $$
-    </div></div>
-  <h2>ソフトマージン</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>ソフトマージン</h2>
+        <div><div class="hidden_show">
       全てのデータが１枚の超平面で区別できると考えるハードマージンの仮定は、現実には強すぎるため、反対側への誤差\(\xi_i \ge 0, i \in [n]\)を導入し、制約条件を修正する。これをソフトマージンと呼ぶ。
       また、ハードマージンにおける\(\|\bm{\tilde{w}}\|\)と同じく、\(xi_i\)もできるだけ小さくしたいので、以下の定式化が成り立つ。また下式で\(C\)は正則化係数(regularization parameter)と呼ばれる正の定数で、事前に決定しておく必要がある。\(C\)は小さいほど誤分類を許容しやすくなり、\(C = \infty\)でハードマージンと等しい。
        $$
@@ -114,9 +114,9 @@ load: ['[tex]/noerrors']
       $$
       ここで\(\bm{\xi} := (\xi_1, \cdots, \xi_n)^\top\)
 
-    </div></div>
-  <h2>双対問題</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>双対問題</h2>
+        <div><div class="hidden_show">
     前項の定式化(主問題)に対する<a href="02_math/01_optimization_problem/02_linear_programming_problem.html">双対問題</a>を考えると、以下のように表現できる。サポートベクトルマシンの場合、強双対性が成り立ち、主問題と双対問題の目標関数値が最適解において一致する。
        $$
         \max_{\bm{{\alpha}}}- \frac{1}{2} \sum_{i,j \in [n]} \alpha_i, \alpha_j,y_i, y_j, \bm{x}_i^\top\bm{x}_j + \sum_{i \in [n]} \alpha_i
@@ -127,9 +127,9 @@ load: ['[tex]/noerrors']
           0 \gt \alpha_i \ge C, i \in [n]
         \end{eqnarray*}
       $$
-    </div></div>
-  <h2>カーネル関数</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>カーネル関数</h2>
+        <div><div class="hidden_show">
       入力\(x\)を何らかの特徴空間\(\mathcal{F}\)へ写像する関数\(\phi:\mathbb{R}^d \rightarrow \mathcal{F}\)を考え、\(\phi\)を新たな特徴ベクトルだと考えると、決定関数は以下のように記述できる。
        $$
         f(\bm{x}) = \bm{w}^\top\phi(\bm{x})+b
@@ -146,9 +146,9 @@ load: ['[tex]/noerrors']
       $$
       この双対問題において、\(\phi\)は内積\(\phi(\bm{x}_i)^\top\phi(\bm{x}_j)\)の形でのみ現れている。この内積をカーネル関数\(K\)として定義する。この時、\(\phi(\bm{x})\)が直接計算できなくても、カーネル関数が計算できると、上記双対問題を解くことができる。
 
-    </div></div>
-  <h2>参考文献、サイト</h2>
-    <div><div class="hidden_show">
+        </div></div>
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
     <ol>
       <li><cite><a href="https://www.kspub.co.jp/book/detail/1529069.html">竹内一郎, 烏山昌幸, "サポートベクトルマシン",2015,講談社サイエンティフィク</li>
     </ol>
