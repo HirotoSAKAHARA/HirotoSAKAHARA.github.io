@@ -173,9 +173,9 @@ load: ['[tex]/noerrors']
         <li> \(\hat{p}^{ij}(\bm{x})\)と上記右辺の値の差がなるべく小さくなるように\(p^i\)を推定する。</li>
         <li> 各クラスペアの事例で重み付けした<a href="02_math/04_probability_and_statictics/01_kullback_leibler_divergence.html">KLダイバージェンス</a>を和\(s(ij)\)を最小化するように\(p^i\)を推定する。</li>
         $$
-          s(ij) = \sum_{i \ne j} (n_i + n_j) KL(\hat{p}^{ij}\|p^{ij}) = \sum_{i \ne j} (n_i + n_j) KL(\hat{p}^{ij}\|\frac{p^i}{p^i + p^j})
+        s(ij) = \sum_{i \ne j} (n_i + n_j) \mathrm{KL}(\hat{p}^{ij}\|p^{ij}) = \sum_{i \ne j} (n_i + n_j) \mathrm{KL}(\hat{p}^{ij}\|\frac{p^i}{p^i + p^j})
         $$
-        ここで、\(n_i\)はクラス\(i\)の事例数、\(KL(\hat{p}^{ij}\|p^{ij})\)は\(\hat{p}^{ij}\)と\(p^{ij})\)のKLダイバージェンス。
+        ここで、\(n_i\)はクラス\(i\)の事例数、\(\mathrm{KL}(\hat{p}^{ij}\|p^{ij})\)は\(\hat{p}^{ij}\)と\(p^{ij})\)のKLダイバージェンス。
       </ul>
         </div></div>
     <h2>誤り訂正出力符号</h2>
@@ -189,7 +189,7 @@ load: ['[tex]/noerrors']
         <li>ハミング距離などを利用し、分類結果と特徴ベクトルが一番近いものに分類する。ハミング距離を利用する場合は、以下の式となる。</li>
       </ul>
     $$
-      g(x) = \underset{k\in c}{\operatorname{argmin}} \sum_{i \in [m]( 1 - \text{sgn}{(S_{ki}}f^i(x)))}
+    g(x) = \underset{k\in c}{\operatorname{argmin}} \sum_{i \in [m]}( 1 - \text{sgn}{(S_{ki}}f^i(x)))
     $$
       <ul>
         <li>各特徴軸に関して、ペアワイズカップリングの考え方を取り入れることもできる</li>

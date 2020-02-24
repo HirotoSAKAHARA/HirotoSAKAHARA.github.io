@@ -104,7 +104,7 @@ load: ['[tex]/noerrors']
     ここで、\(\nu\)は上ブレの値。<br>
     この異常度を累積和の式に代入すると、以下の式が得られる。
     $$
-    a^{(t)}_+ = max(0, [a^{(t)}_+ + (\frac{\nu_+}{\sigma})\frac{\xi^(t) - \mu - (\nu_+/2)}{\sigma})]
+    a^{(t)}_+ = \max(0, [a^{(t)}_+ + (\frac{\nu_+}{\sigma})\frac{\xi^(t) - \mu - (\nu_+/2)}{\sigma})
     $$
 
 
@@ -149,13 +149,13 @@ load: ['[tex]/noerrors']
     <h3>変化度</h3>
     時間\(t\)の前後で値がどのように変化したかは近傍法でも利用した\(\xi\)の集合\(\bm{x}\)を利用して、以下のように書ける。
     $$
-    a^{(t)} = \int p^{(t)}(x) \frac{p^{(t)}(x)}{p^{(t + \Delta t)}} dx
+    a^{(t)} = \int p^{(t)}(x) \frac{p^{(t)}(x)}{p^{(t + \Delta t)}} \mathrm{d}x
     $$
     フォンミーゼス・フィッシャー分布を仮定し、\(\bm{u}^{(t)}\)を履歴行列、\(\bm{q}^{(t)}\)をテスト行列とすると、
     \(p^{(t)}(\bm{z}) =  \mathcal{M}(\bm{z} | \bm{u}^{(t)}, \kappa)\)
     \(p'^{(t)}(\bm{z}) = \mathcal{M}(\bm{z} | \bm{q}^{(t)}, \kappa)\)となり、この式から変化度\(a^{(t)}\)を求めると下式となる。
     $$
-    a^{(t)} = \int \mathcal{M}(\bm{z} | \bm{u}^{(t)}, \kappa) \kappa \bm{z}^top(\bm{u}^{(t)}- \bm{q}^(t)) \propto \kappa(1 - \bm{u}^{(t)\top}\bm{q}^{(t)})
+    a^{(t)} = \int \mathcal{M}(\bm{z} | \bm{u}^{(t)}, \kappa) \kappa \bm{z}^top(\bm{u}^{(t)}- \bm{q}^(t)) \mathrm{d}z \propto \kappa(1 - \bm{u}^{(t)\top}\bm{q}^{(t)})
     $$
     <h3>特異スペクトル変換(singular spectrum transformation)</h3>
     さらに、ここで\(\bm{u}^{(t)}\)と\(\bm{q}^{(t)}\)の特異値分解を行い、特徴量を取り出す（特異スペクトル変換）。
