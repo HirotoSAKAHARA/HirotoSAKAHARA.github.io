@@ -86,17 +86,17 @@ load: ['[tex]/noerrors']
       この時、\(f(\bm{x})\)は無数に存在するが、サポートベクトルマシンでは\(f(\bm{x})\)と両方のクラスの最近隣接点の距離の和を最大にする、
       つまりマージン最大化(margin maximization)するパラメータを選択する。この場合、サポートベクトルマシンはマージン\(M\)を利用して以下の最適化問題によって定式化できる。
       $$
-        \max_{\bm{w},b,M}\frac{M}{\|\bm{w}\|}
+      \underset{\bm{w},b,M}{\operatorname{maximize}}\frac{M}{\|\bm{w}\|}
       $$
       $$
-        \text{        s.t. } y_i(\bm{w}^\top\bm{x}_i+b) \ge M, i \in [n]
+        \text{        subject to} y_i(\bm{w}^\top\bm{x}_i+b) \ge M, i \in [n]
       $$
       この式を更に\(\tilde{\bm{w}} = \bm{w}/M\), \(\tilde{b} = b/M\)で置き換え、変形した以下の式が、一般的なハードマージンの定式化となる。
       $$
-        \min_{\bm{\tilde{w}},b}\|\bm{\tilde{w}}\|^2
+      \underset{\bm{\tilde{w}},b}{\operatorname{minimize}}\|\bm{\tilde{w}}\|^2
       $$
       $$
-        \text{        s.t. } y_i(\bm{\tilde{w}}^\top\bm{x}_i+\tilde{b}) \ge 1, i \in [n]
+        \text{        subject to} y_i(\bm{\tilde{w}}^\top\bm{x}_i+\tilde{b}) \ge 1, i \in [n]
       $$
         </div></div>
     <h2>ソフトマージン</h2>
@@ -104,10 +104,10 @@ load: ['[tex]/noerrors']
       全てのデータが１枚の超平面で区別できると考えるハードマージンの仮定は、現実には強すぎるため、反対側への誤差\(\xi_i \ge 0, i \in [n]\)を導入し、制約条件を修正する。これをソフトマージンと呼ぶ。
       また、ハードマージンにおける\(\|\bm{\tilde{w}}\|\)と同じく、\(xi_i\)もできるだけ小さくしたいので、以下の定式化が成り立つ。また下式で\(C\)は正則化係数(regularization parameter)と呼ばれる正の定数で、事前に決定しておく必要がある。\(C\)は小さいほど誤分類を許容しやすくなり、\(C = \infty\)でハードマージンと等しい。
        $$
-        \min_{\bm{\tilde{w}},b,\bm{\xi}}\|\bm{\tilde{w}}\|^2 + C \sum_{i \in [n]} \xi_i
+       \underset{\bm{w},b,\bm{\xi}}{\operatorname{minimize}}\|\bm{\tilde{w}}\|^2 + C \sum_{i \in [n]} \xi_i
       $$
       $$
-        \text{        s.t. } \begin{eqnarray*} 
+        \text{        subject to} \begin{eqnarray*} 
         y_i(\bm{\tilde{w}}^\top\bm{x}_i+\tilde{b}) &\ge& 1 - \xi_i&, i \in [n]  \\
         \xi_i &\ge& 0&, i \in [n]
         \end{eqnarray*}
@@ -117,12 +117,12 @@ load: ['[tex]/noerrors']
         </div></div>
     <h2>双対問題</h2>
         <div><div class="hidden_show">
-    前項の定式化(主問題)に対する<a href="02_math/01_optimization_problem/02_linear_programming_problem.html">双対問題</a>を考えると、以下のように表現できる。サポートベクトルマシンの場合、強双対性が成り立ち、主問題と双対問題の目標関数値が最適解において一致する。
+    前項の定式化(主問題)に対する<a href="02_math/01_optimization_problem/02_linear_programminimizeg_problem.html">双対問題</a>を考えると、以下のように表現できる。サポートベクトルマシンの場合、強双対性が成り立ち、主問題と双対問題の目標関数値が最適解において一致する。
        $$
-        \max_{\bm{{\alpha}}}- \frac{1}{2} \sum_{i,j \in [n]} \alpha_i, \alpha_j,y_i, y_j, \bm{x}_i^\top\bm{x}_j + \sum_{i \in [n]} \alpha_i
+       \underset{\bm{\alpha}}{\operatorname{maximize}}- \frac{1}{2} \sum_{i,j \in [n]} \alpha_i, \alpha_j,y_i, y_j, \bm{x}_i^\top\bm{x}_j + \sum_{i \in [n]} \alpha_i
       $$
       $$
-        \text{        s.t. } \begin{eqnarray*}
+        \text{        subject to} \begin{eqnarray*}
           \sum_{i \in [n]} \alpha_iy_i = 0 \\
           0 \gt \alpha_i \ge C, i \in [n]
         \end{eqnarray*}
@@ -136,10 +136,10 @@ load: ['[tex]/noerrors']
       $$
       また、この時、双対問題は以下となる。
        $$
-        \max_{\bm{{\alpha}}}- \frac{1}{2} \sum_{i,j \in [n]} \alpha_i, \alpha_j,y_i, y_j, \phi(\bm{x}_i)^\top\phi(\bm{x}_j) + \sum_{i \in [n]} \alpha_i
+        \underset{\bm{\alpha}}{\operatorname{maximize}} - \frac{1}{2} \sum_{i,j \in [n]} \alpha_i, \alpha_j,y_i, y_j, \phi(\bm{x}_i)^\top\phi(\bm{x}_j) + \sum_{i \in [n]} \alpha_i
       $$
       $$
-        \text{        s.t. } \begin{eqnarray*}
+        \text{        subject to} \begin{eqnarray*}
           \sum_{i \in [n]} \alpha_iy_i = 0 \\
           0 \gt \alpha_i \ge C, i \in [n]
         \end{eqnarray*}

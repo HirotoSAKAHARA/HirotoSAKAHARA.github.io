@@ -88,15 +88,15 @@ load: ['[tex]/noerrors']
 あるモデルの評価関数を次式のように設定する。L1正則化の式を使うと、
 説明変数が０になりやすく、次元削減に利用される。
 $$
-\min{f(x)} + \lambda\sum^n_{i=1}|w_i|
+{\operatorname{minimize}} \;\; f(x) + \lambda\sum^n_{i=1}|w_i|
 $$
-ここで\(\min{f(x)}\)は通常の損失関数。
+ここで\({\operatorname{minimize}}\;\;f(x)\)は通常の損失関数。
 この正則化を利用した回帰をラッソ回帰と呼ぶ。
 
     <h3>L2正則化</h3>
 モデルの評価関数を以下のように設定する。L2正則化ではモデルの過学習を防ぐために用いられる。
 $$
-\min{f(x)} + \frac{\lambda}{2}\sum^n_{i=1}|w_i|^2
+{\operatorname{minimize}} \;\;f(x) + \frac{\lambda}{2}\sum^n_{i=1}|w_i|^2
 $$
 この正則化を利用した回帰をリッジ回帰と呼ぶ。
 

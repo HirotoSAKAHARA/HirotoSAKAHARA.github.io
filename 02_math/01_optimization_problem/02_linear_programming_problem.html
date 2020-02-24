@@ -90,10 +90,10 @@
         <div><div class="hidden_show">
   以下の一般系の線形計画問題に対して
   $$
-    \min {\bm{c}_1^\top\bm{x}_1 + \bm{c}_2^\top\bm{x}_2}
+      \min {(\bm{c}_1^\top\bm{x}_1 + \bm{c}_2^\top\bm{x}_2)}
   $$
   $$
-    \text{  s. t.} \begin{eqnarray*} 
+    \text{  subject to} \begin{eqnarray*} 
                    \bm{A}_{11}\bm{x_1} + \bm{A}_{12}\bm{x_2} &\gt& \bm{b}_1 \\
                    \bm{A}_{21}\bm{x_1} + \bm{A}_{22}\bm{x_2} &=& \bm{b}_1 \\
                    \bm{x}_1 &\ge& 0
@@ -101,10 +101,10 @@
   $$
   次の問題を双対問題という。
   $$
-    \max {\bm{b}_1^\top\bm{y}_1 + \bm{b}_2^\top\bm{y}_2}
+    \max {(\bm{b}_1^\top\bm{y}_1 + \bm{b}_2^\top\bm{y}_2)}
   $$
   $$
-    \text{  s. t.} \begin{eqnarray*} 
+    \text{  subject to} \begin{eqnarray*} 
                    \bm{A}_{11}^\top\bm{y_1} + \bm{A}_{12}^\top\bm{y_2} &\gt& \bm{c}_1 \\
                    \bm{A}_{21}^\top\bm{y_1} + \bm{A}_{22}^\top\bm{y_2} &=& \bm{c}_2 \\
                    \bm{y}_1 &\ge& 0

@@ -89,7 +89,7 @@ load: ['[tex]/noerrors']
     <li>この時１クラスサポートベクトルマシンは以下のように書ける。</li>
     </ul>
     $$
-      \min_{\bm{w}, \rho \in \mathbb{R}} \frac{1}{2} \|w\|^2 - \rho + \frac{1}{n\nu} \sum_{i \in [n]} max{\{0, -(\bm{w}^\top \phi(\bm{x}_i) - \rho)\}}
+    \underset{\bm{w}, \rho \in \mathbb{R}}{\operatorname{minimize}} \frac{1}{2} \|w\|^2 - \rho + \frac{1}{n\nu} \sum_{i \in [n]} \max{\{0, -(\bm{w}^\top \phi(\bm{x}_i) - \rho)\}}
     $$
     <ul>
       <li>ここで、\( \nu \)は学習後の関数\(f(x)\)の偽陽性率の割合である。</li>
@@ -97,19 +97,19 @@ load: ['[tex]/noerrors']
       <li>この時、\(\rho\)に制限がないので、以下の制約条件は実現可能となる。</li>
     </ul>
     $$
-      \min_{\bm{w} \in \chi, \rho \in \mathbb{R}, \xi \in \mathbb{R}^n } \frac{1}{2} \|w\|^2 - \rho + \frac{1}{n\nu} \sum_{i \in [n]} \xi_i
+    \underset{\bm{w} \in \chi, \rho \in \mathbb{R}{\operatorname{minimize}, \xi \in \mathbb{R}^n } \frac{1}{2} \|w\|^2 - \rho + \frac{1}{n\nu} \sum_{i \in [n]} \xi_i
     $$
     $$
-      \text{        s.t. } \xi_i \ge - (\bm{w}^\top \phi(\bm{x}_i) - \rho), \xi_i \ge 0, \forall_i \in [n]
+      \text{        subject to } \xi_i \ge - (\bm{w}^\top \phi(\bm{x}_i) - \rho), \xi_i \ge 0, \forall_i \in [n]
     $$
     <ul>
       <li> この主問題の双対問題は以下のように書ける。 </li>
     </ul>
     $$
-      \min_{\bm{\alpha} \in \mathbb{R}^n} \frac{1}{2} \sum_{i \in [n]} \sum_{j \in [n]} \alpha_i \alpha_j K(\bm{x}_i, \bm{x}_j)
+    \underset{\bm{\alpha} \in \mathbb{R}^n}{\operatorname{minimize}} \frac{1}{2} \sum_{i \in [n]} \sum_{j \in [n]} \alpha_i \alpha_j K(\bm{x}_i, \bm{x}_j)
     $$
     $$
-      \text{        s.t. } \begin{eqnarray*} 
+      \text{        subject to } \begin{eqnarray*} 
         0 \le \alpha_i \le \frac{1}{n\nu}, \forall_i \in [n] \\
           \sum_{i \in [n]} \alpha_i = 1
 

@@ -90,14 +90,14 @@ load: ['[tex]/noerrors']
       g(\bm{x}) = \underset{k\in c}{\operatorname{argmax}} \bm{w}^{k \top}\phi(\bm{x}) + b^k
      $$
      $$
-      \text{   s.t.} \bm{w}^{y_i\top} \phi(\bm{x}_i) + b^{y_i} \ge \bm{w}^{k\top}\phi(\bm{x}_i) + b^k + 1, k \ne y_i 
+      \text{   subject to} \bm{w}^{y_i\top} \phi(\bm{x}_i) + b^{y_i} \ge \bm{w}^{k\top}\phi(\bm{x}_i) + b^k + 1, k \ne y_i 
      $$
      ここで、２クラスサポートベクトルマシン同様変数\(\xi\)を導入し条件を緩和する。
       $$
-       \min_{\{\bm{w}^k, w_0^k, \bm{\xi}^k\}_{k \in [c]}} \frac{1}{2} \sum_{k \in [c]} \| \bm{w}^k \|^2 + C \sum_{i \in [n]} \sum_{k \ne y_i} \xi^k_i
+      \underset{\{\bm{w}^k, w_0^k, \bm{\xi}^k\}_{k \in [c]}}{\operatorname{minimize}} \frac{1}{2} \sum_{k \in [c]} \| \bm{w}^k \|^2 + C \sum_{i \in [n]} \sum_{k \ne y_i} \xi^k_i
      $$
      $$
-      \text{   s.t.} \begin{eqnarray*}
+      \text{   subject to} \begin{eqnarray*}
         \bm{w}^{y_i\top} \phi(\bm{x}_i) + b^{y_i} \ge \bm{w}^{k\top}\phi(\bm{x}_i) + b^k + 1 - \xi^k_i, k \ne y_i, i \in [n] \\
           \xi_i^k \gt 0, k \ne y_i, i \in [n]
       \end{eqnarray*}
@@ -112,10 +112,10 @@ load: ['[tex]/noerrors']
      $$
      上記変数を利用して、双対問題を求めると、下式が得られる。      
      $$
-       \max_{\alpha} \sum_{i \in [n]} \sum_{k \ne y_i} \alpha_{ik} - \frac{1}{2}\sum_{i,j \in [n]} \sum_{k in [c]}\tilde{\alpha}_{ik}\tilde{\alpha}_{jk}K(\bm{x}_i, \bm{x}_j)
+     \underset{\alpha}{\operatorname{maximize}} \sum_{i \in [n]} \sum_{k \ne y_i} \alpha_{ik} - \frac{1}{2}\sum_{i,j \in [n]} \sum_{k in [c]}\tilde{\alpha}_{ik}\tilde{\alpha}_{jk}K(\bm{x}_i, \bm{x}_j)
      $$
      $$
-      \text{   s.t.} \begin{eqnarray*}
+      \text{   subject to} \begin{eqnarray*}
         \sum_{i \in [n]} \tilde{\alpha}_{ik} = 0, k \ne y_i, i \in [n] \\
         0 \le \alpha_{ik} \le C, k \ne y_i, i \in [n]
       \end{eqnarray*}

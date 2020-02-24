@@ -93,15 +93,15 @@ load: ['[tex]/noerrors']
             $$
 
         <h3>期待値</h3>
-        定常性をもつARモデルは期待値をもつ。定常性により期待値は一定ということを利用すると、以下の期待値\(E(y_t)\)が導出される。
+        定常性をもつARモデルは期待値をもつ。定常性により期待値は一定ということを利用すると、以下の期待値\(\mathrm{E}(y_t)\)が導出される。
         $$
-        E[y_t] = \frac{\phi_0}{1 - \sum_{k=1}^{n}\phi_k}
+        \mathrm{E}(y_t) = \frac{\phi_0}{1 - \sum_{k=1}^{n}\phi_k}
         $$
 
         <h3>分散</h3>
          定常性をもつARモデルは分散をもつ。定常性により期待値は一定ということを利用すると、以下の分散\(V(y_t)\)が導出される。
         $$
-        V[y_t] = \frac{\sigma^2}{1 - \sum_{k=1}^{n}\phi_k^2}
+        \mathrm{V}(y_t) = \frac{\sigma^2}{1 - \sum_{k=1}^{n}\phi_k^2}
         $$
 
         <h3>自己共分散</h3>
@@ -126,10 +126,12 @@ load: ['[tex]/noerrors']
         <h3>自己共分散</h3>
         MAモデルの自己共分散は以下の式で表せる。
         $$
-        \gamma_j = \{ 
         \begin{eqnarray*}
+        \gamma_j = \left\{
+        \begin{array}{ll}
             & \theta_j + \sum_{k=1}^{n - j}{\theta_{j+k}\theta_k}  & if 0 \le j \le n \\
             & 0   & if n < j
+        \end{array} \right.
         \end{eqnarray*}
         $$
 
