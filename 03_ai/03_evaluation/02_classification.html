@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - evaluation - classification </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - タスクの評価</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>分類の評価</h1>
+  <h2>Confusion Matrix<span class="small">混合行列</span></h2>
+    <div><div class="hidden_show">
+    
+  <table>
+    <tr>
+<th></th>
+<th>実際は正</th>
+<th>実際は負</th>
+    </tr>
+    <tr>
+<th>予測が正</th>
+<th>TP<span class="small"> :True Positive</span></th>
+<th>FP<span class="small"> :False Positive、偽陽性、第一種過誤</span></th>
+    </tr>
+    <tr>
+<th>予測が負</th>
+<th>FN<span class="small"> :False Negative、偽陰性、第二種過誤</span></th>
+<th>TN<span class="small"> :True Negative</span></th>
+    </tr>
+  </table>
+
+    </div></div>
+  <h2>評価指標</h2>
+    <div><div class="hidden_show">
+    
+  <h3>Accuracy<span class="small"> : 正解率、精度</span></h3>
+全予測の中で正答した割合。
+$$
+\frac{{\rm TP +  TN}}{{\rm TP + TN + FP + FN}}
+$$
+
+    <h3>Recall<span class="small"> : 正常標本精度、再現率、検出率</span></h3>
+実際は正である標本の中で、正と判断した割合。
+正の標本と負の標本の数が違いすぎる場合は役に立たない。
+$$
+\frac{{\rm TP}}{{\rm TP +  FN}}
+$$
+
+    <h3>誤報率</h3>
+実際は正である標本の中で、負と判定した割合。
+$$
+1 - \frac{{\rm TP}}{{\rm TP + FN}}
+$$
+    <h3>Precision<span class="small"> : 適合率</span></h3>
+正と予測した中で実際に正である割合。
+$$
+\frac{{\rm TP}}{{\rm TP + FP}}
+$$
+
+    <h3>Specificity<span class="small"> : 異常標本精度、特異率、異常網羅率</span></h3>
+実際は負である標本の中で、負と判断した割合。
+$$
+\frac{{\rm TN}}{{\rm FP + TN}}
+$$
+
+    <h3>F-measure<span class="small"> : F値</span></h3>
+適合率と再現率のバランス。
+$$
+\frac{2 \times {\rm Precision \times Recall}}{ {\rm Precision + Recall}}
+$$
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="03_ai/03_evaluation/01_general_method.html">タスクによらない評価手法</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="03_ai/03_evaluation/03_regression.html">回帰の評価</a>
+</div>
+
+</main>
+</body>
+</html>

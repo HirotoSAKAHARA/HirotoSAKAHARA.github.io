@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - math - optimization problem - linear programming problem </title>
+<base href="../../" />
+
+
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+      macros: {
+      x: "{\\times}",
+      bm: ["{\\boldsymbol{#1}}",1],
+      dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+      },
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 数学 - 最適化問題</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：分類の項にあった記述を移動
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+
+<!--*********************************本文*********************************-->
+<h1>線形計画問題</h1>
+  <h2>概要</h2>
+    <div><div class="hidden_show">
+    目的関数が１次関数であり、制約が幾つかの１次方程式や１次不等式だけからなる最適化問題。
+
+    </div></div>
+  <h2>双対問題</h2>
+    <div><div class="hidden_show">
+  以下の一般系の線形計画問題に対して
+  $$
+    \min {\bm{c}_1^\top\bm{x}_1 + \bm{c}_2^\top\bm{x}_2}
+  $$
+  $$
+    \text{  s. t.} \begin{eqnarray*} 
+                   \bm{A}_{11}\bm{x_1} + \bm{A}_{12}\bm{x_2} &\gt& \bm{b}_1 \\
+                   \bm{A}_{21}\bm{x_1} + \bm{A}_{22}\bm{x_2} &=& \bm{b}_1 \\
+                   \bm{x}_1 &\ge& 0
+                   \end{eqnarray*} 
+  $$
+  次の問題を双対問題という。
+  $$
+    \max {\bm{b}_1^\top\bm{y}_1 + \bm{b}_2^\top\bm{y}_2}
+  $$
+  $$
+    \text{  s. t.} \begin{eqnarray*} 
+                   \bm{A}_{11}^\top\bm{y_1} + \bm{A}_{12}^\top\bm{y_2} &\gt& \bm{c}_1 \\
+                   \bm{A}_{21}^\top\bm{y_1} + \bm{A}_{22}^\top\bm{y_2} &=& \bm{c}_2 \\
+                   \bm{y}_1 &\ge& 0
+                   \end{eqnarray*} 
+  $$
+  
+
+
+    </div></div>
+  <h2>単体法<span class="small"> : シンプレックス法</span></h2>
+    <div><div class="hidden_show">
+
+    </div></div>
+  <h2>内点法</h2>
+    <div><div class="hidden_show">
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="02_math/01_optimization_problem/01_base.html">基礎</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="02_math/02_nearest_neighbor_search/01_nearest_neighbor_search.html">最近傍探索</a>
+</div>
+</main>
+</body>
+</html>

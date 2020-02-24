@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - preprocessing - missing data </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - データ前処理</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>データ欠損への対応</h1>
+  <h2>データ欠損のパターン</h2>
+    <div><div class="hidden_show">
+    
+  <dl>
+    <dt>MCAR <span class="small"> : missing completely at random</span></dt>
+    <dd>あるデータ値が欠損する確率が、全データと無関係。</dd>
+    <dt>MAR<span class="small"> : missing at random</span></dt>
+    <dd>ある項目が欠損する確率が、欠損している項目以外の観測されたデータ項目のみから推測できる。例として女性は一定の確率で年齢を答えない場合など。</dd>
+    <dt>NMAR<span class="small"> : not missing at random</span></dt>
+    <dd>ある項目が欠損する確率がその項目そのものに依存し、また、その項目以外のデータ項目からも、欠損している項目の欠損率を推測できない。例としては、男女変わらず、年齢が高くなるほど年齢について答えなくなる場合など。この場合の欠損は代入法では解決できない。</dd>
+  </dl>
+    </div></div>
+  <h2>リストワイズ削除</h2>
+    <div><div class="hidden_show">
+    
+  欠損値が含まれるデータ行をすべて削除する。
+
+    </div></div>
+  <h2>ペアワイズ削除</h2>
+    <div><div class="hidden_show">
+    
+  欠損の少ない列を残し、その列において欠損値が含まれるデータ行をすべて削除する。
+
+    </div></div>
+  <h2>平均値代入法</h2>
+    <div><div class="hidden_show">
+    
+  欠損値をその列、あるいは行の平均値によって穴埋めする方法。分散や誤差を知りたい場合は使えない。
+    
+    </div></div>
+  <h2>回帰代入法</h2>
+    <div><div class="hidden_show">
+    
+  欠損値を除いた状態で回帰分析を行い、推定値を補完する。
+
+    </div></div>
+  <h2>確率的回帰代入法</h2>
+    <div><div class="hidden_show">
+    
+  回帰代入法により推定した値に誤差をランダムに加えて補完する。
+
+    </div></div>
+  <h2>ホットデック法</h2>
+    <div><div class="hidden_show">
+    
+  欠損値を含むデータ行（レシピエント）に欠損値以外の属性の似ているデータ行（ドナー)の値を使って補完。
+    ドナーは最近傍法などで探索。
+
+    </div></div>
+  <h2>多重代入法</h2>
+    <div><div class="hidden_show">
+    
+  観測されたデータから欠損値を予測して補完する完全なデータセットを複数作成し、
+    各セット毎に分析モデルを構築、最後に各分析モデルを統合する。
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="03_ai/02_preprocessing/01_lack_of_data.html">データ量が少ない場合への対応</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="03_ai/02_preprocessing/03_outlier.html">外れ値への対応</a>
+</div>
+</main>
+</body>
+</html>

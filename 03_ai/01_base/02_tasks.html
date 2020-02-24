@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - base - tasks </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - 基礎</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+： リンク切れを修正
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>人工知能により解決するタスク</h1>
+    
+  <h2>classification <span class="small"> : 分類</span></h2>
+    <div><div class="hidden_show">
+    
+  教師あり学習の一種で、二値分類と多クラス分類がある。
+    <h3>二値分類</h3>
+    <q>入力\(\boldsymbol{x}\)を内容に応じて２種類に区別する問題</q>[1]
+    <h3>多クラス分類</h3>
+    <q>入力\(\boldsymbol{x}\)を内容に応じて有限個のクラスに分類する問題</q>[1]
+
+    </div></div>
+  <h2>regression<span class="small"> : 回帰</span></h2>
+    <div><div class="hidden_show">
+    
+  教師あり学習の一種で、訓練データをよく再現するような関数を定める問題。連続値をとる関数を主な対象とする。
+    <h3>線形回帰</h3>
+    \(z = w_0 + w_1u_1 + \cdots + w_uu_n + e\) のような、変数\(\boldsymbol{u}\)の線型結合で示される関数の係数\(\boldsymbol{w}\)を求める問題。
+    多項回帰のように、変数自体は非線形の関数で表されても構わない。
+    以下に分類される。
+    <dl>
+<dt>単回帰</dt>
+<dd>変数が１つの１次式(\( z = wu + w_0 \) )の回帰。導出される1次式を回帰直線と呼ぶ。</dd>
+<dt>多項回帰</dt>
+<dd>変数が１つのn次式(\( y = w_1u + w_2u^2 + \cdot + w_nu^n + w_0 \))の回帰</dd>
+<dt>重回帰</dt>
+<dd>変数が複数ある式(\( y = w_1u_1 + w_2u_2 + \cdot + w_nu_n + w_0 \))の回帰</dd>
+    </dl>
+    <h3>非線形回帰</h3>
+観測から得られたデータがモデルパラメータの非線形結合であり、1つ以上の独立した変数に依存する関数によってモデル化される。
+
+    </div></div>
+  <h2>clustering<span class="small"> : クラスタリング</span></h2>
+    <div><div class="hidden_show">
+    
+  教師なし学習の一種で、ラベルのないデータ群を複数に分る問題。
+
+    </div></div>
+  <h2>dimensionality reduction<span class="small"> : 次元削減(次元圧縮)</span></h2>
+    <div><div class="hidden_show">
+    
+  教師なし学習の一種で、
+    データの次元数を減らすこと。 計算の効率化を行ったり、データ群の特徴をつかむことが目標。
+    線形の場合はデータ\(\boldsymbol{Y}\)を低次元の\(\boldsymbol{W}\)と
+    \( \boldsymbol{X}\)を用いて\( \boldsymbol{Y} \simeq \boldsymbol{W^TX}\)と表せるが、
+    非線形の次元削減手法も存在する。
+    
+    </div></div>
+  <h2>reinforcement learning<span class="small"> : 強化学習</span></h2>
+    <div><div class="hidden_show">
+    
+  各時刻に置ける最適な意思決定のルールを目的とする。
+    報酬の期待値を最大するような逐次的意思決定ルール(ポリシー)を学習する。
+    </div></div>
+  <h2>Recommendation <span class="small"> : 推薦</span></h2>
+    <div><div class="hidden_show">
+    
+  情報フィルタリング技法の一種で、特定ユーザーが興味を持つと思われる情報を提示するもの。 
+
+    </div></div>
+  <h2>bayesian optimization<span class="small"> : ベイズ最適化</span></h2>
+    <div><div class="hidden_show">
+    
+  教師なし学習の一種で、あるデータの存在領域を学習により狭めていく。
+
+    
+    </div></div>
+  <h2>参考文献、サイト</h2>
+    <div><div class="hidden_show">
+    
+  <ol>
+    <li><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147653">岡谷 貴之."深層学習", 2015, 講談社</li>
+  </ol>
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="03_ai/01_base/01_about_ai.html">人工知能とは</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="03_ai/01_base/03_supervised_and_unsupervised_learning.html">教師あり学習・教師なし学習</a>
+</div>
+</main>
+</body>
+</html>

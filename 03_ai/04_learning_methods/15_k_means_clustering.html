@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - learning methods - k means clustering </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - 非深層学習系の学習手法</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>k平均クラスタリング</h1>
+  <h2>英語名、略称など</h2>
+    <div><div class="hidden_show">
+    
+  k means clustering
+
+    </div></div>
+  <h2>ターゲットタスク</h2>
+    <div><div class="hidden_show">
+    
+  クラスタリング。
+    </div></div>
+  <h2>アルゴリズム</h2>
+    <div><div class="hidden_show">
+    
+  
+    <img src="out\ai\k_means_clustering.png" alt="k平均法"/>
+    </div></div>
+  <h2>長所</h2>
+    <div><div class="hidden_show">
+    
+  <ul>
+<li>データ量が膨大でも高速で計算できる。</li>
+    </ul>
+    </div></div>
+  <h2>短所</h2>
+    <div><div class="hidden_show">
+    
+  <ul>
+<li>結果が初期値に大きく依存する。</li>
+<li>分割数の決定は別の考察が必要。</li>
+    </ul>
+
+    </div></div>
+  <h2>エルボー法</h2>
+    <div><div class="hidden_show">
+    
+  最適なkを決定するための方法で
+    kが大きくなればなるほどSSEは小さくなる傾向にあるが、必要以上に大きくしてもSSEが小さくならないことを利用し、
+    各kにおいてSSEを計算し、折れ曲がる値を最適値とみなす手法。
+    SSEについては評価の項を参照のこと。
+
+  
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="03_ai/04_learning_methods/14_least_squares_method.html">最小二乗法</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="03_ai/04_learning_methods/16_dbscan.html">DBSCAN </a>
+</div>
+</main>
+</body>
+</html>

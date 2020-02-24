@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - deep learning - structures </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+    },
+    options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+    },
+    loader: {
+load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - 深層学習</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日:' + document.lastModified);
+</script>
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>具体的な構造</h1>
+ ユニット数・層数・層間の結合、カーネルの幅などにより、様々なネットワークがある。
+
+  <h2>ネオコグニトロン</h2>
+    <div><div class="hidden_show">
+    
+  ニューラルネットワークがメジャーになる前に考えられた構成。add-if silentと呼ばれる学習方法を用いる。
+    </div></div>
+  <h2>LeNet</h2>
+    <div><div class="hidden_show">
+    
+  畳み込みニューラルネットワークの起源。誤差逆伝播法を用いる。
+    </div></div>
+  <h2>AlexNet(2012)</h2>
+    <div><div class="hidden_show">
+    
+  224x224のRGB３原色の画像を認識, 2枚のGPUボードで実装(中は同じ)
+    </div></div>
+  <h2>LuNet</h2>
+    <div><div class="hidden_show">
+    
+  手書き文字の認識で使用される。
+    </div></div>
+  <h2>GoogLeNet</h2>
+    <div><div class="hidden_show">
+    
+    </div></div>
+  <h2>VGG</h2>
+    <div><div class="hidden_show">
+    
+    </div></div>
+  <h2>ResNet(2015)</h2>
+    <div><div class="hidden_show">
+    
+  層を飛ばして出力するSkip Connectができる。カーネルが3x3で同じ形で何度も繰り返す。
+    </div></div>
+  <h2>ResNet16</h2>
+    <div><div class="hidden_show">
+    
+  入力+conv64+conv64+maxpool+conv128+conv128+maxpool+conv256+conv256+maxpool+conv512+conv512+maxpool+FC4096(完全結合)+FC4096+FC1000+softmax
+
+    </div></div>
+  <h2>DensNet(2018)</h2>
+    <div><div class="hidden_show">
+    
+  複数の階層を飛ばすSkip Connectがある。大脳新皮質のつながりに近くなる。
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="03_ai/05_deep_learning/03_advanced_techniques.html">応用技術</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="03_ai/05_deep_learning/05_frameworks.html">フレームワーク</a>
+</div>
+</main>
+</body>
+</html>

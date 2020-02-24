@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - deep learning - base </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+    },
+    options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+    },
+    loader: {
+load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - 深層学習</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日:' + document.lastModified);
+</script>
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>基礎</h1>
+  <h2>概要</h2>
+    <div><div class="hidden_show">
+    脳の中の神経細胞を模擬したアルゴリズムで、
+    シナプスの結合によりネットワークを形成した人口ニューロンが持つ結合加重ベクトルを学習によりを変化させ、
+    様々な問題を解決できるようなモデルを作る。
+
+    </div></div>
+  <h2>基本的なNeural Network</h2>
+    <div><div class="hidden_show">
+    
+  <h3>ニューロン</h3>
+<a href="3_ai/4_learning_methods/7_simple_perceptron.html">単純パーセプトロン</a>の出力に活性化関数と呼ばれる非線形の関数を加え、複雑な問題を解けるように工夫したもの。多層パーセプトロンに使用する。
+
+
+<img src="out\ai\neuron.png" alt="ニューロン"/>
+
+<h3>多層パーセプトロン</h3>
+ニューロンを組み合わせることで、複雑な問題を解けるよう改良したもの。
+
+<img src="out\ai\multi_layer_perceptron.png" alt="ニューロン"/>
+<h3>Deep Learning</h3>
+多層パーセプトロン等のニューラルネットワークの中で、３層以上のもの。
+入力層\(x\)、1層以上の中間層(隠れ層)\(h\)、出力層\(y\)からなる。
+    
+    </div></div>
+  <h2>学習の手順</h2>
+    <div><div class="hidden_show">
+    
+  ニューラルネットワークの学習の手順を以下に示す。
+<img src="out\ai\procedure.png" alt="手順"/>
+    </div></div>
+  <h2>課題</h2>
+    <div><div class="hidden_show">
+    
+  <h3>the gradient vanishing problem(勾配消失問題)</h3>
+誤差勾配の計算時には、各層の微分が行われ、かつ下層の勾配が上層に影響を与える。
+活性化関数で一般的であったシグモイド関数を使うと、一回の計算で微分値が1/4以下になるので、
+層を増やすと上層での勾配がなくなり、学習が行われない。
+
+<h3>過適合</h3>
+学習データに適合し、汎化性能が局所解に陥ることで、
+
+<h3>次元の呪い</h3>
+推定すべきパラメータが多くなると、次元が多くなって、パラメータ空間の探索が難しくなり、
+オーバーフィッティングなどが起きやすくなること。
+
+    </div></div>
+  <h2>ブレイクスルー</h2>
+    <div><div class="hidden_show">
+    
+  <h3>auto encoder(自己符号化器)</h3>
+3層のネットワークを考え、中間層のユニット数が入力層と出力層よりも小さく、かつ出力層で入力を再現できるような重み付けを行うこと。
+この時、中間層は入力層の次元を圧縮できたことになる。自己符号化器を多層に重ねることで勾配消失問題を解決し、ディープニューラルネットワークが可能となった。
+ただし現在では活性化関数の工夫により勾配消失問題を解決していることからあまり使われていない。
+   
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="03_ai/04_learning_methods/25_multiclass_classification_with_binary_classification_algorithm.html">2クラス分類アルゴリズムを利用した多クラス分類</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="03_ai/05_deep_learning/02_basic_techniques.html">基本技術</a>
+</div>
+</main>
+</body>
+</html>

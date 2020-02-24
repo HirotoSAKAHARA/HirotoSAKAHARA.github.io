@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - ai - reccurent neural network - LSTM </title>
+<base href="../../" />
+
+
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+    },
+    options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+    },
+    loader: {
+load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - 再帰型ニューラルネットワーク</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日:' + document.lastModified);
+</script>
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>LSTM</h1>
+  <h2>英語名、略称など</h2>
+    <div><div class="hidden_show">
+    
+  long short-term memory、長・短期記憶
+
+    </div></div>
+  <h2>概要</h2>
+    <div><div class="hidden_show">
+    
+  RNNの長距離依存の問題を解決したアーキテクチャ。
+    ネットワークの１つのニューロンをセル、入力ゲート、出力ゲート、及び忘却ゲートで再構築する。
+    各ゲートの入出力も必要なので、結合係数は５倍になる。
+    $$
+f_t = \sigma(W_fx_t + U_fy_{t-1} + b_f)
+    $$
+    $$
+i_t = \sigma(W_ix_t + U_iy_{t-1} + b_i)
+    $$
+    $$
+o_t = \sigma(W_ox_t + U_iy_{t-1} + b_o)
+    $$
+    $$
+c_t = f_t \circ h_{t-1} + i_t \circ \tanh(W_cx_t + U_cy_{t-1} + b_c)
+    $$
+    $$
+y_t = o_t \circ \tanh(c_t)
+    $$
+
+    <img src="out\ai\LSTM.png" alt="LSTM" width=100%/>
+
+    <h3>ゲートのコントロールはだれ</h3>
+一つ前の中間層、一つ前の出力、現時刻の入力で結合係数の差により、
+入力、出力、忘却のそれぞれのゲートの制御の差が出る。
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="03_ai/07_reccurent_neural_network/01_base.html">基礎</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="03_ai/07_reccurent_neural_network/03_advanced_techniques.html">応用技術</a>
+</div>
+</main>
+</body>
+</html>

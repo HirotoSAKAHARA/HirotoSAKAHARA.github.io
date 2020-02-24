@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - failure detection - change detection - subspace based method </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 異常検知 - 変化検知</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+： 特異スペクトル変換法による異常検知法を追加
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>部分空間法</h1>
+  <h2>累積和法</h2>
+    <div><div class="hidden_show">
+     <div class="hidden_show"> 
+    <h3>英語名、略称、別名など</h3>
+      CUSUM, cumulative sum method
+
+    <h3>概要</h3>
+      異常時に上ブレする（あるいは下ぶれする）とわかっているようなモデルで、上振れ量(あるいは下振れ量)の累積和を計算し、事前に設定されたしきい値を超えると異常とみなす。
+      $$
+        S_0 = 0
+      $$                               
+      $$
+        S_{n+1} = \max{(0, S_n + x_n - w_n)}
+      $$
+      ここで、\(x_n\)はプロセスのサンプル、\(w\)は重みづけ。
+
+    <h3>応用</h3>
+    モデルに<a href="06_failure_detection/02_outlier_detection/01_neyman_pearson_lemma.html">ネイマンピアソンの決定則</a>を使うことも可能。この場合、データ\(\xi\)の分布が正規分布\(\mathcal{N}(\xi|\mu, \sigma^2) \)で書ける(\(\mu\)は\(\xi\)の安定時の値,\(\sigma^2\)は\(\xi\)の安定時の分散)とすると、異常度は以下の式で書ける。
+    $$
+    a(\xi^{(t)}) := \ln \frac{\mathcal{N}(\xi^{(t)}|\mu+\nu_{+}, \sigma^2) }{ \mathcal{N}(\xi^{(t)}|\mu, \sigma^2)  }
+    = (\frac{\nu_{+}}{\sigma})\frac{\xi^{(t)} - \mu - (\nu_{+} / 2)}{\sigma}
+    $$
+    ここで、\(\nu\)は上ブレの値。<br>
+    この異常度を累積和の式に代入すると、以下の式が得られる。
+    $$
+    a^{(t)}_+ = max(0, [a^{(t)}_+ + (\frac{\nu_+}{\sigma})\frac{\xi^(t) - \mu - (\nu_+/2)}{\sigma})]
+    $$
+
+
+    </div></div>
+  <h2>近傍法</h2>
+    <div><div class="hidden_show">
+    <h3>概要</h3>
+    <a href="06_failure_detection/02_outlier_detection/04_with_k_nearest_neibhgor.html">
+    外れ値検知の近傍法
+    </a>を利用する。ただし、各時刻のデータを\(\bm{\xi}^{(t)}\)とした時に、複数のデータをまとめて\(\bm{x}^{(k)} =\) \( ( \bm{\xi}^{(k) \top} , \ldots , \bm{\xi}^{(k+M)^\top})^\top \)とし、各\(\bm{x^{(k)}}\)によって近傍法を利用する。ここで、時系列データの隣のデータは考慮しないなどの工夫は必要となる。
+    <h3>言葉</h3>
+      <h4>スライド窓(sliding window)・滑走窓</h4>
+        複数のデータをまとめた長さMの範囲のこと。
+      <h4>部分時系列(time-series subsequence)</h4>
+         スライド窓により生成したベクトルのこと。
+      <h4>自己一致(self-match)、自明な一致(trivial match)</h4>
+        となり合った部分時系列の要素の値が変化しないこと。
+      <h4>動的時間伸縮法</h4>
+        時間方向の進みや遅れを許容する方法の一つ。
+      <h4>集約記号近似(symbolic aggregate approximation, SAX)</h4>
+        時系列を離散的な文字列に変換する方法。
+    </div></div>
+  <h2>特異スペクトル変換法</h2>
+    <div><div class="hidden_show">
+    <h3>密度比</h3>
+        確率密度の比のこと。確率密度\(p(x)\)と\(p'(x)\)の密度比\(r(x)\)は以下の式で表される。
+        $$
+            r(x) := \frac{p(x)}{p'(x)}
+        $$
+    <h3>履歴行列(trajetroy matrix)</h3>
+        履歴行列\(\bm{X}^{(t)}\)は現時刻\(t\)の１つ前までのデータを使って構成される部分時系列データで、以下の定義で示される。
+        ここで\(\bm{x}\)は近傍法の概要で示したデータである。
+        $$
+        \bm{X}^{(t)} := [ \bm{x}^{(t-n-M+1)}, \ldots, \bm{x}^{t-M} ]
+        $$
+    <h3>テスト行列(test matrix)</h3>
+        テスト行列\(\bm{Z}^{(t)}\)は現在時刻よりk時刻前、L時刻後までのデータであり、以下の定義で示される。また、\(L\)をラグと呼ぶ。
+        $$
+        \bm{Z}^{(t)} := [ \bm{x}^{(t-k+L-M+1)}, \ldots, \bm{x}^{t-M+L} ]
+        $$
+
+    <h3>変化度</h3>
+    時間\(t\)の前後で値がどのように変化したかは近傍法でも利用した\(\xi\)の集合\(\bm{x}\)を利用して、以下のように書ける。
+    $$
+    a^{(t)} = \int p^{(t)}(x) \frac{p^{(t)}(x)}{p^{(t + \Delta t)}} dx
+    $$
+    フォンミーゼス・フィッシャー分布を仮定し、\(\bm{u}^{(t)}\)を履歴行列、\(\bm{q}^{(t)}\)をテスト行列とすると、
+    \(p^{(t)}(\bm{z}) =  \mathcal{M}(\bm{z} | \bm{u}^{(t)}, \kappa)\)
+    \(p'^{(t)}(\bm{z}) = \mathcal{M}(\bm{z} | \bm{q}^{(t)}, \kappa)\)となり、この式から変化度\(a^{(t)}\)を求めると下式となる。
+    $$
+    a^{(t)} = \int \mathcal{M}(\bm{z} | \bm{u}^{(t)}, \kappa) \kappa \bm{z}^top(\bm{u}^{(t)}- \bm{q}^(t)) \propto \kappa(1 - \bm{u}^{(t)\top}\bm{q}^{(t)})
+    $$
+    <h3>特異スペクトル変換(singular spectrum transformation)</h3>
+    さらに、ここで\(\bm{u}^{(t)}\)と\(\bm{q}^{(t)}\)の特異値分解を行い、特徴量を取り出す（特異スペクトル変換）。
+    \(\bm{u}^{(t)}\)の\(r\)本の左特異ベクトルを(\bm{U}^{(t)}_r\)、\(\bm{q}^{(t)}\)の\(m\)本の左特異ベクトルを\(\bm{Q}^{(t)}_m\)とすると、
+    変化度は以下の式で表せる。
+    $$
+    a(t) = 1 - \| \bm{U}_r^{(t)\top} \bm{Q}_m^{(t)}\|_2 = 1 - (\bm{U}_r^{(t)\top} \bm{Q}_m^{(t)}\text{の最大特異値})
+    $$
+    上式を計算し、変化度が一定値を超えたところが変化検知点である。
+
+        
+    </div></div>
+  <h2>参考文献、サイト</h2>
+    <div><div class="hidden_show">
+
+    <ol>
+     <li> <a href="https://en.wikipedia.org/wiki/CUSUM">"CUSM",wikipedia, the free encyclopedia</a>   </li> 
+      <li> <a href="https://www.kspub.co.jp/book/detail/1529083.html">井手剛,杉山将 "異常検知と変化検知 機械学習プロフェッショナルシリーズ",2015,講談社サイエンティフィク </a>   </li>
+    </ol>
+
+    </div></div> 
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="06_failure_detection/02_outlier_detection/06_direction_data.html">方向データによる異常検知</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="06_failure_detection/04_others/01_references.html">参考資料（異常検知)</a>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - math - time series analysis - base </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 数学 - 時系列解析</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>基礎</h1>
+  <h2>基本的な言葉</h2>
+    <div><div class="hidden_show">
+        <h3>トレンド</h3>
+            データの長期的な傾向。
+        <h3>周期変動</h3>
+            時間の経過に従ってデータの値が上昇と下降を繰り返す。
+            <h4>季節変動</h4>
+                周期変動のうち、１年間での変化の事。
+        <h3>不規則変動</h3>
+            時間の経過と関係なくデータの値が変動すること。
+        <h3>(時系列データの)モデリング</h3>
+            時系列データを何かの形で定式化すること。
+        <h3>原系列</h3>
+            何もされていない時系列データそのもの。
+        <h3>対数系列</h3>
+            原系列データに対して対数変換をかけたもの。
+        <h3>階差系列(差分系列)</h3>
+            原系列データに対して、１点前のデータとの差を取ったデータの事。
+        <h3>季節調整済み系列</h3>
+            原系列データに対して、季節調整によって季節変動の影響を除いたデータ。
+        <h3>自己共分散</h3>
+            同じ時系列データでの別々の時点同士での共分散。
+        <h3>k次の自己共分散</h3>
+             k時点離れた自己共分散をk次の自己共分散で、以下の式で表される。また、下式をkの関数と見たものを自己共分散関数と呼ぶ。
+             $$
+                \gamma_{kt} = Cov(y_t, y_{t-k}) = E[(y_t - \mu_t)(y_{t-k} - \mu(t - k)]
+             $$
+        <h3>自己相関係数</h3>
+            自己共分散を様々な値間で比較できるようにしたもので以下の式でもとまる。
+             $$
+                \rho_{kt} = \frac{Cov(y_t, y_{t-k})}{\sqrt{Var(y_t) \cdot Var(y_{t-k})}}
+             $$
+            数値の目安は以下の表の通り。
+            <table>
+            <tr>
+                <th>自己相関係数</th>
+                <th>意味合い<[/th>
+            </tr>
+            <tr>
+                <td>0.7〜1.0</td>
+                <td>かなり強い正の相関がある。</td>
+            </tr>
+            <tr>
+                <td>0.4〜0.7</td>
+                <td>正の相関がある。</td>
+            </tr>
+            <tr>
+                <td>0.2〜0.4</td>
+                <td>弱い正の相関がある。</td>
+            </tr>
+            <tr>
+                <td>-0.2〜0.2</td>
+                <td>ほとんど相関がない。</td>
+            </tr>
+            <tr>
+                <td>-0.4〜-0.2</td>
+                <td>弱い負の相関がある。</td>
+            </tr>
+            <tr>
+                <td>-0.7〜-0.4</td>
+                <td>負の相関がある。</td>
+            </tr>
+            <tr>
+                <td>-1.0〜-0.7</td>
+                <td>かなり強い負の相関がある</td>
+            </tr>
+
+            </table>
+        <h3>コレログラム</h3>
+            自己相関係数をグラフで表したもの。
+        <h3>自己相関係数のラグ</h3>
+            ずらしたデータのステップ数。ラグを0にすると自己相関係数は1(同じもの)になる。
+        <h3>定常性(stationarity)</h3>
+            時系列データが時間の経過によらず一定の値を軸に、同程度の幅で振れて変化すること。
+            <h4>弱定常性(weak stationarity)</h4>
+                時系列データの期待値と自己共分散が時間を通して一定であること。        
+            <h4>強定常性(strict stationarity)</h4>
+                時系列データの同時分布が不変であること。時間が変化しても確率分布が変わらないこと。
+        <h3>ホワイトノイズ</h3>
+            期待値が０で共分散が０の時系列データ。下式で表せる。
+            $$
+                E(\varepsilon_t) = 0
+            $$
+            $$
+            \gamma_k = E(\varepsilon_t\varepsilon_t-k) = \{ \begin{eqnarray*}
+            s^2 & k = 0 \\
+            0     & k \ne 0
+            \end{eqnarray*}
+            $$
+        <h3>偏自己相関</h3>
+        時点\(t)と時点\(t - k\)の自己相関を見る時、その間の時点\(t- k + l (k \gt l)\)と時点\(t\)との自己相関が高ければ、時点\(t)と時点\(t - k\)の自己相関も高い可能性が高い。しかし、時点\(t\)と時点\(t-k\)の途中の自己相関を除いた自己相関、つまり、時点\(t - k\)と時点\(t\)にの直接の相関を求めたい場合がある。その相関のことを偏自己相関といい、 k次偏自己相関というと \(y_t\) と \(y_{t-k}\)の間のデータ、すなわち \(y_{t-1}\)から \(y_{t-k+1}\)の影響を取り除いた相関となる。
+    </div></div>
+  <h2>参考文献、サイト</h2>
+    <div><div class="hidden_show">
+    <ol>
+      <li><a href="https://aidemy.net">"Aidemy"</a></li>
+      <li><a href="https://analytics-note.xyz/time-series/stationarity/">YUTARO, "確率過程の弱定常性と強定常性", 2019, 分析ノート データサイエンティストのメモ書き, </a></li>
+      <li><a href="https://stats.biopapyrus.jp/time-series/acf.html">"自己共分散と自己相関", 2019, biopapyrus </a></li>
+    </ol>
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="02_math/04_probability_and_statictics/04_method_of_moments.html">積率法・モーメント法</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="02_math/05_time_series_analysis/02_arma_model.html">ARIMAモデル</a>
+</div>
+</main>
+</body>
+</html>
