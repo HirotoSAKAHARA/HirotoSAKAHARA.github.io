@@ -411,7 +411,6 @@ table, th, td {
   height: 45px;
 
   position: fixed;
-/*position: absolute;/*←絶対位置*/
   bottom: 0; /*下に固定*/
 }
 
