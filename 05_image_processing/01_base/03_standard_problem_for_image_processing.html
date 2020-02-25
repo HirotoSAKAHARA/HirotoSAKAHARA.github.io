@@ -2,15 +2,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - generative model - baysian neural network </title>
+<title>hsmemo - image processing - base - standard problem for image processing </title>
 <base href="../../" />
 
-
 <link rel="stylesheet" href="style.css">
-<!-- 数式を使う宣言-->
+<!-- 式・使う宣言-->
 <script>
-  window.MathJax = {
-    tex: {
+    window.MathJax = {
+tex: {
 macros: {
 x: "{\\times}",
 bm: ["{\\boldsymbol{#1}}",1],
@@ -24,13 +23,13 @@ color: [],
 colorV2: ['color']
 },
 packages: {'[+]': ['noerrors']}
-    },
-    chtml: {
+},
+chtml: {
 matchFontHeight: false,
 displayAlign: "left",
 displayIndent: "2em"
-    },
-    options: {
+},
+options: {
 renderActions: {
 /* add a new named action to render <script type="math/tex"> */
 find_script_mathtex: [10, function (doc) {
@@ -45,50 +44,68 @@ doc.math.push(math);
 }
 }, '']
 }
-    },
-    loader: {
+},
+loader: {
 load: ['[tex]/noerrors']
-    }
-  };
+}
+    };
 </script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
 </script>
-
 </head>
-
 <body>
 <main>
+
 
 <!--***************************ヘッダー領域****************************-->
 <div class="site-header">
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 人工知能 - 生成モデル</span>
+    <span class="subtitle"> : 画像処理 - 基礎</span>
   </div>
 
 </div>
 
 <div class="last_modified">
 <script type="text/javascript">
-   document.write('最終更新日:' + document.lastModified);
+   document.write('最終更新日 : ' + document.lastModified);
 </script>
+<!--...........................更新内容............................-->
 ：
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>ベイズ流ニューラルネットワーク</h1>
-  Baysian Neural Network
+<h1>画像処理の標準問題</h1>
+    <h2>MNIST(エムニスト)</h2>
+        <div><div class="hidden_show">
+    
+  手書き数字のデータセット、28x28で１チャンネルのデータとなっている
+        </div></div>
+    <h2>CIFAR-10</h2>
+        <div><div class="hidden_show">
+    
+  10種類のオブジェクトが映った画像の10x10のデータセットの分類
+        </div></div>
+    <h2>ImageNet(<a href="http://www.image-net.org">http : //www.image-net.org/</a>)</h2>
+        <div><div class="hidden_show">
+    
+  データが公開されているので登録すればダウンロード可能
+        </div></div>
+    <h2>MS-COCO(<a href="http://cocodataset.org/#home">http : //cocodataset.org/#home</a>)</h2>
+        <div><div class="hidden_show">
+    
+  画像に対して５つのキャプションが与えられる。表現の多様性をチェックする    </dl>
 
+    </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="03_ai/08_generative_model/01_elbo.html">elbo</a>
+<a class="prev" href="05_image_processing/01_base/02_image_processing_preprocessing.html">画像処理におけるデータ前処理</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="03_ai/08_generative_model/03_deep_generative_models.html">deep generative models</a>
+<a class="next" href="05_image_processing/02_traditional_image_processing/01_traditional_image_processing.html">伝統的な画像処理</a>
 </div>
 </main>
 </body>
 </html>
-

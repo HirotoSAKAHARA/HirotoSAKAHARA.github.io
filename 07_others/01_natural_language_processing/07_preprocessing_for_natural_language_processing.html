@@ -2,15 +2,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - generative model - deep generative models </title>
+<title>hsmemo - others - natural language processing - preprocessing for natural language processing </title>
 <base href="../../" />
 
-
 <link rel="stylesheet" href="style.css">
-<!-- 数式を使う宣言-->
+<!-- 式・使う宣言-->
 <script>
-  window.MathJax = {
-    tex: {
+    window.MathJax = {
+tex: {
 macros: {
 x: "{\\times}",
 bm: ["{\\boldsymbol{#1}}",1],
@@ -24,13 +23,13 @@ color: [],
 colorV2: ['color']
 },
 packages: {'[+]': ['noerrors']}
-    },
-    chtml: {
+},
+chtml: {
 matchFontHeight: false,
 displayAlign: "left",
 displayIndent: "2em"
-    },
-    options: {
+},
+options: {
 renderActions: {
 /* add a new named action to render <script type="math/tex"> */
 find_script_mathtex: [10, function (doc) {
@@ -45,49 +44,65 @@ doc.math.push(math);
 }
 }, '']
 }
-    },
-    loader: {
+},
+loader: {
 load: ['[tex]/noerrors']
-    }
-  };
+}
+    };
 </script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
 </script>
-
 </head>
-
 <body>
 <main>
+
 
 <!--***************************ヘッダー領域****************************-->
 <div class="site-header">
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 人工知能 - 生成モデル</span>
+    <span class="subtitle"> : その他 - 自然言語処理</span>
   </div>
 
 </div>
 
 <div class="last_modified">
 <script type="text/javascript">
-   document.write('最終更新日:' + document.lastModified);
+   document.write('最終更新日 : ' + document.lastModified);
 </script>
+<!--...........................更新内容............................-->
 ：
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>deep generative models</h1>
+<h1>自然言語処理におけるデータ前処理</h1>
+    <h2>表記揺れへの対応</h2>
+        <div><div class="hidden_show">
+    
+  <h3>表記ゆれ</h3>
+同じ文章の中で、同じ意味の言葉が異なって表記されていること(大文字・小文字、半角・全角、ひらがな、カタカナなど）
 
+    <h3>正規化</h3>
+表記ゆれを防ぐために、ルールベースで文字や数字を変換すること。正規表現を使うことが多い。
+
+    <h3>Padding</h3>
+    入力文の長さの不一致があると、行列演算ができなくなる。そこで、長すぎる文を削り、
+    短すぎる文には０を埋める処理をして、文章の長さを統一する。
+
+    <h3>ID化</h3>
+    単語をID化することで、ニューラルネットに入力として与えれるようにする。
+
+  
+    </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="03_ai/08_generative_model/02_baysian_neural_network.html">ベイズ流ニューラルネットワーク</a>
+<a class="prev" href="07_others/01_natural_language_processing/06_natural_language_processing_with_dnn.html">深層学習を使った自然言語処理</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="03_ai/08_generative_model/04_variational_autoencoders.html">変分オートエンコーダ</a>
+<a class="next" href="07_others/01_natural_language_processing/08_evaluation_for_natural_language_processing.html">自然言語処理の評価</a>
 </div>
 </main>
 </body>
 </html>
-

@@ -122,56 +122,54 @@ X_batch, y_batch = g.next() </code> </pre>
     <h2>whitening<span class="small"> : 白色化</span></h2>
         <div><div class="hidden_show">
     
-  特徴間の相関をなくし、分散を一定にする。
-<pre> <code># ジェネレーターの生成
-datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
+        特徴間の相関をなくし、分散を一定にする。
+        <pre> <code># ジェネレーターの生成
+        datagen = ImageDataGenerator(featurewise_center=True, zca_whitening=True)
 
-# 標準化
-g = datagen.flow(X_train, y_train, shuffle=False)
-X_batch, y_batch = g.next() </code> </pre>
+        # 標準化
+        g = datagen.flow(X_train, y_train, shuffle=False)
+        X_batch, y_batch = g.next() </code> </pre>
 
         </div></div>
     <h2>batch normalization<span class="small"> : バッチ正規化 </span></h2>
         <div><div class="hidden_show">
     
-  ミニバッチ学習の際にバッチごとに標準化を行うこと。
-  Kerasの実装は以下の通り。
-<pre> <code> model.add(BatchNormalization()) </code> </pre>
+        ミニバッチ学習の際にバッチごとに標準化を行うこと。
+        Kerasの実装は以下の通り。
+        <pre> <code> model.add(BatchNormalization()) </code> </pre>
 
         </div></div>
     <h2>重み正規化</h2>
         <div><div class="hidden_show">
     
-  入力xではなく、重み係数wを正規化(平均０分散１）
+        入力xではなく、重み係数wを正規化(平均０分散１）
         </div></div>
     <h2>層正規化</h2>
         <div><div class="hidden_show">
-    
-  層内の全ニューロンを正規化(平均０分散１）する。入力データが１でも正則化可能。
-
+        層内の全ニューロンを正規化(平均０分散１）する。入力データが１でも正則化可能。
         </div></div>
     <h2>ZCA<span class="small"> : zero-phase component analysis, ゼロ位相成分分析</span></h2>
         <div><div class="hidden_show">
     
-  白色化の線形変換に使用する行列を対称行列に制限する。
+        白色化の線形変換に使用する行列を対称行列に制限する。
 
         </div></div>
     <h2>LRN<span class="small"> : local response  normalization, 局所的応答正規化</span></h2>
         <div><div class="hidden_show">
     
-  同一位置(ピクセル)において複数の特徴マップ間で正規化する。[1]
+        同一位置(ピクセル)において複数の特徴マップ間で正規化する。[1]
 
         </div></div>
     <h2>GCN<span class="small"> : global contrast normalization, 大域コントラスト正規化</span></h2>
         <div><div class="hidden_show">
     
-  特徴マップ全体でコントラストを正規化する。
+        特徴マップ全体でコントラストを正規化する。
 
         </div></div>
     <h2>LCN<span class="small"> : local contrast normalization, 局所コントラスト正規化</span></h2>
         <div><div class="hidden_show">
     
-  特徴マップの局所領域内でコントラストを正規化する。
+        特徴マップの局所領域内でコントラストを正規化する。
   
         </div></div>
     <h2>参考文献、サイト</h2>

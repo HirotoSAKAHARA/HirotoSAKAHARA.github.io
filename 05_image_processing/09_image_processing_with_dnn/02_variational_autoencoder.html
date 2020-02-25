@@ -2,14 +2,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - ai - evaluation - standard problem </title>
+<title>hsmemo - image processing - image processing with dnn - variational autoencoder </title>
 <base href="../../" />
 
+
 <link rel="stylesheet" href="style.css">
-<!-- 式・使う宣言-->
+<!-- 数式を使う宣言-->
 <script>
-    window.MathJax = {
-tex: {
+  window.MathJax = {
+    tex: {
 macros: {
 x: "{\\times}",
 bm: ["{\\boldsymbol{#1}}",1],
@@ -23,13 +24,13 @@ color: [],
 colorV2: ['color']
 },
 packages: {'[+]': ['noerrors']}
-},
-chtml: {
+    },
+    chtml: {
 matchFontHeight: false,
 displayAlign: "left",
 displayIndent: "2em"
-},
-options: {
+    },
+    options: {
 renderActions: {
 /* add a new named action to render <script type="math/tex"> */
 find_script_mathtex: [10, function (doc) {
@@ -44,67 +45,78 @@ doc.math.push(math);
 }
 }, '']
 }
-},
-loader: {
+    },
+    loader: {
 load: ['[tex]/noerrors']
-}
-    };
+    }
+  };
 </script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
 </script>
+
 </head>
+
 <body>
 <main>
-
 
 <!--***************************ヘッダー領域****************************-->
 <div class="site-header">
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 人工知能 - タスクの評価</span>
+    <span class="subtitle"> : 画像処理 - 深層学習を利用した画像処理</span>
   </div>
 
 </div>
 
 <div class="last_modified">
 <script type="text/javascript">
-   document.write('最終更新日 : ' + document.lastModified);
+   document.write('最終更新日:' + document.lastModified);
 </script>
-<!--...........................更新内容............................-->
 ：
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>標準問題</h1>
-    <h2>MNIST(エムニスト)</h2>
+<h1>変分オートエンコーダ</h1>
+    <h2>英語名、略称など</h2>
         <div><div class="hidden_show">
     
-  手書き数字のデータセット、28x28で１チャンネルのデータとなっている
+  variational autoencoders、VAE
         </div></div>
-    <h2>CIFAR-10</h2>
+    <h2>概要</h2>
         <div><div class="hidden_show">
     
-  10種類のオブジェクトが映った画像の10x10のデータセットの分類
+  生成モデルの枠組みで自己符号化器 (autoencoders) を解釈したもので、 生成モデルで言う潜在変数を観測データの符号と見做す. すなわち、観測データから潜在変数を推定する手続きが符号化であり、その逆が復号化である.
+    グラフを使って似た画像を並べて、潜在変数を解釈することができる。
         </div></div>
-    <h2>ImageNet(<a href="http://www.image-net.org">http : //www.image-net.org/</a>)</h2>
+    <h2> ベイズ推論 </h2>
         <div><div class="hidden_show">
     
-  データが公開されているので登録すればダウンロード可能
+  条件付き確率の出力から、条件を算出する。
+
         </div></div>
-    <h2>MS-COCO(<a href="http://cocodataset.org/#home">http : //cocodataset.org/#home</a>)</h2>
+    <h2>変分ベイズ法 (変分推論、変分近似法)</h2>
         <div><div class="hidden_show">
     
-  画像に対して５つのキャプションが与えられる。表現の多様性をチェックする    </dl>
+  データ(x)と未知パラメータ(z)と潜在変数(θ)の確率分布がある場合、
+  <a href="02_math/04_probability_and_statictics/01_kullback_leibler_divergence.html">KLダイバージェンス</a>の最小化を解析的手法で求めることで最適値が求まる。
+
+        </div></div>
+    <h2>リパラメトライゼーショントリック</h2>
+        <div><div class="hidden_show">
+    
+  x -> z -> xを求める過程でzは確率変数でなく
+    真値(平均)とノイズの組み合わせだとみなして解く。
+    RNNにも応用できて、中間の文章が生成できる。
 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="03_ai/03_evaluation/05_neural_network.html">NNの評価</a>
+<a class="prev" href="05_image_processing/09_image_processing_with_dnn/01_image_processing.html">深層学習を使った画像認識</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="03_ai/04_learning_methods/01_base.html">基礎</a>
+<a class="next" href="05_image_processing/09_image_processing_with_dnn/03_generative_adversarial_networks.html">GAN</a>
 </div>
 </main>
 </body>
