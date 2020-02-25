@@ -37,6 +37,7 @@ for i in range(nChapter):
   for j in range(nSection):
     for k in range(nItem):
       if(item_urls[i][j][k] != 0):
+        print(i, j, k,  item_urls[i][j][k], section_strings[i][j])
         update_navigation(base_dir + item_urls[i][j][k] \
             , item_prev_urls[i][j][k] \
             , item_prev_strings[i][j][k] \
