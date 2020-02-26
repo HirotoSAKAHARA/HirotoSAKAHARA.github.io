@@ -28,7 +28,6 @@ update_index(base_dir, item_urls, item_strings, item_has_contents, nChapter, nSe
 
 (item_prev_urls, item_prev_strings, item_next_urls, item_next_strings) = \
   get_prev_and_next_urls_and_strings(item_urls, item_strings, nChapter, nSection, nItem)
-print(item_prev_urls)
 
 #print(item_prev_urls)
 #print(item_next_urls)
