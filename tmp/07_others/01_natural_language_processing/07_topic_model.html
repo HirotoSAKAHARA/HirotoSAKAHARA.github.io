@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>hsmemo - - others - natural language processing </title>
-<base href="../">
+<base href="../../" />
 
 <link rel="stylesheet" href="style.css">
 <!-- 式・使う宣言-->
@@ -78,30 +78,22 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>自然言語処理におけるデータ前処理</h1>
-    <h2>表記揺れへの対応</h2>
+<h1>トピックモデル</h1>
+    <h2>概要</h2>
         <div><div class="hidden_show">
-    
-  <h3>表記ゆれ</h3>
-同じ文章の中で、同じ意味の言葉が異なって表記されていること(大文字・小文字、半角・全角、ひらがな、カタカナなど）
-
-    <h3>正規化</h3>
-表記ゆれを防ぐために、ルールベースで文字や数字を変換すること。正規表現を使うことが多い。
-
-    <h3>Padding</h3>
-    入力文の長さの不一致があると、行列演算ができなくなる。そこで、長すぎる文を削り、
-    短すぎる文には０を埋める処理をして、文章の長さを統一する。
-
-    <h3>ID化</h3>
-    単語をID化することで、ニューラルネットに入力として与えれるようにする。
-
-  
+        文章が複数のトピックで成り立っており、文書中の単語はそれらのトピックにより確率的に生成されていると仮定するモデル。
+        </div></div>
+    <h2>潜在的ディリクレ配分法</h2>
+        <div><div class="hidden_show">
+        トピックモデルにおいて、トピック分布にディリクレ分布を仮定し、ベイズ推定する手法。
+        ある現象が起きたときに次の現象が起きる確率であるガンマ分布を全ての単語で計算し、
+        確率密度関数を作成する。 適応的にパラメータが変わるノンパラメトリックモデルである。
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="html/natural_language_processing_with_dnn.html">深層学習を使った自然言語処理</a>
+<a class="prev" href="07_others/01_natural_language_processing/06_bags_of_words.html">Bags of Words</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="html/evaluation_for_natural_language_processing.html">自然言語処理の評価</a>
+<a class="next" href="07_others/01_natural_language_processing/08_natural_language_processing_with_dnn.html">深層学習を使った自然言語処理</a>
 </div>
 </main>
 </body>

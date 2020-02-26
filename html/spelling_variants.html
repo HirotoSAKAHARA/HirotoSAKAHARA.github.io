@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>hsmemo - - others - natural language processing </title>
-<base href="../../" />
+<base href="../">
 
 <link rel="stylesheet" href="style.css">
 <!-- 式・使う宣言-->
@@ -78,60 +78,48 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>Bags of Words</h1>
-    <h2>英語名、略称など</h2>
+<h1>表記ゆれへの対応</h1>
+    <h2>この記事の目的</h2>
         <div><div class="hidden_show">
-  BOW
-        </div></div>
-    <h2>概要</h2>
-        <div><div class="hidden_show">
-    文章中の各単語の分布を記録したベクトルとして表現する。ベクトル表現には以下のようなものがある。
-        </div></div>
-    <h2>カウント表現</h2>
-        <div><div class="hidden_show">
-文章中の各単語の出現数を記録する。
+            自然言語処理の表記ゆれへの対応方法について記す。
 
-        </div></div>
-    <h2>バイナリ表現</h2>
-        <div><div class="hidden_show">
-文章中に各単語が存在するかどうかを記録する。
-
-        </div></div>
-    <h2>tf-idf表現</h2>
-        <div><div class="hidden_show">
-単語の出現頻度である\(tf\)(term frequency)と単語の希少性を示す\(idf\)(inverse document frequency:逆文書頻度)に基づいて計算される。
-多くの文書に出現する一般的な言葉の重要度を下げる。
-$$
-tfidf_{i,j} = tf_{i,j}\cdot idf_i
-$$
-$$
-tf_{i,j} = \frac{n_{i,j}}{\sum_k{n_{k,j}}}
-$$
-$$
-idf_i = \log{\frac{|D|}{|{d: d \ni t_i}|}}
-$$
-ここで、\(n_{i_j}\)は文書\(d_j\)における単語\(t_i\)の出現回数、\(\sum_k{n_{k,j}}\)は文書\(d_j\)における全ての単語の出現回数の和。\(|D|\)は総文書数、\(|{d: d \ni t_i}|\)は単語\(t_i\)を含む文書数。
-
-        </div></div>
-    <h2>one hot vector表現</h2>
-        <div><div class="hidden_show">
-犬、猫、うさぎのような数値でない値を取る説明変数において、犬:(1,0,0),猫(0,1,0),うさぎ(0,0,1)のような対応する次元が1でその他が0のベクトルで表す。
-次元数は言葉の種類の総数となる。
-
-
-        </div></div>
-    <h2>単語文書行列<span class="small">term-document matrix</span></h2>
-        <div><div class="hidden_show">
     
-  文書に出現する単語の頻度を表形式で表したもの。tf, idfにより単語の重みを変えると、重みあり単語文書行列になる。
+        </div></div>
+    <h2>表記揺れとは</h2>
+        <div><div class="hidden_show">
+        同じ文章の中で、同じ意味の言葉が異なって表記されていること
+        (大文字・小文字、半角・全角、ひらがな、カタカナなど）。
 
+        </div></div>
+    <h2>正規化</h2>
+        <div><div class="hidden_show">
+        表記ゆれを防ぐために、ルールベースで文字や数字を変換すること。
+        正規表現を使うことが多い。
 
+        </div></div>
+    <h2>Padding</h2>
+        <div><div class="hidden_show">
+        入力文の長さの不一致があると、行列演算ができなくなる。そこで、長すぎる文を削り、
+        短すぎる文には０を埋める処理をして、文章の長さを統一する。
+
+        </div></div>
+    <h2>ID化</h2>
+        <div><div class="hidden_show">
+        単語をID化することで、ニューラルネットに入力として与えることを可能にする。
+
+        </div></div>
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
+    <ol>
+        <li><a href="https://aidemy.net/">Aidemy</a><li>
+    </ol> 
+ 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="07_others/01_natural_language_processing/03_ngram.html">Ngram</a>
+<a class="prev" href="html/morphological_analysis.html">形態素解析 </a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="07_others/01_natural_language_processing/05_topic_model.html">トピックモデル</a>
+<a class="next" href="html/ngram.html">Ngram</a>
 </div>
 </main>
 </body>

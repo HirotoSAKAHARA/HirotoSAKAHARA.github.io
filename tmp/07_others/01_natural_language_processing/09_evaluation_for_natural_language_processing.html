@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>hsmemo - - others - natural language processing </title>
-<base href="../">
+<base href="../../" />
 
 <link rel="stylesheet" href="style.css">
 <!-- 式・使う宣言-->
@@ -78,23 +78,48 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>トピックモデル</h1>
-    <h2>概要</h2>
+<h1>自然言語処理の評価</h1>
+
+    <h2>評価方法</h2>
         <div><div class="hidden_show">
-        文章が複数のトピックで成り立っており、文書中の単語はそれらのトピックにより確率的に生成されていると仮定するモデル。
+
+        <h3>動的評価</h3>
+    
+        通常は訓練データとテストデータは完全に分けて評価をするが、
+        文脈においては、特定の単語（人名など）と偏ったデータになりがちなので、
+        テストデータでも１回だけ学習をすること。 
+
         </div></div>
-    <h2>潜在的ディリクレ配分法</h2>
+    <h2>評価指標</h2>
         <div><div class="hidden_show">
-        トピックモデルにおいて、トピック分布にディリクレ分布を仮定し、ベイズ推定する手法。
-        ある現象が起きたときに次の現象が起きる確率であるガンマ分布を全ての単語で計算し、
-        確率密度関数を作成する。 適応的にパラメータが変わるノンパラメトリックモデルである。
+        </div></div>
+    <h2>BLEU (<a href="https://www.aclweb.org/anthology/P02-1040.pdf">BLEU :  a Method for Automatic Evaluation of Machine Translation </a>)</h2>
+        <div><div class="hidden_show">
+        
+            機械翻訳の指標。過去の単語から次の単語の出現確率を算出するn-gramを改良して使用する。
+        </div></div>
+    <h2>ROUGE(<a href="https://www.aclweb.org/anthology/W04-1013.pdf">ROUGE :  A Package for Automatic Evaluation of Summaries </a>)</h2>
+        <div><div class="hidden_show">
+        
+            自動要約システムのための指標。正しい要約と自動要約システムの中のオーバーラップされた言葉の数の割合を調べる。
+        </div></div>
+    <h2>METEOR(<a href="https://www.cs.cmu.edu/~alavie/papers/BanerjeeLavie2005-final.pdf">METEOR :  An Automatic Metric for MT Evaluation with Improved Correlation with Human Judgments</a>)</h2>
+        <div><div class="hidden_show">
+        
+            機械翻訳の指標。ユニグラムの正確性と再現性の調和平均を元に計算される。正確性より再現性により重きを置く。
+        </div></div>
+    <h2>CIDEr (<a href="https://arxiv.org/pdf/1411.5726.pdf">CIDEr :  Consensus-based Image Description Evaluation</a>)</h2>
+        <div><div class="hidden_show">
+        
+            画像の自動キャプション付の指標。
+  
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="html/bags_of_words.html">Bags of Words</a>
+<a class="prev" href="07_others/01_natural_language_processing/08_natural_language_processing_with_dnn.html">深層学習を使った自然言語処理</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="html/natural_language_processing_with_dnn.html">深層学習を使った自然言語処理</a>
+<a class="next" href="07_others/02_voice_recognition/01_voice_recognition.html">音声認識の基礎</a>
 </div>
 </main>
 </body>
-</html>
+</html>  

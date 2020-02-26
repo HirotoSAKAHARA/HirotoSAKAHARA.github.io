@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>hsmemo - - others - natural language processing </title>
-<base href="../">
+<base href="../../" />
 
 <link rel="stylesheet" href="style.css">
 <!-- 式・使う宣言-->
@@ -78,22 +78,48 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>トピックモデル</h1>
-    <h2>概要</h2>
+<h1>表記ゆれへの対応</h1>
+    <h2>この記事の目的</h2>
         <div><div class="hidden_show">
-        文章が複数のトピックで成り立っており、文書中の単語はそれらのトピックにより確率的に生成されていると仮定するモデル。
+            自然言語処理の表記ゆれへの対応方法について記す。
+
+    
         </div></div>
-    <h2>潜在的ディリクレ配分法</h2>
+    <h2>表記揺れとは</h2>
         <div><div class="hidden_show">
-        トピックモデルにおいて、トピック分布にディリクレ分布を仮定し、ベイズ推定する手法。
-        ある現象が起きたときに次の現象が起きる確率であるガンマ分布を全ての単語で計算し、
-        確率密度関数を作成する。 適応的にパラメータが変わるノンパラメトリックモデルである。
+        同じ文章の中で、同じ意味の言葉が異なって表記されていること
+        (大文字・小文字、半角・全角、ひらがな、カタカナなど）。
+
+        </div></div>
+    <h2>正規化</h2>
+        <div><div class="hidden_show">
+        表記ゆれを防ぐために、ルールベースで文字や数字を変換すること。
+        正規表現を使うことが多い。
+
+        </div></div>
+    <h2>Padding</h2>
+        <div><div class="hidden_show">
+        入力文の長さの不一致があると、行列演算ができなくなる。そこで、長すぎる文を削り、
+        短すぎる文には０を埋める処理をして、文章の長さを統一する。
+
+        </div></div>
+    <h2>ID化</h2>
+        <div><div class="hidden_show">
+        単語をID化することで、ニューラルネットに入力として与えることを可能にする。
+
+        </div></div>
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
+    <ol>
+        <li><a href="https://aidemy.net/">Aidemy</a><li>
+    </ol> 
+ 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="html/bags_of_words.html">Bags of Words</a>
+<a class="prev" href="07_others/01_natural_language_processing/02_morphological_analysis.html">形態素解析 </a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="html/natural_language_processing_with_dnn.html">深層学習を使った自然言語処理</a>
+<a class="next" href="07_others/01_natural_language_processing/04_ngram.html">Ngram</a>
 </div>
 </main>
 </body>
