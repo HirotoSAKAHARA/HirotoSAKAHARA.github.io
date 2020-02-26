@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - ai - preprocessing </title>
+<base href="../">
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - データ前処理</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>外れ値への対応</h1>
+    <h2>LOF<span class="small"> : local outlier factor</span></h2>
+        <div><div class="hidden_show">
+    
+  データの密度に基づいて外れ値を検知する。
+    <ul>
+<li>近くにデータ点が少ないのが外れ値であると考える</li>
+<li>k個の近傍点を使ってデータの密度を推定する</li>
+<li>上記の密度が、周囲と相対的に低い点を外れ値と判定する</li>
+    </ul>
+        </div></div>
+    <h2>isolation forest</h2>
+        <div><div class="hidden_show">
+    
+  軸毎にランダムにデータ分割を行う空間分割ツリーを作成した時に、
+    早々にデータ分割ができなくなるデータを外れ値とする。
+    <ul>
+<li>距離や密度に依存しないため、それらの指標を計算するコストが不要</li>
+<li>計算が複雑でなく、省メモリである</li>
+<li>大規模データであっても計算をスケールさせやすい</li>
+    </ul>
+  
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="html/lack_of_data.html">データ量が少ない場合への対応</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="html/imbalanced_data.html">不均衡データへの対応</a>
+</div>
+</main>
+</body>
+</html>

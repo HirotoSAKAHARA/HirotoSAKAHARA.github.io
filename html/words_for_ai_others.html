@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - ai - others </title>
+<base href="../">
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - その他</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：sota追加、情報量を削除(mathに移動)
+</div>
+
+</div>
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>その他用語</h1>
+    <h2>sota</h2>
+        <div><div class="hidden_show">
+    あるタスクにおいて、その時の最高性能が出せるアルゴリズム
+
+        </div></div>
+    <h2>怠惰学習</h2>
+        <div><div class="hidden_show">
+      事前にモデルを構築しない学習法
+
+        </div></div>
+    <h2>Empirical Risk Minimization(ERM, 経験損失最小化)</h2>
+        <div><div class="hidden_show">
+    
+      損失関数とデータについて求めた経験損失を最小化するようにモデルを選ぶ学習の基準
+
+        </div></div>
+    <h2>Competitive Learning(競合学習)</h2>
+        <div><div class="hidden_show">
+    
+      教師なし学習で頻繁に行われる学習で、最も入力データに反応したニューロンのみ更新したりするようなニューロン同士で競わせるような学習.
+        </div></div>
+    <h2>NIC</h2>
+        <div><div class="hidden_show">
+    
+      写真から何をしているのかを言語化する。
+  
+        </div></div>
+    <h2>識別モデル</h2>
+        <div><div class="hidden_show">
+    
+      Xをデータ、Yをラベル(従属変数)とするとXとYの関係を直接記述する。
+
+        </div></div>
+    <h2>TPU</h2>
+        <div><div class="hidden_show">
+    
+  
+        </div></div>
+    <h2>minimax法</h2>
+        <div><div class="hidden_show">
+    
+      ゲーム木において、相手は自分にとって最悪手、自分は最善手を選ぶとして最善手を算出する方法
+        </div></div>
+    <h2>αβ法</h2>
+        <div><div class="hidden_show">
+    
+      minimax法でβカット(自分の手を計算する時に、現在の候補より評価値が低い手のノードを探索しないこと)とαカット(相手の手を計算するときに、現在の候補より評価値の高いノードを探索しないこと)を行う手法
+
+        </div></div>
+    <h2>ImageDataGenerator(keras)</h2>
+        <div><div class="hidden_show">
+    
+      ランダムにデータの反転、圧縮、移動、回転などを行うことができる。
+    ミニバッチでデータを作成しながら、学習することで、メモリも少なくてすむ。
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="html/self_organizing_map.html">self organizing map <span class="small"> :  SOM, 自己組織化</span></a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="html/references_for_ai.html">参考資料（人工知能)</a>
+</div>
+</main>
+</body>
+</html>

@@ -5,7 +5,8 @@ import re
 from bs4 import BeautifulSoup
 from make_index_sub import *
 
-base_dir = "../"
+base_dir = "../tmp/"
+
 
 #各フォルダ毎のデータを作る
 nChapter = 20
@@ -27,6 +28,7 @@ update_index(base_dir, item_urls, item_strings, item_has_contents, nChapter, nSe
 
 (item_prev_urls, item_prev_strings, item_next_urls, item_next_strings) = \
   get_prev_and_next_urls_and_strings(item_urls, item_strings, nChapter, nSection, nItem)
+print(item_prev_urls)
 
 #print(item_prev_urls)
 #print(item_next_urls)
@@ -37,7 +39,6 @@ for i in range(nChapter):
   for j in range(nSection):
     for k in range(nItem):
       if(item_urls[i][j][k] != 0):
-        print(i, j, k,  item_urls[i][j][k], section_strings[i][j])
         update_navigation(base_dir + item_urls[i][j][k] \
             , item_prev_urls[i][j][k] \
             , item_prev_strings[i][j][k] \

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - introduction - about </title>
+<base href="../">
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : はじめに - このサイトについて</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>数学記号</h1>
+    <h2>数学記号</h2>
+        <div><div class="hidden_show">
+    <dl>
+      <dt>定義</dt><dd>\(:=\)</dd>
+      <dt>大体等しい</dt><dd>\(\approx\)</dd>
+      <dt>比例する</dt><dd>\(\propto\)</dd>
+      <dt>変数</dt><dd>\(x\)</dd>
+      <dt>確率変数</dt><dd>\(X\)</dd>
+      <dt>ベクトル</dt><dd>\(\bm{x}\)</dd>
+      <dt>行列</dt><dd>\(\bm{X}\)</dd>
+      <dt>転置行列</dt><dd>\(\bm{X}^\top\)</dd>
+      <dt>n個のベクトル\(\bm{x_1}, \ldots, \bm{x_n}\)の集合</dt><dd> \(X = \{\bm{x_1}, \ldots, \bm{x_n}\} \)</dd>
+      <dt>母集団（の分布）、訓練データ</dt><dd>\(\mathcal{D}\)</dd>
+      <dt>実数集合</dt><dd>\(\mathbb{R}\)</dd>
+      <dt>n次の実数集合</dt><dd>\(\mathbb{R}^n\)</dd>
+      <dt>\(x\)の期待値</dt><dd>\(\mathrm{E}(x)\)</dd>
+      <dt>確率分布\(p(x)\)の時の\(x\)の期待値</dt><dd>\(\mathrm{E}(x|p(x))\)</dd>
+      <dt>確率分布\(p(x)\)の時の関数\(f(x)\)の期待値</dt><dd>\(\mathrm{E}(f(x)|p(x))\)</dd>
+      <dt>確率変数\(X\)の分散</dt><dd>\(\mathrm{V}(X)\)</dd>
+      <dt>確率変数\(X\)の共分散</dt><dd>\(\mathrm{Cov}(X)\)</dd>
+      <dt>集合\(X\)の中の最大値</dt><dd>\(\max(X)\)</dd>
+      <dt>集合\(X\)の中の最小値</dt><dd>\(\min(X)\)</dd>
+      <dt>式\(f_1(x), \ldots, f_n(x)\)の中の最大値</dt><dd>\(\max(f_1(x), \ldots, f_n(x))\)</dd>
+      <dt>式\(f_1(x), \ldots, f_n(x)\)の中の最小値</dt><dd>\(\min(f_1(x), \ldots, f_n(x))\)</dd>
+      <dt>式\(f(x)\)を最大化する</dt><dd>\({\operatorname{maximize}} \;\;f(x)\)</dd>
+      <dt>式\(f(x)\)を最小化する</dt><dd>\({\operatorname{minimize}} \;\;f(x)\)</dd>
+      <dt>制約条件</dt><dd>\(\text{subject to}\)</dd>
+
+    </dl>
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="html/contact.html">連絡先</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="html/references_for_introduction.html">参考資料（このサイトについて)</a>
+</div>
+</main>
+</body>
+</html>

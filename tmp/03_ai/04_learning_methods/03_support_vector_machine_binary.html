@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - ai - learning methods </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - 非深層学習系の学習手法</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：双対問題、カーネル関数について記述
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>サポートベクトルマシン(2クラス分類)</h1>
+    <h2>ハードマージン</h2>
+        <div><div class="hidden_show">
+      訓練集合\(\{(\bm{x}_i, y_i)\}_{i \in [n]}\)内のデータを正しく分類できる超平面が決定関数\(f(\bm{x}) = \bm{w}^\top\bm{x}+b\)で求められる場合、
+      訓練集合は\(f(\bm{x})\)によって分離可能(separable)であると表現される。
+      この時、\(f(\bm{x})\)は無数に存在するが、サポートベクトルマシンでは\(f(\bm{x})\)と両方のクラスの最近隣接点の距離の和を最大にする、
+      つまりマージン最大化(margin maximization)するパラメータを選択する。この場合、サポートベクトルマシンはマージン\(M\)を利用して以下の最適化問題によって定式化できる。
+      $$
+      \underset{\bm{w},b,M}{\operatorname{maximize}}\frac{M}{\|\bm{w}\|}
+      $$
+      $$
+        \text{        subject to} y_i(\bm{w}^\top\bm{x}_i+b) \ge M, i \in [n]
+      $$
+      この式を更に\(\tilde{\bm{w}} = \bm{w}/M\), \(\tilde{b} = b/M\)で置き換え、変形した以下の式が、一般的なハードマージンの定式化となる。
+      $$
+      \underset{\bm{\tilde{w}},b}{\operatorname{minimize}}\|\bm{\tilde{w}}\|^2
+      $$
+      $$
+        \text{        subject to} y_i(\bm{\tilde{w}}^\top\bm{x}_i+\tilde{b}) \ge 1, i \in [n]
+      $$
+        </div></div>
+    <h2>ソフトマージン</h2>
+        <div><div class="hidden_show">
+      全てのデータが１枚の超平面で区別できると考えるハードマージンの仮定は、現実には強すぎるため、反対側への誤差\(\xi_i \ge 0, i \in [n]\)を導入し、制約条件を修正する。これをソフトマージンと呼ぶ。
+      また、ハードマージンにおける\(\|\bm{\tilde{w}}\|\)と同じく、\(xi_i\)もできるだけ小さくしたいので、以下の定式化が成り立つ。また下式で\(C\)は正則化係数(regularization parameter)と呼ばれる正の定数で、事前に決定しておく必要がある。\(C\)は小さいほど誤分類を許容しやすくなり、\(C = \infty\)でハードマージンと等しい。
+       $$
+       \underset{\bm{w},b,\bm{\xi}}{\operatorname{minimize}}\|\bm{\tilde{w}}\|^2 + C \sum_{i \in [n]} \xi_i
+      $$
+      $$
+        \text{        subject to} \begin{eqnarray*} 
+        y_i(\bm{\tilde{w}}^\top\bm{x}_i+\tilde{b}) &\ge& 1 - \xi_i&, i \in [n]  \\
+        \xi_i &\ge& 0&, i \in [n]
+        \end{eqnarray*}
+      $$
+      ここで\(\bm{\xi} := (\xi_1, \cdots, \xi_n)^\top\)
+
+        </div></div>
+    <h2>双対問題</h2>
+        <div><div class="hidden_show">
+    前項の定式化(主問題)に対する<a class="local" href="02_math/02_optimization_problem/02_linear_programming_problem.html">双対問題</a>を考えると、以下のように表現できる。サポートベクトルマシンの場合、強双対性が成り立ち、主問題と双対問題の目標関数値が最適解において一致する。
+       $$
+       \underset{\bm{\alpha}}{\operatorname{maximize}}- \frac{1}{2} \sum_{i,j \in [n]} \alpha_i, \alpha_j,y_i, y_j, \bm{x}_i^\top\bm{x}_j + \sum_{i \in [n]} \alpha_i
+      $$
+      $$
+        \text{        subject to} \begin{eqnarray*}
+          \sum_{i \in [n]} \alpha_iy_i = 0 \\
+          0 \gt \alpha_i \ge C, i \in [n]
+        \end{eqnarray*}
+      $$
+        </div></div>
+    <h2>カーネル関数</h2>
+        <div><div class="hidden_show">
+      入力\(x\)を何らかの特徴空間\(\mathcal{F}\)へ写像する関数\(\phi:\mathbb{R}^d \rightarrow \mathcal{F}\)を考え、\(\phi\)を新たな特徴ベクトルだと考えると、決定関数は以下のように記述できる。
+       $$
+        f(\bm{x}) = \bm{w}^\top\phi(\bm{x})+b
+      $$
+      また、この時、双対問題は以下となる。
+       $$
+        \underset{\bm{\alpha}}{\operatorname{maximize}} - \frac{1}{2} \sum_{i,j \in [n]} \alpha_i, \alpha_j,y_i, y_j, \phi(\bm{x}_i)^\top\phi(\bm{x}_j) + \sum_{i \in [n]} \alpha_i
+      $$
+      $$
+        \text{        subject to} \begin{eqnarray*}
+          \sum_{i \in [n]} \alpha_iy_i = 0 \\
+          0 \gt \alpha_i \ge C, i \in [n]
+        \end{eqnarray*}
+      $$
+      この双対問題において、\(\phi\)は内積\(\phi(\bm{x}_i)^\top\phi(\bm{x}_j)\)の形でのみ現れている。この内積をカーネル関数\(K\)として定義する。この時、\(\phi(\bm{x})\)が直接計算できなくても、カーネル関数が計算できると、上記双対問題を解くことができる。
+
+        </div></div>
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
+    <ol>
+      <li><cite><a href="https://www.kspub.co.jp/book/detail/1529069.html">竹内一郎, 烏山昌幸, "サポートベクトルマシン",2015,講談社サイエンティフィク</li>
+    </ol>
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="03_ai/04_learning_methods/02_support_vector_machine_base.html">サポートベクトルマシン(基本)</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="03_ai/04_learning_methods/04_support_vector_machine_multi.html">サポートベクトルマシン(多クラス分類)</a>
+</div>
+</main>
+</body>
+</html>
+

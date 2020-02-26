@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - ai - learning methods </title>
+<base href="../">
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - 非深層学習系の学習手法</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>ナイーブベイズ</h1>
+    <h2>英語名、略称など</h2>
+        <div><div class="hidden_show">
+    
+  naive bayes、単純ベイズ
+
+        </div></div>
+    <h2>ターゲットタスク</h2>
+        <div><div class="hidden_show">
+    
+  分類。特にテキスト分類、推薦、センチメント分析、異常検知。
+        </div></div>
+    <h2>アルゴリズム</h2>
+        <div><div class="hidden_show">
+    
+      以下に示すベイズの定理を元にした学習アルゴリズムで、
+    ある事象\(y\)が起きた時にある事象\(x_k\)が起きていた確率をそれぞれの\(k\)について求め、
+    確率が最大となる\(x_k\)を選択する。
+    $$
+    p(x_k|y) = \frac{p(y|x_k)p(x_k)}{p(y)}
+    $$
+    ここで\(p(x)\)は\(x\)が起きる確率、\(p(y|x)\)は\(x\)が起きたときに\(y\)が起きる条件付き確率。
+
+        </div></div>
+    <h2>長所</h2>
+        <div><div class="hidden_show">
+    
+  <ul>
+<li>単純</li>
+<li>高速</li>
+<li>少ないトレーニングデータでも性能が出る</li>
+    </ul>
+        </div></div>
+    <h2>短所</h2>
+        <div><div class="hidden_show">
+    
+  <ul>
+<li>各特徴量が独立という強い仮定が必要なので、問題によっては成り立たない。</li>
+    </ul>
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="html/logistic_regression.html">ロジスティック回帰</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="html/decision_tree.html">決定木</a>
+</div>
+</main>
+</body>
+</html>

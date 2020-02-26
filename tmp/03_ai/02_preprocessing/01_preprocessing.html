@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - ai - preprocessing </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - データ前処理</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>前準備の基礎</h1>
+    
+  ２つのデータがどれだけ似ているかの指標
+    <h2>cos類似度</h2>
+        <div><div class="hidden_show">
+ベクトルがどれだけ近いかを判断する指標
+$$
+\cos(\bm{q}, \bm{d}) = \frac{\bm{q}\bm{d}}{|\bm{q}||\bm{d}|} = \frac{\sum_{i=1}q_id_i}{\sqrt{\sum_{i=1}q_i^2}\sqrt{\sum_{i=1}d_i^2}}
+$$
+        </div></div>
+    <h2>Jaccard類似度</h2>
+        <div><div class="hidden_show">
+集合動詞の類似度を判断する指標
+        </div></div>
+    <h2>ピアソンの積率相関係数</h2>
+        <div><div class="hidden_show">
+    <q>2つの量的変数間の直線的関連の変数を表す係数。n組のデータ(\(x_1, y_1\)),(\(x_2, y_2\)) \(\cdots\) (\(x_n, y_n\))があり、それぞれの平均を\(\bar{x}, \bar{y}\)とした時、ピアソンの積率相関係数は以下の式で表される。</q>[1]
+    $$
+r_{xy} = \frac{{\displaystyle \sum_{i = 1}^n (x_i - \overline{x})
+(y_i - \overline{y})}}{\sqrt{{\displaystyle \sum_{i = 1}^n 
+(x_i - \overline{x})^2}} \sqrt{{\displaystyle \sum_{i = 1}^n 
+(y_i - \overline{y})^2}}} = \frac{s_{xy}}{s_xs_y}
+    $$
+        </div></div>
+    <h2>ケンドールの順位相関係数</h2>
+        <div><div class="hidden_show">
+対応する２つの変量\(p_i(x_i, y_i)\)がある時、\(p_s\)と\(p_t\) (\(s \lt t\)) のときの、\(x_s\)と\(x_t\), \(y_s\)と\(y_t\)の大小の向きに関する類似度を計算する相関係数。
+        </div></div>
+    <h2>スピアマンの順位相関係数</h2>
+        <div><div class="hidden_show">
+変量の値をその大きさ順に順位に変換し、あるいは順位しかわかっていないデータの順位により、ピアソンの相関係数を計算したもの。
+
+        </div></div>
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
+      <ol>
+    <li><cite><a href="https://bellcurve.jp/statistics/glossary/1233.html">BellCurve, "ピアソンの積率相関係数", 統計WEB</a>
+  </ol>
+</div>
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="03_ai/01_base/04_reinforcement_learning.html">強化学習</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="03_ai/02_preprocessing/02_lack_of_data.html">データ量が少ない場合への対応</a>
+</div>
+</main>
+</body>
+</html> 

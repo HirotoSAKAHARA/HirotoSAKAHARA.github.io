@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - ai - preprocessing </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - データ前処理</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>データ形式の変換</h1>
+    <h2>連続値のカテゴリ化</h2>
+        <div><div class="hidden_show">
+    
+  連続値をカテゴリ値に変換する。
+
+        </div></div>
+    <h2>カテゴリデータのダミー変数化</h2>
+        <div><div class="hidden_show">
+    
+  カテゴリデータを各カテゴリを示す変数に分け、排他となる２値で表す。
+
+        </div></div>
+    <h2>横持ちデータと縦持ちデータの変換</h2>
+        <div><div class="hidden_show">
+    
+  人が情報を認識しやすい横持ちデータと、
+  情報量が変化してもデータ構造を変更する必要のない縦持ちデータがあり、
+  データ分析モデルによりどちらかの形式に変換する必要がある。
+  <table>
+    <caption>横持ちデータ</caption>
+    <tr>
+<th>id</th>
+<th>item1</th>
+<th>item2</th>
+<th>item3</th>
+    </tr>
+    <tr>
+<td>id1</td>
+<td>value 11</td>
+<td>value 12</td>
+<td>value 13</td>
+    </tr>
+    <tr>
+<td>id2</td>
+<td>value 21</td>
+<td>value 22</td>
+<td>value 23</td>
+    </tr>
+  </table>
+
+  <table>
+    <caption>縦持ちデータ</caption>
+    <tr>
+<th>id</th>
+<th>items</th>
+<th>value</th>
+    </tr>
+    <tr>
+<td>id1</td>
+<td>item1</td>
+<td>value11</td>
+    </tr>
+    <tr>
+<td>id1</td>
+<td>item2</td>
+<td>value12</td>
+    </tr>
+    <tr>
+<td>id1</td>
+<td>item2</td>
+<td>value13</td>
+    </tr>
+    <tr>
+<td>id2</td>
+<td>item1</td>
+<td>value21</td>
+    </tr>
+    <tr>
+<td>id2</td>
+<td>item2</td>
+<td>value22</td>
+    </tr>
+    <tr>
+<td>id2</td>
+<td>item3</td>
+<td>value23</td>
+    </tr>
+
+  </table>
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="03_ai/02_preprocessing/04_imbalanced_data.html">不均衡データへの対応</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="03_ai/02_preprocessing/06_noise_reduction.html">雑音除去</a>
+</div>
+</main>
+</body>
+</html>

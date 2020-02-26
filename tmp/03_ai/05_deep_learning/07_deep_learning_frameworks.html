@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - ai - deep learning </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+    },
+    options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+    },
+    loader: {
+load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - 深層学習</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日:' + document.lastModified);
+</script>
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>フレームワーク</h1>
+    <h2>Theano</h2>
+        <div><div class="hidden_show">
+    
+  pythonのDNNライブラリ。歴史的意義があるが、2017/11/15に1.0.0がでてから更新されていない。
+        </div></div>
+    <h2>Caffe</h2>
+        <div><div class="hidden_show">
+    
+  UCバークレーで開発された Deep Learning Framework。
+    Caffe Framework modelsが開発され、他のフレームワークでも使用できる
+
+        </div></div>
+    <h2>Torch</h2>
+        <div><div class="hidden_show">
+    
+  Lua言語をベースとしたスクリプト言語の機械学習ライブラリ。2018年からは開発は行われていない
+        </div></div>
+    <h2>pyTorch</h2>
+        <div><div class="hidden_show">
+    
+  Pythonで使用できるTorch。2019年に開発された。
+        </div></div>
+    <h2>chainer</h2>
+        <div><div class="hidden_show">
+    
+  preferred network社が開発している和製フレームワーク。
+    2019/12/05 preferred network社はPyTorchに研究開発基板を移行を発表。
+    <a href="https://preferred.jp/ja/news/pr20191205/">https://preferred.jp/ja/news/pr20191205/</a>
+        </div></div>
+    <h2>TensorFlow</h2>
+        <div><div class="hidden_show">
+    
+  googleが開発、圧倒的に人気がある
+        </div></div>
+    <h2> keras </h2>
+        <div><div class="hidden_show">
+    
+  tensor flow, theanoのフロントエンド。人気がある
+        </div></div>
+    <h2>caffe2</h2>
+        <div><div class="hidden_show">
+    
+  caffeの改良版
+        </div></div>
+    <h2>TensorFlow.js</h2>
+        <div><div class="hidden_show">
+    
+  TensorFlowのjava script版
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="03_ai/05_deep_learning/06_deep_learning_structures.html">具体的な構造</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="03_ai/05_deep_learning/08_auto_encoder.html">自己符号化器</a>
+</div>
+</main>
+</body>
+</html>

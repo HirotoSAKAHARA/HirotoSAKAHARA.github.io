@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - failure detection - outlier detection </title>
+<base href="../">
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 異常検知 - 外れ値検知</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：k近傍法を追加
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>ホテリングのT二乗法</h1>
+    <h2>概要</h2>
+        <div><div class="hidden_show">
+  信頼できるデータの平均値と共分散を求め、マハラビノス距離を計算する。
+  マハラビノス距離\(d\)の2乗が一定以上であれば、異常とみなす。マハラビノス距離\(d\)は以下の式で表される。
+  $$
+    d = \sqrt{\sum^M_{i=1}(\frac{x_i - \hat{u_i}}{\hat{\sigma_i}})^2}
+  $$
+  ここで\(x_i\)は各軸の値、\(\hat{u_i}\)は各軸の平均値、\(\hat{\sigma_i}\)は各軸の標準偏差である。<br />
+
+  また、行列式で表すと以下の式となる。
+  $$
+    d = \sqrt{(X - \mu)^T{\sum}^{-1}(X - \mu)}
+  $$
+  ここで、\(X\)は特徴ベクトル、 \(\mu\)は特徴ベクトルの母平均、\({\sum}^{-1}\)は逆共分散行列（精度行列）である。
+
+
+        </div></div>
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
+    <ol>
+      <li> <a href="https://www.kspub.co.jp/book/detail/1529083.html">井手剛,杉山将 "異常検知と変化検知 機械学習プロフェッショナルシリーズ",2015,講談社サイエンティフィク </a>   </li>
+    </ol>
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="html/neyman_pearson_lemma.html">ネイマン・ピアソン決定則</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="html/naive_bayse_for_outlier_detection.html">ナイーブベイズ</a>
+</div>
+</main>
+</body>
+</html>

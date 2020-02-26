@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - ai - others </title>
+<base href="../">
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - その他</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>参考資料（人工知能)</h1>
+    <h2>文献</h2>
+        <div><div class="hidden_show">
+    <dl>
+      <dt><cite><a href="https://aidemy.net">"Aidemy"</a></dt>
+      <dd>人工知能を網羅した学習サイト、様々な人工知能の実装を体験し、人工知能に関する情報を俯瞰できるようになるが、
+          pythonで人工知能を使えるようになることに特化しているため、理論部分は駆け足で進むことが多い。</dd>
+      <dt><cite><a href="http://bookclub.kodansha.co.jp/product?item=0000147653">岡谷貴之, "深層学習 機械学習プロフェッショナルシリーズ",2015,講談社サイエンティフィク </a></dt>
+      <dd>2015年までの深層学習に関して網羅している。</dd>
+      <dt><cite><a href="https://www.kspub.co.jp/book/detail/1538283.html">瀧 雅人, "これならわかる深層学習入門 機械学習スタートアップシリーズ",2017,講談社サイエンティフィク</a></dt>
+      <dd>上記の内容に加え、強化深層学習などの近年の項目が増えている。中身はほぼ同じなので、どちらがわかりやすいということもないような。</dd>
+      <dt><cite><a href="https://www.shoeisha.co.jp/book/detail/9784798157559">浅川伸一, 江間有沙, 工藤郁子, 巣籠悠輔, 瀬谷啓介, 松井孝之, 松尾豊, "深層学習教科書 ディープラーニング G検定（ジェネラリスト） 公式テキスト,2018, 翔泳社</a></dt>
+      <dd>人工知能の知識を持つジェネラリストを認定するための検定であるg検定のテキスト。深層学習だけでなく、人工知能の一通りの知識が網羅されているが、
+          技術者向けではないので、より詳しく中身を知りたい場合にはそれぞれの参考書が必要</dd>
+    </dl>
+        </div></div>
+    <h2>サイト</h2>
+        <div><div class="hidden_show">
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="html/words_for_ai_others.html">その他用語</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="html/robot_base.html">ロボティクスについて</a>
+</div>
+</main>
+</body>
+</html>
+

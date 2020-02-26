@@ -86,7 +86,7 @@ def update_index(base_dir, item_urls, item_strings, item_has_contents, nChapter,
           if(item != 0):
             section_items += ", "
           if(item_has_contents[chapter_p1-1][section_p1 - 1][item] == True):
-            item_string = " <a href=\"" + \
+            item_string = " <a class=\"local\" href=\"" + \
               item_urls[chapter_p1-1][section_p1 - 1][item] + \
               "\">" + \
               item_strings[chapter_p1-1][section_p1 - 1][item] + \

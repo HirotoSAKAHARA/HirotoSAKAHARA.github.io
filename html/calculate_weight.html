@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - ai - deep learning </title>
+<base href="../">
+
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+    },
+    options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+    },
+    loader: {
+load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+
+<!--***************************ヘッダー領域****************************-->
+
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - 深層学習</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日:' + document.lastModified);
+</script>
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>重みの学習</h1>
+    <h2>手順</h2>
+        <div><div class="hidden_show">
+        以下の手順で行う。
+        <ul>
+            <li>教師データと出力と各ニューロンの重みにより、各ニューロンの重みによる誤差関数の勾配を求める。</li>
+            <li>勾配降下法により重みを修正する。</li>
+            <li>収束と判断するまで繰り返す。</li>
+        </ul>
+
+        </div></div>
+    <h2>誤差逆伝播法による勾配の計算</h2>
+        <div><div class="hidden_show">
+<h3>導出</h3>
+\(l-1\)層目の\(i\)番目のニューロンからの入力を受ける\(l\)層の\(j\)番目のニューロン\(w_{ji}^{(l)}\)の重みのコスト関数\(E_n\)に対する誤差勾配は、
+そのニューロンの出力に対する式ととらえると以下のように変形できる。
+$$
+\frac{\partial E_n}{\partial w_{ji}^{(l)}} = \frac{\partial E_n}{\partial u_j^{(l)}}\frac{\partial u_j^{(l)}}{\partial w_{ji}^{(l)}}
+$$
+また、その出力が\(l + 1\)番目の各ニューロンに与える影響を考えると、右辺第１項は以下のように式変形できる。
+$$
+\frac{\partial E_n}{\partial u_j^{(l)}} = \sum_k{\frac{\partial E_n}{\partial u_k^{(l+1)}}\frac{\partial u_k^{(l+1)}}{\partial u_j^{(l)}}}
+$$
+ここで、\( \delta_j^{(l)} \equiv \frac{\partial E_n}{\partial u_j^{(l)}} \) と置き、
+\(u_k^{(l+1)} = \sum_j{w_{kj}^{(l+1)}z_j^{(l)}} = \sum_j{w_{kj}^{(l+1)}f(u_j^{(l)})}\)の関係を使うと、上式は以下のように変形できる。 
+$$
+\delta_j^{(l)}　=　\sum_k{\delta_j^{(l+1)}(w_{kj}^{(l+1)}f'(u_j^{(l)}))}
+$$
+これは、次の層の全ニューロンの微分値が求まると、ニューロンの微分値が求まることを意味している。
+また、初めの式の右辺第２項目は\(u_j^{(l)} = \sum_i{w_{ji}^{(l)}z_i^{(l-1)}}\)の関係から簡単に以下の式で表される。
+$$
+\frac{\partial u_j^{(l)}}{\partial w_{ji}^{(l)}} = z_i^{(l-1)}
+$$
+よって、これらの式を出力層から順に利用していくことで、すべての重みに対する誤差勾配を求めることができる。
+
+
+        </div></div>
+    <h2>重みの計算</h2>
+        <div><div class="hidden_show">
+        誤差逆伝播法などで求めた誤差関数の勾配から<a class="local" href="html/optimization_problem.html">勾配降下法</a>などにより求める。
+
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="html/output_layer.html">出力層の設計</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="html/overtraining_countermeasure.html">過学習対策</a>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo</title>
+<!-- stylesheet-->
+<link rel="stylesheet" href="style.css">
+<!-- 数式を使う宣言-->
+<script>
+  window.MathJax = {
+    tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+    },
+    options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+    },
+    loader: {
+load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+
+</head>
+
+<body>
+<main>
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    hsmemo
+  </div>
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+  document.write('最終更新日:' + document.lastModified);
+</script>
+： 構成を整理、各章、各節の初めにガイドの項目を追加（〜について、〜の基本）
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<div class="index_page">
+
+<h1>はじめに</h1>
+  <h2>このサイトについて</h2>
+    <a class="local" href="01_introduction/01_about/01_about.html">このサイトについて</a> ,  <a class="local" href="01_introduction/01_about/02_contact.html">連絡先</a> ,  <a class="local" href="01_introduction/01_about/03_symbols.html">数学記号</a> ,  <a class="local" href="01_introduction/01_about/04_references_for_introduction.html">参考資料（このサイトについて)</a> ,  <a class="local" href="01_introduction/01_about/05_memo.html">メモ</a> 
+<h1>数学</h1>
+  <h2>数学について</h2>
+    <a class="nocontents" href="02_math/01_base/01_math_base.html">数学について</a> 
+    <h2>最適化問題</h2>
+    <a class="local" href="02_math/02_optimization_problem/01_optimization_problem.html">最適化問題の基礎</a> ,  <a class="local" href="02_math/02_optimization_problem/02_linear_programming_problem.html">線形計画問題</a> 
+    <h2>最近傍探索</h2>
+    <a class="local" href="02_math/03_nearest_neighbor_search/01_nearest_neighbor_search.html">最近傍探索の基礎</a> 
+    <h2>四元数</h2>
+    <a class="nocontents" href="02_math/04_quatanion/01_quatanion.html">四元数の基礎</a> 
+    <h2>確率・統計</h2>
+    <a class="nocontents" href="02_math/05_probability_and_statistics/01_probability_and_statistics.html">確率・統計の基礎</a> ,  <a class="local" href="02_math/05_probability_and_statistics/02_kullback_leibler_divergence.html">カルバック・ライブラー情報量</a> ,  <a class="local" href="02_math/05_probability_and_statistics/03_information_criterion.html">情報量基準</a> ,  <a class="nocontents" href="02_math/05_probability_and_statistics/04_maximum_likelihood_estimation.html">最尤推定法</a> ,  <a class="nocontents" href="02_math/05_probability_and_statistics/05_method_of_moments.html">積率法・モーメント法</a> 
+    <h2>時系列解析</h2>
+    <a class="local" href="02_math/06_time_series_analysis/01_time_series_analysis.html">時系列解析の基礎</a> ,  <a class="local" href="02_math/06_time_series_analysis/02_arma_model.html">ARIMAモデル</a> ,  <a class="local" href="02_math/06_time_series_analysis/03_detrending.html">傾向除去</a> ,  <a class="local" href="02_math/06_time_series_analysis/04_sarima_model.html">SARIMA モデル</a> 
+    <h2>その他</h2>
+    <a class="local" href="02_math/07_others/01_similarity.html">類似度</a> ,  <a class="local" href="02_math/07_others/02_references_for_math.html">参考資料（数学)</a> 
+<h1>人工知能</h1>
+  <h2>人工知能について</h2>
+    <a class="local" href="03_ai/01_base/01_ai_base.html">人工知能について</a> ,  <a class="local" href="03_ai/01_base/02_tasks.html">人工知能により解決するタスク</a> ,  <a class="local" href="03_ai/01_base/03_supervised_and_unsupervised_learning.html">教師あり学習・教師なし学習</a> ,  <a class="local" href="03_ai/01_base/04_reinforcement_learning.html">強化学習</a> 
+    <h2>データ前処理</h2>
+    <a class="local" href="03_ai/02_preprocessing/01_preprocessing.html">前準備の基礎</a> ,  <a class="local" href="03_ai/02_preprocessing/02_lack_of_data.html">データ量が少ない場合への対応</a> ,  <a class="local" href="03_ai/02_preprocessing/03_outlier.html">外れ値への対応</a> ,  <a class="local" href="03_ai/02_preprocessing/04_imbalanced_data.html">不均衡データへの対応</a> ,  <a class="local" href="03_ai/02_preprocessing/05_change_data_structure.html">データ形式の変換</a> ,  <a class="local" href="03_ai/02_preprocessing/06_noise_reduction.html">雑音除去</a> ,  <a class="local" href="03_ai/02_preprocessing/07_normalization.html">正規化</a> ,  <a class="local" href="03_ai/02_preprocessing/08_dimensionality_reduction.html">次元削減</a> 
+    <h2>タスクの評価</h2>
+    <a class="nocontents" href="03_ai/03_evaluation/01_evaluation.html">評価の基礎</a> ,  <a class="local" href="03_ai/03_evaluation/02_general_method_of_evaluation.html">タスクによらない評価手法</a> ,  <a class="local" href="03_ai/03_evaluation/03_evaluation_for_classification.html">分類の評価</a> ,  <a class="local" href="03_ai/03_evaluation/04_evaluation_for_regression.html">回帰の評価</a> ,  <a class="local" href="03_ai/03_evaluation/05_evaluation_for_clustering.html">クラスタリングの評価</a> 
+    <h2>非深層学習系の学習手法</h2>
+    <a class="local" href="03_ai/04_learning_methods/01_learning_methods.html">非深層学習系の学習方法の基礎</a> ,  <a class="local" href="03_ai/04_learning_methods/02_support_vector_machine_base.html">サポートベクトルマシン(基本)</a> ,  <a class="local" href="03_ai/04_learning_methods/03_support_vector_machine_binary.html">サポートベクトルマシン(2クラス分類)</a> ,  <a class="local" href="03_ai/04_learning_methods/04_support_vector_machine_multi.html">サポートベクトルマシン(多クラス分類)</a> ,  <a class="nocontents" href="03_ai/04_learning_methods/05_support_vector_machine_regression.html">サポートベクトルマシン(回帰)</a> ,  <a class="local" href="03_ai/04_learning_methods/06_support_vector_machine_one.html">サポートベクトルマシン(教師なし学習、1クラス分類)</a> ,  <a class="local" href="03_ai/04_learning_methods/07_k_nearest_neighbor.html">k近傍法</a> ,  <a class="local" href="03_ai/04_learning_methods/08_simple_perceptron.html">単純パーセプトロン</a> ,  <a class="local" href="03_ai/04_learning_methods/09_logistic_regression.html">ロジスティック回帰</a> ,  <a class="local" href="03_ai/04_learning_methods/10_naive_bayes.html">ナイーブベイズ</a> ,  <a class="local" href="03_ai/04_learning_methods/11_decision_tree.html">決定木</a> ,  <a class="local" href="03_ai/04_learning_methods/12_random_forest.html">ランダムフォレスト</a> ,  <a class="local" href="03_ai/04_learning_methods/13_ada_boost.html">アダブースト</a> ,  <a class="local" href="03_ai/04_learning_methods/14_least_squares_method.html">最小二乗法</a> ,  <a class="local" href="03_ai/04_learning_methods/15_k_means_clustering.html">k平均クラスタリング</a> ,  <a class="local" href="03_ai/04_learning_methods/16_dbscan.html">DBSCAN </a> ,  <a class="local" href="03_ai/04_learning_methods/17_principal_component_analysis.html">主成分分析</a> ,  <a class="local" href="03_ai/04_learning_methods/18_independent_component_analysis.html">独立成分分析</a> ,  <a class="local" href="03_ai/04_learning_methods/19_matrix_factorization.html">行列因子化</a> ,  <a class="local" href="03_ai/04_learning_methods/20_t_SNE.html">t-SNE</a> ,  <a class="local" href="03_ai/04_learning_methods/21_q_learning.html">Q学習</a> ,  <a class="nocontents" href="03_ai/04_learning_methods/22_actor_critic.html">アクタークリティック</a> ,  <a class="nocontents" href="03_ai/04_learning_methods/23_td_lambda.html">TD(\(\lambda\))</a> ,  <a class="local" href="03_ai/04_learning_methods/24_common_technique.html">共通技術</a> ,  <a class="local" href="03_ai/04_learning_methods/25_multiclass_classification_with_binary_classification_algorithm.html">2クラス分類アルゴリズムを利用した多クラス分類</a> 
+    <h2>深層学習</h2>
+    <a class="local" href="03_ai/05_deep_learning/01_deep_learning.html">深層学習の基礎</a> ,  <a class="local" href="03_ai/05_deep_learning/02_hidden_layer.html">隠れ層の設計</a> ,  <a class="local" href="03_ai/05_deep_learning/03_output_layer.html">出力層の設計</a> ,  <a class="local" href="03_ai/05_deep_learning/04_calculate_weight.html">重みの学習</a> ,  <a class="local" href="03_ai/05_deep_learning/05_overtraining_countermeasure.html">過学習対策</a> ,  <a class="local" href="03_ai/05_deep_learning/06_deep_learning_structures.html">具体的な構造</a> ,  <a class="local" href="03_ai/05_deep_learning/07_deep_learning_frameworks.html">フレームワーク</a> ,  <a class="local" href="03_ai/05_deep_learning/08_auto_encoder.html">自己符号化器</a> ,  <a class="nocontents" href="03_ai/05_deep_learning/09_baysian_neural_network.html">ベイズ流ニューラルネットワーク</a> 
+    <h2>畳み込みニューラルネットワーク</h2>
+    <a class="local" href="03_ai/06_convolution_neural_network/01_convolution_neural_network.html">畳み込みニューラルネットワークの基礎</a> ,  <a class="local" href="03_ai/06_convolution_neural_network/02_convolution_neural_network_words.html">用語</a> ,  <a class="local" href="03_ai/06_convolution_neural_network/03_completeness.html">3層パーセプトロンの関数近似としての完全性</a> ,  <a class="local" href="03_ai/06_convolution_neural_network/04_convolution_neural_network_implementation.html">実装</a> 
+    <h2>再帰型ニューラルネットワーク</h2>
+    <a class="local" href="03_ai/07_reccurent_neural_network/01_reccurent_neural_network.html">再帰型ニューラルネットワークの基礎</a> ,  <a class="local" href="03_ai/07_reccurent_neural_network/02_LSTM.html">LSTM</a> ,  <a class="local" href="03_ai/07_reccurent_neural_network/03_advanced_techniques_for_reccurent_neural_network.html">応用技術</a> 
+    <h2>深層学習による強化学習</h2>
+    <a class="nocontents" href="03_ai/08_reinforcement_learning_with_dnn/01_reinforcement_learning_with_dnn.html">深層学習による強化学習の基礎</a> ,  <a class="nocontents" href="03_ai/08_reinforcement_learning_with_dnn/02_DQN.html">DQN</a> ,  <a class="local" href="03_ai/08_reinforcement_learning_with_dnn/03_modified_algorithm.html">改良版アルゴリズム</a> 
+    <h2>その他</h2>
+    <a class="local" href="03_ai/09_others/01_cautions.html">人工知能使用における注意点</a> ,  <a class="local" href="03_ai/09_others/02_self_organizing_map.html">self organizing map <span class="small"> :  SOM, 自己組織化</span></a> ,  <a class="local" href="03_ai/09_others/03_words_for_ai_others.html">その他用語</a> ,  <a class="local" href="03_ai/09_others/04_references_for_ai.html">参考資料（人工知能)</a> 
+<h1>ロボティクス</h1>
+    <h2>ロボティクスについて</h2>
+    <a class="nocontents" href="04_robot/01_base/01_robot_base.html">ロボティクスについて</a> 
+    <h2>自己位置同定</h2>
+    <a class="local" href="04_robot/02_localization/01_localization.html">グラフベースドスラム</a> 
+    <h2>人工知能のトピック</h2>
+    <a class="local" href="04_robot/03_ai_for_robot/01_ai_for_robot.html">ロボティクスと人工知能</a> 
+    <h2>その他</h2>
+    <a class="local" href="04_robot/04_others/01_references_for_robot.html">参考資料（ロボティクス)</a> 
+<h1>画像処理</h1>
+  <h2>画像処理について</h2>
+    <a class="nocontents" href="05_image_processing/01_base/01_image_processing_base.html">画像処理について</a> ,  <a class="local" href="05_image_processing/01_base/02_image_processing_preprocessing.html">画像処理におけるデータ前処理</a> ,  <a class="local" href="05_image_processing/01_base/03_standard_problem_for_image_processing.html">画像処理の標準問題</a> 
+    <h2>伝統的な画像処理</h2>
+    <a class="nocontents" href="05_image_processing/02_traditional_image_processing/01_traditional_image_processing.html">伝統的な画像処理</a> 
+    <h2>特徴量検出</h2>
+    <a class="nocontents" href="05_image_processing/03_feature_detection/01_freature_detection.html">特徴量検出</a> 
+    <h2>パターン認識</h2>
+    <a class="nocontents" href="05_image_processing/04_pattern_recognition/01_pattern_recognition.html">パターン認識</a> 
+    <h2>動画像処理</h2>
+    <a class="nocontents" href="05_image_processing/05_movie_processing/01_movie_processing.html">動画像処理</a> 
+    <h2>３次元復元</h2>
+    <a class="nocontents" href="05_image_processing/06_three_dimensional_reconstruction/01_three_dimensional_reconstruction.html">3次元復元</a> 
+    <h2>カメラキャリブレーション</h2>
+    <a class="nocontents" href="05_image_processing/07_camera_calibration/01_camera_calibration.html">カメラ校正</a> 
+    <h2>三角測量</h2>
+    <a class="nocontents" href="05_image_processing/08_triangulation/01_triangulation.html">三角測量</a> 
+    <h2>深層学習を利用した画像処理</h2>
+    <a class="local" href="05_image_processing/09_image_processing_with_dnn/01_image_processing.html">深層学習を使った画像認識</a> ,  <a class="local" href="05_image_processing/09_image_processing_with_dnn/02_variational_autoencoder.html">変分オートエンコーダ</a> ,  <a class="local" href="05_image_processing/09_image_processing_with_dnn/03_generative_adversarial_networks.html">GAN</a> 
+    <h2>その他</h2>
+    <a class="local" href="05_image_processing/10_others/01_references_for_image_processing.html">参考資料（画像処理)</a> 
+<h1>異常検知</h1>
+    <h2>異常検知について</h2>
+    <a class="local" href="06_failure_detection/01_base/01_failure_detection_base.html">異常検知について</a> 
+    <h2>外れ値検知</h2>
+    <a class="local" href="06_failure_detection/02_outlier_detection/01_outlier_detection.html">外れ値検知の基礎</a> ,  <a class="local" href="06_failure_detection/02_outlier_detection/02_neyman_pearson_lemma.html">ネイマン・ピアソン決定則</a> ,  <a class="local" href="06_failure_detection/02_outlier_detection/03_hotellings_t_squared_distribution.html">ホテリングのT二乗法</a> ,  <a class="local" href="06_failure_detection/02_outlier_detection/04_naive_bayse_for_outlier_detection.html">ナイーブベイズ</a> ,  <a class="local" href="06_failure_detection/02_outlier_detection/05_with_k_nearest_neibhgor.html">k近傍法</a> ,  <a class="local" href="06_failure_detection/02_outlier_detection/06_support_vector_for_outlier_detection.html">１クラスサポートベクトルマシン</a> ,  <a class="local" href="06_failure_detection/02_outlier_detection/07_direction_data_for_outlier_detection.html">方向データによる異常検知</a> 
+    <h2>変化検知</h2>
+    <a class="nocontents" href="06_failure_detection/03_change_detection/01_change_detection.html">変化検知の基礎</a> ,  <a class="local" href="06_failure_detection/03_change_detection/02_subspace_based_method.html">部分空間法</a> 
+    <h2>その他</h2>
+    <a class="local" href="06_failure_detection/04_others/01_references_for_failure_detection.html">参考資料（異常検知)</a> 
+<h1>その他</h1>
+  <h2>自然言語処理</h2>
+    <a class="local" href="07_others/01_natural_language_processing/01_natural_language_processing.html">自然言語処理の基礎</a> ,  <a class="local" href="07_others/01_natural_language_processing/02_morphological_analysis.html">形態素解析 </a> ,  <a class="local" href="07_others/01_natural_language_processing/03_ngram.html">Ngram</a> ,  <a class="local" href="07_others/01_natural_language_processing/04_bags_of_words.html">Bags of Words</a> ,  <a class="local" href="07_others/01_natural_language_processing/05_topic_model.html">トピックモデル</a> ,  <a class="local" href="07_others/01_natural_language_processing/06_natural_language_processing_with_dnn.html">深層学習を使った自然言語処理</a> ,  <a class="local" href="07_others/01_natural_language_processing/07_preprocessing_for_natural_language_processing.html">自然言語処理におけるデータ前処理</a> ,  <a class="local" href="07_others/01_natural_language_processing/08_evaluation_for_natural_language_processing.html">自然言語処理の評価</a> 
+    <h2>音声認識</h2>
+    <a class="local" href="07_others/02_voice_recognition/01_voice_recognition.html">音声認識の基礎</a> 
+    <h2>ネットワーク分析</h2>
+    <a class="nocontents" href="07_others/03_network_analysis/01_network_analysis.html">ネットワーク分析の基礎</a> 
+    <h2>その他</h2>
+    <a class="nocontents" href="07_others/04_other/01_references_for_others.html">参考資料（その他)</a> 
+<div class="end_of_page_margin"></div>
+<div class = "end_of_page">
+<a class="next" href="01_introduction/01_about/01_about.html">次：このサイトについて</a>
+
+</div>
+
+</div> <!--index_page-->
+</main>
+</body>
+</html>
