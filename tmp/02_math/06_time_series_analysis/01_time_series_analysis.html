@@ -104,12 +104,12 @@ load: ['[tex]/noerrors']
         <h3>k次の自己共分散</h3>
              k時点離れた自己共分散をk次の自己共分散で、以下の式で表される。また、下式をkの関数と見たものを自己共分散関数と呼ぶ。
              $$
-             \gamma_{kt} = \mathrm{Cov}(y_t, y_{t-k}) = \mathrm{E}[(y_t - \mu_t)(y_{t-k} - \mu(t - k)]
+             \gamma_{kt} = \sigma(y_t, y_{t-k}) = \bm{E}[(y_t - \mu_t)(y_{t-k} - \mu(t - k)]
              $$
         <h3>自己相関係数</h3>
             自己共分散を様々な値間で比較できるようにしたもので以下の式でもとまる。
              $$
-             \rho_{kt} = \frac{\mathrm{Cov}(y_t, y_{t-k})}{\sqrt{\mathrm{V}(y_t) \cdot \mathrm{V}(y_{t-k})}}
+             \rho_{kt} = \frac{\sigma(y_t, y_{t-k})}{\sqrt{\bm{V}(y_t) \cdot \bm{V}(y_{t-k})}}
              $$
             数値の目安は以下の表の通り。
             <table>
