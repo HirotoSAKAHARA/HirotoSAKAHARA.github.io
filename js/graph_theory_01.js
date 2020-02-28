@@ -3,7 +3,7 @@ onload = function() {
 };
 
 function draw() {
-  var canvas = document.getElementById('rectangle');
+  var canvas = document.getElementById('graph_basic');
   if ( ! canvas || ! canvas.getContext ) {
     return false;
   }
@@ -148,4 +148,270 @@ function draw() {
   cvs.fill()    
 
   cvs.stroke(); /* 描いた図形を線で表示させる */ 
+
+  /***************************************************************************/
+  var canvas = document.getElementById('graph_weight');
+  if ( ! canvas || ! canvas.getContext ) {
+    return false;
+  }
+  var cvs = canvas.getContext('2d');
+
+
+  cvs.beginPath();
+  cvs.arc(70,80,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("1",65,85);
+
+  cvs.beginPath();
+  cvs.arc(30,28,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("2",25,33);
+
+  cvs.beginPath();
+  cvs.arc(130,25,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("3",125,30);
+
+  cvs.beginPath();
+  cvs.arc(230,28,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("4",225,33);
+
+  cvs.beginPath();
+  cvs.arc(210,80,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("5",205,85);
+
+  cvs.beginPath();
+  cvs.arc(360,50,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("6",355,55);
+
+  cvs.beginPath();
+  cvs.arc(460,20,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("7",455,25);
+
+  cvs.beginPath();
+  cvs.arc(560,80,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("8",555,85);
+
+  cvs.beginPath();
+  cvs.arc(560,20,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("9",555,25);
+
+/*===================================*/
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("2",40,65);
+
+  cvs.beginPath();
+  cvs.arrow( 58, 62, 42, 43, [0, 1, 0, 0, 0, 0]);
+  cvs.stroke(); 
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("7",130,95);
+
+  cvs.beginPath();
+  cvs.arrow( 90, 80, 190, 80, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke(); 
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("1",70,20);
+
+  cvs.beginPath();
+  cvs.arrow( 50, 28, 110, 25, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("2",180,20);
+
+  cvs.beginPath();
+  cvs.arrow(150, 25, 210, 28, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("3",228,65);
+
+  cvs.beginPath();
+  cvs.arrow(217, 62, 224, 47, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("4",170,50);
+
+  cvs.beginPath();
+  cvs.arrow(146, 40, 195, 65, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("13",290,60);
+
+  cvs.beginPath();
+  cvs.arrow(229, 77, 340, 55, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("6",405,30);
+
+  cvs.beginPath();
+  cvs.arrow(380, 43, 440, 25, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("11",460,65);
+
+  cvs.beginPath();
+  cvs.arrow(380, 57, 541, 77, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("8",565,57);
+
+  cvs.beginPath();
+  cvs.arrow(560, 60, 560, 40, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+  /***************************************************************************/
+  var canvas = document.getElementById('graph_tree');
+  if ( ! canvas || ! canvas.getContext ) {
+    return false;
+  }
+  var cvs = canvas.getContext('2d');
+
+  cvs.beginPath();
+  cvs.arc(300,20,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("1",295,25);
+
+  cvs.beginPath();
+  cvs.arc(200,90,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("2",195,95);
+
+  cvs.beginPath();
+  cvs.arc(300,90,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("3",295,95);
+
+  cvs.beginPath();
+  cvs.arc(400,90,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("4",395,95);
+
+  cvs.beginPath();
+  cvs.arc(150,160,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("5",145,165);
+
+  cvs.beginPath();
+  cvs.arc(250,160,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("6",245,165);
+
+  cvs.beginPath();
+  cvs.arc(450,160,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("7",445,165);
+
+  cvs.beginPath();
+  cvs.arrow(283, 30, 217, 80, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.arrow(300, 40, 300, 70, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.arrow(317, 30, 383, 80, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.arrow(188, 107, 162, 143, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.arrow(212, 107, 238, 143, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.arrow(412, 107, 438, 143, [0, 1,  0, 0,  0, 0]);
+  cvs.stroke();  
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("根",325,20);
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("5と6の親",110,90);
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("4の子",470,165);
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("葉",270,165);
+
+
 }
