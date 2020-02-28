@@ -52,7 +52,11 @@ load: ['[tex]/noerrors']
 </script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
 </script>
+
 </head>
+
+<script type="text/javascript" src="02_math/07_network_analysis/02_graph_theory_01.js" charset="UTF-8"> </script>
+<script type="text/javascript" src="https://frogcat.github.io/canvas-arrow/canvas-arrow.js" charset="UTF-8"> </script>
 <body>
 <main>
 
@@ -79,7 +83,33 @@ load: ['[tex]/noerrors']
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
 <h1>グラフ理論</h1>
+    <h2>この記事の目的</h2>
+        <div><div class="hidden_show">
+             グラフ理論の基礎について説明する。
 
+        </div></div>
+    <h2>概要</h2>
+        <div><div class="hidden_show">
+        下図のように、頂点の集合を辺の集合でつないだグラフに関する理論をグラフ理論と呼ぶ。
+
+
+        <div class="img">
+            <canvas id="rectangle" width="600" height="100">
+                図形を表示するには、canvasタグをサポートしたブラウザが必要です。
+            </canvas></div> 
+
+        </div></div>
+    <h2>基本的な用語</h2>
+        <div><div class="hidden_show">
+        <h3>有向グラフ</h3>
+            辺に方向があるグラフ。
+        <h3>無向グラフ</h3>
+            辺に方向がないグラフ。
+        <h3>道</h3>
+            頂点と辺が代わる代わる連続したもので同じ頂点が２度以上表れないもの。
+            ただし、有向グラフの場合は、方向を逆に通過するものは考えない。
+           
+    </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
 <a class="prev" href="02_math/07_network_analysis/01_network_analysis.html">ネットワーク分析の基礎</a>
