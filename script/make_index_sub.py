@@ -4,7 +4,7 @@ import os
 import re
 from bs4 import BeautifulSoup
 
-def get_item_urls(base_dir, nChapter, nSection, nItem):
+def get_item_urls(base_dir, nChapter, nSection, nItem, sExtension):
   item_urls   = [[[0 for i3 in range(nItem)] for i2 in range(nSection)] for i1 in range(nChapter)]
   #章のフォルダを走査
   chapter_dirs =  [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
@@ -24,7 +24,8 @@ def get_item_urls(base_dir, nChapter, nSection, nItem):
           #項のファイルを走査
           for item_file in  item_files:
             item = item_file.split("_")[0]
-            if(item.isdecimal()):
+            extension = item_file.split(".")[1]
+            if(item.isdecimal() and extension == sExtension):
               item = int(item)
               item_urls[chapter-1][section-1][item-1] = section_dir+item_file;
   return item_urls;

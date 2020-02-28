@@ -16,7 +16,7 @@ nItem = 50
 #section_strings= [[0 for i2 in range(nSection)] for i1 in range(nChapter)]
 #chapter_strings= [0 for i1 in range(nChapter)]
 
-item_urls = get_item_urls(base_dir, nChapter, nSection, nItem)
+item_urls = get_item_urls(base_dir, nChapter, nSection, nItem, "html")
 item_strings = get_item_strings(base_dir, item_urls, nChapter, nSection, nItem)
 item_has_contents = get_item_has_contents(base_dir, item_urls, nChapter, nSection, nItem)
 
