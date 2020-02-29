@@ -310,6 +310,7 @@ function draw() {
   cvs.beginPath();
   cvs.arrow(560, 60, 560, 40, [0, 1,  0, 0,  0, 0]);
   cvs.stroke();  
+
   /***************************************************************************/
   var canvas = document.getElementById('graph_tree');
   if ( ! canvas || ! canvas.getContext ) {
@@ -412,6 +413,66 @@ function draw() {
   cvs.beginPath();
   cvs.font = '16px sunserif'
   cvs.fillText("葉",270,165);
+
+   /***************************************************************************/
+  var canvas = document.getElementById('two_part_graph');
+  if ( ! canvas || ! canvas.getContext ) {
+    return false;
+  }
+  var cvs = canvas.getContext('2d'); 
+
+
+  cvs.beginPath();
+  cvs.arc(100,20,20, 0,360*Math.PI/180,false);
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.arc(200,20,20, 0,360*Math.PI/180,false);
+  cvs.stroke(); 
+
+  cvs.beginPath();
+  cvs.arc(300,20,20, 0,360*Math.PI/180,false);
+  cvs.stroke(); 
+
+  cvs.beginPath();
+  cvs.arc(400,20,20, 0,360*Math.PI/180,false);
+  cvs.stroke(); 
+
+  cvs.beginPath();
+  cvs.arc(500,20,20, 0,360*Math.PI/180,false);
+  cvs.stroke(); 
+
+  cvs.beginPath();
+  cvs.arc(150,130,20, 0,360*Math.PI/180,false);
+  cvs.fill()
+  cvs.stroke();
+
+  cvs.beginPath();
+  cvs.arc(250,130,20, 0,360*Math.PI/180,false);
+  cvs.fill()
+  cvs.stroke(); 
+
+  cvs.beginPath();
+  cvs.arc(350,130,20, 0,360*Math.PI/180,false);
+  cvs.fill()
+  cvs.stroke(); 
+
+  cvs.beginPath();
+  cvs.arc(450,130,20, 0,360*Math.PI/180,false);
+  cvs.fill()
+  cvs.stroke(); 
+
+
+
+  var canvas = document.getElementById('strongly_and_weakly_connected_graph');
+  if ( ! canvas || ! canvas.getContext ) {
+    return false;
+  }
+  var cvs = canvas.getContext('2d'); 
+
+
+
+
 
 
 }
