@@ -78,28 +78,23 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>画像処理の標準問題</h1>
-    <h2>MNIST(エムニスト)</h2>
+<h1>コミュニティ検出</h1>
+    <h2>この記事の目的</h2>
         <div><div class="hidden_show">
-    
-  手書き数字のデータセット、28x28で１チャンネルのデータとなっている
+             コミュニティ検出の概要と方法について説明する。
         </div></div>
-    <h2>CIFAR-10</h2>
-        <div><div class="hidden_show">
-    
-  10種類のオブジェクトが映った画像の10x10のデータセットの分類
-        </div></div>
-    <h2>ImageNet</h2>
-        <div><div class="hidden_show">
-    (<a href="http://www.image-net.org">http : //www.image-net.org/</a>)
-  データが公開されているので登録すればダウンロード可能
-        </div></div>
-    <h2>MS-COCO</h2>
-        <div><div class="hidden_show">
-    (<a href="http://cocodataset.org/#home">http : //cocodataset.org/#home</a>)
-  画像に対して５つのキャプションが与えられる。表現の多様性をチェックする    </dl>
 
-    </div></div>
+    <h2>コミュニティ検出の概要</h2>
+        グラフにおいて、ノード間が密に接続しているノードの部分集合を発見する問題である。
+
+    <h2>基本用語</h2>
+        <h3>サブグループ</h3>
+            グラフを分割したときのそれぞれのグループ。
+        <h3>連結グラフ</h3>
+            グラフ上の任意の２頂点間に道が存在するグラフ。
+        <h3>連結成分</h3>
+           極大で連結な部分グラフ。
+
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
 <a class="prev" href="05_image_processing/01_base/02_image_processing_preprocessing.html">画像処理におけるデータ前処理</a>

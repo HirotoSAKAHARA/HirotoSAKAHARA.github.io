@@ -78,28 +78,30 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>画像処理の標準問題</h1>
-    <h2>MNIST(エムニスト)</h2>
+<h1>中心性</h1>
+    <h2>この記事の目的</h2>
         <div><div class="hidden_show">
-    
-  手書き数字のデータセット、28x28で１チャンネルのデータとなっている
-        </div></div>
-    <h2>CIFAR-10</h2>
-        <div><div class="hidden_show">
-    
-  10種類のオブジェクトが映った画像の10x10のデータセットの分類
-        </div></div>
-    <h2>ImageNet</h2>
-        <div><div class="hidden_show">
-    (<a href="http://www.image-net.org">http : //www.image-net.org/</a>)
-  データが公開されているので登録すればダウンロード可能
-        </div></div>
-    <h2>MS-COCO</h2>
-        <div><div class="hidden_show">
-    (<a href="http://cocodataset.org/#home">http : //cocodataset.org/#home</a>)
-  画像に対して５つのキャプションが与えられる。表現の多様性をチェックする    </dl>
+             ネットワークの中心性について説明する。
 
-    </div></div>
+        </div></div>
+    <h2>概要</h2>
+        <div><div class="hidden_show">
+            ネットワーク構造から、ネットワークにおける各頂点の重要性を評価したり、比較したりするための指標。         
+        </div></div>
+
+    <h2>次数中心性</h2>
+        他のノードと繋がっているエッジが多いほど中心性が高いとする指標。
+
+    <h2>近接中心性</h2>
+        他の天との距離が近いほど中心性が高いとする指標
+
+    <h2>固有ベクトル中心性</h2>
+        自分に対してエッジを貼っているノードがどれだけの中心性を持っているかということを考慮した中心性。
+
+    <h2>媒介中心性</h2>
+        頂点iが最短経路上にあるときにiに得点を与える。
+
+
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
 <a class="prev" href="05_image_processing/01_base/02_image_processing_preprocessing.html">画像処理におけるデータ前処理</a>

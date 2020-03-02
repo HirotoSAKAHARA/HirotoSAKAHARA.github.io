@@ -52,7 +52,11 @@ load: ['[tex]/noerrors']
 </script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
 </script>
+
 </head>
+
+<script class="local" type="text/javascript" src="02_math/07_network_analysis/02_graph_theory_01.js" charset="UTF-8"> </script>
+<script type="text/javascript" src="https://frogcat.github.io/canvas-arrow/canvas-arrow.js" charset="UTF-8"> </script>
 <body>
 <main>
 
@@ -78,60 +82,35 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>ネットワーク分析の基礎</h1>
-    <h2>ネットワーク分析とは</h2>
+<h1>最短経路問題</h1>
+    <h2>この記事の目的</h2>
         <div><div class="hidden_show">
-    <cite>グラフを用いて様々な事象と事象の関係について目的とした分析手法</cite>[1]で、
-    友人関係や血縁関係、商品の流通ネットワーク、食物連鎖のネットワークなど
-    複数の点がなんらかの関係で繋がっているとネットワークの分野に分類することができる。
-    このつながりの関係構造を分析することをネットワーク分析と呼ぶ。
+            グラフ理論における、最短経路問題といくつかの解法について述べる。
 
         </div></div>
-    <h2>応用例</h2>
+    <h2>概要</h2>
         <div><div class="hidden_show">
-        <h3>ソーシャルネットワーク</h3>
-            ネットワークの中心性を分析し、影響力のある人物を特定することができる。
-
-        <h3>企業間ネットワーク</h3>
-            取引データなどから、業種の分類や潜在顧客の抽出ができる。
-
-        <h3>交通ネットワーク</h3>
-            空港や新幹線、電車などのネットワークから、場所と場所をつなぐ最短経路などを求めることができる。
-
-        <h3>コンピュータネットワーク</h3>
-            検索分野における影響力のあるリンクを探し出すことができる。
-
-        <h3>論文ネットワーク</h3>
-            近いうちに伸びる分野(萌芽領域）を特定することができる。
-
-        </div></div>
-    <h2>基本用語</h2>
-        <div><div class="hidden_show">
-        <h3>ネットワーク</h3>
-            点と線からなる関係構造。
-        <h3>グラフ</h3>
-            ネットワークを可視化したもの。
+            重み付きグラフの与えられた２つのノード間を結ぶ経路の中で、重みが最小の経路を求める最適化問題。
 
         </div></div>
 
-    <h2>データ・セット</h2>
-        <h3>karate club</h3>
-        1977年、 Wayne Zacharyによって、集められたある大学の空手クラブのデータ。pythonのnetworkxですぐに使用可能。
-        (<a href="http://konect.cc/networks/ucidata-zachary/"> Zachary karate club</a>)
-
-
-    <h2>参考文献、サイト</h2>
+     <h2>ベルマン-フォード法</h2>
         <div><div class="hidden_show">
-        <ol>
-            <li><a href="https://aidemy.net">"Aidemy"</a></li>
-        </ol>
-    </div></div> 
-    </div></div>
+
+        </div></div>
+
+
+     <h2>ダイクストラ法</h2>
+        <div><div class="hidden_show">
+
+        </div></div>
+          
+          
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="02_math/06_time_series_analysis/04_sarima_model.html">SARIMA モデル</a>
+<a class="prev" href="02_math/07_network_analysis/01_network_analysis.html">ネットワーク分析の基礎</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="02_math/07_network_analysis/02_graph_theory.html">グラフ理論</a>
+<a class="next" href="02_math/08_others/01_similarity.html">類似度</a>
 </div>
 </main>
 </body>
