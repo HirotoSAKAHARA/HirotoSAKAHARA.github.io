@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - - math - time series analysis </title>
-<base href="../../" />
+<title>hsmemo - - math - graph theory </title>
+<base href="../">
 
 <link rel="stylesheet" href="style.css">
 <!-- 式・使う宣言-->
@@ -62,7 +62,7 @@ load: ['[tex]/noerrors']
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 数学 - 時系列解析</span>
+    <span class="subtitle"> : 数学 - グラフ理論</span>
   </div>
 
 </div>
@@ -72,63 +72,49 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：初稿
+：
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>SARIMA モデル</h1>
+<h1>中心性</h1>
+    <h2>この記事の目的</h2>
+        <div><div class="hidden_show">
+             ネットワークの中心性について説明する。
+
+        </div></div>
     <h2>概要</h2>
         <div><div class="hidden_show">
-        ARIMAモデルに更に周期性をもつデータにも拡張できるようにしたもの。
-        (p, d, q)のパラメーターに加えて(sp, sd, sq, s)というパラメーターも持つ。
-        </div></div>
-    <h2>パラメータ</h2>
-        <div><div class="hidden_show">
-        <h3>自己相関度(p)</h3>
-            モデルが予測に使用する直前のデータの数。
-        <h3>誘導(d)</h3>
-            定常にするのに必要な階差の数。
-        <h3>移動平均(q)</h3>
-            モデルが影響を受ける直前の値の数。
-        <h3>季節性自己相関(sp)</h3>
-            モデルが予測に使用する直前の周期データの数。
-        <h3>季節性導出(sd)</h3>
-            季節変動を定常にするのに必要な階差の数。
-        <h3>季節性移動平均(sq)</h3>
-            モデルが影響を受ける直前の周期の値の数。
-        <h3>周期</h3>
-            季節変動の周期
+            ネットワーク構造から、ネットワークにおける各頂点の重要性を評価したり、比較したりするための指標。         
 
         </div></div>
-    <h2>時系列データ分析手順</h2>
+    <h2>次数中心性</h2>
         <div><div class="hidden_show">
-    <ol>
-        <li>データの読み込み</li>
-        <li>データの整理</li>
-        <li>データの可視化</li>
-        <li>データの周期の把握 (パラメーターsの決定)</li>
-        <li>s以外のパラメーターの決定</li>
-        <li>モデルの構築</li>
-        <li>データとの予測とその可視化</li>
-    </ol>
+        他のノードと繋がっているエッジが多いほど中心性が高いとする指標。
 
         </div></div>
-    <h2>参考文献、サイト</h2>
+    <h2>近接中心性</h2>
         <div><div class="hidden_show">
-        <ol>
-            <li><a href="https://aidemy.net">"Aidemy"</a></li>
-        </ol>
-        </ol>
+        他の天との距離が近いほど中心性が高いとする指標
+
+        </div></div>
+    <h2>固有ベクトル中心性</h2>
+        <div><div class="hidden_show">
+        自分に対してエッジを貼っているノードがどれだけの中心性を持っているかということを考慮した中心性。
+
+        </div></div>
+    <h2>媒介中心性</h2>
+        <div><div class="hidden_show">
+        頂点iが最短経路上にあるときにiに得点を与える。
 
 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="02_math/06_time_series_analysis/03_detrending.html">傾向除去</a>
+<a class="prev" href="html/shortest_path_problem.html">最短経路問題</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="02_math/07_graph_theory/01_graph_theory.html">グラフ理論の基礎</a>
+<a class="next" href="html/community_detection.html">コミュニティ検出</a>
 </div>
 </main>
 </body>

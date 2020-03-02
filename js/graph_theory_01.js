@@ -2,6 +2,73 @@ onload = function() {
   draw();
 };
 
+
+/*円の中に数字を入れて表示する関数*/
+function drawCircleWithNumber(cvs, center_x, center_y, num, background_color, forward_color)
+{
+  cvs.fillStyle = background_color
+  cvs.beginPath();
+  cvs.arc(center_x,center_y,20, 0,360*Math.PI/180,false);
+  cvs.fill()
+  cvs.stroke();
+
+  cvs.fillStyle = forward_color
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText(num,center_x - 5, center_y + 5);
+
+}
+
+/*端点の円弧を考慮して直線の両端を削る関数*/
+function getModifiedEdge(afrom_x, afrom_y, ato_x, ato_y, circle_width)
+{
+    theta = Math.atan2( ato_y - afrom_y, ato_x - afrom_x);
+    from_x = afrom_x + circle_width * Math.cos(theta);
+    from_y = afrom_y + circle_width * Math.sin(theta);
+    to_x = ato_x - circle_width * Math.cos(theta);
+    to_y = ato_y - circle_width * Math.sin(theta);
+    return {from_x: from_x, from_y: from_y, to_x: to_x, to_y: to_y}
+}
+
+/*端点の円弧を考慮しながら直線を書く関数*/
+function drawLineWithNoArrow(cvs, afrom_x, afrom_y, ato_x, ato_y, circle_width)
+{
+    let{from_x, from_y, to_x, to_y} 
+       = getModifiedEdge(afrom_x, afrom_y, ato_x, ato_y, circle_width)
+
+    cvs.beginPath();
+    cvs.arrow( from_x, from_y, to_x , to_y, [0, 1,  0, 0,  0, 0]);
+    cvs.fill();
+    cvs.stroke(); 
+
+}
+
+/*端点の円弧を考慮しながら矢印を書く関数*/
+function drawLineWithSingleArrow(cvs, afrom_x, afrom_y, ato_x, ato_y, circle_width)
+{
+    let{from_x, from_y, to_x, to_y} 
+       = getModifiedEdge(afrom_x, afrom_y, ato_x, ato_y, circle_width)
+
+    cvs.beginPath();
+    cvs.arrow( from_x, from_y, to_x , to_y, [0, 1, -5, 1, -5, 5]);
+    cvs.fill();
+    cvs.stroke(); 
+}
+
+/*端点の円弧を考慮しながら双方向の矢印を書く関数*/
+function drawLineWithBothArrow(cvs, afrom_x, afrom_y, ato_x, ato_y, circle_width)
+{
+    let{from_x, from_y, to_x, to_y} 
+       = getModifiedEdge(afrom_x, afrom_y, ato_x, ato_y, circle_width)
+
+    cvs.beginPath();
+    cvs.arrow( from_x, from_y, to_x , to_y, [0, 1, -5, 1, -5, 5]);
+    cvs.arrow( to_x, to_y, from_x , from_y, [0, 1, -5, 1, -5, 5]);
+    cvs.fill();
+    cvs.stroke(); 
+}
+
+
 function draw() {
   var canvas = document.getElementById('graph_basic');
   if ( ! canvas || ! canvas.getContext ) {
@@ -157,159 +224,69 @@ function draw() {
   var cvs = canvas.getContext('2d');
 
 
-  cvs.beginPath();
-  cvs.arc(70,80,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("1",65,85);
-
-  cvs.beginPath();
-  cvs.arc(30,28,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("2",25,33);
-
-  cvs.beginPath();
-  cvs.arc(130,25,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("3",125,30);
-
-  cvs.beginPath();
-  cvs.arc(230,28,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("4",225,33);
-
-  cvs.beginPath();
-  cvs.arc(210,80,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("5",205,85);
-
-  cvs.beginPath();
-  cvs.arc(360,50,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("6",355,55);
-
-  cvs.beginPath();
-  cvs.arc(460,20,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("7",455,25);
-
-  cvs.beginPath();
-  cvs.arc(560,80,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("8",555,85);
-
-  cvs.beginPath();
-  cvs.arc(560,20,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("9",555,25);
+  drawCircleWithNumber(cvs, 70, 80, 1, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs, 30, 28, 2, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,130, 25, 3, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,230, 28, 4, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,210, 80, 5, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,360, 50, 6, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,460, 20, 7, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,560, 80, 8, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,560, 20, 9, "rgb(255,255,255)", "rgb(0,0,0)");
 
 /*===================================*/
 
+  drawLineWithNoArrow (cvs, 70, 80, 30, 28, 20);
   cvs.beginPath();
   cvs.font = '16px sunserif'
   cvs.fillText("2",40,65);
 
   cvs.beginPath();
-  cvs.arrow( 58, 62, 42, 43, [0, 1, 0, 0, 0, 0]);
-  cvs.stroke(); 
-
-  cvs.beginPath();
   cvs.font = '16px sunserif'
   cvs.fillText("7",130,95);
-
-  cvs.beginPath();
-  cvs.arrow( 90, 80, 190, 80, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke(); 
+  drawLineWithNoArrow (cvs, 70, 80, 210 , 80, 20);
 
   cvs.beginPath();
   cvs.font = '16px sunserif'
   cvs.fillText("1",70,20);
-
-  cvs.beginPath();
-  cvs.arrow( 50, 28, 110, 25, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
+  drawLineWithNoArrow (cvs, 30, 28, 130 , 25, 20);
 
   cvs.beginPath();
   cvs.font = '16px sunserif'
   cvs.fillText("2",180,20);
-
-  cvs.beginPath();
-  cvs.arrow(150, 25, 210, 28, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
+  drawLineWithNoArrow (cvs, 130, 25, 230 , 28, 20);
 
   cvs.beginPath();
   cvs.font = '16px sunserif'
   cvs.fillText("3",228,65);
-
-  cvs.beginPath();
-  cvs.arrow(217, 62, 224, 47, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
+  drawLineWithNoArrow (cvs, 210, 80, 230 , 28, 20);
 
   cvs.beginPath();
   cvs.font = '16px sunserif'
   cvs.fillText("4",170,50);
-
-  cvs.beginPath();
-  cvs.arrow(146, 40, 195, 65, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
+  drawLineWithNoArrow (cvs, 130, 25, 210 , 80, 20);
 
   cvs.beginPath();
   cvs.font = '16px sunserif'
   cvs.fillText("13",290,60);
-
-  cvs.beginPath();
-  cvs.arrow(229, 77, 340, 55, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
+  drawLineWithNoArrow (cvs, 210, 80, 360 , 50, 20);
 
   cvs.beginPath();
   cvs.font = '16px sunserif'
   cvs.fillText("6",405,30);
-
-  cvs.beginPath();
-  cvs.arrow(380, 43, 440, 25, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
+  drawLineWithNoArrow (cvs, 360, 50, 460 , 20, 20);
 
   cvs.beginPath();
   cvs.font = '16px sunserif'
   cvs.fillText("11",460,65);
-
-  cvs.beginPath();
-  cvs.arrow(380, 57, 541, 77, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
+  drawLineWithNoArrow (cvs, 360, 50, 560 , 80, 20);
 
   cvs.beginPath();
   cvs.font = '16px sunserif'
   cvs.fillText("8",565,57);
+  drawLineWithNoArrow (cvs, 560, 20, 560 , 80, 20);
 
-  cvs.beginPath();
-  cvs.arrow(560, 60, 560, 40, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
+
   /***************************************************************************/
   var canvas = document.getElementById('graph_tree');
   if ( ! canvas || ! canvas.getContext ) {
@@ -317,85 +294,20 @@ function draw() {
   }
   var cvs = canvas.getContext('2d');
 
-  cvs.beginPath();
-  cvs.arc(300,20,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
+  drawCircleWithNumber(cvs,300, 20, 1, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,200, 90, 2, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,300, 90, 3, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,400, 90, 4, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,150,160, 5, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,250,160, 6, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,450,160, 7, "rgb(255,255,255)", "rgb(0,0,0)");
 
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("1",295,25);
-
-  cvs.beginPath();
-  cvs.arc(200,90,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("2",195,95);
-
-  cvs.beginPath();
-  cvs.arc(300,90,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("3",295,95);
-
-  cvs.beginPath();
-  cvs.arc(400,90,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("4",395,95);
-
-  cvs.beginPath();
-  cvs.arc(150,160,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("5",145,165);
-
-  cvs.beginPath();
-  cvs.arc(250,160,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("6",245,165);
-
-  cvs.beginPath();
-  cvs.arc(450,160,20, 0,360*Math.PI/180,false);
-  cvs.stroke();
-
-  cvs.beginPath();
-  cvs.font = '16px sunserif'
-  cvs.fillText("7",445,165);
-
-  cvs.beginPath();
-  cvs.arrow(283, 30, 217, 80, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
-
-  cvs.beginPath();
-  cvs.arrow(300, 40, 300, 70, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
-
-  cvs.beginPath();
-  cvs.arrow(317, 30, 383, 80, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
-
-  cvs.beginPath();
-  cvs.arrow(188, 107, 162, 143, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
-
-  cvs.beginPath();
-  cvs.arrow(212, 107, 238, 143, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
-
-  cvs.beginPath();
-  cvs.arrow(412, 107, 438, 143, [0, 1,  0, 0,  0, 0]);
-  cvs.stroke();  
+  drawLineWithNoArrow (cvs, 300, 20, 200 , 90, 20);
+  drawLineWithNoArrow (cvs, 300, 20, 300 , 90, 20);
+  drawLineWithNoArrow (cvs, 300, 20, 400 , 90, 20);
+  drawLineWithNoArrow (cvs, 200, 90, 150 ,160, 20);
+  drawLineWithNoArrow (cvs, 200, 90, 250 ,160, 20);
+  drawLineWithNoArrow (cvs, 400, 90, 450 ,160, 20);
 
   cvs.beginPath();
   cvs.font = '16px sunserif'
@@ -413,5 +325,85 @@ function draw() {
   cvs.font = '16px sunserif'
   cvs.fillText("葉",270,165);
 
+   /***************************************************************************/
+  var canvas = document.getElementById('two_part_graph');
+  if ( ! canvas || ! canvas.getContext ) {
+    return false;
+  }
+  var cvs = canvas.getContext('2d'); 
+
+  drawCircleWithNumber(cvs,100, 20, " ", "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,200, 20, " ", "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,300, 20, " ", "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,400, 20, " ", "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,500, 20, " ", "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,150,130, " ", "rgb(0,0,0)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,250,130, " ", "rgb(0,0,0)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,350,130, " ", "rgb(0,0,0)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,450,130, " ", "rgb(0,0,0)", "rgb(0,0,0)");
+
+  drawLineWithNoArrow (cvs, 100, 20, 150 ,130, 20);
+  drawLineWithNoArrow (cvs, 100, 20, 250 ,130, 20);
+  drawLineWithNoArrow (cvs, 100, 20, 450 ,130, 20);
+
+  drawLineWithNoArrow (cvs, 200, 20, 250 ,130, 20);
+  drawLineWithNoArrow (cvs, 200, 20, 350 ,130, 20);
+
+  drawLineWithNoArrow (cvs, 300, 20, 150 ,130, 20);
+  drawLineWithNoArrow (cvs, 300, 20, 350 ,130, 20);
+  drawLineWithNoArrow (cvs, 300, 20, 450 ,130, 20);
+
+  drawLineWithNoArrow (cvs, 400, 20, 150 ,130, 20);
+
+  drawLineWithNoArrow (cvs, 500, 20, 150 ,130, 20);
+  drawLineWithNoArrow (cvs, 500, 20, 350 ,130, 20);
+  drawLineWithNoArrow (cvs, 500, 20, 450 ,130, 20);
+
+
+  var canvas = document.getElementById('strongly_and_weakly_connected_graph');
+  if ( ! canvas || ! canvas.getContext ) {
+    return false;
+  }
+  var cvs = canvas.getContext('2d'); 
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("強連結な有向グラフ",30,120);
+
+  drawCircleWithNumber(cvs, 50, 20, 1, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs, 80, 80, 2, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,120, 30, 3, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,150, 80, 4, "rgb(255,255,255)", "rgb(0,0,0)");
+
+  drawLineWithSingleArrow(cvs, 50, 20, 80 ,80, 20);
+  drawLineWithBothArrow(cvs, 80, 80, 120 ,30,20);
+  drawLineWithSingleArrow(cvs, 120, 30, 50 ,20, 20);
+  drawLineWithBothArrow(cvs, 80, 80, 150 ,80, 20);
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("弱連結な有向グラフ",230,120);
+
+  drawCircleWithNumber(cvs,250, 20, 1, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,280, 80, 2, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,320, 30, 3, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,350, 80, 4, "rgb(255,255,255)", "rgb(0,0,0)");
+
+  drawLineWithSingleArrow(cvs, 250, 20, 280 ,80, 20);
+  drawLineWithSingleArrow(cvs, 320, 30, 280 ,80,20);
+  drawLineWithSingleArrow(cvs, 320, 30, 250 ,20, 20);
+  drawLineWithBothArrow(cvs, 280, 80, 350 ,80, 20);
+
+  cvs.beginPath();
+  cvs.font = '16px sunserif'
+  cvs.fillText("弱連結でない有向グラフ",415,120);
+
+  drawCircleWithNumber(cvs,450, 20, 1, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,480, 80, 2, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,520, 30, 3, "rgb(255,255,255)", "rgb(0,0,0)");
+  drawCircleWithNumber(cvs,550, 80, 4, "rgb(255,255,255)", "rgb(0,0,0)");
+
+  drawLineWithBothArrow(cvs, 450, 20, 480 ,80, 20);
+  drawLineWithSingleArrow(cvs, 520, 30, 550 ,80, 20);
 
 }

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - - math - network analysis </title>
+<title>hsmemo - - others - network analysis </title>
 <base href="../../" />
 
 <link rel="stylesheet" href="style.css">
@@ -62,7 +62,7 @@ load: ['[tex]/noerrors']
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 数学 - ネットワーク分析</span>
+    <span class="subtitle"> : その他 - ネットワーク分析</span>
   </div>
 
 </div>
@@ -79,12 +79,19 @@ load: ['[tex]/noerrors']
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
 <h1>ネットワーク分析の基礎</h1>
+    <h2>この記事の目的</h2>
+        <div><div class="hidden_show">
+             ネットワーク理論の概要と基本用語、分析の流れなどについて説明する。 
+
+        </div></div>
     <h2>ネットワーク分析とは</h2>
         <div><div class="hidden_show">
     <cite>グラフを用いて様々な事象と事象の関係について目的とした分析手法</cite>[1]で、
-    友人関係や血縁関係、商品の流通ネットワーク、食物連鎖のネットワークなど
-    複数の点がなんらかの関係で繋がっているとネットワークの分野に分類することができる。
-    このつながりの関係構造を分析することをネットワーク分析と呼ぶ。
+         友人関係や血縁関係、商品の流通ネットワーク、食物連鎖のネットワークなど
+         複数の点がなんらかの関係で繋がっているとネットワークの分野に分類することができる。
+         このつながりの関係構造を分析することをネットワーク分析と呼ぶ。
+         分析の基礎理論は<a class="local" href="02_math/07_graph_theory/01_graph_theory.html">グラフ理論</a>であり、
+         本節では、実際の分析の際に必要な手順などについて述べる。
 
         </div></div>
     <h2>応用例</h2>
@@ -104,6 +111,7 @@ load: ['[tex]/noerrors']
         <h3>論文ネットワーク</h3>
             近いうちに伸びる分野(萌芽領域）を特定することができる。
 
+
         </div></div>
     <h2>基本用語</h2>
         <div><div class="hidden_show">
@@ -112,14 +120,16 @@ load: ['[tex]/noerrors']
         <h3>グラフ</h3>
             ネットワークを可視化したもの。
 
-        </div></div>
 
+        </div></div>
     <h2>データ・セット</h2>
+        <div><div class="hidden_show">
         <h3>karate club</h3>
         1977年、 Wayne Zacharyによって、集められたある大学の空手クラブのデータ。pythonのnetworkxですぐに使用可能。
         (<a href="http://konect.cc/networks/ucidata-zachary/"> Zachary karate club</a>)
 
 
+        </div></div>
     <h2>参考文献、サイト</h2>
         <div><div class="hidden_show">
         <ol>
@@ -129,9 +139,9 @@ load: ['[tex]/noerrors']
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="02_math/06_time_series_analysis/04_sarima_model.html">SARIMA モデル</a>
+<a class="prev" href="07_others/02_voice_recognition/01_voice_recognition.html">音声認識の基礎</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="02_math/07_network_analysis/02_graph_theory.html">グラフ理論</a>
+<a class="next" href="07_others/03_network_analysis/02_preprocessing_for_network_analysis.html">ネットワーク分析におけるデータ前処理</a>
 </div>
 </main>
 </body>

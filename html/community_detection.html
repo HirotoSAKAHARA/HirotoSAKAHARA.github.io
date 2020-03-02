@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - - image processing - base </title>
-<base href="../../" />
+<title>hsmemo - - math - graph theory </title>
+<base href="../">
 
 <link rel="stylesheet" href="style.css">
 <!-- 式・使う宣言-->
@@ -62,7 +62,7 @@ load: ['[tex]/noerrors']
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 画像処理 - 画像処理について</span>
+    <span class="subtitle"> : 数学 - グラフ理論</span>
   </div>
 
 </div>
@@ -82,12 +82,15 @@ load: ['[tex]/noerrors']
     <h2>この記事の目的</h2>
         <div><div class="hidden_show">
              コミュニティ検出の概要と方法について説明する。
-        </div></div>
 
+        </div></div>
     <h2>コミュニティ検出の概要</h2>
+        <div><div class="hidden_show">
         グラフにおいて、ノード間が密に接続しているノードの部分集合を発見する問題である。
 
+        </div></div>
     <h2>基本用語</h2>
+        <div><div class="hidden_show">
         <h3>サブグループ</h3>
             グラフを分割したときのそれぞれのグループ。
         <h3>連結グラフ</h3>
@@ -95,11 +98,36 @@ load: ['[tex]/noerrors']
         <h3>連結成分</h3>
            極大で連結な部分グラフ。
 
+        <h3>有向グラフの密度</h3>
+            頂点数を\(|V|\) 、辺数を\(|E|\)とすると、以下の式で表される。
+            $$
+            \frac{|E|}{|V|(|v| - 1)}
+            $$
+
+        <h3>無向グラフの密度</h3>
+            頂点数を\(|V|\) 、辺数を\(|E|\)とすると、以下の式で表される。
+            $$
+            \frac{2|E|}{|V|(|v| - 1)}
+            $$ 
+        <h3>クリーク</h3>
+            あるグラフの、頂点が３つ以上あるサブグラフで、
+            密度が１、つまり全ての頂点がお互い繋がっているサブグラフ。
+
+         <h3>n-クリーク</h3>
+            含まれる頂点感の距離の最大値がn以下であるサブグラフ。
+
+         <h3>(ネットワーク分析における)クラスタリング</h3>
+            連結なグラフを幾つかのサブグラフに分割すること。
+
+         <h3>モジュラリティ指標</h3>
+
+
+    </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="05_image_processing/01_base/02_image_processing_preprocessing.html">画像処理におけるデータ前処理</a>
+<a class="prev" href="html/network_centrality.html">中心性</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="05_image_processing/02_traditional_image_processing/01_traditional_image_processing.html">伝統的な画像処理</a>
+<a class="next" href="html/similarity.html">類似度</a>
 </div>
 </main>
 </body>

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - - math - network analysis </title>
+<title>hsmemo - - math - graph theory </title>
 <base href="../">
 
 <link rel="stylesheet" href="style.css">
@@ -66,7 +66,7 @@ load: ['[tex]/noerrors']
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 数学 - ネットワーク分析</span>
+    <span class="subtitle"> : 数学 - グラフ理論</span>
   </div>
 
 </div>
@@ -82,10 +82,19 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>グラフ理論</h1>
+<h1>グラフ理論の基礎</h1>
     <h2>この記事の目的</h2>
         <div><div class="hidden_show">
              グラフ理論の概要と基本用語について説明する。
+ 
+
+        </div></div>
+    <h2>グラフ理論とは</h2>
+        <div><div class="hidden_show">
+                    <cite>グラフを用いて様々な事象と事象の関係について目的とした分析手法</cite>[1]で、
+        友人関係や血縁関係、商品の流通ネットワーク、食物連鎖のネットワークなど
+        複数の点がなんらかの関係で繋がっているとネットワークの分野に分類することができる。
+        このつながりの関係構造を分析することをネットワーク分析と呼ぶ。
 
         </div></div>
     <h2>概要</h2>
@@ -134,14 +143,62 @@ load: ['[tex]/noerrors']
                 自分より下の頂点
         <h3>二部グラフ</h3>
             頂点を２つのグループに分けて、各グループ内の頂点同士を結ぶ辺がないようなグラフ。
+        <div class="img"> <canvas id="two_part_graph" width="600" height="150">
+            図形を表示するには、canvasタグをサポートしたブラウザが必要です。
+        </canvas></div> 
 
+         <h3>強連結と弱連結</h3>
+            有向グラフには強連結、弱連結があり、以下の図のように表される。
+        <div class="img"> <canvas id="strongly_and_weakly_connected_graph" width="600" height="130">
+            図形を表示するには、canvasタグをサポートしたブラウザが必要です。
+        </canvas></div>  
+        <h4>強連結</h4>
+            任意の２頂点間に道が存在するグラフ
+        <h4>弱連結</h4>
+            各辺の方向を無視した時のみ、任意の２頂点間に道が存在する有向グラフ。
+        <h4>次数</h4>
+            ある頂点に繋がっている辺の数。
+        <h4>入次数</h4>
+            自身に入ってくるような辺の数。
+        <h4>出次数</h4>
+            自身から出ていくような辺の数。
+    <h3>グラフの表記</h3>
+        <h4>隣接行列</h4>
+        グラフの接続を行列で示したもの。頂点\(i\)から頂点\(j\)への辺が存在する時は1, 存在しないときは0となる要素数が頂点数\(\times\)頂点数の正方行列となる。対角行列は0となる。前節の強連結のグラフは以下のように書ける。
+        $$
+        A = \left(
+            \begin{array}{cccc}
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 1 & 1 \\
+            1 & 1 & 0 & 0 \\
+            0 & 1 & 0 & 0
+            \end{array}
+        \right)
+        $$
+        <h4>隣接リスト</h4>
+            頂点iから出ている頂点を格納したもの。
+        $$
+            \begin{array}{ccl}
+            L_1 &=& \{2\} \\
+            L_2 &=& \{3,4\} \\
+            L_3 &=& \{1,2\} \\
+            L_4 &=& \{2\} 
+            \end{array}
+        $$
+        <h4>隣接行列と隣接リストの違い</h4>
+            <ul>
+                <li>隣接行列のほうが行列計算がしやすい。</li>
+                <li>隣接リストのほうがメモリが少なくてすむ。</li>
+                <li>隣接リストのほうが効率的な探索アルゴリズムができる。</li>
+            </ul>
+            
           
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="html/network_analysis.html">ネットワーク分析の基礎</a>
+<a class="prev" href="html/sarima_model.html">SARIMA モデル</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="html/similarity.html">類似度</a>
+<a class="next" href="html/shortest_path_problem.html">最短経路問題</a>
 </div>
 </main>
 </body>
