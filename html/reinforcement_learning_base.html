@@ -1,16 +1,15 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - - robot - base </title>
-<base href="../../" />
-
+<title>hsmemo - - ai - base </title>
+<base href="../">
 
 <link rel="stylesheet" href="style.css">
-<!-- 数式を使う宣言-->
+<!-- 式・使う宣言-->
 <script>
-  window.MathJax = {
-    tex: {
+    window.MathJax = {
+tex: {
 macros: {
 x: "{\\times}",
 bm: ["{\\boldsymbol{#1}}",1],
@@ -24,13 +23,13 @@ color: [],
 colorV2: ['color']
 },
 packages: {'[+]': ['noerrors']}
-    },
-    chtml: {
+},
+chtml: {
 matchFontHeight: false,
 displayAlign: "left",
 displayIndent: "2em"
-    },
-    options: {
+},
+options: {
 renderActions: {
 /* add a new named action to render <script type="math/tex"> */
 find_script_mathtex: [10, function (doc) {
@@ -45,50 +44,64 @@ doc.math.push(math);
 }
 }, '']
 }
-    },
-    loader: {
+},
+loader: {
 load: ['[tex]/noerrors']
-    }
-  };
+}
+    };
 </script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
 </script>
-
 </head>
-
 <body>
 <main>
+
 
 <!--***************************ヘッダー領域****************************-->
 <div class="site-header">
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : ロボティクス - ロボティクスについて</span>
+    <span class="subtitle"> : 人工知能 - 人工知能について</span>
   </div>
 
 </div>
 
 <div class="last_modified">
 <script type="text/javascript">
-   document.write('最終更新日:' + document.lastModified);
+   document.write('最終更新日 : ' + document.lastModified);
 </script>
-：
+<!--...........................更新内容............................-->
+：分類の項にあった記述を移動
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>ロボティクスについて</h1>
+<h1>強化学習</h1>  
+    <h2>概要</h2>
+        <div><div class="hidden_show">
+    
+      エージェントが行動し、行動によって環境が変化し、
+    環境から状態と報酬が与えられるようなシナリオで、
+    累積報酬の最大化を達成できるようなポリシーを学習することを目的とする。
+    行動の結果が行動の後にスカラ値の報酬として与えられる。
+    報酬は即時に与えられるとは限らず、報酬は行動の改善の方法を与えない。
+    英語ではreinforcement learning(RL)。
+    <div class="img"><img src="out\ai\reinforcement_learning.png" alt="学習手順"/></div>
+        </div></div>
+    <h2>特徴</h2>
+        <div><div class="hidden_show">
+  エージェントが探索し、探索の後で報酬が与えられるということはほかの学習と大きく異なる。
+    行動により環境が変化するために、探索と活用のトレードオフが発生する。
 
-
+    </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="03_ai/10_others/04_references_for_ai.html">参考資料（人工知能)</a>
+<a class="prev" href="html/supervised_and_unsupervised_learning.html">教師あり学習・教師なし学習</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="04_robot/02_localization/01_localization.html">グラフベースドスラム</a>
+<a class="next" href="html/preprocessing.html">前準備の基礎</a>
 </div>
 </main>
 </body>
 </html>
-  
