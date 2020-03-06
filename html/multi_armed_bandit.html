@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - ai - reinforcement learning </title>
+<base href="../">
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : 人工知能 - 強化学習</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>多腕バンディット問題</h1>  
+    <h2>この記事の目的</h2>
+        <div><div class="hidden_show">
+        強化学習において、状態が変化しない単純な問題である、
+        多腕バンディット問題の概要と方策の決定手法について記し、
+        探索と利用に関する戦略についての理解を深める。
+
+        </div></div>
+    <h2>概要</h2>
+        <div><div class="hidden_show">
+        事前に確率の定義されたn台のスロットマシーンが並んでおり、
+        あたりならば1, 外れならば0の報酬が与えられる。
+        この条件下で試行回数あたりの平均報酬量を最大化するためにはどうすべきかを考える問題のこと。 
+
+
+        </div></div>
+    <h2>基本用語</h2>
+        <div><div class="hidden_show">
+        <h3>リグレット</h3>
+            理想的な場合(つまり最初から一番成功率が高いスロットを選び続けた場合)との報酬の合計の差分
+
+        </div></div>
+    <h2>アルゴリズム</h2>
+        <div><div class="hidden_show">
+        <h3>greedy手法</h3>
+            アルゴリズムを以下に示す。
+            <ol>
+                <li>まずそれぞれのスロットマシーンをn回ずつ試行し、その結果から期待値を取得する。</li>
+                <li>その後は期待値が最大のものを選択する。</li>
+            </ol>
+
+        <h3>\(\varepsilon\)-greedy手法</h3>
+            アルゴリズムを以下に示す。
+            <ol>
+                <li>一度も選択されていないスロットがある場合は、それを選択する。</li>
+                <li>確率\(\varepsilon\)を決定する。</li>
+                <li>確率\(\varepsilon\)で全てのスロットからランダムに選択する。</li>
+                <li>確率\(1-\varepsilon\)でこれまでの報酬の平均が最大のものを選択する</li>
+            </ol>
+
+        <h3>楽観的初期値法</h3>
+            greedy手法、\(\varepsilon\)-greedy手法などの欠点として、
+            一度誤って期待値が小さいと判別されたスロットマシーンは選ばれにくいことが挙げられる。 
+            そこで、不確かなときは高い可能性を見積もって置くことで、上記欠点を解消することができる。
+            具体的には、始めるまでにそれぞれのスロットでいくらかの試行を行っており、
+            それぞれ最大値を取得していたとの仮定からgreedy手法を始める手法である。
+        
+        <h3>soft-max法</h3>
+            0,1の報酬でなく、-100のような極端な報酬があった場合、
+            上記の方法では何度も選ばれてしまう可能性が高い。　
+            報酬の期待値に応じて選択可能性を変えるような方法がsoft-max法である。
+            アルゴリズムを以下に記す。
+            <ol>
+                <li>一度も選択されていないスロットは、報酬の期待値を1とする。</li>
+                <li>それぞれのスロットの選択確率\(Y_{t,i}\)を以下の式とする。
+                    ここで、\(E(Q_{t,i})\)は時刻\(t\)、\(i\)番目のスロットの報酬の期待値、
+                    \(\tau\)はパラメータで、\(\tau\)が大きければ大きいほどどのスロットも等しく選ばれる。
+                $$
+                Y_{t,i} = \frac{e^{E(Q_{t,i})/\tau}}{\sum_{j_1}^N e^{E(Q_{t,j})/\tau}}
+                $$ 
+                </li>
+            </ol>
+
+        <h3>UCBIアルゴリズム</h3>
+            楽観的初期値法を改善した手法で、今までのデータから導出される期待値に、
+            試行回数が少ない場合に大きくなるバイアスを加えて最大となるスロットを選択する。
+            具体的には、時刻\(t\)でのスロット\(i\)の確率\(Y_{t,i}\)は以下のように示される。
+            $$
+            Y_{t,i} = E(Q_{t,i}) + C \sqrt{\frac{2 \ln t}{n_{t,i}}}
+            $$
+            ここで、\(E(Q_{t,i})\)は時刻\(t\)、スロットi\(i\)の報酬の期待値、
+            \(n_{t,i}\)は時刻\(t\)まででスロット\(i\)が選ばれた回数。
+            UCBIアルゴリズムはリグレットを最小化させることで知られている。
+
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="html/reinforcement_learning.html">強化学習について</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="html/marcov_decision_process.html">マルコフ決定過程</a>
+</div>
+</main>
+</body>
+</html> 
