@@ -101,7 +101,7 @@ load: ['[tex]/noerrors']
             <dt>確率変数</dt><dd>\(X\)</dd>
             <dt>ベクトル</dt><dd>\(\bm{x}\)</dd>
             <dt>行列</dt><dd>\(\bm{X}\)</dd>
-            <dt>時刻\(t\)における変数、確率変数、ベクトル、行列</dt><dd>\(x_t, X_t, \bm{x}_t, \bm{X}_t\)</dd>
+            <dt>時刻、あるいは時間ステップ\(t\)における変数、確率変数、ベクトル、行列</dt><dd>\(x_t, X_t, \bm{x}_t, \bm{X}_t\)</dd>
             <dt>転置行列</dt><dd>\(\bm{X}^\top\)</dd>
             <dt>全要素が1であるサイズ\(m\times n (m, n \in \mathbb{N})\)の行列</dt><dd>\(\bm{1}_{m, n}\)</dd>
             <dt>全要素が0であるサイズ\(m\times n (m, n \in \mathbb{N})\)の行列</dt><dd>\(\bm{0}_{m, n}\)</dd>
@@ -165,22 +165,22 @@ load: ['[tex]/noerrors']
         </dl>
         <h3>強化学習</h3>
         <dl>
-        <dt>状態の集合</dt><dd>\(\mathcal{S}\)</dd>
-        <dt>行動の集合</dt><dd>\(\mathcal{A}\)</dd>
-        <dt>報酬の集合</dt><dd>\(\mathcal{R} \;\; \colon= \{r \in \mathbb{R} \;\;| \;\; r = g(s, a), \exists (s, a) \in \mathcal{S} \times \mathcal{A}\}\), ここで\(g(s, a)\)は報酬関数(後述)</dd>
+        <dt>状態集合</dt><dd>\(\mathcal{S}\)</dd>
+        <dt>行動集合</dt><dd>\(\mathcal{A}\)</dd>
+        <dt>報酬集合</dt><dd>\(\mathcal{R} \;\; \colon= \{r \in \mathbb{R} \;\;| \;\; r = g(s, a), \exists (s, a) \in \mathcal{S} \times \mathcal{A}\}\), ここで\(g(s, a)\)は報酬関数(後述)</dd>
         <dt>現在の状態の確率変数</dt><dd>\(S\)</dd>
         <dt>現在の状態の実現値</dt><dd>\(s\)</dd>
         <dt>1ステップ後の状態の確率変数</dt><dd>\(S'\)</dd>
         <dt>1ステップ後の状態の実現値</dt><dd>\(s'\)</dd>
-        <dt>時刻tの状態の確率変数</dt><dd>\(s_t\)</dd>
-        <dt>時刻tの状態の実現値</dt><dd>\(s_t\)</dd>
-        <dt>時刻tの行動の確率変数</dt><dd>\(A_t\)</dd>
-        <dt>時刻tの行動の実現値</dt><dd>\(a_t\)</dd> 
-        <dt>時刻tの報酬の確率変数</dt><dd>\(R_t\)</dd>
-        <dt>時刻tの報酬の実現値</dt><dd>\(r_t\)</dd>  
+        <dt>時間ステップtの状態の確率変数</dt><dd>\(s_t\)</dd>
+        <dt>時間ステップtの状態の実現値</dt><dd>\(s_t\)</dd>
+        <dt>時間ステップtの行動の確率変数</dt><dd>\(A_t\)</dd>
+        <dt>時間ステップtの行動の実現値</dt><dd>\(a_t\)</dd> 
+        <dt>時間ステップtの報酬の確率変数</dt><dd>\(R_t\)</dd>
+        <dt>時間ステップtの報酬の実現値</dt><dd>\(r_t\)</dd>  
         <dt>初期状態確率</dt><dd>\(p_{s_0} \;\; \colon \mathcal{S} \rightarrow [0,1] \;\; | \;\; \sum_{s \in \mathcal{S}}p_{s_0}(s) = 1 \)</dd>
         <dt>状態遷移確率</dt><dd>\(p_T \; \colon \; \mathcal{S} \times \mathcal{A} \times \mathcal{S} \rightarrow [0, 1] \;\; | \;\; \sum_{s' \in \mathcal{S}} p_T(s'|s, a) = 1, \forall(s, a) \in \mathcal{S} \times \mathcal{A} \)</dd>
-        <dt>報酬関数</dt><dd>\(g(s,a) \;\;\colon \mathcal{S} \times \mathcal{A} \rightarrow \mathbb{R}\)</dd>
+        <dt>報酬関数</dt><dd>\(g(s,a,s') \;\;\colon \mathcal{S} \times \mathcal{A} \times \mathcal{S} \rightarrow \mathbb{R}\)</dd>
         <dt>報酬関数値の上限</dt><dd>\(R_{\mathrm{max}} \;\;\colon= |g(s, a)| \le R_{\mathrm{max}}, \forall(s, a) \in \mathcal{S} \times \mathcal{A} \)</dd>
         <dt>確率的方策</dt><dd>\(\pi \;\;\colon\;\;\mathcal{A}\times\mathcal{S} \rightarrow [0,1] \;\; | \;\; \sum_{a \in \mathcal{A}} \pi(a|s) = 1, \forall s \in \mathcal{S}\)</dd>
         <dt>確率的方策の集合</dt><dd>\(\Pi \;\; \colon= \;\; \{\pi : \mathcal{A} \times \mathcal{S} \rightarrow [0,1] \;\; | \;\; \sum_{a \in \mathcal{A}} \pi(a|s) = 1, \; \forall s \in \mathcal{S}\}\)</dd>
@@ -189,8 +189,8 @@ load: ['[tex]/noerrors']
         <dt>マルコフ決定過程</dt><dd>\({\rm M} \;\; \colon= \;\; \{\mathcal{S}, \mathcal{A}, p_{s_0}, p_T, g\}\)</dd>
         <dt>方策\(\pi\)に従うマルコフ決定過程</dt><dd>\({\rm M}(\pi) \;\; \colon= \;\; \{\mathcal{S}, \mathcal{A}, p_{s_0}, p_T, g, \pi\}\)</dd>
         <dt>リターン（割引累積報酬）の割引率</dt><dd>\(\gamma \in [0,1)\)</dd>
-        <dt>時刻\(t\)のリターンの確率変数</dt><dd>\(C_t \;\; \colon= \;\; \sum^{\infty}_{k=0} \gamma^kR_{t+k}\)</dd>
-        <dt>時刻\(t\)のリターンの実現値</dt><dd>\(c_t\)</dd>
+        <dt>時間ステップ\(t\)の収益の確率変数</dt><dd>\(C_t \;\; \colon= \;\; \sum^{\infty}_{k=0} \gamma^kR_{t+k}\)</dd>
+        <dt>時間ステップ\(t\)の収益の実現値</dt><dd>\(c_t\)</dd>
         <dt>方策\(\pi\)のベルマン期待作用素</dt><dd>\({\rm B}_{\pi}\)</dd>
         <dt>方策\(\pi\)のベルマン最適作用素</dt><dd>\({\rm B}*\)</dd>
         <dt>方策の系列</dt><dd>\(\bm{\pi} \;\; \colon= \;\; \{\pi_0, \ldots\}\)</dd>

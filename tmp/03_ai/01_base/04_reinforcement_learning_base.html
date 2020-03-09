@@ -81,20 +81,22 @@ load: ['[tex]/noerrors']
 <h1>強化学習</h1>  
     <h2>概要</h2>
         <div><div class="hidden_show">
-    
-      エージェントが行動し、行動によって環境が変化し、
-    環境から状態と報酬が与えられるようなシナリオで、
-    累積報酬の最大化を達成できるようなポリシーを学習することを目的とする。
-    行動の結果が行動の後にスカラ値の報酬として与えられる。
-    報酬は即時に与えられるとは限らず、報酬は行動の改善の方法を与えない。
-    英語ではreinforcement learning(RL)。
-    <div class="img"><img src="out\ai\reinforcement_learning.png" alt="学習手順"/></div>
-        </div></div>
-    <h2>特徴</h2>
-        <div><div class="hidden_show">
-  エージェントが探索し、探索の後で報酬が与えられるということはほかの学習と大きく異なる。
-    行動により環境が変化するために、探索と活用のトレードオフが発生する。
+          九州大学の木村先生のホームページより引用する。『<cite>強化学習とは，試行錯誤を通じて環境に適応する学習制御の枠組である． 教師付き学習(Supervised learning)とは異なり，状態入力に対する正しい行動 出力を明示的に示す教師が存在しない．かわりに報酬というスカラーの情報を 手がかりに学習するが，報酬にはノイズや遅れがある．そのため，行動を実行した直後の報酬をみるだけでは，学習主体はその行動が正しかったかどうかを判断できないという困難を伴う．</cite> 』[1]
+          箇条書きにすると以下のような学習の枠組みである。
+          <ul>
+              <li>学習対象は、試行錯誤的に行動しなければいけない。</li>
+              <li>行動に対しては、結果の良し悪しを示す報酬のみが与えられる。</li>
+              <li>ただし、報酬は遅れやノイズがあり、行動の直後の報酬を見ただけでは学習ができない。</li>
+          </ul>
 
+
+        </div></div>
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
+    <ol>
+        <li><a href="http://sysplan.nams.kyushu-u.ac.jp/gen/edu/RL_intro.html">"強化学習とは？(what is Reinforcement Learning?)",木村 元、宮崎 和光、小林 重信</a></li>
+    </ol> 
+    </div></div> 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
