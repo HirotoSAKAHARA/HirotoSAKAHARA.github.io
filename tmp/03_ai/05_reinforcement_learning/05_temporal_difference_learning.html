@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hsmemo - - ai - base </title>
-<base href="../">
+<title>hsmemo - - ai - reinforcement learning </title>
+<base href="../../" />
 
 <link rel="stylesheet" href="style.css">
 <!-- 式・使う宣言-->
@@ -62,7 +62,7 @@ load: ['[tex]/noerrors']
 <div class="title_space">
   <div class="title">
     <a href="index.html">hsmemo</a>
-    <span class="subtitle"> : 人工知能 - 人工知能について</span>
+    <span class="subtitle"> : 人工知能 - 強化学習</span>
   </div>
 
 </div>
@@ -72,37 +72,35 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：分類の項にあった記述を移動
+：
 </div>
 </div>
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>強化学習</h1>  
-    <h2>概要</h2>
+<h1>TD手法</h1>  
+    <h2>この記事の目的</h2>
         <div><div class="hidden_show">
-          九州大学の木村先生のホームページより引用する。『<cite>強化学習とは，試行錯誤を通じて環境に適応する学習制御の枠組である． 教師付き学習(Supervised learning)とは異なり，状態入力に対する正しい行動 出力を明示的に示す教師が存在しない．かわりに報酬というスカラーの情報を 手がかりに学習するが，報酬にはノイズや遅れがある．そのため，行動を実行した直後の報酬をみるだけでは，学習主体はその行動が正しかったかどうかを判断できないという困難を伴う．</cite> 』[1]
-          箇条書きにすると以下のような学習の枠組みである。
-          <ul>
-              <li>学習対象は、試行錯誤的に行動しなければいけない。</li>
-              <li>行動に対しては、結果の良し悪しを示す報酬のみが与えられる。</li>
-              <li>ただし、報酬は遅れやノイズがあり、行動の直後の報酬を見ただけでは学習ができない。</li>
-          </ul>
-
+            TD手法について理解し、実際の状態遷移確率がわからない状況において、学習していく方法について理解する。
+        </div></div>
+    <h2>この記事の目的</h2>
+        <div><div class="hidden_show">
 
         </div></div>
     <h2>参考文献、サイト</h2>
         <div><div class="hidden_show">
-    <ol>
-        <li><a href="http://sysplan.nams.kyushu-u.ac.jp/gen/edu/RL_intro.html">"強化学習とは？(what is Reinforcement Learning?)",木村 元、宮崎 和光、小林 重信</a></li>
-    </ol> 
+        <ol>
+            <li><a href="http://bookclub.kodansha.co.jp/product?item=0000275420">森村哲郎, "強化学習", 2019, 講談社</a></li>
+            <li><a href="https://mitpress.mit.edu/books/reinforcement-learning-second-edition">Richard S. Sutton and Andrew G. Barto, "Reinforcement Learning Second Edition An Introduction", 2018, MIT Press </a></li>
+        </ol>
+        </div></div> 
     </div></div> 
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
-<a class="prev" href="html/supervised_and_unsupervised_learning.html">教師あり学習・教師なし学習</a>
+<a class="prev" href="03_ai/05_reinforcement_learning/04_dynamic_programming.html">動的計画法</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="html/preprocessing.html">前準備の基礎</a>
+<a class="next" href="03_ai/05_reinforcement_learning/10_q_learning.html">Q学習</a>
 </div>
 </main>
 </body>
