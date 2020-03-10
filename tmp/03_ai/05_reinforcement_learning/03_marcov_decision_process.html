@@ -191,12 +191,12 @@ load: ['[tex]/noerrors']
             $$
             \begin{eqnarray*}
             V^\pi(s) &=& \mathbb{E^\pi}(R_0 + \gamma C_1 | S_0 = s) \\
-            &=& \sum_{a in \mathcal{A}} \pi(a | s)( \sum_{s' in \mathcal{S}} P_T(s'|s, a) (g(s, a, s') \gamma V^\pi (s')
+            &=& \sum_{a in \mathcal{A}} \pi(a | s)( \sum_{s' in \mathcal{S}} P_T(s'|s, a) (g(s, a, s') + \gamma V^\pi (s')
             \end{eqnarray*}
             $$
              $$
             Q^\pi(s, a) = 
-            \sum_{s' in \mathcal{S}} (P(s'|s, a)g(s, a, s') + \sum_{a' \in mathcal{A}} \gamma P(a' | s')Q^\pi(s', a')))
+            \sum_{s' in \mathcal{S}} (P(s'|s, a)g(s, a, s') + \sum_{a' \in \mathcal{A}} \gamma P(a' | s')Q^\pi(s', a')))
 
             $$ 
         <h3>モンテカルロ法による状態価値推定</h3>    
@@ -216,18 +216,18 @@ load: ['[tex]/noerrors']
                     方策が変わるたびに全て学び直しをする必要がある。
                 </li>
                 <li>
-                    計算のためには各状態sにおける期待値を保持し続けないといけない。
+                    計算のためには各状態\(s\)における期待値を保持し続けないといけない。
                 </li>
             </ul
 
         <h3>ベルマン最適方程式</h3>    
-            最適状態価値関数、最適行動価値関数もベルマン方程式（状態価値関数、行動価値関数を再帰的な式で表現したもの）と同じく、再帰的な式に変形することができる。これらをベルマン最適方程式と呼ぶ。
-             $$
-             V^*(s) = \max_{a \in mathcal{A}} sum_{s' in \mathcal{S}} p_t(s' | s, a )(g(s,r,s') + \gamma V*(s))
+            最適状態価値関数、最適行動価値関数もベルマン方程式（状態価値関数、行動価値関数を再帰的な式で表現したもの）と同じく、
+            再帰的な式に変形することができる。これらをベルマン最適方程式と呼ぶ。
             $$
-             $$
-             Q^*(s, a) =  sum_{s' in \mathcal{S}} p_t(s' | s, a )(g(s,r,s') + \gamma \max_{a \in \mathcal{A} Q^*(s, a))
-
+             V^*(s) = \max_{a \in \mathcal{A}} sum_{s' in \mathcal{S}} p_t(s' | s, a )(g(s,r,s') + \gamma V*(s))
+            $$
+            $$
+            Q^*(s, a) =  \sum_{s' in \mathcal{S}} p_t(s' | s, a )(g(s,r,s') + \gamma \max_{a \in \mathcal{A}} Q^*(s, a))
             $$  
 
         </div></div>

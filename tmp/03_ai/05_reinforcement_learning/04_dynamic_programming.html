@@ -83,34 +83,123 @@ load: ['[tex]/noerrors']
         <div><div class="hidden_show">
         動的計画法について記し、環境が既知の場合の逐次的意思決定問題であるプラニング問題の解法を理解する。
 
-        </div></div>
 
+        </div></div>
     <h2>方策評価</h2>
+        <div><div class="hidden_show">
         <h3>概要</h3>
-            ある特定の方策\(\pi\)を取ったときの価値観数を計算する方法。
-        <h3>アルゴリズム</h3>
+            ある特定の方策\(\pi\)を取ったときの価値関数を計算する方法。
+        <h3>反復方策評価のアルゴリズム(メモリを考慮しないバージョン)</h3>
+            以下にアルゴリズムを示す。ただし、わかりやすさのためメモリを考慮していない。<br/>
             <ol>
-            <li> 閾値\(\epsilon\)を設定し、\(V(s) = 0 , \forall s \in \mathcal{S}\)と価値観数を初期化する。</li>
+            <li>要素数が\(|\mathcal{S}|\)の配列\(V_k\)と\(\delta_k\)を\(n\)個用意する。</li>
+            <li> 収束判断に使用する閾値\(\epsilon\)を設定する。</li>
+            <li>\(k = 0\)、全ての\(s \in \mathcal{S}\)で\(V_0(s) = 0\) とする。</li>
             <li>以下を繰り返す。
                 <ol>
-                <li> \(\delta = 0\)</li> 
-                <li> 以下を繰り返す。</li> 
+                    <li>\(k\)に\(1\)を足す。</li>
+                    <li> 以下の計算を全ての\(s \in \mathcal{S}\)で繰り返す。 
                     <ol>
-                    <li> \(\delta = 0\)</li> 
-                    <li>v = V(s)</li>
+                        <li> 
+                            $$
+                            V_k(s) = \sum_{a \in \mathcal{A}} \pi(a|s) \sum_{s' \in \mathcal{S}, r \in \mathcal{R}}p_t(s' | s, a)( g(s, a, s') + \gamma V_{k-1}(s'))
+                            $$
+                            ここで、\(\pi(s|a)\)は状態\(s\)のときに\(a\)を選ぶ確率、
+                            \(p_t\)は状態\(s\)で行動\(a\)を選んだときに状態\(s'\)になる確率、
+                            \(g(s, r, s')\)は状態\(s\)から行動\(a\)を選んで状態\(s'\)になった時の報酬。
+                            \(\gamma\)は割引率。
+                        </li> 
+                        <li>
+                            $$\delta_{k,s} = |V_k(s) - V_{k-1}|$$
+                        </li>
                     </ol>
-
+                    </li>
+                    <li>\(\max(\delta_{k,1},\ldots) \lt \epsilon\)の場合繰り返し終了。</li>
                 </ol>
             </li>
+            <li>\(V_k(s)\)がその方策の評価値となる。</li>
             </ol>
+            
+        <h3>反復方策評価のアルゴリズム</h3>
+            以下にアルゴリズムを示す。反復方策は現在の状態評価を示す行列と更新後の状態評価を示す行列の２つの行列のみを必要とする。
+            <ol>
+            <li>要素数が\(|\mathcal{S}|\)の配列\(V\)と\(V'\)を用意する。</li>
+            <li> 収束判断に使用する閾値\(\epsilon\)を設定する。</li>
+            <li>\(k = 0\)、全ての\(s \in \mathcal{S}\)で\(V(s) = 0\) とする。</li>
+            <li>以下を繰り返す。
+                <ol>
+                    <li>\(\delta=0\)とする。</li>
+                    <li> 以下の計算を全ての\(s \in \mathcal{S}\)で繰り返す。 
+                    <ol>
+                        <li>\(V'(s) = V(s)\)とする。 </li>
+                        <li> 
+                            $$
+                            V(s) = \sum_{a \in \mathcal{A}} \pi(a|s) \sum_{s' \in \mathcal{S}, r \in \mathcal{R}}p_t(s' | s, a)( g(s, a, s') + \gamma V'(s'))
+                            $$
+                            ここで、\(\pi(s|a)\)は状態\(s\)のときに\(a\)を選ぶ確率、
+                            \(p_t\)は状態\(s\)で行動\(a\)を選んだときに状態\(s'\)になる確率、
+                            \(g(s, r, s')\)は状態\(s\)から行動\(a\)を選んで状態\(s'\)になった時の報酬。
+                            \(\gamma\)は割引率。
+                         <li>
+                            $$\delta = \max(\delta, |V(s) - V'(s)|)$$
+                        </li> 
+                        </li> 
+
+                    </ol>
+                    </li>
+                    <li>\(\delta \lt \epsilon\)の場合繰り返し終了。</li>
+                </ol>
+            </li>
+            <li>\(V(s)\)がその方策の評価値となる。</li>
+            </ol> 
+        </div></div>
+    <h2>方策反復</h2>
+        <div><div class="hidden_show">
+        <h3>概要</h3>
+            方策評価により求められた各状態の評価値を使って方策を改善し、
+            さらにその改善された方策により方策評価し…と繰り返すことで、より良い方策を見つける方法。
+        <h3>アルゴリズム</h3>
+        <ol>
+            <li> 以下の式で示す変数を全ての\(s \in \mathcal{S}\)で初期化する。
+                $$
+                V(s) \in mathbb{R}, \pi \in \mathcal{A}
+                $$
+            </li>
+            <li>方策評価により方策を評価する。(\(V(s)\)が求まる。 </li>
+            <li>方策改善(後述)により方策を改善する。(\(\pi(s)\)求まり、方策が安定しているかどうかがわかる。 </li>
+            <li>方策が安定している場合は終了、そうでない場合は(2)へ。</li>
+        </ol> 
+        <h3>方策改善</h3>
+            方策評価により得られた評価値を使って方策を改善する方法である。アルゴリズムを以下に示す。
+            <ol>
+                <li> policy-stable に true を代入。</li>
+                <li> 以下の計算を全ての\(s \in \mathcal{S}\)で繰り返す。 
+                     <ol>
+                         <li>\({\hat{a} = \pi(s)\)とする。 </li> 
+                        <li>
+                            $$
+                            \pi(s) = \underset{a \in \mathcal{A}}{\operatorname{argmax}} \sum_{s' \in \mathcal{S}} p_t(s' | s, a)(g(s, r, s') + \gamma V(s'))
+                            $$
+                        </li> 
+                        <li>\(\hat{a} \ne \pi(s))であれば、policy-stable に falseを代入。</li>
+                     </ol>
+            </ol>
+    <h2>価値反復</h2>
+         <h3>概要</h3>
+            方策反復による方策の改善では、全ての状態を毎回方策評価と方策改善の両方で
+            計算することが必要であり、状態が増えると計算量が増大する。
+            これを解決するために生み出された方法。
+
+         <h3>アルゴリズム</h3>
 
 
 
+        </div></div>
     <h2>参考文献、サイト</h2>
         <div><div class="hidden_show">
         <ol>
-
             <li><a href="http://bookclub.kodansha.co.jp/product?item=0000275420">森村哲郎, "強化学習", 2019, 講談社</a></li>
+            <li><a href="https://mitpress.mit.edu/books/reinforcement-learning-second-edition">Richard S. Sutton and Andrew G. Barto, "Reinforcement Learning Second Edition An Introduction", 2018, MIT Press </a></li>
         </ol>
         </div></div> 
     </div></div> 
