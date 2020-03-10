@@ -83,15 +83,85 @@ load: ['[tex]/noerrors']
         <div><div class="hidden_show">
             TD手法について理解し、実際の状態遷移確率がわからない状況において、学習していく方法について理解する。
         </div></div>
-    <h2>この記事の目的</h2>
+    <h2>概要</h2>
         <div><div class="hidden_show">
+            TD手法とは、Time Differenceのことで、最終結果をみずに現在の推定値を利用して次の推定値を更新していく方法。
+        </div></div>
+    <h2>Sarsa</h2>
+        <div><div class="hidden_show">
+        <h3>概要</h3>
+            On-policy、つまり未来の行動が現戦略にしたがって動作すると想定してTD学習を行う方法。
+            動作の推定を行い、実際に得られた報酬\(r\)と見積もりによる推定値\(\gamma Q(s', a') - Q(s,a)\)の差を推定値に足すことで、
+            推定値の精度を上げていく。
+
+
+            <h3>アルゴリズム</h3>                                                                                           <ol>
+                <li>
+                    全ての\(s\)、\(a\)において行動価値関数\(Q(s, a)\を任意に初期化する。
+                    ただし終端状態\({\rm terminal state}\)におけるQ(s_{\rm terminal state} = 0\)とする。
+                </li>
+                <li> 各エピソードにおいて、sが終端状態となるまで以下を繰り返す。
+                    <ol>
+                        <li>状態\(s\)を初期化する</li>
+                        <li>行動価値関数\(Q\)から導かれる方策を利用して状態\(s\)から行動\(a\)を選択する。</li>
+                        <li>以下を繰り返す
+                            <ol>
+                                <li>行動\(a\)を行って遷移した状態\(s'\)と報酬\(r\)を観測する。</li>
+                                <li>行動価値関数\(Q\)から導かれる方策を利用して状態\(s'\)から行動\(a'\)を選択する。</li>
+                                <li>
+                                    $$
+                                    Q(s, a) = Q(s, a) + \alpha ( r + \gamma Q(s', a') - Q(s, a))
+                                    $$
+                                </li>
+                                <li>\(s = s', a = a'\)とする。</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            Q関数から導かれる方策とは、例えば\(\epsilon-greedy\)を使うとすると、ある確率でQ関数による決定的方策となり、残りの確率では、ランダムに行動を選択される方策となる。
+            
+
+        </div></div>
+    <h2>Q学習</h2>
+        <div><div class="hidden_show">
+        <h3>概要</h3>
+            Off-policy、つまり未来の行動が現戦略と関係なく動作すると想定してTD学習を行う方法。
+            動作した時に、実際に得られた報酬\(r\)と過去の見積もりをによる最適行動時の推定値\(\gamma \max_{a' \in \mathcal{A}} Q(s', a') - Q(s,a)\)の差を推定値に足すことで、
+            推定値の精度を上げていく。 
+             <h3>アルゴリズム</h3>                                                                                           <ol>
+                <li>
+                    全ての\(s\)、\(a\)において行動価値関数\(Q(s, a)\を任意に初期化する。
+                    ただし終端状態\({\rm terminal state}\)におけるQ(s_{\rm terminal state} = 0\)とする。
+                </li>
+                <li> 各エピソードにおいて、sが終端状態となるまで以下を繰り返す。
+                    <ol>
+                        <li>状態\(s\)を初期化する</li>
+                        <li>以下を繰り返す
+                            <ol>
+                                <li>行動価値関数\(Q\)から導かれる方策を利用して状態\(s\)から行動\(a\)を選択する。</li>
+                                <li>行動\(a\)を行って遷移した状態\(s'\)と報酬\(r\)を観測する。</li>
+                                <li>
+                                    $$
+                                    Q(s, a) = Q(s, a) + \alpha ( r + \gamma \max_{a' \in \mathcal{A}} Q(s', a') - Q(s, a))
+                                    $$
+                                </li>
+                                <li>\(s = s'\)とする。</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            Q関数から導かれる方策とは、例えば\(\epsilon-greedy\)を使うとすると、ある確率でQ関数による決定的方策となり、残りの確率では、ランダムに行動を選択される方策となる。
+
 
         </div></div>
     <h2>参考文献、サイト</h2>
         <div><div class="hidden_show">
         <ol>
-            <li><a href="http://bookclub.kodansha.co.jp/product?item=0000275420">森村哲郎, "強化学習", 2019, 講談社</a></li>
             <li><a href="https://mitpress.mit.edu/books/reinforcement-learning-second-edition">Richard S. Sutton and Andrew G. Barto, "Reinforcement Learning Second Edition An Introduction", 2018, MIT Press </a></li>
+            <li><a href="https://aidemy.net">"Aidemy"</a></li>
+            <li><a href="https://qiita.com/ABmushi/items/83a639506fcbc4050ce8">@ABmushi, "強化学習のOn-PolicyとOff-Policy", 2018, Qiita</a></li> 
         </ol>
         </div></div> 
     </div></div> 
@@ -100,7 +170,7 @@ load: ['[tex]/noerrors']
 <div class="end_of_page">
 <a class="prev" href="html/dynamic_programming.html">動的計画法</a>
 <a class="upper" href="index.html">上：ホーム</a>
-<a class="next" href="html/q_learning.html">Q学習</a>
+<a class="next" href="html/actor_critic.html">アクタークリティック</a>
 </div>
 </main>
 </body>
