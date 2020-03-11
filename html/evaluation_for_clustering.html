@@ -72,7 +72,7 @@ load: ['[tex]/noerrors']
    document.write('最終更新日 : ' + document.lastModified);
 </script>
 <!--...........................更新内容............................-->
-：
+： シルエット分析の追加
 </div>
 </div>
 
@@ -92,6 +92,28 @@ E_i = \sum^n_{j=1}(x_j- \bar{x})^2
       E_{total} = \sum_i^m{E_i}
     $$
     ここで\(m\)はクラスタ数。
+        </div></div>
+    <h2>シルエット分析</h2>
+        <div><div class="hidden_show">
+        <h3>概要</h3>
+        クラスタ内のサンプルがどの程度密に凝縮されているかを示したグラフを可視化し、また、隣接クラスタとどれだけ離れているかを可視化する。
+        <h3>アルゴリズム</h3>
+        以下にアルゴリズムを示す[1]。
+        <ol>
+            <li>サンプル\(x^{(i)}\)と同じクラスタ内のその他すべてのサンプルとの平均距離として、クラスタの凝集度\(a^{(i)}\)を計算する。</li>
+            <li>サンプル\(x^{(i)}\)と最も近くにあるクラスタ内のすべてのサンプルとの平均距離として、その次に近いクラスタからの乖離度\(b^{(i)}\)を計算する。</li>
+            <li>クラスタの凝集度と乖離度の差を、それらのうち大きい方の値で割り、シルエット係数\(s^{(i)}\)を計算する。</li>
+        </ol>
+
+        </div></div>
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
+        <ol>
+            <li><a href="https://qiita.com/deaikei/items/11a10fde5bb47a2cf2c2">@deaikei, "k-meansの最適なクラスター数を調べる方法", 2016, Qiita</a></li> 
+            <li><a href="https://aidemy.net">"Aidemy"</a></li>
+        </ol>
+        </div></div> 
+    </div></div>  
     </div></div>
 <div class="end_of_page_margin"></div>
 <div class="end_of_page">
@@ -101,4 +123,4 @@ E_i = \sum^n_{j=1}(x_j- \bar{x})^2
 </div>
 </main>
 </body>
-</html>
+</html>                                                                                                                                   

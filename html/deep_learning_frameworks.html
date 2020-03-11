@@ -79,55 +79,51 @@ load: ['[tex]/noerrors']
 
 <div class=site-header-margin> </div>
 <!--*********************************本文*********************************-->
-<h1>フレームワーク</h1>
-    <h2>Theano</h2>
+<h1>深層学習フレームワーク</h1>
+    <h2>Define and Run と Define by Run</h2>
         <div><div class="hidden_show">
-    
-  pythonのDNNライブラリ。歴史的意義があるが、2017/11/15に1.0.0がでてから更新されていない。
-        </div></div>
-    <h2>Caffe</h2>
-        <div><div class="hidden_show">
-    
-  UCバークレーで開発された Deep Learning Framework。
-    Caffe Framework modelsが開発され、他のフレームワークでも使用できる
+        <h3>Define and Run </h3>
+            <h4>概要</h4>
+                フレームワークの考え方の一つで、計算グラフを構築してからデータを流す方式。
+            <h4>利点</h4>
+                最適化が行いやすい。
+            <h4>欠点</h4>
+                デバッグがしにくく、データ毎にネットワーク構造を変えにくい。
 
+        <h3>Define by Run </h3>
+             <h4>概要</h4>
+                フレームワークの考え方の一つで、計算をしながら計算グラフを構築する方式。
+            <h4>利点</h4>
+                デバッグがしやすく、データ毎にネットワーク構造を変更できる。 
+            <h4>欠点</h4>
+                計算毎にネットワーク構築のコストがかかり、最適化を行いにくい。
         </div></div>
-    <h2>Torch</h2>
+    <h2>具体例</h2>
         <div><div class="hidden_show">
-    
-  Lua言語をベースとしたスクリプト言語の機械学習ライブラリ。2018年からは開発は行われていない
-        </div></div>
-    <h2>pyTorch</h2>
-        <div><div class="hidden_show">
-    
-  Pythonで使用できるTorch。2019年に開発された。
-        </div></div>
-    <h2>chainer</h2>
-        <div><div class="hidden_show">
-    
-  preferred network社が開発している和製フレームワーク。
-    2019/12/05 preferred network社はPyTorchに研究開発基板を移行を発表。
-    <a href="https://preferred.jp/ja/news/pr20191205/">https://preferred.jp/ja/news/pr20191205/</a>
-        </div></div>
-    <h2>TensorFlow</h2>
-        <div><div class="hidden_show">
-    
-  googleが開発、圧倒的に人気がある
-        </div></div>
-    <h2> keras </h2>
-        <div><div class="hidden_show">
-    
-  tensor flow, theanoのフロントエンド。人気がある
-        </div></div>
-    <h2>caffe2</h2>
-        <div><div class="hidden_show">
-    
-  caffeの改良版
-        </div></div>
-    <h2>TensorFlow.js</h2>
-        <div><div class="hidden_show">
-    
-  TensorFlowのjava script版
+        <h3>Theano</h3>
+            pythonのDNNライブラリ。歴史的意義があるが、2017/11/15に1.0.0がでてから更新されていない。
+        <h3>Caffe</h3>
+            UCバークレーで開発された Deep Learning Framework。
+            Caffe Framework modelsが開発され、他のフレームワークでも使用できる
+            Define and Run方式を採用。
+        <h3>Torch</h3>
+            Lua言語をベースとしたスクリプト言語の機械学習ライブラリ。2018年からは開発は行われていない
+        <h3>pyTorch</h3>
+            Pythonで使用できるTorch。2019年に開発された。
+            Define by Run方式を採用。
+        <h3>chainer</h3>
+            preferred network社が開発している和製フレームワーク。 Define by Run方式を採用。
+            2019/12/05 preferred network社はPyTorchに研究開発基板を移行を発表。
+        <a href="https://preferred.jp/ja/news/pr20191205/">https://preferred.jp/ja/news/pr20191205/</a>
+        <h3>TensorFlow</h3>
+            googleが開発、圧倒的に人気がある。Define and Run方式を採用。
+        <h3> keras </h3>
+            tensor flow, theanoのフロントエンド。人気がある
+        <h3>caffe2</h3>
+            caffeの改良版
+        <h3>TensorFlow.js</h3>
+        
+          TensorFlowのjava script版
 
     </div></div>
 <div class="end_of_page_margin"></div>
