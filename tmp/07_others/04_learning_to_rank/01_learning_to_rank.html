@@ -1,0 +1,166 @@
+<!DOCTYPE html> <html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - others - network analysis </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : その他 - ネットワーク分析</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>ランキング学習</h1>
+    <h2>この記事の目的</h2>
+        <div><div class="hidden_show">
+            ランキング学習の基本的な用語と流れについて記し、ランキング学習の概要をつかむ。
+
+
+        </div></div>
+    <h2>ランキング学習とは</h2>
+        <div><div class="hidden_show">
+            定義した重要度に基づいて情報を並べる機会学習の位置手法で、
+            検索エンジンやレコメンデーションシステム、自動応答システムなどで用いられる。
+            情報を得るためのキーワードをクエリとよび、そのクエリと文書がどのくらい関連しているか
+            を得るのがランキング学習である。
+            教師データとして、クエリ-文書ペアを使用する。
+
+       </div></div>
+    <h2>特徴ベクトル</h2>
+        文書などの特徴量を成分とするベクトルで、クエリ依存型の要素とクエリ非依存型の要素で構成される。
+        <h3>クエリ依存型</h3>
+            クエリと対象の文書を比較して計算する要素。
+        <h3>クエリ非依存型</h3>
+            クエリを取得する前からあらかじめ計算されている要素。
+        <h3>TF(Term Frequency)</h3>
+            クエリ依存型の特徴ベクトルの成分で、クエリが文書に出てくる頻度によって決まる指標。
+            以下の式で表される。
+            $$
+            {\rm TF}(q, d) = \frac{N {\rm of word match q in } d}{N {\of words in }d}
+            $$
+            ここで、qはクエリでdは文書である。
+
+        <h3>IDF(Inverse Document Frequency)</h3>
+            クエリ依存型の特徴ベクトルの成分で、クエリ\(q\)がどのくらい珍しいかを示す指標。
+            以下の式で表される。
+            $$
+            {\rm IDF}(q) = \log(\frac{D}{d}) + 1
+            $$
+            ここで\(D\)は総文書数。\(d\)はクエリ\(q\)を含む文書数。
+
+        <h3>NDL(Normalized Document Length)</h3>
+            ある文書\(d_k\)の長さ\({\rm DL}(d_k)\)が全文書\(D\)の長さ平均\(\bar{\rm DL}\)と比較してどれほどの長さをもつかの指標。以下の式で表される。
+
+            $$
+            {\rm NDL}(d_k) = \frac{{\rm DL}(d_k)}{\bar{\rm DL}}
+            $$
+
+        <h3>BM25</h3>
+            クエリ非依存型の特徴ベクトルの成分で、TF, IDF, NDLを組み合わせた合成指標で以下の式で表される。
+            $$
+            {\rm BM25}(q,d) = {\rm IDF}(q) \frac{(K_1 + 1) {\rm TF}(q,d)}{K_1(1 + b({\rm NDL}(d) - 1))+{\rm TF}(q,d)}
+            $$
+            ここで、\(K_1\)は単語の出現頻度による影響を調整するハイパーパラメータで、\(b\)は文書の長さによる影響を調節するハイパーパラメータ。通常\(K=1.5\)、\(b=0.75\)とすることが多い。
+
+        <h3>PageRank</h3>
+            リンク関係を元にWebページの重要度を決定するためのアルゴリズム。文書同士のリンク関係から導き出せる。
+            多くの文書、重要な文書から参照されている文書は重要であるとみなす。
+            リンクをエッジとみなした隣接行列\(\bm{A}\)を考える。
+            Aの転置行列\(\bm{A}\top\)の各列の和を1に正規化した行列\(\bm{B}\)を推移確率行列とよび、
+            この固有ベクトルの各要素の値がページランクを示す。
+
+    <h2>重みベクトル</h2>
+        特徴ベクトルの成分に重みをつけるためのベクトル。
+
+    <h2>ランキング関数</h2>
+    与えられたクエリの元で文書の重要度を決定する関数\(f\)。
+        特徴ベクトル\(\Phi(q, d)\)と重みベクトル\(w\)内積の以下の式で定義されることが多い。
+        $$
+            f(\Phi(q,d)) \colon= w^\top \Phi(q,d)
+        $$
+
+
+        </div></div>
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
+        <ol>
+            <li><a href="https://aidemy.net">"Aidemy"</a></li>
+        </ol>
+    </div></div> 
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="07_others/02_voice_recognition/01_voice_recognition.html">音声認識の基礎</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="07_others/03_network_analysis/02_preprocessing_for_network_analysis.html">ネットワーク分析におけるデータ前処理</a>
+</div>
+</main>
+</body>
+</html>  

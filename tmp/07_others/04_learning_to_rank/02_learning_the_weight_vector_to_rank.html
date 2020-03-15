@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - others - network analysis </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : その他 - ネットワーク分析</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>重みベクトルの学習</h1>
+    <h2>この記事の目的</h2>
+        <div><div class="hidden_show">
+            複数の重みベクトルの学習方法を理解する。
+
+
+        </div></div>
+
+    <h2>学習方法の種類</h2>
+        <div><div class="hidden_show">
+        学習方法には一度に見る文書データ数に応じて、
+        ポイントワイズ手法、ペアワイズ手法、リストワイズ手法の３種類に分類される。
+        一度に見る文書数が多いほど精度が上がるが、必要なデータ・セットの数が増える。
+        
+        <h3>ポイントワイズ手法</h3>
+            １つの文書に対し、予測と重みベクトルの調整を行うことを繰り返す。
+
+        <h3>ペアワイズ手法</h3>
+            一度に２つの文書を見比べどちらが優位かを予測し、重みベクトルの調整を行う。
+               
+        <h3>リストワイズ手法</h3>
+            文書群を直接ランキング付けすることによって学習を行う。
+
+       </div></div>
+
+    <h2>具体的な学習方法</h2>
+        <h3>２値分類</h3>
+            特徴ベクトルと、それに結び付けられたラベル(適合\(=1\), 不適合\(=-1\))を教師データとして、
+            ラベルを予測できる重みベクトルを得るポイントワイズ手法。重みベクトルの学習には<a local="03_ai/04_learning_methods/08_simple_perceptron.html">単純パーセプロトロン</a>などを使用する。
+        <h3>PRank</h3>
+             m個の離散値で与えられたラベルを予測するためのアルゴリズムで、
+             ２値分類と同様の学習に加え、出力を閾値によりラベルの値により分類し、予測する。
+        <h3>Pairwise</h3>
+            特徴ベクトルのリストと、各特徴ベクトルに結び付けられたラベル\((0,1,2,...m−1)\)ついて学習をする手法で、
+            2組の特徴ベクトルについて、ラベルの値が大きい方を予測する。
+ 
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
+        <ol>
+            <li><a href="https://aidemy.net">"Aidemy"</a></li>
+        </ol>
+    </div></div> 
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="07_others/02_voice_recognition/01_voice_recognition.html">音声認識の基礎</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="07_others/03_network_analysis/02_preprocessing_for_network_analysis.html">ネットワーク分析におけるデータ前処理</a>
+</div>
+</main>
+</body>
+</html>   
