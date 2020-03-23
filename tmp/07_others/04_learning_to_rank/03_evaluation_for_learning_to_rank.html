@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hsmemo - - others - learning to rank </title>
+<base href="../../" />
+
+<link rel="stylesheet" href="style.css">
+<!-- 式・使う宣言-->
+<script>
+    window.MathJax = {
+tex: {
+macros: {
+x: "{\\times}",
+bm: ["{\\boldsymbol{#1}}",1],
+dd: ["{\\frac{\\partial #1}{\\partial #2}}",2]
+},
+inlineMath: [['$','$'], ['\\(','\\)']],
+processEscapes: true,
+tags: "ams",
+autoload: {
+color: [],
+colorV2: ['color']
+},
+packages: {'[+]': ['noerrors']}
+},
+chtml: {
+matchFontHeight: false,
+displayAlign: "left",
+displayIndent: "2em"
+},
+options: {
+renderActions: {
+/* add a new named action to render <script type="math/tex"> */
+find_script_mathtex: [10, function (doc) {
+for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+const display = !!node.type.match(/; *mode=display/);
+const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+const text = document.createTextNode('');
+node.parentNode.replaceChild(text, node);
+math.start = {node: text, delim: '', n: 0};
+math.end = {node: text, delim: '', n: 0};
+doc.math.push(math);
+}
+}, '']
+}
+},
+loader: {
+load: ['[tex]/noerrors']
+}
+    };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script">
+</script>
+</head>
+<body>
+<main>
+
+
+<!--***************************ヘッダー領域****************************-->
+<div class="site-header">
+<div class="title_space">
+  <div class="title">
+    <a href="index.html">hsmemo</a>
+    <span class="subtitle"> : その他 - ランキング学習</span>
+  </div>
+
+</div>
+
+<div class="last_modified">
+<script type="text/javascript">
+   document.write('最終更新日 : ' + document.lastModified);
+</script>
+<!--...........................更新内容............................-->
+：
+</div>
+</div>
+
+<div class=site-header-margin> </div>
+<!--*********************************本文*********************************-->
+<h1>ランキング学習の評価方法</h1>
+    <h2>この記事の目的</h2>
+        <div><div class="hidden_show">
+            ランキング結果の幾つかの評価方法を記す。
+
+        </div></div>
+    <h2>ランキング学習の評価についての概要</h2>
+        <div><div class="hidden_show">
+        ランキング上位の学習の正確さが下位の学習の正確さよりも重要視される。
+
+        </div></div>
+    <h2>具体的な評価方法</h2>
+        <div><div class="hidden_show">
+        <h3>Precision@K</h3>
+            ランキング上位\(K\)番目までの文書のうち、適合であるものの割合をスコアするもの。
+        <h3>Average Precision: AP</h3>
+            ランキング上位\(K\)番目が適合であるようなPrecision@Kの\(K = 1 ,\ldots,n\)の平均を取ったもの。
+            ランキング１位と３位が適合で\(n=3\)の場合は\(({\rm Precision@1} + {\rm Precision@3})/2\)となる。
+        <h3>Reciprocal Rank: MR</h3>
+            適合文書が最初にでてくる順位の逆数。
+
+        <h3>Mean Reciprocal Rank: MRR</h3>
+            ユーザーごとのReciprocal Rankの平均。
+
+        <h3>Discounted Cumulative Gain :DCG</h3>
+            ランキング毎に評価点がついているようなデータにおいて、順位によって割引されたスコアの合計値。以下の式で表される。 
+            $$
+            {\rm DCG} = r_1 + \sum^n_{k=2} \frac{r_k}{log_2(k)}
+            $$
+            ここで\(r_k\)は\(k\)番目の順位のスコア。
+        <h3>Normalized Discounted Cumulative Gain :NDCG</h3>
+            DCGの値をDCGにおいて満点の時の値で割った時の値。
+
+        </div></div>
+    <h2>データ・セット</h2>
+        <div><div class="hidden_show">
+        <h3>LETORデータセット</h3>
+            ランキング学習におけるベンチマーク的なデータセットで、Microsoftによって公開されている。
+            <a href="https://www.microsoft.com/en-us/research/project/letor-learning-rank-information-retrieval/">https://www.microsoft.com/en-us/research/project/letor-learning-rank-information-retrieval/</a>
+
+        </div></div>
+    <h2>参考文献、サイト</h2>
+        <div><div class="hidden_show">
+        <ol>
+            <li><a href="https://aidemy.net">"Aidemy"</a></li>
+        </ol>
+    </div></div> 
+    </div></div>
+<div class="end_of_page_margin"></div>
+<div class="end_of_page">
+<a class="prev" href="07_others/04_learning_to_rank/02_learning_the_weight_vector_to_rank.html">重みベクトルの学習</a>
+<a class="upper" href="index.html">上：ホーム</a>
+<a class="next" href="07_others/05_other/01_references_for_others.html">参考資料（その他)</a>
+</div>
+</main>
+</body>
+</html>  
